@@ -37,3 +37,6 @@ next-env.d.ts
 
 # omo internal
 .omo/
+
+# playwright mcp artifacts
+.playwright-mcp/

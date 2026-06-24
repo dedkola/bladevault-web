@@ -1,21 +1,22 @@
-# Next.js template
+# BladeVault Web
 
-This is a Next.js template with shadcn/ui.
+Promo website for [BladeVault](https://github.com/kolasokol/bladevault) — a sharp, local-first knife collection manager.
 
-## Adding components
-
-To add components to your app, run the following command:
+## Development
 
 ```bash
-npx shadcn@latest add button
+npm run dev     # Start dev server
+npm run build   # Production build
+npm run start   # Serve production build
+npm run lint    # Run ESLint
+npm run typecheck # Run TypeScript check
+npm run format  # Run Prettier
 ```
 
-This will place the ui components in the `components` directory.
+## Deploy
 
-## Using components
+Deploy to [Vercel](https://vercel.com/new).
 
-To use the components in your app, import them as follows:
+## Assets
 
-```tsx
-import { Button } from "@/components/ui/button";
-```
+Screenshots are sourced from the [BladeVault](https://github.com/kolasokol/bladevault) repository.
