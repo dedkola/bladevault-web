@@ -4,9 +4,9 @@ import { CodeCopy } from "@/components/code-copy"
 export function InstallCta() {
   return (
     <section id="install" className="border-t border-border/40">
-      <div className="max-w-5xl mx-auto px-6 py-20 md:py-28">
-        <div className="rounded-xl border border-border/60 bg-muted/50 p-8 flex flex-col gap-8">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+      <div className="mx-auto max-w-5xl px-6 py-20 md:py-28">
+        <div className="flex flex-col gap-8 rounded-xl border border-border/60 bg-muted/50 p-8">
+          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
             Run it yourself.
           </h2>
 
@@ -24,13 +24,13 @@ export function InstallCta() {
             </p>
           </div>
 
-          <div className="flex flex-col md:flex-row items-start gap-6">
+          <div className="flex flex-col items-start gap-6 md:flex-row">
             <Image
               src="/screenshots/add.png"
               width={1440}
               height={900}
               alt="Quick Add — scrape a product URL or enter details manually"
-              className="rounded-lg border border-border/60 shadow-sm w-full md:max-w-sm"
+              className="w-full rounded-lg border border-border/60 shadow-sm md:max-w-sm"
             />
             <div className="flex flex-col gap-2">
               <p className="text-sm text-muted-foreground">

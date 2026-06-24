@@ -47,20 +47,17 @@ const features = [
 export function Features() {
   return (
     <section id="features" className="border-t border-border/40">
-      <div className="max-w-5xl mx-auto px-6 py-20 md:py-28">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight mb-10">
+      <div className="mx-auto max-w-5xl px-6 py-20 md:py-28">
+        <h2 className="mb-10 text-3xl font-semibold tracking-tight md:text-4xl">
           Everything you need to manage a knife collection.
         </h2>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid gap-4 md:grid-cols-3">
           {features.map((feature) => (
-            <Card
-              key={feature.title}
-              className="shadow-none border-border/60"
-            >
+            <Card key={feature.title} className="border-border/60 shadow-none">
               <CardContent className="flex flex-col gap-3">
                 <feature.icon className="size-5 text-muted-foreground" />
                 <h3 className="font-semibold">{feature.title}</h3>
-                <p className="text-muted-foreground text-sm">
+                <p className="text-sm text-muted-foreground">
                   {feature.description}
                 </p>
               </CardContent>

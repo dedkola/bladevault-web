@@ -31,14 +31,14 @@ export function CodeCopy({ text, label }: CodeCopyProps) {
 
   return (
     <div className="flex items-center gap-2">
-      <pre className="flex-1 overflow-x-auto font-mono text-sm bg-muted p-3 rounded-md">
+      <pre className="flex-1 overflow-x-auto rounded-md bg-muted p-3 font-mono text-sm">
         <code>{text}</code>
       </pre>
       <button
         type="button"
         onClick={handleCopy}
         aria-label={label ?? "Copy to clipboard"}
-        className="shrink-0 rounded-md border border-border/60 p-2 text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+        className="shrink-0 rounded-md border border-border/60 p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       >
         {copied ? (
           <Check className="size-4" />
@@ -46,9 +46,7 @@ export function CodeCopy({ text, label }: CodeCopyProps) {
           <ClipboardCopy className="size-4" />
         )}
       </button>
-      {copied && (
-        <span className="text-xs text-muted-foreground">Copied!</span>
-      )}
+      {copied && <span className="text-xs text-muted-foreground">Copied!</span>}
     </div>
   )
 }

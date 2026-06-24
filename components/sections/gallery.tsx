@@ -18,8 +18,8 @@ const screenshots = [
 export function Gallery() {
   return (
     <section className="border-t border-border/40">
-      <div className="max-w-5xl mx-auto px-6 py-20 md:py-28">
-        <div className="grid md:grid-cols-3 gap-6">
+      <div className="mx-auto max-w-5xl px-6 py-20 md:py-28">
+        <div className="grid gap-6 md:grid-cols-3">
           {screenshots.map((s) => (
             <div key={s.src} className="flex flex-col gap-3">
               <Image

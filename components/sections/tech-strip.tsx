@@ -12,7 +12,7 @@ const techs = [
 export function TechStrip() {
   return (
     <section className="border-t border-border/40">
-      <div className="max-w-5xl mx-auto px-6 py-10">
+      <div className="mx-auto max-w-5xl px-6 py-10">
         <div className="flex flex-wrap justify-center gap-2">
           {techs.map((tech) => (
             <span

@@ -6,14 +6,14 @@ import { CodeCopy } from "@/components/code-copy"
 
 export function Hero() {
   return (
-    <section className="max-w-5xl mx-auto px-6 py-24 md:py-32">
-      <div className="flex flex-col items-center text-center gap-8">
+    <section className="mx-auto max-w-5xl px-6 py-24 md:py-32">
+      <div className="flex flex-col items-center gap-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-semibold tracking-tight md:text-4xl">
             A sharp, local-first knife collection manager.
           </h1>
         </motion.div>
@@ -21,7 +21,7 @@ export function Hero() {
           Track your EDC knives with a clean inventory, side-by-side compare,
           and one-paste URL scraping — all on your own machine.
         </p>
-        <div className="flex flex-col sm:flex-row items-center gap-4">
+        <div className="flex flex-col items-center gap-4 sm:flex-row">
           <Button
             render={<a href="https://github.com/kolasokol/bladevault" />}
             nativeButton={false}

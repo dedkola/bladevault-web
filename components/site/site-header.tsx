@@ -10,11 +10,11 @@ const navLinks = [
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur">
-      <div className="max-w-5xl mx-auto px-6 flex items-center justify-between h-14">
-        <a href="#" className="font-semibold text-lg">
+      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-6">
+        <a href="#" className="text-lg font-semibold">
           BladeVault
         </a>
-        <nav className="flex flex-wrap gap-4 items-center">
+        <nav className="flex flex-wrap items-center gap-4">
           {navLinks.map((link) => (
             <a
               key={link.href}
