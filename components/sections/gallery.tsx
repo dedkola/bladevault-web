@@ -14,9 +14,10 @@ const screenshots = [
     span: "",
   },
   {
-    src: "/screenshots/collection.png",
-    title: "Library",
-    caption: "Browse the full vault with filters, pinned items, and clean card layouts.",
+    src: "/screenshots/compare.png",
+    title: "Compare Board",
+    caption:
+      "Keep multiple knives in view and scan the differences without losing the details.",
     span: "",
   },
   {
@@ -38,7 +39,7 @@ export function Gallery() {
           </h2>
         </div>
         <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
-          Explore the dashboard, library, detail view, and quick add workflow.
+          Explore the dashboard, compare board, detail view, and quick add workflow.
         </p>
       </div>
 

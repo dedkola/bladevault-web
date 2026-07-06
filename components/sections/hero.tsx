@@ -1,175 +1,245 @@
 "use client"
 
 import Image from "next/image"
-import { ArrowRight, Cloud, Monitor, ShieldCheck } from "lucide-react"
+import { Cloud, Monitor, ShieldCheck, type LucideIcon } from "lucide-react"
 import { motion } from "motion/react"
+import { startTransition, useState } from "react"
 
-import { Button } from "@/components/ui/button"
-import { CodeCopy } from "@/components/code-copy"
+import { cn } from "@/lib/utils"
 
-const stats = [
+type HeroCard = {
+  eyebrow: string
+  title: string
+  detail: string
+  imageTitle: string
+  imageCaption: string
+  stat: string
+  statLabel: string
+  src: string
+  alt: string
+  icon: LucideIcon
+}
+
+const heroCards: HeroCard[] = [
   {
-    label: "Storage",
-    value: "Local-first",
-    detail: "Your collection stays on your machine by default.",
+    eyebrow: "Dashboard",
+    title: "Private by default",
+    detail: "Keep the vault local, fast, and fully in your control.",
+    imageTitle: "A dashboard that feels collected, not crowded",
+    imageCaption:
+      "Totals, recent additions, and the shape of your collection stay readable at a glance.",
+    stat: "Local-first",
+    statLabel: "Storage model",
+    src: "/screenshots/dashboard.png",
+    alt: "BladeVault dashboard screenshot",
+    icon: ShieldCheck,
   },
   {
-    label: "Surface",
-    value: "Desktop-grade",
-    detail: "A focused workspace built for browsing and reviewing your vault.",
+    eyebrow: "Detail View",
+    title: "Backup when you want it",
+    detail: "Optional cloud sync without changing the local-first core.",
+    imageTitle: "Detail pages with enough room to think",
+    imageCaption:
+      "Specs, photos, and notes sit together in a layout that stays calm while the data gets deeper.",
+    stat: "Deep detail",
+    statLabel: "Review surface",
+    src: "/screenshots/detail.png",
+    alt: "BladeVault knife detail screenshot",
+    icon: Cloud,
   },
   {
-    label: "Workflow",
-    value: "Compare fast",
-    detail: "Move from quick add to deep detail without losing context.",
+    eyebrow: "Compare",
+    title: "Calm desktop feel",
+    detail: "Sidebar-first navigation and focused side-by-side comparison.",
+    imageTitle: "Compare without losing the small differences",
+    imageCaption:
+      "Blade geometry, materials, and dimensions remain easy to scan when two knives are on screen.",
+    stat: "Side by side",
+    statLabel: "Decision mode",
+    src: "/screenshots/compare.png",
+    alt: "BladeVault knife comparison screenshot",
+    icon: Monitor,
   },
 ]
 
 export function Hero() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const activeCard = heroCards[activeIndex]
+
+  function activateCard(index: number) {
+    startTransition(() => {
+      setActiveIndex(index)
+    })
+  }
+
   return (
     <section id="overview" className="vault-shell overflow-hidden">
-      <div className="grid lg:grid-cols-[minmax(0,1.04fr)_minmax(420px,0.96fr)]">
-        <div className="border-b border-border/60 p-6 sm:p-8 lg:border-r lg:border-b-0 lg:p-10 xl:p-12">
-          <div className="mb-5 flex flex-wrap gap-2">
-            <span className="vault-chip">Your private knife collection</span>
-            <span className="vault-chip">EDC blade app</span>
-            <span className="vault-chip">Open Source</span>
-            <span className="vault-chip">Free</span>
+      <div className="vault-grid relative overflow-hidden px-5 py-6 sm:px-7 sm:py-8 lg:px-10 lg:py-10">
+        <div className="absolute inset-x-0 top-0 h-44 bg-linear-to-b from-[rgb(200_156_61_/_0.12)] via-[rgb(255_253_248_/_0.1)] to-transparent" />
+        <div className="absolute -left-12 top-24 h-56 w-56 rounded-full bg-[rgb(200_156_61_/_0.08)] blur-3xl" />
+        <div className="absolute right-8 top-10 h-28 w-28 rounded-full bg-[rgb(46_52_23_/_0.08)] blur-3xl" />
+
+        <div className="relative">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-4xl">
+              <p className="vault-label">README Screenshots</p>
+              <h1 className="mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl xl:text-[4rem] xl:leading-[0.95]">
+                Three core BladeVault views
+              </h1>
+              <p className="mt-4 max-w-3xl text-base leading-8 text-muted-foreground">
+                A local-first collection workspace for saving, comparing, and
+                reviewing knives without the noise of a generic catalog app.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 self-start rounded-full border border-border/60 bg-background/80 px-3 py-2 backdrop-blur">
+              {heroCards.map((card, index) => (
+                <button
+                  key={card.src}
+                  type="button"
+                  aria-label={`Show ${card.eyebrow} preview`}
+                  aria-pressed={index === activeIndex}
+                  onClick={() => activateCard(index)}
+                  className={cn(
+                    "size-4 rounded-full border transition-all duration-200",
+                    index === activeIndex
+                      ? "scale-110 border-[var(--bladevault-olive)] bg-[var(--bladevault-olive)]"
+                      : "border-[var(--bladevault-line)] bg-[var(--bladevault-gold)]/75 hover:scale-105 hover:bg-[var(--bladevault-gold)]"
+                  )}
+                />
+              ))}
+            </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55 }}
-          >
-            <p className="vault-label mb-4">Overview</p>
-            <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl xl:text-6xl">
-              Your private collection deserves a vault, not a spreadsheet.
-            </h1>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.08 }}
-            className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg"
-          >
-            BladeVault is a local-first desktop app for collectors who want a
-            cleaner library, stronger detail pages, faster comparison, and a
-            workspace that feels deliberate instead of improvised.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.16 }}
-            className="mt-8 flex flex-col gap-3 sm:flex-row"
-          >
-            <Button
-              render={<a href="https://github.com/kolasokol/bladevault" />}
-              nativeButton={false}
-              size="lg"
-              className="rounded-2xl px-4"
+          <div className="relative mt-8 lg:mt-10">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="vault-panel relative overflow-hidden rounded-[2.25rem] border-border/60 bg-[linear-gradient(180deg,rgba(255,253,248,0.96),rgba(248,244,235,0.9))] p-3 sm:p-4 lg:p-5"
             >
-              View Repository
-              <ArrowRight className="size-4" />
-            </Button>
-            <Button
-              render={<a href="#install" />}
-              nativeButton={false}
-              variant="outline"
-              size="lg"
-              className="rounded-2xl px-4"
-            >
-              Open Install Guide
-            </Button>
-          </motion.div>
+              <div className="absolute inset-x-0 top-0 h-28 bg-linear-to-b from-white/55 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-background/65 to-transparent" />
 
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.24 }}
-            className="mt-6"
-          >
-            <CodeCopy text="git clone https://github.com/kolasokol/bladevault.git && cd bladevault && npm install && npm run dev" />
-          </motion.div>
-
-          <div className="mt-8 grid gap-3 sm:grid-cols-3">
-            {stats.map((stat) => (
-              <div key={stat.label} className="vault-panel p-4">
-                <p className="vault-label">{stat.label}</p>
-                <p className="mt-3 text-xl font-semibold tracking-tight text-foreground">
-                  {stat.value}
-                </p>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  {stat.detail}
+              <div className="relative flex flex-col gap-3 border-b border-border/50 px-2 pb-4 sm:flex-row sm:items-end sm:justify-between sm:px-3">
+                <div>
+                  <p className="vault-label">{activeCard.eyebrow}</p>
+                  <p className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-[2rem]">
+                    {activeCard.imageTitle}
+                  </p>
+                </div>
+                <p className="max-w-xl text-sm leading-6 text-muted-foreground">
+                  {activeCard.imageCaption}
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
 
-        <div className="vault-grid relative overflow-hidden p-6 sm:p-8 lg:p-10">
-          <div className="absolute inset-x-0 top-0 h-28 bg-linear-to-b from-[rgb(200_156_61_/_0.12)] to-transparent" />
+              <div className="relative mt-4 overflow-hidden rounded-[1.9rem] border border-border/70 bg-[#f5efdf]">
+                <div className="flex items-center justify-between border-b border-border/60 px-4 py-3">
+                  <div className="flex items-center gap-2">
+                    <span className="size-2.5 rounded-full bg-[var(--bladevault-olive)]" />
+                    <span className="size-2.5 rounded-full bg-[var(--bladevault-gold)]" />
+                    <span className="size-2.5 rounded-full bg-[var(--bladevault-line)]" />
+                  </div>
+                  <div className="flex items-center gap-6 text-[11px] uppercase tracking-[0.22em] text-[var(--bladevault-title)]">
+                    <span>{activeCard.stat}</span>
+                    <span>{activeCard.statLabel}</span>
+                  </div>
+                </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.12 }}
-            className="vault-panel relative overflow-hidden p-4 sm:p-5"
-          >
-            <div className="mb-4 flex items-center justify-between gap-3">
-              <div>
-                <p className="vault-label">Dashboard</p>
-                <p className="mt-1 text-lg font-medium text-foreground">
-                  Collection overview
-                </p>
+                <div className="relative aspect-[16/9] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.48),transparent_36%)]">
+                  {heroCards.map((card, index) => (
+                    <div
+                      key={card.src}
+                      className={cn(
+                        "absolute inset-0 transition-all duration-300",
+                        index === activeIndex
+                          ? "scale-100 opacity-100"
+                          : "pointer-events-none scale-[1.015] opacity-0"
+                      )}
+                    >
+                      <div className="relative size-full">
+                        <Image
+                          src={card.src}
+                          alt={card.alt}
+                          fill
+                          preload={index === 0}
+                          sizes="(min-width: 1280px) 980px, (min-width: 768px) 72vw, 100vw"
+                          className="object-cover object-top"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <span className="size-2.5 rounded-full bg-[var(--bladevault-line)]/80" />
-                <span className="size-2.5 rounded-full bg-[var(--bladevault-gold)]/80" />
-                <span className="size-2.5 rounded-full bg-[var(--bladevault-olive)]/90" />
-              </div>
-            </div>
-            <div className="overflow-hidden rounded-[1.35rem] border border-border/70">
-              <Image
-                src="/screenshots/dashboard.png"
-                width={1440}
-                height={900}
-                alt="BladeVault dashboard screenshot"
-                priority
-                className="h-auto w-full"
-              />
-            </div>
-          </motion.div>
+            </motion.div>
 
-          <div className="mt-4 grid gap-3 sm:grid-cols-3">
-            <div className="vault-panel p-4">
-              <ShieldCheck className="size-4 text-[var(--bladevault-title)]" />
-              <p className="mt-3 text-sm font-medium text-foreground">
-                Private by default
-              </p>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                Keep the vault local and in your control.
-              </p>
-            </div>
-            <div className="vault-panel p-4">
-              <Cloud className="size-4 text-[var(--bladevault-title)]" />
-              <p className="mt-3 text-sm font-medium text-foreground">
-                Backup when you want it
-              </p>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                Optional cloud sync without changing the core model.
-              </p>
-            </div>
-            <div className="vault-panel p-4">
-              <Monitor className="size-4 text-[var(--bladevault-title)]" />
-              <p className="mt-3 text-sm font-medium text-foreground">
-                Calm desktop feel
-              </p>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                Sidebar-first UI with clean hierarchy and focused depth.
-              </p>
+            <div className="relative z-10 mt-4 grid gap-4 lg:-mt-14 lg:grid-cols-3 lg:px-6">
+              {heroCards.map((card, index) => {
+                const Icon = card.icon
+                const isActive = index === activeIndex
+
+                return (
+                  <motion.button
+                    key={card.title}
+                    type="button"
+                    initial={{ opacity: 0, y: 18 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.55, delay: 0.1 + index * 0.08 }}
+                    onMouseEnter={() => activateCard(index)}
+                    onFocus={() => activateCard(index)}
+                    onClick={() => activateCard(index)}
+                    aria-pressed={isActive}
+                    className={cn(
+                      "vault-panel group relative overflow-hidden rounded-[2rem] p-5 text-left transition-all duration-200 sm:p-6",
+                      isActive
+                        ? "border-[var(--bladevault-gold)] bg-card shadow-[0_24px_60px_rgba(98,73,24,0.18)] lg:-translate-y-2"
+                        : "bg-card/94 hover:-translate-y-1 hover:border-[var(--bladevault-line)]"
+                    )}
+                  >
+                    <div className="absolute inset-x-0 top-0 h-16 bg-linear-to-b from-[rgb(255_255_255_/_0.5)] to-transparent" />
+
+                    <div className="relative flex items-start justify-between gap-4">
+                      <span
+                        className={cn(
+                          "inline-flex size-11 items-center justify-center rounded-2xl border transition-colors",
+                          isActive
+                            ? "border-[var(--bladevault-gold)] bg-[var(--bladevault-gold)]/12 text-[var(--bladevault-title)]"
+                            : "border-border/70 bg-background/92 text-[var(--bladevault-title)]"
+                        )}
+                      >
+                        <Icon className="size-4" />
+                      </span>
+                      <span className="vault-label pt-1">{card.eyebrow}</span>
+                    </div>
+
+                    <h2 className="relative mt-8 text-[2rem] leading-[1.02] font-medium tracking-tight text-foreground">
+                      {card.title}
+                    </h2>
+                    <p className="relative mt-4 max-w-[22ch] text-base leading-8 text-muted-foreground">
+                      {card.detail}
+                    </p>
+
+                    <div className="relative mt-7 flex items-center justify-between border-t border-border/50 pt-4">
+                      <div>
+                        <p className="text-lg font-semibold tracking-tight text-foreground">
+                          {card.stat}
+                        </p>
+                        <p className="vault-label mt-1">{card.statLabel}</p>
+                      </div>
+                      <span
+                        className={cn(
+                          "rounded-full border px-3 py-1 text-[11px] uppercase tracking-[0.2em] transition-colors",
+                          isActive
+                            ? "border-[var(--bladevault-gold)] bg-[var(--bladevault-gold)]/10 text-[var(--bladevault-title)]"
+                            : "border-border/70 bg-background/75 text-muted-foreground"
+                        )}
+                      >
+                        Hover to preview
+                      </span>
+                    </div>
+                  </motion.button>
+                )
+              })}
             </div>
           </div>
         </div>

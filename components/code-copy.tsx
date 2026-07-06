@@ -35,12 +35,14 @@ export function CodeCopy({ text, label, className }: CodeCopyProps) {
   return (
     <div
       className={cn(
-        "vault-panel flex items-center gap-3 p-3 sm:p-4",
+        "vault-panel flex min-w-0 items-center gap-3 p-3 sm:p-4",
         className
       )}
     >
-      <pre className="flex-1 overflow-x-auto rounded-2xl border border-border/60 bg-background/90 px-4 py-3 font-mono text-sm text-foreground">
-        <code>{text}</code>
+      <pre className="min-w-0 flex-1 overflow-x-auto rounded-2xl border border-border/60 bg-background/90 px-4 py-3 font-mono text-sm text-foreground">
+        <code className="block whitespace-pre-wrap break-all sm:whitespace-pre">
+          {text}
+        </code>
       </pre>
       <button
         type="button"
