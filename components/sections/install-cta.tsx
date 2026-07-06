@@ -1,54 +1,73 @@
 import Image from "next/image"
+
 import { CodeCopy } from "@/components/code-copy"
 
 export function InstallCta() {
   return (
-    <section id="install" className="border-t border-border/40">
-      <div className="mx-auto max-w-5xl px-6 py-20 md:py-28">
-        <div className="flex flex-col gap-8 rounded-xl border border-border/60 bg-muted/50 p-8">
-          <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-            Run it yourself.
+    <section id="install" className="vault-shell overflow-hidden">
+      <div className="grid gap-0 xl:grid-cols-[minmax(0,1.02fr)_minmax(360px,0.98fr)]">
+        <div className="p-6 sm:p-8 xl:p-10">
+          <p className="vault-label">Install</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+            Run BladeVault the same day you discover it.
           </h2>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">
+            Clone the repo, start the app locally, and begin building your
+            collection library right away.
+          </p>
 
-          <div className="flex flex-col gap-2">
-            <CodeCopy text="git clone https://github.com/kolasokol/bladevault.git && cd bladevault && npm install && npm run dev" />
-            <p className="text-sm text-muted-foreground">
-              Clone the repo, install dependencies, and start the dev server.
-            </p>
-          </div>
+          <div className="mt-6 grid gap-4">
+            <div>
+              <CodeCopy text="git clone https://github.com/kolasokol/bladevault.git && cd bladevault && npm install && npm run dev" />
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                Clone the repo, install dependencies, then start the local dev
+                server.
+              </p>
+            </div>
 
-          <div className="flex flex-col gap-2">
-            <CodeCopy text="docker compose up -d" />
-            <p className="text-sm text-muted-foreground">
-              Or run the full stack with Docker Compose.
-            </p>
-          </div>
-
-          <div className="flex flex-col items-start gap-6 md:flex-row">
-            <Image
-              src="/screenshots/add.png"
-              width={1440}
-              height={900}
-              alt="Quick Add — scrape a product URL or enter details manually"
-              className="w-full rounded-lg border border-border/60 shadow-sm md:max-w-sm"
-            />
-            <div className="flex flex-col gap-2">
-              <p className="text-sm text-muted-foreground">
-                Quick Add — scrape a product URL or enter details manually
+            <div>
+              <CodeCopy text="docker compose up -d" />
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">
+                Prefer containers? Bring up the full stack with Docker instead.
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col gap-2">
-            <p className="text-sm text-muted-foreground">
-              Open http://localhost:3000 in your browser.
+          <div className="mt-6 vault-panel p-5">
+            <p className="vault-label">After Launch</p>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+              Open `http://localhost:3000`, explore the dashboard, browse the
+              library, and use compare or quick add to see the strongest parts
+              of the product right away.
             </p>
             <a
               href="https://github.com/kolasokol/bladevault"
-              className="text-sm text-foreground underline underline-offset-4 hover:text-muted-foreground"
+              className="mt-4 inline-flex text-sm font-medium text-foreground underline underline-offset-4 hover:text-muted-foreground"
             >
-              &rarr; View full setup on GitHub.
+              View the full project on GitHub
             </a>
+          </div>
+        </div>
+
+        <div className="vault-grid border-t border-border/60 p-6 sm:p-8 xl:border-l xl:border-t-0 xl:p-10">
+          <div className="vault-panel overflow-hidden p-3">
+            <Image
+              src="/screenshots/add.png"
+              width={1440}
+              height={900}
+              alt="BladeVault quick add screenshot"
+              className="w-full rounded-[1.3rem] border border-border/70"
+            />
+            <div className="px-2 pb-2 pt-4">
+              <p className="vault-label">Quick Add</p>
+              <h3 className="mt-2 text-lg font-medium text-foreground">
+                Add new entries faster
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                Paste a product link to pull in details automatically, or enter
+                everything by hand when needed.
+              </p>
+            </div>
           </div>
         </div>
       </div>

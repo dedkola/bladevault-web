@@ -3,12 +3,15 @@
 import { useState } from "react"
 import { ClipboardCopy, Check } from "lucide-react"
 
+import { cn } from "@/lib/utils"
+
 interface CodeCopyProps {
   text: string
   label?: string
+  className?: string
 }
 
-export function CodeCopy({ text, label }: CodeCopyProps) {
+export function CodeCopy({ text, label, className }: CodeCopyProps) {
   const [copied, setCopied] = useState(false)
 
   async function handleCopy() {
@@ -30,15 +33,20 @@ export function CodeCopy({ text, label }: CodeCopyProps) {
   }
 
   return (
-    <div className="flex items-center gap-2">
-      <pre className="flex-1 overflow-x-auto rounded-md bg-muted p-3 font-mono text-sm">
+    <div
+      className={cn(
+        "vault-panel flex items-center gap-3 p-3 sm:p-4",
+        className
+      )}
+    >
+      <pre className="flex-1 overflow-x-auto rounded-2xl border border-border/60 bg-background/90 px-4 py-3 font-mono text-sm text-foreground">
         <code>{text}</code>
       </pre>
       <button
         type="button"
         onClick={handleCopy}
         aria-label={label ?? "Copy to clipboard"}
-        className="shrink-0 rounded-md border border-border/60 p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        className="shrink-0 rounded-2xl border border-border/70 bg-card/90 p-3 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
       >
         {copied ? (
           <Check className="size-4" />

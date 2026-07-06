@@ -15,8 +15,8 @@ const fontMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "BladeVault — A sharp, local-first knife collection manager",
-  description: "A sharp, local-first knife collection manager.",
+  title: "BladeVault | Local-first collection manager",
+  description: "BladeVault is a local-first desktop knife collection manager.",
 }
 
 export default function RootLayout({
@@ -35,7 +35,7 @@ export default function RootLayout({
         geist.variable
       )}
     >
-      <body>
+      <body className="min-h-screen">
         <ThemeProvider>
           <SiteHeader />
           {children}
