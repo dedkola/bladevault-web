@@ -23,8 +23,8 @@ type HeroCard = {
 const heroCards: HeroCard[] = [
   {
     eyebrow: "Dashboard",
-    title: "Private by default",
-    detail: "Keep the vault local, fast, and fully in your control.",
+    title: "Your local storage",
+    detail: "For your entire knife collection.",
     imageTitle: "A dashboard that feels collected, not crowded",
     imageCaption:
       "Totals, recent additions, and the shape of your collection stay readable at a glance.",
@@ -36,8 +36,8 @@ const heroCards: HeroCard[] = [
   },
   {
     eyebrow: "Detail View",
-    title: "Backup when you want it",
-    detail: "Optional cloud sync without changing the local-first core.",
+    title: "Add knife to vault",
+    detail: "Scrape from any vendor web site.",
     imageTitle: "Detail pages with enough room to think",
     imageCaption:
       "Specs, photos, and notes sit together in a layout that stays calm while the data gets deeper.",
@@ -49,8 +49,9 @@ const heroCards: HeroCard[] = [
   },
   {
     eyebrow: "Compare",
-    title: "Calm desktop feel",
-    detail: "Sidebar-first navigation and focused side-by-side comparison.",
+    title: "Compare unlimited knives",
+    detail:
+      "Compare unlimited knives at the same time. Send to print or save results to PDF.",
     imageTitle: "Compare without losing the small differences",
     imageCaption:
       "Blade geometry, materials, and dimensions remain easy to scan when two knives are on screen.",
@@ -76,13 +77,13 @@ export function Hero() {
     <section id="overview" className="vault-shell overflow-hidden">
       <div className="vault-grid relative overflow-hidden px-5 py-6 sm:px-7 sm:py-8 lg:px-10 lg:py-10">
         <div className="absolute inset-x-0 top-0 h-44 bg-linear-to-b from-[rgb(200_156_61_/_0.12)] via-[rgb(255_253_248_/_0.1)] to-transparent" />
-        <div className="absolute -left-12 top-24 h-56 w-56 rounded-full bg-[rgb(200_156_61_/_0.08)] blur-3xl" />
-        <div className="absolute right-8 top-10 h-28 w-28 rounded-full bg-[rgb(46_52_23_/_0.08)] blur-3xl" />
+        <div className="absolute top-24 -left-12 h-56 w-56 rounded-full bg-[rgb(200_156_61_/_0.08)] blur-3xl" />
+        <div className="absolute top-10 right-8 h-28 w-28 rounded-full bg-[rgb(46_52_23_/_0.08)] blur-3xl" />
 
         <div className="relative">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-4xl">
-              <p className="vault-label">README Screenshots</p>
+              <p className="vault-label">Your local knife collection app</p>
               <h1 className="mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl xl:text-[4rem] xl:leading-[0.95]">
                 Three core BladeVault views
               </h1>
@@ -90,24 +91,6 @@ export function Hero() {
                 A local-first collection workspace for saving, comparing, and
                 reviewing knives without the noise of a generic catalog app.
               </p>
-            </div>
-
-            <div className="flex items-center gap-2 self-start rounded-full border border-border/60 bg-background/80 px-3 py-2 backdrop-blur">
-              {heroCards.map((card, index) => (
-                <button
-                  key={card.src}
-                  type="button"
-                  aria-label={`Show ${card.eyebrow} preview`}
-                  aria-pressed={index === activeIndex}
-                  onClick={() => activateCard(index)}
-                  className={cn(
-                    "size-4 rounded-full border transition-all duration-200",
-                    index === activeIndex
-                      ? "scale-110 border-[var(--bladevault-olive)] bg-[var(--bladevault-olive)]"
-                      : "border-[var(--bladevault-line)] bg-[var(--bladevault-gold)]/75 hover:scale-105 hover:bg-[var(--bladevault-gold)]"
-                  )}
-                />
-              ))}
             </div>
           </div>
 
@@ -128,9 +111,6 @@ export function Hero() {
                     {activeCard.imageTitle}
                   </p>
                 </div>
-                <p className="max-w-xl text-sm leading-6 text-muted-foreground">
-                  {activeCard.imageCaption}
-                </p>
               </div>
 
               <div className="relative mt-4 overflow-hidden rounded-[1.9rem] border border-border/70 bg-[#f5efdf]">
@@ -140,7 +120,7 @@ export function Hero() {
                     <span className="size-2.5 rounded-full bg-[var(--bladevault-gold)]" />
                     <span className="size-2.5 rounded-full bg-[var(--bladevault-line)]" />
                   </div>
-                  <div className="flex items-center gap-6 text-[11px] uppercase tracking-[0.22em] text-[var(--bladevault-title)]">
+                  <div className="flex items-center gap-6 text-[11px] tracking-[0.22em] text-[var(--bladevault-title)] uppercase">
                     <span>{activeCard.stat}</span>
                     <span>{activeCard.statLabel}</span>
                   </div>
@@ -212,30 +192,20 @@ export function Hero() {
                       <span className="vault-label pt-1">{card.eyebrow}</span>
                     </div>
 
-                    <h2 className="relative mt-8 text-[2rem] leading-[1.02] font-medium tracking-tight text-foreground">
+                    <h2 className="relative mt-8 text-center text-[2rem] leading-[1.02] font-medium tracking-tight text-foreground">
                       {card.title}
                     </h2>
-                    <p className="relative mt-4 max-w-[22ch] text-base leading-8 text-muted-foreground">
+                    <p className="relative mx-auto mt-4 max-w-[22ch] text-center text-base leading-8 text-muted-foreground">
                       {card.detail}
                     </p>
 
-                    <div className="relative mt-7 flex items-center justify-between border-t border-border/50 pt-4">
-                      <div>
+                    <div className="relative mt-7 flex justify-center border-t border-border/50 pt-4">
+                      <div className="text-center">
                         <p className="text-lg font-semibold tracking-tight text-foreground">
                           {card.stat}
                         </p>
                         <p className="vault-label mt-1">{card.statLabel}</p>
                       </div>
-                      <span
-                        className={cn(
-                          "rounded-full border px-3 py-1 text-[11px] uppercase tracking-[0.2em] transition-colors",
-                          isActive
-                            ? "border-[var(--bladevault-gold)] bg-[var(--bladevault-gold)]/10 text-[var(--bladevault-title)]"
-                            : "border-border/70 bg-background/75 text-muted-foreground"
-                        )}
-                      >
-                        Hover to preview
-                      </span>
                     </div>
                   </motion.button>
                 )
