@@ -22,21 +22,21 @@ export function Compare() {
           </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            <div className="vault-panel p-4">
-              <Columns3 className="size-4 text-[var(--bladevault-title)]" />
-              <p className="mt-3 text-sm font-medium text-foreground">
+            <div className="vault-panel flex items-center gap-3 p-4">
+              <Columns3 className="size-4 shrink-0 text-[var(--bladevault-title)]" />
+              <p className="text-sm font-medium text-foreground">
                 Multi-column clarity
               </p>
             </div>
-            <div className="vault-panel p-4">
-              <Gauge className="size-4 text-[var(--bladevault-title)]" />
-              <p className="mt-3 text-sm font-medium text-foreground">
+            <div className="vault-panel flex items-center gap-3 p-4">
+              <Gauge className="size-4 shrink-0 text-[var(--bladevault-title)]" />
+              <p className="text-sm font-medium text-foreground">
                 Fast visual scanning
               </p>
             </div>
-            <div className="vault-panel p-4">
-              <PanelsTopLeft className="size-4 text-[var(--bladevault-title)]" />
-              <p className="mt-3 text-sm font-medium text-foreground">
+            <div className="vault-panel flex items-center gap-3 p-4">
+              <PanelsTopLeft className="size-4 shrink-0 text-[var(--bladevault-title)]" />
+              <p className="text-sm font-medium text-foreground">
                 Purpose-built layout
               </p>
             </div>

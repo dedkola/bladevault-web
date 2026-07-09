@@ -1,5 +1,4 @@
 import { Hero } from "@/components/sections/hero"
-import { TechStrip } from "@/components/sections/tech-strip"
 import { Features } from "@/components/sections/features"
 import { HowTo } from "@/components/sections/howto"
 import { Compare } from "@/components/sections/compare"
@@ -16,7 +15,6 @@ export default function Page() {
         <PromoSidebar />
         <div className="space-y-4 lg:space-y-6">
           <Hero />
-          <TechStrip />
           <Features />
           <HowTo />
           <Compare />

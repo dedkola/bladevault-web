@@ -1,56 +1,110 @@
 import {
-  Cloud,
-  LayoutDashboard,
+  AppWindow,
+  CloudDownload,
+  CloudUpload,
   Library,
+  Monitor,
   Search,
-  PencilLine,
   Columns3,
+  Database,
+  Gauge,
+  Gift,
+  Image,
+  ImagePlus,
   Link2,
+  MoonStar,
+  PackageOpen,
+  PanelsTopLeft,
+  Pin,
+  Printer,
+  RefreshCw,
+  SlidersHorizontal,
+  Upload,
 } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
 
-const features = [
+const featureHighlights = [
   {
-    icon: LayoutDashboard,
-    title: "Dashboard Command View",
-    description:
-      "Open into a structured overview with totals, latest additions, and a quiet layout that makes browsing feel fast.",
-  },
-  {
-    icon: Library,
-    title: "Collection Library",
-    description:
-      "Browse the full vault with sidebar-driven context, filters, pinned items, and room to breathe around every card.",
+    icon: Columns3,
+    label: "Multi-column clarity",
   },
   {
     icon: Search,
-    title: "Rich Detail Focus",
-    description:
-      "Keep specs, descriptions, and image review in one place without turning the detail view into a wall of noise.",
+    label: "Power text search",
   },
   {
-    icon: PencilLine,
-    title: "Inline Editing",
-    description:
-      "Tune fields directly inside the workspace instead of bouncing between isolated edit screens.",
+    icon: Gauge,
+    label: "Fast visual scanning",
   },
   {
-    icon: Columns3,
-    title: "Comparison Board",
-    description:
-      "Put multiple entries on the table at once to spot differences in steel, dimensions, hardware, and finish.",
+    icon: PanelsTopLeft,
+    label: "Purpose-built layout",
+  },
+]
+
+const compactFeatures = [
+  {
+    icon: Database,
+    label: "Search in database",
   },
   {
-    icon: Cloud,
-    title: "Local with Backup Options",
-    description:
-      "Stay local-first by default, then layer in cloud backup only when it actually serves your workflow.",
+    icon: Pin,
+    label: "Pin for quick access",
   },
   {
-    icon: Link2,
-    title: "Quick Add from URLs",
-    description:
-      "Drop in a product link and let BladeVault pull in the details that would otherwise cost you manual entry time.",
+    icon: Library,
+    label: "Easy brand navigation",
+  },
+  {
+    icon: Printer,
+    label: "Direct print results",
+  },
+  {
+    icon: SlidersHorizontal,
+    label: "Amazon-style category filters",
+  },
+  {
+    icon: RefreshCw,
+    label: "Rescrape brand pages later",
+  },
+  {
+    icon: ImagePlus,
+    label: "Upload your own images",
+  },
+  {
+    icon: Image,
+    label: "Choose main display image",
+  },
+  {
+    icon: Upload,
+    label: "Upload images from your PC",
+  },
+  {
+    icon: MoonStar,
+    label: "Dark theme",
+  },
+  {
+    icon: CloudDownload,
+    label: "Cloud restore and backup",
+  },
+  {
+    icon: CloudUpload,
+    label: "Automatic cloud backups",
+  },
+  {
+    icon: PackageOpen,
+    label: "Open source",
+  },
+  {
+    icon: Monitor,
+    label: "Windows app",
+  },
+  {
+    icon: AppWindow,
+    label: "macOS app",
+  },
+  {
+    icon: Gift,
+    label: "It's free",
   },
 ]
 
@@ -69,26 +123,32 @@ export function Features() {
           to find, compare, and update.
         </p>
       </div>
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {features.map((feature) => (
-          <Card
-            key={feature.title}
-            className="rounded-[1.5rem] border border-border/70 bg-card/95 py-0 shadow-[var(--panel-shadow)]"
+
+      <div className="mb-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {featureHighlights.map((highlight) => (
+          <div
+            key={highlight.label}
+            className="vault-panel flex items-center gap-3 p-4"
           >
-            <CardContent className="flex h-full flex-col gap-4 p-5 sm:p-6">
-              <div className="flex size-11 items-center justify-center rounded-2xl bg-accent text-[var(--bladevault-title)]">
-                <feature.icon className="size-5" />
-              </div>
-              <div>
-                <h3 className="mt-2 text-lg font-medium text-foreground">
-                  {feature.title}
-                </h3>
-              </div>
-              <p className="text-sm leading-6 text-muted-foreground">
-                {feature.description}
-              </p>
-            </CardContent>
-          </Card>
+            <highlight.icon className="size-4 shrink-0 text-[var(--bladevault-title)]" />
+            <p className="text-sm font-medium text-foreground">
+              {highlight.label}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+        {compactFeatures.map((feature) => (
+          <div
+            key={feature.label}
+            className="vault-panel flex items-center gap-3 p-4"
+          >
+            <feature.icon className="size-4 shrink-0 text-[var(--bladevault-title)]" />
+            <p className="text-sm font-medium text-foreground">
+              {feature.label}
+            </p>
+          </div>
         ))}
       </div>
     </section>
