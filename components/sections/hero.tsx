@@ -114,13 +114,13 @@ export function Hero() {
               </div>
 
               <div className="relative mt-4 overflow-hidden rounded-[1.9rem] border border-border/70 bg-[#f5efdf]">
-                <div className="flex items-center justify-between border-b border-border/60 px-4 py-3">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 px-4 py-3">
                   <div className="flex items-center gap-2">
                     <span className="size-2.5 rounded-full bg-[var(--bladevault-olive)]" />
                     <span className="size-2.5 rounded-full bg-[var(--bladevault-gold)]" />
                     <span className="size-2.5 rounded-full bg-[var(--bladevault-line)]" />
                   </div>
-                  <div className="flex items-center gap-6 text-[11px] tracking-[0.22em] text-[var(--bladevault-title)] uppercase">
+                  <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-[11px] tracking-[0.22em] text-[var(--bladevault-title)] uppercase sm:justify-end">
                     <span>{activeCard.stat}</span>
                     <span>{activeCard.statLabel}</span>
                   </div>

@@ -17,10 +17,10 @@ export function InstallCta() {
           </p>
 
           <div className="mt-6 grid gap-4">
-            <div className="mx-auto w-fit max-w-full text-center">
+            <div className="mx-auto w-full max-w-full text-center sm:w-fit">
               <CodeCopy
                 title="Run in Docker"
-                className="mx-auto w-auto max-w-full text-left"
+                className="mx-auto w-full max-w-full text-left sm:w-auto"
                 text={`docker run -d \\
   --name bladevault \\
   --restart unless-stopped \\
@@ -34,7 +34,7 @@ export function InstallCta() {
               </p>
             </div>
 
-            <div className="vault-panel mx-auto w-[458px] max-w-full p-5 text-center">
+            <div className="vault-panel mx-auto w-full max-w-full p-5 text-center sm:w-[458px]">
               <p className="vault-label">macOS Install</p>
               <p className="mt-3 max-w-[44ch] text-sm leading-6 text-muted-foreground">
                 Download the latest DMG installer for macOS.
@@ -48,7 +48,7 @@ export function InstallCta() {
               </a>
             </div>
 
-            <div className="vault-panel mx-auto w-[458px] max-w-full p-5 text-center">
+            <div className="vault-panel mx-auto w-full max-w-full p-5 text-center sm:w-[458px]">
               <p className="vault-label">Windows Install</p>
               <p className="mt-3 max-w-[44ch] text-sm leading-6 text-muted-foreground">
                 Download the latest EXE installer for Windows.
