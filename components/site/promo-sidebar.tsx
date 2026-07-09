@@ -1,3 +1,5 @@
+"use client"
+
 import {
   BookOpen,
   Film,
@@ -5,6 +7,7 @@ import {
   LayoutDashboard,
   Terminal,
 } from "lucide-react"
+import { useEffect, useState } from "react"
 
 import { BladevaultLogoMark } from "@/components/site/bladevault-logo-mark"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -26,6 +29,23 @@ const highlights = [
 ]
 
 export function PromoSidebar() {
+  const [activeHref, setActiveHref] = useState("#overview")
+
+  useEffect(() => {
+    function syncFromHash() {
+      const hash = window.location.hash
+      const isKnownHash = links.some((link) => link.href === hash)
+      setActiveHref(isKnownHash ? hash : "#overview")
+    }
+
+    syncFromHash()
+    window.addEventListener("hashchange", syncFromHash)
+
+    return () => {
+      window.removeEventListener("hashchange", syncFromHash)
+    }
+  }, [])
+
   return (
     <aside className="hidden lg:block">
       <div className="vault-shell sticky top-6 flex h-[calc(100vh-3rem)] flex-col overflow-hidden bg-sidebar/95">
@@ -38,7 +58,6 @@ export function PromoSidebar() {
               Blade
               <span className="text-[var(--bladevault-title)]">Vault</span>
             </p>
-
           </div>
         </div>
 
@@ -52,16 +71,18 @@ export function PromoSidebar() {
         <nav className="flex-1 overflow-y-auto px-4 py-4">
           <p className="vault-label px-2 pb-2">Sections</p>
           <div className="space-y-1">
-            {links.map((link, index) => {
+            {links.map((link) => {
               const Icon = link.icon
+              const isActive = link.href === activeHref
 
               return (
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={() => setActiveHref(link.href)}
                   className={cn(
                     "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors",
-                    index === 0
+                    isActive
                       ? "bg-[var(--bladevault-olive)] text-[var(--bladevault-gold)]"
                       : "text-muted-foreground hover:bg-accent hover:text-foreground"
                   )}
@@ -98,7 +119,7 @@ export function PromoSidebar() {
               render={<a href="https://github.com/kolasokol/bladevault" />}
               nativeButton={false}
               variant="outline"
-              className="h-11 rounded-2xl justify-center"
+              className="h-11 justify-center rounded-2xl"
             >
               View GitHub
             </Button>
