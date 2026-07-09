@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -17,6 +17,11 @@ const fontMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "BladeVault | Local-first collection manager",
   description: "BladeVault is a local-first desktop knife collection manager.",
+}
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 }
 
 export default function RootLayout({

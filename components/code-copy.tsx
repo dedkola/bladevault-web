@@ -37,7 +37,7 @@ export function CodeCopy({ text, label, title, className }: CodeCopyProps) {
     <div className={cn("vault-panel min-w-0 p-3 sm:p-4", className)}>
       {title && <p className="vault-label pb-2 text-center">{title}</p>}
 
-      <div className="flex min-w-0 items-center gap-3">
+      <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
         <pre className="min-w-0 flex-1 overflow-x-auto rounded-2xl border border-border/60 bg-background/90 px-4 py-3 font-mono text-sm text-foreground">
           <code className="block break-all whitespace-pre-wrap sm:whitespace-pre">
             {text}
@@ -47,7 +47,7 @@ export function CodeCopy({ text, label, title, className }: CodeCopyProps) {
           type="button"
           onClick={handleCopy}
           aria-label={label ?? "Copy to clipboard"}
-          className="shrink-0 rounded-2xl border border-border/70 bg-card/90 p-3 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          className="self-end rounded-2xl border border-border/70 bg-card/90 p-3 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground sm:shrink-0"
         >
           {copied ? (
             <Check className="size-4" />
@@ -56,7 +56,7 @@ export function CodeCopy({ text, label, title, className }: CodeCopyProps) {
           )}
         </button>
         {copied && (
-          <span className="text-xs text-muted-foreground">Copied!</span>
+          <span className="self-end text-xs text-muted-foreground">Copied!</span>
         )}
       </div>
     </div>

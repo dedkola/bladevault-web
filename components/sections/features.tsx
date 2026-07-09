@@ -11,7 +11,6 @@ import {
   Gift,
   Image,
   ImagePlus,
-  Link2,
   MoonStar,
   PackageOpen,
   PanelsTopLeft,
