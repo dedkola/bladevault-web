@@ -8,10 +8,11 @@ import { cn } from "@/lib/utils"
 interface CodeCopyProps {
   text: string
   label?: string
+  title?: string
   className?: string
 }
 
-export function CodeCopy({ text, label, className }: CodeCopyProps) {
+export function CodeCopy({ text, label, title, className }: CodeCopyProps) {
   const [copied, setCopied] = useState(false)
 
   async function handleCopy() {
@@ -33,30 +34,31 @@ export function CodeCopy({ text, label, className }: CodeCopyProps) {
   }
 
   return (
-    <div
-      className={cn(
-        "vault-panel flex min-w-0 items-center gap-3 p-3 sm:p-4",
-        className
-      )}
-    >
-      <pre className="min-w-0 flex-1 overflow-x-auto rounded-2xl border border-border/60 bg-background/90 px-4 py-3 font-mono text-sm text-foreground">
-        <code className="block whitespace-pre-wrap break-all sm:whitespace-pre">
-          {text}
-        </code>
-      </pre>
-      <button
-        type="button"
-        onClick={handleCopy}
-        aria-label={label ?? "Copy to clipboard"}
-        className="shrink-0 rounded-2xl border border-border/70 bg-card/90 p-3 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-      >
-        {copied ? (
-          <Check className="size-4" />
-        ) : (
-          <ClipboardCopy className="size-4" />
+    <div className={cn("vault-panel min-w-0 p-3 sm:p-4", className)}>
+      {title && <p className="vault-label pb-2 text-center">{title}</p>}
+
+      <div className="flex min-w-0 items-center gap-3">
+        <pre className="min-w-0 flex-1 overflow-x-auto rounded-2xl border border-border/60 bg-background/90 px-4 py-3 font-mono text-sm text-foreground">
+          <code className="block break-all whitespace-pre-wrap sm:whitespace-pre">
+            {text}
+          </code>
+        </pre>
+        <button
+          type="button"
+          onClick={handleCopy}
+          aria-label={label ?? "Copy to clipboard"}
+          className="shrink-0 rounded-2xl border border-border/70 bg-card/90 p-3 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+        >
+          {copied ? (
+            <Check className="size-4" />
+          ) : (
+            <ClipboardCopy className="size-4" />
+          )}
+        </button>
+        {copied && (
+          <span className="text-xs text-muted-foreground">Copied!</span>
         )}
-      </button>
-      {copied && <span className="text-xs text-muted-foreground">Copied!</span>}
+      </div>
     </div>
   )
 }
