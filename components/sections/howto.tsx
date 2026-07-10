@@ -28,17 +28,13 @@ const workflows = [
 export function HowTo() {
   return (
     <section id="workflows" className="vault-shell p-6 sm:p-8 xl:p-10">
-      <div className="mb-8 flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+      <div className="mb-8">
         <div>
           <p className="vault-label">Workflows</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
             Workflows that keep collecting simple.
           </h2>
         </div>
-        <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
-          Move from overview to quick add, detail review, and side-by-side
-          comparison without breaking your flow.
-        </p>
       </div>
 
       <div className="grid gap-4 xl:grid-cols-3">
@@ -72,7 +68,7 @@ export function HowTo() {
                 </span>
               </div>
             </div>
-            <div className="px-2 pb-2 pt-4">
+            <div className="px-2 pt-4 pb-2">
               <p className="text-sm leading-6 text-muted-foreground">
                 {workflow.description}
               </p>

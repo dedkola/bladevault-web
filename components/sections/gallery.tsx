@@ -4,7 +4,8 @@ const screenshots = [
   {
     src: "/screenshots/dashboard.png",
     title: "Dashboard",
-    caption: "See totals, recent additions, and key collection activity at a glance.",
+    caption:
+      "See totals, recent additions, and key collection activity at a glance.",
     span: "xl:col-span-2",
   },
   {
@@ -23,7 +24,8 @@ const screenshots = [
   {
     src: "/screenshots/add.png",
     title: "Quick Add",
-    caption: "Add a new knife from a product link or enter the details manually.",
+    caption:
+      "Add a new knife from a product link or enter the details manually.",
     span: "xl:col-span-2",
   },
 ]
@@ -31,16 +33,13 @@ const screenshots = [
 export function Gallery() {
   return (
     <section id="gallery" className="vault-shell p-6 sm:p-8 xl:p-10">
-      <div className="mb-8 flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+      <div className="mb-8">
         <div>
           <p className="vault-label">Gallery</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
             A closer look at BladeVault in use.
           </h2>
         </div>
-        <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
-          Explore the dashboard, compare board, detail view, and quick add workflow.
-        </p>
       </div>
 
       <div className="grid gap-4 xl:grid-cols-3">
@@ -55,7 +54,7 @@ export function Gallery() {
                 loading="lazy"
                 className="w-full rounded-[1.3rem] border border-border/70"
               />
-              <div className="px-2 pb-2 pt-4">
+              <div className="px-2 pt-4 pb-2">
                 <h3 className="mt-2 text-lg font-medium text-foreground">
                   {s.title}
                 </h3>

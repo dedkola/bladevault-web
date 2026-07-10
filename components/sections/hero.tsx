@@ -83,14 +83,9 @@ export function Hero() {
         <div className="relative">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div className="max-w-4xl">
-              <p className="vault-label">Your local knife collection app</p>
-              <h1 className="mt-3 max-w-4xl text-4xl font-semibold tracking-tight text-foreground sm:text-5xl xl:text-[4rem] xl:leading-[0.95]">
-                Three core BladeVault views
+              <h1 className="max-w-4xl text-center text-4xl font-semibold tracking-tight text-foreground sm:text-5xl xl:text-[4rem] xl:leading-[0.95]">
+                Home for your blade collection
               </h1>
-              <p className="mt-4 max-w-3xl text-base leading-8 text-muted-foreground">
-                A local-first collection workspace for saving, comparing, and
-                reviewing knives without the noise of a generic catalog app.
-              </p>
             </div>
           </div>
 
@@ -104,10 +99,10 @@ export function Hero() {
               <div className="absolute inset-x-0 top-0 h-28 bg-linear-to-b from-white/55 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-background/65 to-transparent" />
 
-              <div className="relative flex flex-col gap-3 border-b border-border/50 px-2 pb-4 sm:flex-row sm:items-end sm:justify-between sm:px-3">
+              <div className="relative flex flex-col gap-3 border-b border-border/50 px-2 pb-4 sm:px-3">
                 <div>
                   <p className="vault-label">{activeCard.eyebrow}</p>
-                  <p className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-[2rem]">
+                  <p className="mt-2 text-center text-2xl font-semibold tracking-tight text-foreground sm:text-[2rem]">
                     {activeCard.imageTitle}
                   </p>
                 </div>

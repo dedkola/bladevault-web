@@ -1,4 +1,4 @@
-import { Download } from "lucide-react"
+import { Apple, Download, Monitor } from "lucide-react"
 
 import { CodeCopy } from "@/components/code-copy"
 
@@ -35,7 +35,10 @@ export function InstallCta() {
             </div>
 
             <div className="vault-panel mx-auto w-full max-w-full p-5 text-center sm:w-[458px]">
-              <p className="vault-label">macOS Install</p>
+              <div className="flex items-center justify-center gap-2">
+                <Apple className="size-4 text-[var(--bladevault-title)]" />
+                <p className="vault-label">macOS Install</p>
+              </div>
               <p className="mt-3 max-w-[44ch] text-sm leading-6 text-muted-foreground">
                 Download the latest DMG installer for macOS.
               </p>
@@ -49,7 +52,10 @@ export function InstallCta() {
             </div>
 
             <div className="vault-panel mx-auto w-full max-w-full p-5 text-center sm:w-[458px]">
-              <p className="vault-label">Windows Install</p>
+              <div className="flex items-center justify-center gap-2">
+                <Monitor className="size-4 text-[var(--bladevault-title)]" />
+                <p className="vault-label">Windows Install</p>
+              </div>
               <p className="mt-3 max-w-[44ch] text-sm leading-6 text-muted-foreground">
                 Download the latest EXE installer for Windows.
               </p>

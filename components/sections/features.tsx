@@ -110,17 +110,13 @@ const compactFeatures = [
 export function Features() {
   return (
     <section id="features" className="vault-shell p-6 sm:p-8 xl:p-10">
-      <div className="mb-8 flex flex-col gap-3 xl:flex-row xl:items-end xl:justify-between">
+      <div className="mb-8">
         <div>
           <p className="vault-label">Features</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
             Everything you need to manage a serious collection.
           </h2>
         </div>
-        <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
-          Track what you own, review details quickly, and keep every item easy
-          to find, compare, and update.
-        </p>
       </div>
 
       <div className="mb-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
