@@ -12,7 +12,6 @@ type HeroCard = {
   title: string
   detail: string
   imageTitle: string
-  imageCaption: string
   stat: string
   statLabel: string
   src: string
@@ -26,8 +25,6 @@ const heroCards: HeroCard[] = [
     title: "Your local storage",
     detail: "For your entire knife collection.",
     imageTitle: "A dashboard that feels collected, not crowded",
-    imageCaption:
-      "Totals, recent additions, and the shape of your collection stay readable at a glance.",
     stat: "Local-first",
     statLabel: "Storage model",
     src: "/screenshots/dashboard.png",
@@ -39,8 +36,6 @@ const heroCards: HeroCard[] = [
     title: "Add knife to vault",
     detail: "Scrape from any vendor web site.",
     imageTitle: "Detail pages with enough room to think",
-    imageCaption:
-      "Specs, photos, and notes sit together in a layout that stays calm while the data gets deeper.",
     stat: "Deep detail",
     statLabel: "Review surface",
     src: "/screenshots/detail.png",
@@ -53,8 +48,6 @@ const heroCards: HeroCard[] = [
     detail:
       "Compare unlimited knives at the same time. Send to print or save results to PDF.",
     imageTitle: "Compare without losing the small differences",
-    imageCaption:
-      "Blade geometry, materials, and dimensions remain easy to scan when two knives are on screen.",
     stat: "Side by side",
     statLabel: "Decision mode",
     src: "/screenshots/compare.png",
