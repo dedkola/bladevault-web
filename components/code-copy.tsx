@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
 interface CodeCopyProps {
   text: string
   label?: string
-  title?: string
+  title?: React.ReactNode
   className?: string
 }
 
@@ -35,7 +35,15 @@ export function CodeCopy({ text, label, title, className }: CodeCopyProps) {
 
   return (
     <div className={cn("vault-panel min-w-0 p-3 sm:p-4", className)}>
-      {title && <p className="vault-label pb-2 text-center">{title}</p>}
+      {title && (
+        <div className="pb-2 text-center">
+          {typeof title === "string" ? (
+            <p className="vault-label">{title}</p>
+          ) : (
+            <span className="vault-label">{title}</span>
+          )}
+        </div>
+      )}
 
       <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
         <pre className="min-w-0 flex-1 overflow-x-auto rounded-2xl border border-border/60 bg-background/90 px-4 py-3 font-mono text-sm text-foreground">
@@ -56,7 +64,9 @@ export function CodeCopy({ text, label, title, className }: CodeCopyProps) {
           )}
         </button>
         {copied && (
-          <span className="self-end text-xs text-muted-foreground">Copied!</span>
+          <span className="self-end text-xs text-muted-foreground">
+            Copied!
+          </span>
         )}
       </div>
     </div>

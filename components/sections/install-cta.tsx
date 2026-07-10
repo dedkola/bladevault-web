@@ -1,4 +1,4 @@
-import { Apple, Download, Monitor } from "lucide-react"
+import { Apple, Container, Download, Monitor } from "lucide-react"
 
 import { CodeCopy } from "@/components/code-copy"
 
@@ -19,7 +19,12 @@ export function InstallCta() {
           <div className="mt-6 grid gap-4">
             <div className="mx-auto w-full max-w-full text-center sm:w-fit">
               <CodeCopy
-                title="Run in Docker"
+                title={
+                  <span className="flex items-center justify-center gap-2">
+                    <Container className="size-4 text-[var(--bladevault-title)]" />
+                    Run in Docker
+                  </span>
+                }
                 className="mx-auto w-full max-w-full text-left sm:w-auto"
                 text={`docker run -d \\
   --name bladevault \\
