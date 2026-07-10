@@ -114,7 +114,7 @@ export function Hero() {
               </div>
 
               <div className="relative mt-4 overflow-hidden rounded-[1.9rem] border border-border/70 bg-[#f5efdf]">
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 px-4 py-3">
+                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 px-4 py-1.5">
                   <div className="flex items-center gap-2">
                     <span className="size-2.5 rounded-full bg-[var(--bladevault-olive)]" />
                     <span className="size-2.5 rounded-full bg-[var(--bladevault-gold)]" />
