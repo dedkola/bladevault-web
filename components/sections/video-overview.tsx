@@ -71,7 +71,7 @@ export function VideoOverview() {
                   preload="metadata"
                   playsInline
                   poster="/screenshots/dashboard.png"
-                  className="absolute inset-0 h-full w-full bg-black object-cover"
+                  className="bladevault-video absolute inset-0 h-full w-full bg-black"
                 >
                   <source
                     src={absoluteVideoUrl("/overview.mp4")}

@@ -63,7 +63,7 @@ export function HowTo() {
                   preload="metadata"
                   playsInline
                   poster={workflow.poster}
-                  className="absolute inset-0 h-full w-full bg-black object-cover"
+                  className="bladevault-video absolute inset-0 h-full w-full bg-black"
                 >
                   <source src={workflow.videoSrc} type="video/mp4" />
                   Your browser does not support the video tag.
