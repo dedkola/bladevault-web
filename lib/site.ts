@@ -1,4 +1,5 @@
 const FALLBACK_SITE_URL = "http://localhost:3000"
+const FALLBACK_VIDEO_URL = "https://video.bladevault.pro"
 
 function normalizeSiteUrl(value?: string) {
   if (!value) {
@@ -18,6 +19,9 @@ function normalizeSiteUrl(value?: string) {
 // Set NEXT_PUBLIC_SITE_URL in production so canonical tags, sitemap entries,
 // robots.txt, and schema all resolve to the live domain instead of localhost.
 const siteUrl = normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL)
+const videoUrl = normalizeSiteUrl(
+  process.env.NEXT_PUBLIC_VIDEO_URL ?? FALLBACK_VIDEO_URL
+)
 
 export const siteConfig = {
   name: "BladeVault",
@@ -54,8 +58,13 @@ export const siteConfig = {
     "Quick add flows with URL importing",
     "Desktop dashboards for collectors",
   ],
+  videoUrl,
 }
 
 export function absoluteUrl(path = "/") {
   return new URL(path, siteConfig.url).toString()
+}
+
+export function absoluteVideoUrl(path: string) {
+  return new URL(path, siteConfig.videoUrl).toString()
 }

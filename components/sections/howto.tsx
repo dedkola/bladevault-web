@@ -1,27 +1,31 @@
-import Image from "next/image"
-import { PlayCircle } from "lucide-react"
+import { ArrowUpRight, PlayCircle } from "lucide-react"
+
+import { absoluteVideoUrl } from "@/lib/site"
 
 const workflows = [
   {
-    title: "Vault tour",
+    title: "How to Add Your First Knife to BladeVault",
     description:
-      "Open on the dashboard and move through the app the way a collector actually would.",
-    image: "/screenshots/dashboard.png",
-    length: "01:42",
+      "Start with your first entry and see how BladeVault handles the add flow for a growing collection.",
+    videoSrc: absoluteVideoUrl("/add%20new%20item.mp4"),
+    youtubeUrl: "https://www.youtube.com/watch?v=5co8rHxLZgE",
+    poster: "/screenshots/add.png",
   },
   {
-    title: "Quick add flow",
+    title: "How to Install BladeVault on macOS",
     description:
-      "Capture a new entry with URL import or manual fields when speed matters more than ceremony.",
-    image: "/screenshots/add.png",
-    length: "01:18",
+      "Follow the macOS install process from download to first launch with the native desktop app.",
+    videoSrc: absoluteVideoUrl("/macos%20install.mp4"),
+    youtubeUrl: "https://www.youtube.com/watch?v=MftvtfNx570",
+    poster: "/screenshots/dashboard.png",
   },
   {
-    title: "Detail and compare",
+    title: "How to Install BladeVault on Windows 11",
     description:
-      "Drill into a single piece, then zoom back out to compare multiple items without losing momentum.",
-    image: "/screenshots/detail.png",
-    length: "02:05",
+      "See the Windows 11 setup flow and get BladeVault running quickly on a desktop PC.",
+    videoSrc: absoluteVideoUrl("/windows%20install.mp4"),
+    youtubeUrl: "https://www.youtube.com/watch?v=AHexGVYq_yc",
+    poster: "/screenshots/detail.png",
   },
 ]
 
@@ -43,35 +47,52 @@ export function HowTo() {
             key={workflow.title}
             className="vault-panel overflow-hidden p-3"
           >
-            <div className="relative aspect-video overflow-hidden rounded-[1.25rem] border border-border/70">
-              <Image
-                src={workflow.image}
-                width={1440}
-                height={900}
-                alt={workflow.title}
-                className="h-full w-full object-cover object-top"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/55 via-black/10 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4">
-                <div className="flex items-center gap-3">
-                  <div className="flex size-11 items-center justify-center rounded-full border border-white/30 bg-white/14 backdrop-blur">
-                    <PlayCircle className="size-5 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-white">
-                      {workflow.title}
-                    </p>
-                  </div>
+            <div className="overflow-hidden rounded-[1.25rem] border border-border/70 bg-[#f5efdf]">
+              <div className="flex items-center justify-between gap-3 border-b border-border/60 px-4 py-2">
+                <div className="flex items-center gap-2">
+                  <span className="size-2.5 rounded-full bg-[var(--bladevault-olive)]" />
+                  <span className="size-2.5 rounded-full bg-[var(--bladevault-gold)]" />
+                  <span className="size-2.5 rounded-full bg-[var(--bladevault-line)]" />
                 </div>
-                <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white backdrop-blur">
-                  {workflow.length}
-                </span>
+                <span className="vault-label">Tutorial Video</span>
+              </div>
+
+              <div className="relative aspect-video">
+                <video
+                  controls
+                  preload="metadata"
+                  playsInline
+                  poster={workflow.poster}
+                  className="absolute inset-0 h-full w-full bg-black object-cover"
+                >
+                  <source src={workflow.videoSrc} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </div>
             <div className="px-2 pt-4 pb-2">
-              <p className="text-sm leading-6 text-muted-foreground">
-                {workflow.description}
-              </p>
+              <div className="flex items-start gap-3">
+                <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-2xl border border-border/70 bg-background/90 text-[var(--bladevault-title)]">
+                  <PlayCircle className="size-4" />
+                </div>
+                <div>
+                  <h3 className="text-base font-semibold tracking-tight text-foreground">
+                    {workflow.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {workflow.description}
+                  </p>
+                  <a
+                    href={workflow.youtubeUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-[var(--bladevault-title)] transition-opacity hover:opacity-80"
+                  >
+                    Watch on YouTube
+                    <ArrowUpRight className="size-4" />
+                  </a>
+                </div>
+              </div>
             </div>
           </article>
         ))}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { Hero } from "@/components/sections/hero"
+import { VideoOverview } from "@/components/sections/video-overview"
 import { Features } from "@/components/sections/features"
 import { HowTo } from "@/components/sections/howto"
 import { Compare } from "@/components/sections/compare"
@@ -91,6 +92,7 @@ export default function Page() {
           <PromoSidebar />
           <div className="min-w-0 space-y-4 lg:space-y-6">
             <Hero />
+            <VideoOverview />
             <Features />
             <HowTo />
             <Compare />
