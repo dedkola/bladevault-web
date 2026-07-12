@@ -1,9 +1,10 @@
-const FALLBACK_SITE_URL = "http://localhost:3000"
-const FALLBACK_VIDEO_URL = "https://video.bladevault.pro"
+const LOCAL_SITE_URL = "http://localhost:3000"
+const DEFAULT_PRODUCTION_SITE_URL = "https://bladevault.pro"
+const DEFAULT_VIDEO_URL = "https://video.bladevault.pro"
 
-function normalizeSiteUrl(value?: string) {
+function normalizeSiteUrl(value: string | undefined, fallback: string) {
   if (!value) {
-    return FALLBACK_SITE_URL
+    return fallback
   }
 
   const candidate = value.startsWith("http") ? value : `https://${value}`
@@ -12,16 +13,64 @@ function normalizeSiteUrl(value?: string) {
     const url = new URL(candidate)
     return url.toString().replace(/\/$/, "")
   } catch {
-    return FALLBACK_SITE_URL
+    return fallback
   }
 }
 
-// Set NEXT_PUBLIC_SITE_URL in production so canonical tags, sitemap entries,
-// robots.txt, and schema all resolve to the live domain instead of localhost.
-const siteUrl = normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL)
-const videoUrl = normalizeSiteUrl(
-  process.env.NEXT_PUBLIC_VIDEO_URL ?? FALLBACK_VIDEO_URL
-)
+function resolveSiteUrl() {
+  const fallback =
+    process.env.NODE_ENV === "production"
+      ? DEFAULT_PRODUCTION_SITE_URL
+      : LOCAL_SITE_URL
+
+  return normalizeSiteUrl(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      process.env.SITE_URL ??
+      process.env.VERCEL_PROJECT_PRODUCTION_URL,
+    fallback
+  )
+}
+
+function resolveVideoUrl() {
+  return normalizeSiteUrl(
+    process.env.NEXT_PUBLIC_VIDEO_URL ?? process.env.VIDEO_URL,
+    DEFAULT_VIDEO_URL
+  )
+}
+
+const siteUrl = resolveSiteUrl()
+const videoUrl = resolveVideoUrl()
+
+const videoEntries = [
+  {
+    title: "BladeVault Overview and Main Features",
+    description:
+      "Explore BladeVault collection management, filtering, comparison, cloud backups, dark mode, pinned items, brand browsing, and automatic synchronization.",
+    path: "/overview.mp4",
+    thumbnailPath: "/screenshots/dashboard.png",
+  },
+  {
+    title: "How to Add Your First Knife to BladeVault",
+    description:
+      "Start with your first entry and see how BladeVault handles the add flow for a growing collection.",
+    path: "/add%20new%20item.mp4",
+    thumbnailPath: "/screenshots/add.png",
+  },
+  {
+    title: "How to Install BladeVault on macOS",
+    description:
+      "Follow the macOS install process from download to first launch with the native desktop app.",
+    path: "/macos%20install.mp4",
+    thumbnailPath: "/screenshots/dashboard.png",
+  },
+  {
+    title: "How to Install BladeVault on Windows 11",
+    description:
+      "See the Windows 11 setup flow and get BladeVault running quickly on a desktop PC.",
+    path: "/windows%20install.mp4",
+    thumbnailPath: "/screenshots/detail.png",
+  },
+] as const
 
 export const siteConfig = {
   name: "BladeVault",
@@ -58,6 +107,7 @@ export const siteConfig = {
     "Quick add flows with URL importing",
     "Desktop dashboards for collectors",
   ],
+  videoEntries,
   videoUrl,
 }
 
