@@ -5,6 +5,7 @@ import {
   Film,
   FolderKanban,
   LayoutDashboard,
+  LifeBuoy,
   Terminal,
 } from "lucide-react"
 import { useEffect, useState } from "react"
@@ -15,11 +16,17 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const links = [
-  { href: "#overview", label: "Overview", icon: LayoutDashboard },
-  { href: "#features", label: "Features", icon: FolderKanban },
-  { href: "#workflows", label: "Workflows", icon: Film },
-  { href: "#gallery", label: "Gallery", icon: BookOpen },
-  { href: "#install", label: "Install", icon: Terminal },
+  { href: "#overview", label: "Overview", icon: LayoutDashboard, kind: "hash" },
+  { href: "#features", label: "Features", icon: FolderKanban, kind: "hash" },
+  { href: "#workflows", label: "Workflows", icon: Film, kind: "hash" },
+  { href: "#gallery", label: "Gallery", icon: BookOpen, kind: "hash" },
+  { href: "#install", label: "Install", icon: Terminal, kind: "hash" },
+  {
+    href: "mailto:support@bladevault.pro",
+    label: "Support",
+    icon: LifeBuoy,
+    kind: "mailto",
+  },
 ]
 
 const highlights = [
@@ -34,7 +41,9 @@ export function PromoSidebar() {
   useEffect(() => {
     function syncFromHash() {
       const hash = window.location.hash
-      const isKnownHash = links.some((link) => link.href === hash)
+      const isKnownHash = links.some(
+        (link) => link.kind === "hash" && link.href === hash
+      )
       setActiveHref(isKnownHash ? hash : "#overview")
     }
 
@@ -79,10 +88,14 @@ export function PromoSidebar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setActiveHref(link.href)}
+                  onClick={() => {
+                    if (link.kind === "hash") {
+                      setActiveHref(link.href)
+                    }
+                  }}
                   className={cn(
                     "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors",
-                    isActive
+                    link.kind === "hash" && isActive
                       ? "bg-[var(--bladevault-olive)] text-[var(--bladevault-gold)]"
                       : "text-muted-foreground hover:bg-accent hover:text-foreground"
                   )}
