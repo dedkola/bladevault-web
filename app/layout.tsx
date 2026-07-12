@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google"
 import type { Metadata, Viewport } from "next"
+import Script from "next/script"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -123,6 +124,19 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-screen">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-G1D0239TZ3"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-G1D0239TZ3');
+          `}
+        </Script>
         <ThemeProvider>
           <SiteHeader />
           {children}
