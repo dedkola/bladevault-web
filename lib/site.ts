@@ -81,12 +81,12 @@ export const siteConfig = {
   category: "software",
   locale: "en_US",
   url: siteUrl,
-  githubUrl: "https://github.com/kolasokol/bladevault",
-  releasesUrl: "https://github.com/kolasokol/bladevault/releases/latest",
+  githubUrl: "https://github.com/dedkola/bladevault",
+  releasesUrl: "https://github.com/dedkola/bladevault/releases/latest",
   macDownloadUrl:
-    "https://github.com/kolasokol/bladevault/releases/latest/download/BladeVault.dmg",
+    "https://github.com/dedkola/bladevault/releases/latest/download/BladeVault.dmg",
   windowsDownloadUrl:
-    "https://github.com/kolasokol/bladevault/releases/latest/download/BladeVault.exe",
+    "https://github.com/dedkola/bladevault/releases/latest/download/BladeVault.exe",
   keywords: [
     "knife collection manager",
     "local-first collection manager",

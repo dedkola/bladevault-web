@@ -16,7 +16,7 @@ export function SiteFooter() {
         </div>
         <div className="flex flex-wrap items-center gap-4">
           <a
-            href="https://github.com/kolasokol/bladevault"
+            href="https://github.com/dedkola/bladevault"
             aria-label="BladeVault on GitHub"
             className="text-[var(--bladevault-title)] transition-colors hover:text-foreground"
           >

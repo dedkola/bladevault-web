@@ -29,7 +29,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-2">
             <ThemeToggle className="h-10 w-10 border border-border/70 bg-card/90" />
             <Button
-              render={<a href="https://github.com/kolasokol/bladevault" />}
+              render={<a href="https://github.com/dedkola/bladevault" />}
               nativeButton={false}
               variant="outline"
               size="sm"

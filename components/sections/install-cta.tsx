@@ -31,7 +31,7 @@ export function InstallCta() {
   --restart unless-stopped \\
   -p 5500:3000 \\
   -v "$HOME/BladeVault/data:/app/data" \\
-  ghcr.io/kolasokol/bladevault:latest`}
+  ghcr.io/dedkola/bladevault:latest`}
               />
               <p className="mx-auto mt-3 max-w-[44ch] text-sm leading-6 text-muted-foreground">
                 Starts BladeVault in a persistent container with local data
@@ -48,7 +48,7 @@ export function InstallCta() {
                 Download the latest DMG installer for macOS.
               </p>
               <a
-                href="https://github.com/kolasokol/bladevault/releases/latest/download/BladeVault.dmg"
+                href="https://github.com/dedkola/bladevault/releases/latest/download/BladeVault.dmg"
                 className="mt-4 inline-flex items-center gap-2 rounded-2xl border border-border/70 bg-card/90 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-foreground"
               >
                 <Download className="size-4" />
@@ -65,7 +65,7 @@ export function InstallCta() {
                 Download the latest EXE installer for Windows.
               </p>
               <a
-                href="https://github.com/kolasokol/bladevault/releases/latest/download/BladeVault.exe"
+                href="https://github.com/dedkola/bladevault/releases/latest/download/BladeVault.exe"
                 className="mt-4 inline-flex items-center gap-2 rounded-2xl border border-border/70 bg-card/90 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-foreground"
               >
                 <Download className="size-4" />

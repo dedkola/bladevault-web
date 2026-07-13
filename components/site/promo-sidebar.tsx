@@ -129,7 +129,7 @@ export function PromoSidebar() {
               label="Toggle theme"
             />
             <Button
-              render={<a href="https://github.com/kolasokol/bladevault" />}
+              render={<a href="https://github.com/dedkola/bladevault" />}
               nativeButton={false}
               variant="outline"
               className="h-11 justify-center rounded-2xl"

@@ -6,13 +6,13 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06b6d4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Vercel](https://img.shields.io/badge/Vercel-Ready-black?logo=vercel)](https://vercel.com/)
 
-Promo website for [BladeVault](https://github.com/kolasokol/bladevault), the local-first desktop knife collection manager. This repository contains the marketing site and screenshot-driven product presentation, not the main app codebase.
+Promo website for [BladeVault](https://github.com/dedkola/bladevault), the local-first desktop knife collection manager. This repository contains the marketing site and screenshot-driven product presentation, not the main app codebase.
 
 ## About
 
 The site is built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4. It focuses on presenting the BladeVault product clearly through editorial sections, a sidebar-first desktop layout, and app screenshots sourced from the main repository.
 
-If you need the application itself, use the main [BladeVault repo](https://github.com/kolasokol/bladevault).
+If you need the application itself, use the main [BladeVault repo](https://github.com/dedkola/bladevault).
 
 ## Project Structure
 
@@ -24,4 +24,4 @@ If you need the application itself, use the main [BladeVault repo](https://githu
 
 ## Assets
 
-Screenshots and product imagery are derived from the main [BladeVault](https://github.com/kolasokol/bladevault) repository.
+Screenshots and product imagery are derived from the main [BladeVault](https://github.com/dedkola/bladevault) repository.

@@ -1,1 +1,1 @@
-Screenshots sourced from github.com/kolasokol/bladevault, MIT-licensed, owned by the same author.
+Screenshots sourced from github.com/dedkola/bladevault, MIT-licensed, owned by the same author.
