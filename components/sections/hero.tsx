@@ -58,11 +58,17 @@ const heroCards: HeroCard[] = [
 
 export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [loadedIndices, setLoadedIndices] = useState(() => new Set([0]))
   const activeCard = heroCards[activeIndex]
 
   function activateCard(index: number) {
     startTransition(() => {
       setActiveIndex(index)
+      setLoadedIndices((prev) => {
+        const next = new Set(prev)
+        next.add(index)
+        return next
+      })
     })
   }
 
@@ -115,28 +121,34 @@ export function Hero() {
                 </div>
 
                 <div className="relative aspect-[16/9] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.48),transparent_36%)]">
-                  {heroCards.map((card, index) => (
-                    <div
-                      key={card.src}
-                      className={cn(
-                        "absolute inset-0 transition-all duration-300",
-                        index === activeIndex
-                          ? "scale-100 opacity-100"
-                          : "pointer-events-none scale-[1.015] opacity-0"
-                      )}
-                    >
-                      <div className="relative size-full">
-                        <Image
-                          src={card.src}
-                          alt={card.alt}
-                          fill
-                          preload={index === 0}
-                          sizes="(min-width: 1280px) 980px, (min-width: 768px) 72vw, 100vw"
-                          className="object-cover object-top"
-                        />
+                  {heroCards.map((card, index) => {
+                    const isActive = index === activeIndex
+                    const isLoaded = loadedIndices.has(index)
+                    if (!isActive && !isLoaded) return null
+
+                    return (
+                      <div
+                        key={card.src}
+                        className={cn(
+                          "absolute inset-0 transition-all duration-300",
+                          isActive
+                            ? "scale-100 opacity-100"
+                            : "pointer-events-none scale-[1.015] opacity-0"
+                        )}
+                      >
+                        <div className="relative size-full">
+                          <Image
+                            src={card.src}
+                            alt={card.alt}
+                            fill
+                            priority={index === 0}
+                            sizes="(min-width: 1280px) 980px, (min-width: 768px) 72vw, 100vw"
+                            className="object-cover object-top"
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             </motion.div>
