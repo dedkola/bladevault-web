@@ -86,7 +86,7 @@ export const siteConfig = {
   macDownloadUrl:
     "https://github.com/dedkola/bladevault/releases/latest/download/BladeVault.dmg",
   windowsDownloadUrl:
-    "https://github.com/dedkola/bladevault/releases/latest/download/BladeVault.exe",
+    "https://github.com/dedkola/bladevault/releases/latest/download/BladeVault-Setup.exe",
   keywords: [
     "knife collection manager",
     "local-first collection manager",
