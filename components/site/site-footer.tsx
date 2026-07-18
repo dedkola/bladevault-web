@@ -2,7 +2,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="mx-auto flex w-full max-w-[1500px] flex-col gap-4 px-4 pt-4 pb-8 text-sm text-muted-foreground lg:px-6">
+    <footer className="mx-auto flex w-full max-w-[1600px] flex-col gap-4 px-4 pt-3 pb-8 text-sm text-muted-foreground lg:px-4">
       <div className="vault-shell flex flex-col gap-4 px-6 py-5 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-col gap-1">
           <div className="flex flex-wrap items-center gap-2">
@@ -10,7 +10,7 @@ export function SiteFooter() {
             <span className="text-muted-foreground/50">·</span>
             <span>Local-first knife collection manager.</span>
           </div>
-          <p className="text-xs tracking-[0.18em] text-[var(--bladevault-title)] uppercase">
+          <p className="text-[10px] font-semibold tracking-[0.1em] text-[var(--bladevault-title)] uppercase">
             Organize, compare, and review your collection.
           </p>
         </div>

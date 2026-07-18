@@ -1,8 +1,14 @@
 "use client"
 
 import Image from "next/image"
-import { Cloud, Monitor, ShieldCheck, type LucideIcon } from "lucide-react"
-import { motion } from "motion/react"
+import {
+  ArrowDownToLine,
+  Cloud,
+  Code2,
+  Monitor,
+  ShieldCheck,
+  type LucideIcon,
+} from "lucide-react"
 import { startTransition, useState } from "react"
 
 import { cn } from "@/lib/utils"
@@ -22,34 +28,33 @@ type HeroCard = {
 const heroCards: HeroCard[] = [
   {
     eyebrow: "Dashboard",
-    title: "Your local storage",
-    detail: "For your entire knife collection.",
-    imageTitle: "A dashboard that feels collected, not crowded",
+    title: "Collection at a glance",
+    detail: "Browse recent additions, brands, totals, and pinned pieces.",
+    imageTitle: "Collection dashboard",
     stat: "Local-first",
-    statLabel: "Storage model",
+    statLabel: "Private by default",
     src: "/screenshots/dashboard.png",
     alt: "BladeVault dashboard screenshot",
     icon: ShieldCheck,
   },
   {
-    eyebrow: "Detail View",
-    title: "Add knife to vault",
-    detail: "Scrape from any vendor web site.",
-    imageTitle: "Detail pages with enough room to think",
+    eyebrow: "Detail view",
+    title: "Every detail preserved",
+    detail: "Keep specifications, source links, and image sets together.",
+    imageTitle: "Knife detail record",
     stat: "Deep detail",
-    statLabel: "Review surface",
+    statLabel: "One complete record",
     src: "/screenshots/detail.png",
     alt: "BladeVault knife detail screenshot",
     icon: Cloud,
   },
   {
     eyebrow: "Compare",
-    title: "Compare unlimited knives",
-    detail:
-      "Compare unlimited knives at the same time. Send to print or save results to PDF.",
-    imageTitle: "Compare without losing the small differences",
-    stat: "Side by side",
-    statLabel: "Decision mode",
+    title: "Differences made clear",
+    detail: "Compare as many knives as you need, then print or export to PDF.",
+    imageTitle: "Side-by-side comparison",
+    stat: "Unlimited",
+    statLabel: "Comparison columns",
     src: "/screenshots/compare.png",
     alt: "BladeVault knife comparison screenshot",
     icon: Monitor,
@@ -74,143 +79,139 @@ export function Hero() {
 
   return (
     <section id="overview" className="vault-shell overflow-hidden">
-      <div className="vault-grid relative overflow-hidden px-5 py-6 sm:px-7 sm:py-8 lg:px-10 lg:py-10">
-        <div className="absolute inset-x-0 top-0 h-44 bg-linear-to-b from-[rgb(200_156_61_/_0.12)] via-[rgb(255_253_248_/_0.1)] to-transparent" />
-        <div className="absolute top-24 -left-12 h-56 w-56 rounded-full bg-[rgb(200_156_61_/_0.08)] blur-3xl" />
-        <div className="absolute top-10 right-8 h-28 w-28 rounded-full bg-[rgb(46_52_23_/_0.08)] blur-3xl" />
+      <div className="grid lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
+        <div className="flex flex-col justify-center border-b border-border/70 p-6 sm:p-9 lg:border-r lg:border-b-0 xl:p-12">
+          <p className="vault-label">Private collection manager</p>
+          <h1 className="mt-4 max-w-[12ch] text-4xl leading-[1.02] font-semibold tracking-[-0.045em] text-foreground sm:text-5xl xl:text-[3.6rem]">
+            Home for your{" "}
+            <span className="text-[var(--bladevault-title)]">
+              blade collection.
+            </span>
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">
+            A focused, local-first desktop vault for cataloging, comparing, and
+            reviewing every knife you own.
+          </p>
 
-        <div className="relative">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-            <div className="max-w-4xl">
-              <h1 className="max-w-4xl text-center text-4xl font-semibold tracking-tight text-foreground sm:text-5xl xl:text-[4rem] xl:leading-[0.95]">
-                Home for your blade collection
-              </h1>
-            </div>
+          <div className="mt-7 flex flex-wrap gap-2.5">
+            <a href="#install" className="vault-action vault-action-primary">
+              <ArrowDownToLine className="size-4" />
+              Install BladeVault
+            </a>
+            <a
+              href="https://github.com/dedkola/bladevault"
+              className="vault-action"
+            >
+              <Code2 className="size-4" />
+              View on GitHub
+            </a>
           </div>
 
-          <div className="relative mt-8 lg:mt-10">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="vault-panel relative overflow-hidden rounded-[2.25rem] border-border/60 bg-[linear-gradient(180deg,rgba(255,253,248,0.96),rgba(248,244,235,0.9))] p-3 sm:p-4 lg:p-5"
-            >
-              <div className="absolute inset-x-0 top-0 h-28 bg-linear-to-b from-white/55 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-background/65 to-transparent" />
+          <div className="mt-9 grid grid-cols-3 border-y border-border/60 py-4">
+            <div>
+              <p className="text-sm font-semibold text-foreground">Local</p>
+              <p className="vault-label mt-1">Storage</p>
+            </div>
+            <div className="border-l border-border/60 pl-4">
+              <p className="text-sm font-semibold text-foreground">Free</p>
+              <p className="vault-label mt-1">Open source</p>
+            </div>
+            <div className="border-l border-border/60 pl-4">
+              <p className="text-sm font-semibold text-foreground">Desktop</p>
+              <p className="vault-label mt-1">Mac + Windows</p>
+            </div>
+          </div>
+        </div>
 
-              <div className="relative flex flex-col gap-3 border-b border-border/50 px-2 pb-4 sm:px-3">
-                <div>
-                  <p className="vault-label">{activeCard.eyebrow}</p>
-                  <p className="mt-2 text-center text-2xl font-semibold tracking-tight text-foreground sm:text-[2rem]">
-                    {activeCard.imageTitle}
-                  </p>
-                </div>
+        <div className="vault-grid min-w-0 bg-muted/25 p-4 sm:p-6 lg:p-8">
+          <div className="vault-window">
+            <div className="vault-window-bar">
+              <div className="flex items-center gap-2">
+                <span className="size-2 rounded-full bg-[var(--bladevault-olive)]" />
+                <span className="size-2 rounded-full bg-[var(--bladevault-gold)]" />
+                <span className="size-2 rounded-full border border-border bg-card" />
               </div>
+              <p className="vault-label truncate">{activeCard.imageTitle}</p>
+              <span className="hidden text-[10px] font-medium text-muted-foreground sm:inline">
+                BladeVault / {activeCard.eyebrow}
+              </span>
+            </div>
 
-              <div className="relative mt-4 overflow-hidden rounded-[1.9rem] border border-border/70 bg-[#f5efdf]">
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 px-4 py-1.5">
-                  <div className="flex items-center gap-2">
-                    <span className="size-2.5 rounded-full bg-[var(--bladevault-olive)]" />
-                    <span className="size-2.5 rounded-full bg-[var(--bladevault-gold)]" />
-                    <span className="size-2.5 rounded-full bg-[var(--bladevault-line)]" />
-                  </div>
-                  <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-[11px] tracking-[0.22em] text-[var(--bladevault-title)] uppercase sm:justify-end">
-                    <span>{activeCard.stat}</span>
-                    <span>{activeCard.statLabel}</span>
-                  </div>
-                </div>
-
-                <div className="relative aspect-[16/9] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.48),transparent_36%)]">
-                  {heroCards.map((card, index) => {
-                    const isActive = index === activeIndex
-                    const isLoaded = loadedIndices.has(index)
-                    if (!isActive && !isLoaded) return null
-
-                    return (
-                      <div
-                        key={card.src}
-                        className={cn(
-                          "absolute inset-0 transition-all duration-300",
-                          isActive
-                            ? "scale-100 opacity-100"
-                            : "pointer-events-none scale-[1.015] opacity-0"
-                        )}
-                      >
-                        <div className="relative size-full">
-                          <Image
-                            src={card.src}
-                            alt={card.alt}
-                            fill
-                            priority={index === 0}
-                            sizes="(min-width: 1280px) 980px, (min-width: 768px) 72vw, 100vw"
-                            className="object-cover object-top"
-                          />
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-            </motion.div>
-
-            <div className="relative z-10 mt-4 grid gap-4 lg:-mt-14 lg:grid-cols-3 lg:px-6">
+            <div className="relative aspect-[16/10] overflow-hidden bg-white">
               {heroCards.map((card, index) => {
-                const Icon = card.icon
                 const isActive = index === activeIndex
+                const isLoaded = loadedIndices.has(index)
+                if (!isActive && !isLoaded) return null
 
                 return (
-                  <motion.button
-                    key={card.title}
-                    type="button"
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.55, delay: 0.1 + index * 0.08 }}
-                    onMouseEnter={() => activateCard(index)}
-                    onFocus={() => activateCard(index)}
-                    onClick={() => activateCard(index)}
-                    aria-pressed={isActive}
+                  <div
+                    key={card.src}
                     className={cn(
-                      "vault-panel group relative overflow-hidden rounded-[2rem] p-5 text-left transition-all duration-200 sm:p-6",
+                      "absolute inset-0 transition-all duration-300",
                       isActive
-                        ? "border-[var(--bladevault-gold)] bg-card shadow-[0_24px_60px_rgba(98,73,24,0.18)] lg:-translate-y-2"
-                        : "bg-card/94 hover:-translate-y-1 hover:border-[var(--bladevault-line)]"
+                        ? "scale-100 opacity-100"
+                        : "pointer-events-none scale-[1.008] opacity-0"
                     )}
                   >
-                    <div className="absolute inset-x-0 top-0 h-16 bg-linear-to-b from-[rgb(255_255_255_/_0.5)] to-transparent" />
-
-                    <div className="relative flex items-start justify-between gap-4">
-                      <span
-                        className={cn(
-                          "inline-flex size-11 items-center justify-center rounded-2xl border transition-colors",
-                          isActive
-                            ? "border-[var(--bladevault-gold)] bg-[var(--bladevault-gold)]/12 text-[var(--bladevault-title)]"
-                            : "border-border/70 bg-background/92 text-[var(--bladevault-title)]"
-                        )}
-                      >
-                        <Icon className="size-4" />
-                      </span>
-                      <span className="vault-label pt-1">{card.eyebrow}</span>
-                    </div>
-
-                    <h2 className="relative mt-8 text-center text-[2rem] leading-[1.02] font-medium tracking-tight text-foreground">
-                      {card.title}
-                    </h2>
-                    <p className="relative mx-auto mt-4 max-w-[22ch] text-center text-base leading-8 text-muted-foreground">
-                      {card.detail}
-                    </p>
-
-                    <div className="relative mt-7 flex justify-center border-t border-border/50 pt-4">
-                      <div className="text-center">
-                        <p className="text-lg font-semibold tracking-tight text-foreground">
-                          {card.stat}
-                        </p>
-                        <p className="vault-label mt-1">{card.statLabel}</p>
-                      </div>
-                    </div>
-                  </motion.button>
+                    <Image
+                      src={card.src}
+                      alt={card.alt}
+                      fill
+                      priority={index === 0}
+                      sizes="(min-width: 1280px) 760px, (min-width: 1024px) 56vw, 100vw"
+                      className="object-cover object-top"
+                    />
+                  </div>
                 )
               })}
             </div>
+          </div>
+
+          <div className="mt-3 grid gap-2 sm:grid-cols-3">
+            {heroCards.map((card, index) => {
+              const Icon = card.icon
+              const isActive = index === activeIndex
+
+              return (
+                <button
+                  key={card.title}
+                  type="button"
+                  onMouseEnter={() => activateCard(index)}
+                  onFocus={() => activateCard(index)}
+                  onClick={() => activateCard(index)}
+                  aria-pressed={isActive}
+                  className={cn(
+                    "group rounded-lg border p-3 text-left transition-colors focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none",
+                    isActive
+                      ? "border-[var(--bladevault-gold)] bg-card"
+                      : "border-border/60 bg-card/70 hover:bg-card"
+                  )}
+                >
+                  <div className="flex items-center gap-2">
+                    <Icon
+                      className={cn(
+                        "size-3.5",
+                        isActive
+                          ? "text-[var(--bladevault-title)]"
+                          : "text-muted-foreground"
+                      )}
+                    />
+                    <span className="vault-label">{card.eyebrow}</span>
+                  </div>
+                  <p className="mt-2 text-sm font-semibold text-foreground">
+                    {card.title}
+                  </p>
+                  <p className="mt-1 hidden text-xs leading-5 text-muted-foreground xl:block">
+                    {card.detail}
+                  </p>
+                </button>
+              )
+            })}
+          </div>
+
+          <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted-foreground">
+            <span>{activeCard.stat}</span>
+            <span>{activeCard.statLabel}</span>
           </div>
         </div>
       </div>

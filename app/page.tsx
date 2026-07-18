@@ -87,10 +87,10 @@ export default function Page() {
           __html: JSON.stringify(structuredData),
         }}
       />
-      <main className="mx-auto w-full max-w-[1500px] px-4 py-4 lg:px-6 lg:py-6">
-        <div className="grid min-w-0 gap-4 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-6">
+      <main className="mx-auto w-full max-w-[1600px] px-4 py-4">
+        <div className="grid min-w-0 gap-4 lg:grid-cols-[240px_minmax(0,1fr)]">
           <PromoSidebar />
-          <div className="min-w-0 space-y-4 lg:space-y-6">
+          <div className="min-w-0 space-y-4">
             <Hero />
             <VideoOverview />
             <Features />

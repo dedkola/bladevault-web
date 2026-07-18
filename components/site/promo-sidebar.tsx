@@ -2,6 +2,7 @@
 
 import {
   BookOpen,
+  Download,
   Film,
   FolderKanban,
   LayoutDashboard,
@@ -29,7 +30,7 @@ const links = [
   },
 ]
 
-const highlights = [
+const collectionNotes = [
   "Local-first vault with optional cloud backup",
   "Desktop-grade collection dashboard and detail views",
   "Fast compare, quick add, and URL-powered importing",
@@ -57,28 +58,28 @@ export function PromoSidebar() {
 
   return (
     <aside className="hidden lg:block">
-      <div className="vault-shell sticky top-6 flex h-[calc(100vh-3rem)] flex-col overflow-hidden bg-sidebar/95">
-        <div className="flex items-center gap-3 border-b border-sidebar-border/70 px-5 py-5">
-          <div className="flex size-12 shrink-0 items-center justify-center">
-            <BladevaultLogoMark className="size-10" />
+      <div className="vault-shell sticky top-4 flex h-[calc(100vh-2rem)] flex-col overflow-hidden bg-sidebar">
+        <div className="flex items-center gap-3 border-b border-sidebar-border/75 px-5 py-5">
+          <div className="flex size-11 shrink-0 items-center justify-center">
+            <BladevaultLogoMark className="size-9" />
           </div>
           <div>
-            <p className="text-xl font-semibold tracking-tight text-foreground">
+            <p className="text-xl font-semibold tracking-[-0.03em] text-foreground">
               Blade
               <span className="text-[var(--bladevault-title)]">Vault</span>
             </p>
           </div>
         </div>
 
-        <div className="space-y-3 border-b border-sidebar-border/60 px-5 py-4">
-          <div className="flex flex-wrap gap-2">
-            <span className="vault-chip">Local</span>
-            <span className="vault-chip">Desktop</span>
-          </div>
+        <div className="flex items-center justify-between border-b border-sidebar-border/60 px-5 py-3">
+          <span className="font-mono text-[10px] tracking-[0.08em] text-muted-foreground">
+            LOCAL-FIRST
+          </span>
+          <span className="vault-chip">OPEN SOURCE</span>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-4 py-4">
-          <p className="vault-label px-2 pb-2">Sections</p>
+        <nav className="flex-1 overflow-y-auto px-3 py-4">
+          <p className="vault-label px-2 pb-2.5">Main</p>
           <div className="space-y-1">
             {links.map((link) => {
               const Icon = link.icon
@@ -94,7 +95,7 @@ export function PromoSidebar() {
                     }
                   }}
                   className={cn(
-                    "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-colors",
+                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none",
                     link.kind === "hash" && isActive
                       ? "bg-[var(--bladevault-olive)] text-[var(--bladevault-gold)]"
                       : "text-muted-foreground hover:bg-accent hover:text-foreground"
@@ -107,13 +108,13 @@ export function PromoSidebar() {
             })}
           </div>
 
-          <div className="mt-6 border-t border-sidebar-border/60 pt-5">
-            <p className="vault-label px-2 pb-2">Highlights</p>
-            <div className="space-y-2">
-              {highlights.map((item) => (
+          <div className="mt-5 border-t border-sidebar-border/60 pt-5">
+            <p className="vault-label px-2 pb-2">Collection notes</p>
+            <div>
+              {collectionNotes.map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-sidebar-border/70 bg-card/80 px-4 py-3 text-sm text-muted-foreground"
+                  className="border-b border-sidebar-border/55 px-2 py-3 text-xs leading-5 text-muted-foreground last:border-b-0"
                 >
                   {item}
                 </div>
@@ -122,17 +123,24 @@ export function PromoSidebar() {
           </div>
         </nav>
 
-        <div className="border-t border-sidebar-border/60 p-4">
+        <div className="border-t border-sidebar-border/60 p-3">
+          <a
+            href="#install"
+            className="vault-action vault-action-primary mb-2 w-full"
+          >
+            <Download className="size-4" />
+            Install BladeVault
+          </a>
           <div className="grid grid-cols-[auto_1fr] gap-2">
             <ThemeToggle
-              className="flex h-11 w-11 items-center justify-center rounded-2xl border border-sidebar-border/70 bg-card/90 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-sidebar-border bg-card text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
               label="Toggle theme"
             />
             <Button
               render={<a href="https://github.com/dedkola/bladevault" />}
               nativeButton={false}
               variant="outline"
-              className="h-11 justify-center rounded-2xl"
+              className="h-9 justify-center rounded-lg border-border"
             >
               View GitHub
             </Button>

@@ -12,39 +12,39 @@ const navLinks = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/82 backdrop-blur lg:hidden">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3">
+    <header className="sticky top-0 z-50 border-b border-border/75 bg-background/95 backdrop-blur lg:hidden">
+      <div className="mx-auto flex max-w-7xl flex-col px-4">
         <div className="flex items-center justify-between gap-3">
-          <a href="#overview" className="flex items-center gap-3">
+          <a href="#overview" className="flex items-center gap-2.5 py-3">
             <div className="flex size-10 items-center justify-center">
               <BladevaultLogoMark className="size-8" />
             </div>
             <div>
-              <p className="text-lg font-semibold tracking-tight text-foreground">
+              <p className="text-lg font-semibold tracking-[-0.03em] text-foreground">
                 Blade
                 <span className="text-[var(--bladevault-title)]">Vault</span>
               </p>
             </div>
           </a>
           <div className="flex items-center gap-2">
-            <ThemeToggle className="h-10 w-10 border border-border/70 bg-card/90" />
+            <ThemeToggle className="h-9 w-9 border border-border bg-card" />
             <Button
               render={<a href="https://github.com/dedkola/bladevault" />}
               nativeButton={false}
               variant="outline"
               size="sm"
-              className="rounded-xl"
+              className="h-9 rounded-lg border-border"
             >
               GitHub
             </Button>
           </div>
         </div>
-        <nav className="scrollbar-hide flex items-center gap-2 overflow-x-auto pb-1">
+        <nav className="scrollbar-hide flex items-center gap-5 overflow-x-auto border-t border-border/55 py-2.5">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full border border-border/70 bg-card/80 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              className="shrink-0 text-xs font-medium text-muted-foreground transition-colors hover:text-[var(--bladevault-title)]"
             >
               {link.label}
             </a>

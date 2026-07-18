@@ -113,36 +113,34 @@ export function Features() {
       <div className="mb-8">
         <div>
           <p className="vault-label">Features</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+          <h2 className="vault-section-title">
             Everything you need to manage a serious collection.
           </h2>
         </div>
       </div>
 
-      <div className="mb-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="mb-5 grid overflow-hidden rounded-lg border border-[var(--bladevault-olive)] sm:grid-cols-2 xl:grid-cols-4">
         {featureHighlights.map((highlight) => (
           <div
             key={highlight.label}
-            className="vault-panel flex items-center gap-3 p-4"
+            className="flex items-center gap-3 border-b border-[rgb(211_164_47_/_0.28)] bg-[var(--bladevault-olive)] p-4 text-[var(--bladevault-gold)] last:border-b-0 sm:border-r xl:border-b-0 xl:last:border-r-0 sm:[&:nth-child(2)]:border-r-0 xl:[&:nth-child(2)]:border-r"
           >
-            <highlight.icon className="size-4 shrink-0 text-[var(--bladevault-title)]" />
-            <p className="text-sm font-medium text-foreground">
+            <highlight.icon className="size-4 shrink-0" />
+            <p className="text-sm font-medium text-[#f4e8c6]">
               {highlight.label}
             </p>
           </div>
         ))}
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid overflow-hidden rounded-lg border border-border/70 sm:grid-cols-2 xl:grid-cols-4">
         {compactFeatures.map((feature) => (
           <div
             key={feature.label}
-            className="vault-panel flex items-center gap-3 p-4"
+            className="flex min-h-14 items-center gap-3 border-b border-border/55 bg-card px-4 py-3 last:border-b-0 sm:border-r sm:[&:nth-child(2n)]:border-r-0 xl:[&:nth-child(2n)]:border-r xl:[&:nth-child(4n)]:border-r-0 xl:[&:nth-last-child(-n+4)]:border-b-0"
           >
-            <feature.icon className="size-4 shrink-0 text-[var(--bladevault-title)]" />
-            <p className="text-sm font-medium text-foreground">
-              {feature.label}
-            </p>
+            <feature.icon className="size-3.5 shrink-0 text-[var(--bladevault-title)]" />
+            <p className="text-sm text-foreground">{feature.label}</p>
           </div>
         ))}
       </div>

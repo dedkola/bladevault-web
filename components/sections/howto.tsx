@@ -35,7 +35,7 @@ export function HowTo() {
       <div className="mb-8">
         <div>
           <p className="vault-label">Workflows</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+          <h2 className="vault-section-title">
             Workflows that keep collecting simple.
           </h2>
         </div>
@@ -45,14 +45,14 @@ export function HowTo() {
         {workflows.map((workflow) => (
           <article
             key={workflow.title}
-            className="vault-panel overflow-hidden p-3"
+            className="overflow-hidden rounded-lg border border-border/70 bg-card"
           >
-            <div className="overflow-hidden rounded-[1.25rem] border border-border/70 bg-[#f5efdf]">
-              <div className="flex items-center justify-between gap-3 border-b border-border/60 px-4 py-2">
+            <div className="overflow-hidden border-b border-border/70 bg-card">
+              <div className="vault-window-bar">
                 <div className="flex items-center gap-2">
-                  <span className="size-2.5 rounded-full bg-[var(--bladevault-olive)]" />
-                  <span className="size-2.5 rounded-full bg-[var(--bladevault-gold)]" />
-                  <span className="size-2.5 rounded-full bg-[var(--bladevault-line)]" />
+                  <span className="size-2 rounded-full bg-[var(--bladevault-olive)]" />
+                  <span className="size-2 rounded-full bg-[var(--bladevault-gold)]" />
+                  <span className="size-2 rounded-full border border-border bg-card" />
                 </div>
                 <span className="vault-label">Tutorial Video</span>
               </div>
@@ -70,9 +70,9 @@ export function HowTo() {
                 </video>
               </div>
             </div>
-            <div className="px-2 pt-4 pb-2">
+            <div className="p-4">
               <div className="flex items-start gap-3">
-                <div className="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-2xl border border-border/70 bg-background/90 text-[var(--bladevault-title)]">
+                <div className="vault-icon-box mt-0.5">
                   <PlayCircle className="size-4" />
                 </div>
                 <div>

@@ -13,28 +13,28 @@ export function Compare() {
       <div className="grid gap-6 xl:grid-cols-[minmax(0,0.9fr)_minmax(420px,1.1fr)] xl:items-center">
         <div>
           <p className="vault-label">Compare</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+          <h2 className="vault-section-title">
             Put the spec sheet on stage, not in the background.
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-6 text-muted-foreground">
+          <p className="vault-section-copy">
             Compare dimensions, materials, finishes, and other key details in
             one place when you need to make a fast call between multiple pieces.
           </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            <div className="vault-panel flex items-center gap-3 p-4">
+            <div className="flex items-center gap-3 border-y border-border/60 py-3">
               <Columns3 className="size-4 shrink-0 text-[var(--bladevault-title)]" />
               <p className="text-sm font-medium text-foreground">
                 Multi-column clarity
               </p>
             </div>
-            <div className="vault-panel flex items-center gap-3 p-4">
+            <div className="flex items-center gap-3 border-y border-border/60 py-3">
               <Gauge className="size-4 shrink-0 text-[var(--bladevault-title)]" />
               <p className="text-sm font-medium text-foreground">
                 Fast visual scanning
               </p>
             </div>
-            <div className="vault-panel flex items-center gap-3 p-4">
+            <div className="flex items-center gap-3 border-y border-border/60 py-3">
               <PanelsTopLeft className="size-4 shrink-0 text-[var(--bladevault-title)]" />
               <p className="text-sm font-medium text-foreground">
                 Purpose-built layout
@@ -42,13 +42,13 @@ export function Compare() {
             </div>
           </div>
 
-          <div className="mt-6 space-y-3">
+          <div className="mt-6 overflow-hidden rounded-lg border border-border/70">
             {comparePoints.map((point) => (
               <div
                 key={point}
-                className="vault-panel flex items-start gap-3 p-4 text-sm leading-6 text-muted-foreground"
+                className="flex items-start gap-3 border-b border-border/55 bg-card p-4 text-sm leading-6 text-muted-foreground last:border-b-0"
               >
-                <div className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-accent text-[var(--bladevault-title)]">
+                <div className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-md bg-accent text-[var(--bladevault-title)]">
                   <Check className="size-3.5" />
                 </div>
                 <p>{point}</p>
@@ -57,8 +57,15 @@ export function Compare() {
           </div>
         </div>
 
-        <div className="vault-panel overflow-hidden p-3 sm:p-4">
-          <div className="overflow-hidden rounded-[1.4rem] border border-border/70">
+        <div className="vault-window">
+          <div className="vault-window-bar">
+            <div className="flex items-center gap-2">
+              <span className="size-2 rounded-full bg-[var(--bladevault-olive)]" />
+              <span className="size-2 rounded-full bg-[var(--bladevault-gold)]" />
+            </div>
+            <span className="vault-label">Comparison check</span>
+          </div>
+          <div className="overflow-hidden">
             <Image
               src="/screenshots/compare.png"
               width={1440}

@@ -36,7 +36,7 @@ export function Gallery() {
       <div className="mb-8">
         <div>
           <p className="vault-label">Gallery</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
+          <h2 className="vault-section-title">
             A closer look at BladeVault in use.
           </h2>
         </div>
@@ -45,17 +45,24 @@ export function Gallery() {
       <div className="grid gap-4 xl:grid-cols-3">
         {screenshots.map((s) => (
           <article key={s.src} className={s.span}>
-            <div className="vault-panel h-full overflow-hidden p-3">
+            <div className="vault-window h-full">
+              <div className="vault-window-bar">
+                <div className="flex items-center gap-2">
+                  <span className="size-2 rounded-full bg-[var(--bladevault-olive)]" />
+                  <span className="size-2 rounded-full bg-[var(--bladevault-gold)]" />
+                </div>
+                <span className="vault-label">{s.title}</span>
+              </div>
               <Image
                 src={s.src}
                 width={1440}
                 height={900}
                 alt={s.title}
                 loading="lazy"
-                className="w-full rounded-[1.3rem] border border-border/70"
+                className="w-full border-b border-border/70"
               />
-              <div className="px-2 pt-4 pb-2">
-                <h3 className="mt-2 text-lg font-medium text-foreground">
+              <div className="p-4">
+                <h3 className="text-base font-semibold text-foreground">
                   {s.title}
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">

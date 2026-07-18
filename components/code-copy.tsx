@@ -34,7 +34,12 @@ export function CodeCopy({ text, label, title, className }: CodeCopyProps) {
   }
 
   return (
-    <div className={cn("vault-panel min-w-0 p-3 sm:p-4", className)}>
+    <div
+      className={cn(
+        "min-w-0 rounded-lg border border-border/70 bg-card p-3 sm:p-4",
+        className
+      )}
+    >
       {title && (
         <div className="pb-2 text-center">
           {typeof title === "string" ? (
@@ -46,7 +51,7 @@ export function CodeCopy({ text, label, title, className }: CodeCopyProps) {
       )}
 
       <div className="flex min-w-0 flex-col gap-3 sm:flex-row sm:items-center">
-        <pre className="min-w-0 flex-1 overflow-x-auto rounded-2xl border border-border/60 bg-background/90 px-4 py-3 font-mono text-sm text-foreground">
+        <pre className="min-w-0 flex-1 overflow-x-auto rounded-md border border-border/60 bg-muted/60 px-4 py-3 font-mono text-xs leading-5 text-foreground sm:text-sm">
           <code className="block break-all whitespace-pre-wrap sm:whitespace-pre">
             {text}
           </code>
@@ -55,7 +60,7 @@ export function CodeCopy({ text, label, title, className }: CodeCopyProps) {
           type="button"
           onClick={handleCopy}
           aria-label={label ?? "Copy to clipboard"}
-          className="self-end rounded-2xl border border-border/70 bg-card/90 p-3 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground sm:shrink-0"
+          className="self-end rounded-md border border-border bg-card p-3 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none sm:shrink-0"
         >
           {copied ? (
             <Check className="size-4" />
