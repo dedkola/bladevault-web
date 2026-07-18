@@ -22,6 +22,23 @@ If you need the application itself, use the main [BladeVault repo](https://githu
 - `components/ui/` - reusable UI primitives
 - `public/screenshots/` - BladeVault product screenshots used in the promo site
 
+## Development
+
+This project uses [pnpm](https://pnpm.io/) 11. Install dependencies and start the development server with:
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Run the quality gates with:
+
+```bash
+pnpm lint
+pnpm typecheck
+pnpm build
+```
+
 ## Assets
 
 Screenshots and product imagery are derived from the main [BladeVault](https://github.com/dedkola/bladevault) repository.
