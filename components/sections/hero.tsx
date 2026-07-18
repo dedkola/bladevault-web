@@ -137,7 +137,7 @@ export function Hero() {
               </span>
             </div>
 
-            <div className="relative aspect-[16/10] overflow-hidden bg-white">
+            <div className="relative aspect-video overflow-hidden bg-white">
               {heroCards.map((card, index) => {
                 const isActive = index === activeIndex
                 const isLoaded = loadedIndices.has(index)
