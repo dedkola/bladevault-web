@@ -30,12 +30,6 @@ const links = [
   },
 ]
 
-const collectionNotes = [
-  "Local-first vault with optional cloud backup",
-  "Desktop-grade collection dashboard and detail views",
-  "Fast compare, quick add, and URL-powered importing",
-]
-
 export function PromoSidebar() {
   const [activeHref, setActiveHref] = useState("#overview")
 
@@ -71,13 +65,6 @@ export function PromoSidebar() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between border-b border-sidebar-border/60 px-5 py-3">
-          <span className="font-mono text-[10px] tracking-[0.08em] text-muted-foreground">
-            LOCAL-FIRST
-          </span>
-          <span className="vault-chip">OPEN SOURCE</span>
-        </div>
-
         <nav className="flex-1 overflow-y-auto px-3 py-4">
           <p className="vault-label px-2 pb-2.5">Main</p>
           <div className="space-y-1">
@@ -108,19 +95,6 @@ export function PromoSidebar() {
             })}
           </div>
 
-          <div className="mt-5 border-t border-sidebar-border/60 pt-5">
-            <p className="vault-label px-2 pb-2">Collection notes</p>
-            <div>
-              {collectionNotes.map((item) => (
-                <div
-                  key={item}
-                  className="border-b border-sidebar-border/55 px-2 py-3 text-xs leading-5 text-muted-foreground last:border-b-0"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
         </nav>
 
         <div className="border-t border-sidebar-border/60 p-3">
