@@ -12,6 +12,7 @@ import {
 import { startTransition, useState } from "react"
 
 import { cn } from "@/lib/utils"
+import { ScreenshotLightbox } from "@/components/screenshot-lightbox"
 
 type HeroCard = {
   eyebrow: string
@@ -153,14 +154,20 @@ export function Hero() {
                         : "pointer-events-none scale-[1.008] opacity-0"
                     )}
                   >
-                    <Image
+                    <ScreenshotLightbox
                       src={card.src}
                       alt={card.alt}
-                      fill
-                      priority={index === 0}
-                      sizes="(min-width: 1280px) 760px, (min-width: 1024px) 56vw, 100vw"
-                      className="object-cover object-top"
-                    />
+                      className="absolute inset-0"
+                    >
+                      <Image
+                        src={card.src}
+                        alt={card.alt}
+                        fill
+                        priority={index === 0}
+                        sizes="(min-width: 1280px) 760px, (min-width: 1024px) 56vw, 100vw"
+                        className="object-cover object-top"
+                      />
+                    </ScreenshotLightbox>
                   </div>
                 )
               })}

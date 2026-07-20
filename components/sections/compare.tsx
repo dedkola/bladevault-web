@@ -1,6 +1,8 @@
 import Image from "next/image"
 import { Check, Columns3, Gauge, PanelsTopLeft } from "lucide-react"
 
+import { ScreenshotLightbox } from "@/components/screenshot-lightbox"
+
 const comparePoints = [
   "Keep multiple pieces in view without flattening the details into a spreadsheet vibe.",
   "Read dimensions, materials, and finish information in a structured table that still feels premium.",
@@ -66,13 +68,19 @@ export function Compare() {
             <span className="vault-label">Comparison check</span>
           </div>
           <div className="overflow-hidden">
-            <Image
+            <ScreenshotLightbox
               src="/screenshots/compare.png"
-              width={1440}
-              height={900}
               alt="BladeVault compare board screenshot"
-              className="h-auto w-full"
-            />
+              className="w-full"
+            >
+              <Image
+                src="/screenshots/compare.png"
+                width={1440}
+                height={900}
+                alt="BladeVault compare board screenshot"
+                className="h-auto w-full"
+              />
+            </ScreenshotLightbox>
           </div>
         </div>
       </div>

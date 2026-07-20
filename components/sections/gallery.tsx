@@ -1,5 +1,7 @@
 import Image from "next/image"
 
+import { ScreenshotLightbox } from "@/components/screenshot-lightbox"
+
 const screenshots = [
   {
     src: "/screenshots/dashboard.png",
@@ -53,14 +55,16 @@ export function Gallery() {
                 </div>
                 <span className="vault-label">{s.title}</span>
               </div>
-              <Image
-                src={s.src}
-                width={1440}
-                height={900}
-                alt={s.title}
-                loading="lazy"
-                className="w-full border-b border-border/70"
-              />
+              <ScreenshotLightbox src={s.src} alt={`${s.title} screenshot`}>
+                <Image
+                  src={s.src}
+                  width={1440}
+                  height={900}
+                  alt={s.title}
+                  loading="lazy"
+                  className="w-full border-b border-border/70"
+                />
+              </ScreenshotLightbox>
               <div className="p-4">
                 <h3 className="text-base font-semibold text-foreground">
                   {s.title}
