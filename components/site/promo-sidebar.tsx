@@ -7,8 +7,11 @@ import {
   FolderKanban,
   LayoutDashboard,
   LifeBuoy,
+  Newspaper,
   Terminal,
 } from "lucide-react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 
 import { BladevaultLogoMark } from "@/components/site/bladevault-logo-mark"
@@ -23,6 +26,12 @@ const links = [
   { href: "#gallery", label: "Gallery", icon: BookOpen, kind: "hash" },
   { href: "#install", label: "Install", icon: Terminal, kind: "hash" },
   {
+    href: "/whats-new",
+    label: "What’s new",
+    icon: Newspaper,
+    kind: "route",
+  },
+  {
     href: "mailto:support@bladevault.pro",
     label: "Support",
     icon: LifeBuoy,
@@ -31,10 +40,16 @@ const links = [
 ]
 
 export function PromoSidebar() {
+  const pathname = usePathname()
   const [activeHref, setActiveHref] = useState("#overview")
 
   useEffect(() => {
     function syncFromHash() {
+      if (pathname !== "/") {
+        setActiveHref(pathname)
+        return
+      }
+
       const hash = window.location.hash
       const isKnownHash = links.some(
         (link) => link.kind === "hash" && link.href === hash
@@ -48,7 +63,7 @@ export function PromoSidebar() {
     return () => {
       window.removeEventListener("hashchange", syncFromHash)
     }
-  }, [])
+  }, [pathname])
 
   return (
     <aside className="hidden lg:block">
@@ -70,41 +85,54 @@ export function PromoSidebar() {
           <div className="space-y-1">
             {links.map((link) => {
               const Icon = link.icon
-              const isActive = link.href === activeHref
+              const isActive =
+                link.kind === "route"
+                  ? pathname === link.href
+                  : pathname === "/" && link.href === activeHref
+              const href = link.kind === "hash" ? `/${link.href}` : link.href
+              const className = cn(
+                "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none",
+                link.kind !== "mailto" && isActive
+                  ? "bg-[var(--bladevault-olive)] text-[var(--bladevault-gold)]"
+                  : "text-muted-foreground hover:bg-accent hover:text-foreground"
+              )
+              const content = (
+                <>
+                  <Icon className="size-4" />
+                  <span>{link.label}</span>
+                </>
+              )
 
-              return (
-                <a
+              return link.kind === "mailto" ? (
+                <a key={link.href} href={href} className={className}>
+                  {content}
+                </a>
+              ) : (
+                <Link
                   key={link.href}
-                  href={link.href}
+                  href={href}
                   onClick={() => {
-                    if (link.kind === "hash") {
+                    if (link.kind === "hash" && pathname === "/") {
                       setActiveHref(link.href)
                     }
                   }}
-                  className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none",
-                    link.kind === "hash" && isActive
-                      ? "bg-[var(--bladevault-olive)] text-[var(--bladevault-gold)]"
-                      : "text-muted-foreground hover:bg-accent hover:text-foreground"
-                  )}
+                  className={className}
                 >
-                  <Icon className="size-4" />
-                  <span>{link.label}</span>
-                </a>
+                  {content}
+                </Link>
               )
             })}
           </div>
-
         </nav>
 
         <div className="border-t border-sidebar-border/60 p-3">
-          <a
-            href="#install"
+          <Link
+            href="/#install"
             className="vault-action vault-action-primary mb-2 w-full"
           >
             <Download className="size-4" />
             Install BladeVault
-          </a>
+          </Link>
           <div className="grid grid-cols-[auto_1fr] gap-2">
             <ThemeToggle
               className="flex h-9 w-9 items-center justify-center rounded-lg border border-sidebar-border bg-card text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"

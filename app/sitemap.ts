@@ -17,5 +17,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         content_loc: absoluteVideoUrl(video.path),
       })),
     },
+    {
+      url: absoluteUrl("/whats-new"),
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
   ]
 }
