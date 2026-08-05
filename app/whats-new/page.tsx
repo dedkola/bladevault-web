@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 import { PromoSidebar } from "@/components/site/promo-sidebar"
+import { cn } from "@/lib/utils"
 
 export const dynamic = "force-static"
 
@@ -28,8 +29,59 @@ export const metadata: Metadata = {
 
 const releases = [
   {
+    version: "v0.2.45",
+    date: "2026-08-05",
+    changes: ["Routine dependency updates and CI hardening."],
+  },
+  {
+    version: "v0.2.44",
+    date: "2026-08-03",
+    changes: [
+      "Filter menus and sidebar disclosures are easier to navigate with a keyboard.",
+      "Collection and compare views load custom fields more efficiently.",
+      "Knife form and image-library controls are fully keyboard accessible.",
+      "Specification sections on item detail pages are reorganized for clearer scanning.",
+    ],
+  },
+  {
+    version: "v0.2.43",
+    date: "2026-08-02",
+    changes: [
+      "The default search field is hidden until needed for a cleaner collection view.",
+      "Cloud backup reliability is improved with safer database checkpoint handling.",
+    ],
+  },
+  {
+    version: "v0.2.42",
+    date: "2026-07-31",
+    major: true,
+    changes: [
+      "BladeVault can now be installed on Kubernetes via an official Helm chart.",
+      "Helm chart documentation and lifecycle commands are published to GitHub Pages.",
+      "Fullscreen image viewer and collection filter-chip focus were polished.",
+    ],
+  },
+  {
+    version: "v0.2.41",
+    date: "2026-07-27",
+    changes: [
+      "Docker builds are more reliable after fixing native dependency compilation.",
+      "Transitive security dependencies were updated.",
+    ],
+  },
+  {
+    version: "v0.2.40",
+    date: "2026-07-26",
+    changes: [
+      "Dashboard charts resize more reliably on smaller screens.",
+      "Gallery controls hide when only one image is present.",
+      "Fullscreen gallery navigation now works with the keyboard.",
+    ],
+  },
+  {
     version: "v0.2.39",
     date: "2026-07-22",
+    major: true,
     changes: [
       "Upload several images at once with the file picker, drag and drop, or clipboard paste.",
       "Collection, compare, card, gallery, and settings controls now adapt more cleanly to small screens.",
@@ -55,6 +107,7 @@ const releases = [
   {
     version: "v0.2.35",
     date: "2026-07-20",
+    major: true,
     changes: [
       "Select multiple knives and update their shared fields in one bulk edit.",
       "Cloud backup setup, status, and controls are easier to understand.",
@@ -95,6 +148,7 @@ const releases = [
   {
     version: "v0.2.23",
     date: "2026-07-16",
+    major: true,
     changes: [
       "Create reusable custom text, number, and date fields for the details unique to your collection.",
       "Custom fields work across add, edit, detail, collection, and compare views.",
@@ -104,6 +158,7 @@ const releases = [
   {
     version: "v0.2.22",
     date: "2026-07-16",
+    major: true,
     changes: [
       "The dashboard gained collection insights for recent additions, makers, and acquisition activity.",
       "Filters, brand navigation, and comparison actions were streamlined.",
@@ -112,6 +167,7 @@ const releases = [
   {
     version: "v0.2.21",
     date: "2026-07-16",
+    major: true,
     changes: [
       "BladeVault became available as an Unraid Community Applications template.",
     ],
@@ -119,6 +175,7 @@ const releases = [
   {
     version: "v0.2.19",
     date: "2026-07-14",
+    major: true,
     changes: [
       "Settings moved to a dedicated page with a clearer layout.",
       "Desktop update status and controls became available inside BladeVault.",
@@ -128,6 +185,7 @@ const releases = [
   {
     version: "v0.2.18",
     date: "2026-07-13",
+    major: true,
     changes: [
       "Choose and move the local data folder from Settings.",
       "Product import can open an interactive browser when a retailer blocks the normal importer.",
@@ -160,6 +218,7 @@ const releases = [
   {
     version: "v0.2.3",
     date: "2026-06-30",
+    major: true,
     changes: [
       "macOS desktop releases gained code signing and notarization support.",
     ],
@@ -167,6 +226,7 @@ const releases = [
   {
     version: "v0.2.2",
     date: "2026-06-30",
+    major: true,
     changes: [
       "BladeVault launched as a native desktop app for macOS and Windows.",
       "Desktop builds keep the local-first web experience while managing their own server and data location.",
@@ -192,36 +252,45 @@ export default function WhatsNewPage() {
 
           <div className="p-4 sm:p-6 xl:p-8">
             <div className="grid items-start gap-4">
-              {releases.map((release) => (
-                <article
-                  key={release.version}
-                  className="vault-panel p-5 sm:p-6"
-                >
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h2 className="text-lg font-semibold tracking-tight text-foreground">
-                      <Link
-                        href={`${releaseBaseUrl}${release.version}`}
-                        className="transition-colors hover:text-[var(--bladevault-title)] focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none"
+              {releases.map((release) => {
+                const isMajor = "major" in release && release.major
+                return (
+                  <article
+                    key={release.version}
+                    className={cn(
+                      "vault-panel p-5 sm:p-6",
+                      isMajor && "bg-[var(--bladevault-gold)]/[0.03]"
+                    )}
+                  >
+                    <div className="flex items-baseline justify-between gap-4">
+                      <h2 className="flex items-center gap-2.5 text-lg font-semibold tracking-tight text-foreground">
+                        <Link
+                          href={`${releaseBaseUrl}${release.version}`}
+                          className="transition-colors hover:text-[var(--bladevault-title)] focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none"
+                        >
+                          {release.version}
+                        </Link>
+                        {isMajor && (
+                          <span className="vault-chip">Major update</span>
+                        )}
+                      </h2>
+                      <time
+                        dateTime={release.date}
+                        className="shrink-0 font-mono text-xs text-muted-foreground"
                       >
-                        {release.version}
-                      </Link>
-                    </h2>
-                    <time
-                      dateTime={release.date}
-                      className="shrink-0 font-mono text-xs text-muted-foreground"
-                    >
-                      {release.date}
-                    </time>
-                  </div>
-                  <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground marker:text-[var(--bladevault-gold)]">
-                    {release.changes.map((change) => (
-                      <li key={change} className="pl-1">
-                        {change}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
+                        {release.date}
+                      </time>
+                    </div>
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground marker:text-[var(--bladevault-gold)]">
+                      {release.changes.map((change) => (
+                        <li key={change} className="pl-1">
+                          {change}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                )
+              })}
             </div>
 
             <div className="mt-6 flex flex-col items-start gap-3 border-t border-border/60 pt-6 sm:flex-row sm:items-center sm:justify-between">
