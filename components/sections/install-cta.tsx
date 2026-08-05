@@ -1,4 +1,4 @@
-import { Apple, Container, Download, Monitor } from "lucide-react"
+import { Apple, Container, Download, Layers, Monitor } from "lucide-react"
 
 import { CodeCopy } from "@/components/code-copy"
 import { siteConfig } from "@/lib/site"
@@ -10,6 +10,14 @@ const dockerCommand = `docker run -d \\
   -v "$HOME/BladeVault/data:/app/data" \\
   ghcr.io/dedkola/bladevault:latest`
 
+const helmInstallCommand = `helm repo add bladevault https://dedkola.github.io/bladevault
+
+helm install bladevault bladevault/bladevault \\
+  --namespace bladevault \\
+  --create-namespace`
+
+const helmGetServiceCommand = `kubectl get service bladevault --namespace bladevault`
+
 export function InstallCta() {
   return (
     <section id="install" className="vault-shell overflow-hidden">
@@ -19,8 +27,9 @@ export function InstallCta() {
           Bring your collection home today.
         </h2>
         <p className="vault-section-copy">
-          Run BladeVault in Docker or download the native desktop app. Your
-          collection stays under your control either way.
+          Run BladeVault in Docker, deploy it to Kubernetes with Helm, or
+          download the native desktop app. Your collection stays under your
+          control either way.
         </p>
       </div>
 
@@ -89,6 +98,40 @@ export function InstallCta() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="border-t border-border/65 p-6 sm:p-8 xl:p-10">
+        <div className="mb-4 flex items-center gap-3">
+          <span className="vault-icon-box">
+            <Layers className="size-4" />
+          </span>
+          <div>
+            <p className="text-sm font-semibold text-foreground">
+              Install with Helm
+            </p>
+            <p className="mt-0.5 text-xs text-muted-foreground">
+              Kubernetes deployment · 5 GiB persistent volume
+            </p>
+          </div>
+        </div>
+        <CodeCopy text={helmInstallCommand} />
+        <p className="mt-3 max-w-2xl text-xs leading-5 text-muted-foreground">
+          Then get the load-balancer address and open BladeVault in your
+          browser.
+        </p>
+        <div className="mt-3">
+          <CodeCopy text={helmGetServiceCommand} />
+        </div>
+        <p className="mt-3 max-w-2xl text-xs leading-5 text-muted-foreground">
+          See the{" "}
+          <a
+            href="https://github.com/dedkola/bladevault/blob/main/charts/bladevault/README.md"
+            className="text-[var(--bladevault-title)] underline decoration-[var(--bladevault-gold)] underline-offset-2 transition-colors hover:text-foreground"
+          >
+            chart README
+          </a>{" "}
+          for ingress, immutable tags, existing PVCs, and upgrade commands.
+        </p>
       </div>
     </section>
   )
