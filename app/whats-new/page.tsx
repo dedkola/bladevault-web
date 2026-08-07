@@ -29,6 +29,16 @@ export const metadata: Metadata = {
 
 const releases = [
   {
+    version: "v0.2.46",
+    date: "2026-08-07",
+    changes: [
+      "Compare view row removal controls are now reachable with the keyboard.",
+      "Search clear button shows a visible focus indicator for keyboard navigation.",
+      "Compare rows no longer display an unwanted white shadow.",
+      "Development Container setup uses a persistent home directory and builds native dependencies reliably.",
+    ],
+  },
+  {
     version: "v0.2.45",
     date: "2026-08-05",
     changes: ["Routine dependency updates and CI hardening."],
