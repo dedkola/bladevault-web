@@ -3,6 +3,7 @@
 import Image from "next/image"
 import {
   ArrowDownToLine,
+  ChartPie,
   Cloud,
   Code2,
   Monitor,
@@ -59,6 +60,17 @@ const heroCards: HeroCard[] = [
     src: "/screenshots/compare.png",
     alt: "BladeVault knife comparison screenshot",
     icon: Monitor,
+  },
+  {
+    eyebrow: "Insights",
+    title: "Know your collection",
+    detail: "See patterns across makers, materials, dimensions, and more.",
+    imageTitle: "Collection insights",
+    stat: "Live insights",
+    statLabel: "Built from your collection",
+    src: "/screenshots/insights.png",
+    alt: "BladeVault collection insights screenshot",
+    icon: ChartPie,
   },
 ]
 
@@ -163,7 +175,7 @@ export function Hero() {
                         src={card.src}
                         alt={card.alt}
                         fill
-                        priority={index === 0}
+                        loading={index === 0 ? "eager" : "lazy"}
                         sizes="(min-width: 1280px) 760px, (min-width: 1024px) 56vw, 100vw"
                         className="object-cover object-top"
                       />
@@ -174,7 +186,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="mt-3 grid gap-2 sm:grid-cols-3">
+          <div className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
             {heroCards.map((card, index) => {
               const Icon = card.icon
               const isActive = index === activeIndex
