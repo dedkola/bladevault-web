@@ -8,7 +8,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "What’s new in BladeVault"
 const pageDescription =
-  "A concise history of BladeVault’s most useful features and quality-of-life improvements."
+  "BladeVault 1.0 release notes and a concise history of the app’s most useful features and quality-of-life improvements."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -28,6 +28,42 @@ export const metadata: Metadata = {
 }
 
 const releases = [
+  {
+    version: "v1.0.0",
+    date: "2026-08-13",
+    major: true,
+    milestone: true,
+    changes: [
+      "Collection Insights is now the home view, with interactive summaries for makers, blade dimensions, steels, profiles, lock types, designers, and collection completeness.",
+      "Select a chart segment to see the matching knives and continue into the filtered collection.",
+      "A 12-month activity heat map tracks additions and edits and stays current as the collection changes.",
+      "Knife images now stream from disk for more efficient browsing in image-heavy collections.",
+    ],
+  },
+  {
+    version: "v0.2.50",
+    date: "2026-08-12",
+    changes: [
+      "Pin or unpin multiple knives at once from collection selection mode.",
+      "Press Escape to clear active collection filters without interrupting open dialogs or menus.",
+      "Image-count badges now appear on collection cards and item details.",
+      "Collection filters calculate more efficiently for smoother browsing.",
+    ],
+  },
+  {
+    version: "v0.2.49",
+    date: "2026-08-08",
+    changes: [
+      "Compare search results now include thumbnails, making similar models easier to identify.",
+    ],
+  },
+  {
+    version: "v0.2.47",
+    date: "2026-08-08",
+    changes: [
+      "Search the collection when adding several knives to Compare, with model-name matching that avoids irrelevant specification hits.",
+    ],
+  },
   {
     version: "v0.2.46",
     date: "2026-08-07",
@@ -264,16 +300,24 @@ export default function WhatsNewPage() {
             <div className="grid items-start gap-4">
               {releases.map((release) => {
                 const isMajor = "major" in release && release.major
+                const isMilestone = "milestone" in release && release.milestone
                 return (
                   <article
                     key={release.version}
                     className={cn(
                       "vault-panel p-5 sm:p-6",
-                      isMajor && "bg-[var(--bladevault-gold)]/[0.03]"
+                      isMajor && "bg-[var(--bladevault-gold)]/[0.03]",
+                      isMilestone &&
+                        "relative overflow-hidden border-[var(--bladevault-gold)]/60 bg-[linear-gradient(135deg,var(--card)_0%,color-mix(in_srgb,var(--bladevault-gold)_8%,var(--card))_100%)] p-6 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-[var(--bladevault-gold)] sm:p-8"
                     )}
                   >
                     <div className="flex items-baseline justify-between gap-4">
-                      <h2 className="flex items-center gap-2.5 text-lg font-semibold tracking-tight text-foreground">
+                      <h2
+                        className={cn(
+                          "flex flex-wrap items-center gap-2.5 font-semibold tracking-tight text-foreground",
+                          isMilestone ? "text-2xl sm:text-3xl" : "text-lg"
+                        )}
+                      >
                         <Link
                           href={`${releaseBaseUrl}${release.version}`}
                           className="transition-colors hover:text-[var(--bladevault-title)] focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none"
@@ -281,7 +325,9 @@ export default function WhatsNewPage() {
                           {release.version}
                         </Link>
                         {isMajor && (
-                          <span className="vault-chip">Major update</span>
+                          <span className="vault-chip">
+                            {isMilestone ? "Major release" : "Major update"}
+                          </span>
                         )}
                       </h2>
                       <time
@@ -291,7 +337,12 @@ export default function WhatsNewPage() {
                         {release.date}
                       </time>
                     </div>
-                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground marker:text-[var(--bladevault-gold)]">
+                    <ul
+                      className={cn(
+                        "mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground marker:text-[var(--bladevault-gold)]",
+                        isMilestone && "mt-5 sm:text-[15px] sm:leading-7"
+                      )}
+                    >
                       {release.changes.map((change) => (
                         <li key={change} className="pl-1">
                           {change}
