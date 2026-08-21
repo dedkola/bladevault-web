@@ -12,9 +12,9 @@ import { absoluteUrl, siteConfig } from "@/lib/site"
 
 export const dynamic = "force-static"
 
-const pageTitle = "Local-first knife collection manager | BladeVault"
+const pageTitle = "Local-first, AI-ready knife collection manager | BladeVault"
 const pageDescription =
-  "Organize, compare, and review your knife collection with a local-first desktop app built for serious collectors."
+  "Organize, compare, and talk to your knife collection with a local-first desktop app and MCP support for your preferred AI client."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/opengraph-image",
-        alt: "BladeVault preview card for a local-first desktop knife collection manager",
+        alt: "BladeVault preview card for a local-first, AI-ready knife collection manager",
       },
     ],
   },

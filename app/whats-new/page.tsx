@@ -8,7 +8,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "What’s new in BladeVault"
 const pageDescription =
-  "BladeVault 1.0 release notes and a concise history of the app’s most useful features and quality-of-life improvements."
+  "BladeVault release notes, including MCP support for talking to your knife collection with Claude, Codex, Cursor, LM Studio, and local AI models."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -28,6 +28,24 @@ export const metadata: Metadata = {
 }
 
 const releases = [
+  {
+    version: "v1.0.4",
+    date: "2026-08-21",
+    changes: [
+      "Local and cloud restores now clear stale SQLite sidecar files while preserving them in the safety backup, making recovery more reliable.",
+    ],
+  },
+  {
+    version: "v1.0.3",
+    date: "2026-08-20",
+    major: true,
+    changes: [
+      "Talk to your existing collection from MCP clients such as Claude Desktop, Codex, Cursor, or local models in LM Studio—without a separate database or cloud account.",
+      "Eight purpose-built tools can search records, retrieve full knife details, summarize the collection, and find missing fields or likely duplicates.",
+      "AI can preview suggested metadata changes before applying them. Write access is off by default, timestamp-checked, and recorded in an audit log.",
+      "Settings now includes an AI / MCP workspace for connection setup, access controls, and recent activity, with dedicated connection paths for Docker, source installs, and the macOS app.",
+    ],
+  },
   {
     version: "v1.0.0",
     date: "2026-08-13",
