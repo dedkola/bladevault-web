@@ -3,7 +3,7 @@ import { createSocialImageResponse } from "@/lib/seo-art"
 export const runtime = "nodejs"
 
 export const alt =
-  "BladeVault preview card for a local-first desktop knife collection manager"
+  "BladeVault preview card for a local-first, AI-ready knife collection manager"
 
 export const size = {
   width: 1200,
@@ -14,10 +14,10 @@ export const contentType = "image/png"
 
 export default function OpenGraphImage() {
   return createSocialImageResponse({
-    eyebrow: "Local-first desktop app",
-    title: "Home for your blade collection",
+    eyebrow: "Local-first · MCP connected",
+    title: "Talk to your blade collection",
     description:
-      "Organize, compare, and review your knife collection with a desktop app built for serious collectors.",
+      "Organize, compare, and explore your collection with Claude, Codex, or your preferred local AI.",
     screenshotPath: "/screenshots/dashboard.png",
   })
 }

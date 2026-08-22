@@ -1,8 +1,11 @@
 "use client"
 
 import Image from "next/image"
+import Link from "next/link"
 import {
+  ArrowUpRight,
   ArrowDownToLine,
+  BotMessageSquare,
   ChartPie,
   Cloud,
   Code2,
@@ -102,11 +105,31 @@ export function Hero() {
             </span>
           </h1>
           <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">
-            A focused, local-first desktop vault for cataloging, comparing, and
-            reviewing every knife you own.
+            A focused, local-first desktop vault for cataloging, comparing,
+            reviewing, and exploring every knife you own.
           </p>
 
-          <div className="mt-7 flex flex-wrap gap-2.5">
+          <Link
+            href="/whats-new"
+            aria-label="Read about BladeVault MCP support in the v1.0.3 release notes"
+            className="group mt-6 grid max-w-xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 overflow-hidden rounded-lg border border-[var(--bladevault-gold)]/50 bg-[linear-gradient(110deg,color-mix(in_srgb,var(--bladevault-gold)_11%,var(--card)),var(--card)_62%)] p-3.5 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--bladevault-gold)] focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none"
+          >
+            <span className="flex size-10 items-center justify-center rounded-md border border-[var(--bladevault-gold)]/35 bg-card text-[var(--bladevault-title)] shadow-sm">
+              <BotMessageSquare className="size-5" />
+            </span>
+            <span className="min-w-0">
+              <span className="vault-label block">New in v1.0.3 · MCP</span>
+              <span className="mt-0.5 block text-sm font-semibold text-foreground">
+                Talk to your collection
+              </span>
+              <span className="mt-0.5 block text-xs text-muted-foreground">
+                Claude, Codex, or your local LLM
+              </span>
+            </span>
+            <ArrowUpRight className="size-4 text-[var(--bladevault-title)] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+
+          <div className="mt-5 flex flex-wrap gap-2.5">
             <a href="#install" className="vault-action vault-action-primary">
               <ArrowDownToLine className="size-4" />
               Install BladeVault
@@ -120,7 +143,7 @@ export function Hero() {
             </a>
           </div>
 
-          <div className="mt-9 grid grid-cols-3 border-y border-border/60 py-4">
+          <div className="mt-7 grid grid-cols-3 border-y border-border/60 py-4">
             <div>
               <p className="text-sm font-semibold text-foreground">Local</p>
               <p className="vault-label mt-1">Storage</p>

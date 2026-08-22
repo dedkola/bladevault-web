@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/opengraph-image",
-        alt: "BladeVault preview card for a local-first desktop knife collection manager",
+        alt: "BladeVault preview card for a local-first, AI-ready knife collection manager",
       },
     ],
   },
