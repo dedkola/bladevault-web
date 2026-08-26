@@ -1,5 +1,3 @@
-"use client"
-
 import {
   Database,
   LayoutDashboard,
@@ -24,7 +22,7 @@ const featureHighlights: FeatureHighlight[] = [
     icon: Shield,
     title: "Local-first & private",
     description:
-      "Your collection lives on your machine. No cloud dependency, no account required, no data leaves your device unless you choose to back it up.",
+      "Your collection lives on your machine with no cloud dependency or account required. Cloud backup is available only when you opt in and configure it.",
     accent: "olive",
   },
   {
@@ -50,16 +48,16 @@ const featureHighlights: FeatureHighlight[] = [
   },
   {
     icon: Layers,
-    title: "Desktop-native experience",
+    title: "Desktop experience",
     description:
-      "Native macOS and Windows apps built with Tauri. Fast startup, system integration, keyboard shortcuts, and offline-first reliability.",
+      "Desktop apps for macOS and Windows keep the same local SQLite vault available offline, with automatic desktop updates.",
     accent: "gold",
   },
   {
     icon: Search,
     title: "Powerful filtering & search",
     description:
-      "Faceted filters by brand, steel, lock type, blade shape, carry style, and more. Full-text search across names, notes, and specifications.",
+      "Search collection fields and narrow results by brand, steel, lock type, blade shape, carry style, and other recorded details.",
     accent: "title",
   },
 ]
@@ -101,7 +99,7 @@ export function FeatureHighlights() {
           </h2>
           <p className="vault-section-copy">
             Six core capabilities that make BladeVault the definitive tool for
-            organizing, exploring, and sharing a serious knife collection.
+            organizing, comparing, and exploring a serious knife collection.
           </p>
         </div>
 
@@ -116,7 +114,7 @@ export function FeatureHighlights() {
                 key={feature.title}
                 className={cn(
                   "group relative overflow-hidden rounded-xl p-5 transition-all duration-300",
-                  "hover:shadow-[0_12px_40px_rgb(46_52_23_/_0.12)] hover:-translate-y-1",
+                  "hover:-translate-y-1 hover:shadow-[0_12px_40px_rgb(46_52_23_/_0.12)]",
                   accentClasses
                 )}
                 style={{
@@ -126,16 +124,16 @@ export function FeatureHighlights() {
                 {/* Subtle top accent bar */}
                 <div
                   className={cn(
-                    "absolute top-0 left-0 right-0 h-1 transform transition-transform duration-300 origin-left",
-                    "group-hover:scale-x-100 scale-x-0"
+                    "absolute top-0 right-0 left-0 h-1 origin-left transform transition-transform duration-300",
+                    "scale-x-0 group-hover:scale-x-100"
                   )}
                   style={{
                     background:
                       feature.accent === "gold"
                         ? "var(--bladevault-gold)"
                         : feature.accent === "olive"
-                        ? "var(--bladevault-olive)"
-                        : "var(--bladevault-title)",
+                          ? "var(--bladevault-olive)"
+                          : "var(--bladevault-title)",
                   }}
                 />
 
@@ -154,7 +152,7 @@ export function FeatureHighlights() {
                 </div>
 
                 {/* Hover indicator */}
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-transparent group-hover:bg-[var(--bladevault-gold)]/40 transition-colors duration-300" />
+                <div className="absolute right-0 bottom-0 left-0 h-px bg-transparent transition-colors duration-300 group-hover:bg-[var(--bladevault-gold)]/40" />
               </article>
             )
           })}
