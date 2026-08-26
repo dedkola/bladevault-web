@@ -17,7 +17,7 @@ const workflows = [
       "Follow the macOS install process from download to first launch with the native desktop app.",
     videoSrc: absoluteVideoUrl("/macos%20install.mp4"),
     youtubeUrl: "https://www.youtube.com/watch?v=MftvtfNx570",
-    poster: "/screenshots/dashboard.png",
+    poster: "/screenshots/collection.png",
   },
   {
     title: "How to Install BladeVault on Windows 11",

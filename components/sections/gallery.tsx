@@ -4,10 +4,10 @@ import { ScreenshotLightbox } from "@/components/screenshot-lightbox"
 
 const screenshots = [
   {
-    src: "/screenshots/dashboard.png",
-    title: "Dashboard",
+    src: "/screenshots/collection.png",
+    title: "Collection",
     caption:
-      "See totals, recent additions, and key collection activity at a glance.",
+      "Search, filter, pin, and browse image-rich records in one focused view.",
     span: "xl:col-span-2",
   },
   {

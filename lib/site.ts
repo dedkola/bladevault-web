@@ -47,7 +47,7 @@ const videoEntries = [
     description:
       "Explore BladeVault collection management, filtering, comparison, cloud backups, dark mode, pinned items, brand browsing, and automatic synchronization.",
     path: "/overview.mp4",
-    thumbnailPath: "/screenshots/dashboard.png",
+    thumbnailPath: "/screenshots/collection.png",
   },
   {
     title: "How to Add Your First Knife to BladeVault",
@@ -61,7 +61,7 @@ const videoEntries = [
     description:
       "Follow the macOS install process from download to first launch with the native desktop app.",
     path: "/macos%20install.mp4",
-    thumbnailPath: "/screenshots/dashboard.png",
+    thumbnailPath: "/screenshots/collection.png",
   },
   {
     title: "How to Install BladeVault on Windows 11",
@@ -98,7 +98,8 @@ export const siteConfig = {
     "BladeVault",
   ],
   screenshotPaths: [
-    "/screenshots/dashboard.png",
+    "/screenshots/collection.png",
+    "/screenshots/insights.png",
     "/screenshots/detail.png",
     "/screenshots/compare.png",
     "/screenshots/add.png",

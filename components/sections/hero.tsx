@@ -32,14 +32,14 @@ type HeroCard = {
 
 const heroCards: HeroCard[] = [
   {
-    eyebrow: "Dashboard",
-    title: "Collection at a glance",
-    detail: "Browse recent additions, brands, totals, and pinned pieces.",
-    imageTitle: "Collection dashboard",
+    eyebrow: "Collection",
+    title: "Your library, clearly organized",
+    detail: "Search, filter, pin, and browse every piece in one place.",
+    imageTitle: "Knife collection",
     stat: "Local-first",
     statLabel: "Private by default",
-    src: "/screenshots/dashboard.png",
-    alt: "BladeVault dashboard screenshot",
+    src: "/screenshots/collection.png",
+    alt: "BladeVault collection screenshot",
     icon: ShieldCheck,
   },
   {

@@ -64,7 +64,7 @@ export function VideoOverview() {
               controls
               preload="metadata"
               playsInline
-              poster="/screenshots/dashboard.png"
+              poster="/screenshots/collection.png"
               className="bladevault-video absolute inset-0 h-full w-full bg-black"
             >
               <source

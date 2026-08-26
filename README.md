@@ -14,6 +14,27 @@ The site is built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4. It 
 
 If you need the application itself, use the main [BladeVault repo](https://github.com/dedkola/bladevault).
 
+## Product Screenshots
+
+<div align="center">
+
+  <img src="public/screenshots/insights.png" alt="BladeVault collection insights showing collection analytics and data completeness" width="80%" />
+  <p><sub>Insights — patterns, dimensions, materials, and collection health</sub></p>
+
+  <img src="public/screenshots/collection.png" alt="BladeVault collection showing search, filters, pinned knives, and image-rich records" width="80%" />
+  <p><sub>Collection — search, filter, pin, and browse every knife</sub></p>
+
+  <img src="public/screenshots/detail.png" alt="BladeVault knife detail page with specifications, notes, and image gallery" width="80%" />
+  <p><sub>Detail view — specifications, notes, and image gallery</sub></p>
+
+  <img src="public/screenshots/compare.png" alt="BladeVault side-by-side knife comparison table" width="80%" />
+  <p><sub>Compare — the details that matter, side by side</sub></p>
+
+  <img src="public/screenshots/add.png" alt="BladeVault add knife page with URL import and manual entry options" width="80%" />
+  <p><sub>Add knife — import a product URL or enter it yourself</sub></p>
+
+</div>
+
 ## Project Structure
 
 - `app/` - Next.js routes, layout, and global styles

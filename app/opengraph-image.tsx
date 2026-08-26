@@ -18,6 +18,6 @@ export default function OpenGraphImage() {
     title: "Talk to your blade collection",
     description:
       "Organize, compare, and explore your collection with Claude, Codex, or your preferred local AI.",
-    screenshotPath: "/screenshots/dashboard.png",
+    screenshotPath: "/screenshots/collection.png",
   })
 }
