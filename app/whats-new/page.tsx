@@ -8,7 +8,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "What’s new in BladeVault"
 const pageDescription =
-  "BladeVault release notes, including MCP support for talking to your knife collection with Claude, Codex, Cursor, LM Studio, and local AI models."
+  "BladeVault release notes, including Smart Collections, model family browsing, maintenance history, collection reports, and MCP support."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -28,6 +28,100 @@ export const metadata: Metadata = {
 }
 
 const releases = [
+  {
+    version: "v1.1.0",
+    date: "2026-09-09",
+    major: true,
+    milestone: true,
+    latest: true,
+    changes: [
+      "Save search, category, measurement-range, and missing-specification filters as named Smart Collections, with live counts in the sidebar.",
+      "Browse matching brand and model records as families, then preview and switch between variants from the knife detail page.",
+      "Open activity details directly beneath a log row without losing your place in the list.",
+    ],
+  },
+  {
+    version: "v1.0.16",
+    date: "2026-09-07",
+    changes: [
+      "Collection and brand views now load more knives automatically as you scroll.",
+      "Knife details use a lighter, compact specification grid that keeps long, custom, and missing values easy to scan.",
+      "Primary navigation and product detail labels were simplified.",
+    ],
+  },
+  {
+    version: "v1.0.15",
+    date: "2026-09-05",
+    major: true,
+    changes: [
+      "Create a printable collection report from Settings → Backup & Restore.",
+      "Global knife search is now a compact floating control that leaves more room for the page beneath it.",
+      "Collection cards, knife details, forms, settings, navigation, and comparison tables were refined across phone and tablet layouts.",
+    ],
+  },
+  {
+    version: "v1.0.14",
+    date: "2026-09-04",
+    changes: [
+      "Knife names in Logs now link directly to their detail pages.",
+      "Gallery controls, thumbnail borders, and long tooltip text received a focused visual polish pass.",
+    ],
+  },
+  {
+    version: "v1.0.13",
+    date: "2026-09-01",
+    changes: [
+      "Database connections now reopen cleanly after a restore, preventing stale SQLite handles from interrupting the recovered collection.",
+    ],
+  },
+  {
+    version: "v1.0.12",
+    date: "2026-09-01",
+    changes: [
+      "Record a stropping session from the knife maintenance quick actions.",
+    ],
+  },
+  {
+    version: "v1.0.11",
+    date: "2026-08-27",
+    changes: [
+      "Logs is now a primary navigation destination, while Collection filters start collapsed to leave more room for browsing.",
+      "Choose your preferred time format in Settings and filter Logs to maintenance activity.",
+      "Collection filtering and local backup creation are faster for larger vaults.",
+    ],
+  },
+  {
+    version: "v1.0.9",
+    date: "2026-08-25",
+    changes: [
+      "Automatic cloud backups now group nearby collection changes into a single upload.",
+    ],
+  },
+  {
+    version: "v1.0.8",
+    date: "2026-08-25",
+    major: true,
+    changes: [
+      "Track sharpening, cleaning, lubrication, repairs, and other maintenance in a timeline on each knife.",
+      "A new Logs workspace groups collection activity into sessions and opens detailed before-and-after changes.",
+      "Restore a cloud backup directly from Settings, with collection and image counts shown before recovery.",
+    ],
+  },
+  {
+    version: "v1.0.6",
+    date: "2026-08-21",
+    changes: [
+      "MCP now provides a permanent access token and ready-to-copy client configuration that survive restarts and updates.",
+      "Connection guidance and endpoint handling are clearer for LAN and remote MCP clients.",
+    ],
+  },
+  {
+    version: "v1.0.5",
+    date: "2026-08-21",
+    changes: [
+      "The macOS desktop app now keeps a stable MCP port so saved AI client connections continue working across launches.",
+    ],
+  },
   {
     version: "v1.0.4",
     date: "2026-08-21",
@@ -319,6 +413,7 @@ export default function WhatsNewPage() {
               {releases.map((release) => {
                 const isMajor = "major" in release && release.major
                 const isMilestone = "milestone" in release && release.milestone
+                const isLatest = "latest" in release && release.latest
                 return (
                   <article
                     key={release.version}
@@ -344,7 +439,11 @@ export default function WhatsNewPage() {
                         </Link>
                         {isMajor && (
                           <span className="vault-chip">
-                            {isMilestone ? "Major release" : "Major update"}
+                            {isLatest
+                              ? "Latest release"
+                              : isMilestone
+                                ? "Major release"
+                                : "Major update"}
                           </span>
                         )}
                       </h2>
