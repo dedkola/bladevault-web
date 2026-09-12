@@ -1,21 +1,18 @@
 import type { Metadata } from "next"
 
 import { Hero } from "@/components/sections/hero"
-import { FeatureHighlights } from "@/components/sections/feature-highlights"
-import { VideoOverview } from "@/components/sections/video-overview"
-import { Features } from "@/components/sections/features"
-import { HowTo } from "@/components/sections/howto"
-import { Compare } from "@/components/sections/compare"
-import { Gallery } from "@/components/sections/gallery"
+import { WorkflowStories } from "@/components/sections/workflow-stories"
+import { CapabilityMosaic } from "@/components/sections/capability-mosaic"
+import { LocalFirst } from "@/components/sections/local-first"
+import { GuideStrip } from "@/components/sections/guide-strip"
 import { InstallCta } from "@/components/sections/install-cta"
-import { PromoSidebar } from "@/components/site/promo-sidebar"
 import { absoluteUrl, siteConfig } from "@/lib/site"
 
 export const dynamic = "force-static"
 
 const pageTitle = "Local-first, AI-ready knife collection manager | BladeVault"
 const pageDescription =
-  "Organize, compare, and talk to your knife collection with a local-first desktop app and MCP support for your preferred AI client."
+  "Group model variants, save Smart Collections, track maintenance, compare details, and explore insights in a private local-first knife collection manager."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -88,19 +85,17 @@ export default function Page() {
           __html: JSON.stringify(structuredData),
         }}
       />
-      <main className="mx-auto w-full max-w-[1600px] px-4 py-4">
-        <div className="grid min-w-0 gap-4 lg:grid-cols-[240px_minmax(0,1fr)]">
-          <PromoSidebar />
-          <div className="min-w-0 space-y-4">
-            <Hero />
-            <FeatureHighlights />
-            <VideoOverview />
-            <Features />
-            <HowTo />
-            <Compare />
-            <Gallery />
-            <InstallCta />
-          </div>
+      <main
+        id="main"
+        className="mx-auto w-full max-w-[1600px] overflow-hidden px-4 pb-4 sm:px-6"
+      >
+        <Hero />
+        <WorkflowStories />
+        <CapabilityMosaic />
+        <LocalFirst />
+        <GuideStrip />
+        <div className="mt-4">
+          <InstallCta />
         </div>
       </main>
     </>

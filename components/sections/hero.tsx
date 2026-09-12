@@ -1,262 +1,248 @@
-"use client"
-
 import Image from "next/image"
-import Link from "next/link"
 import {
-  ArrowUpRight,
+  ArrowRight,
   ArrowDownToLine,
-  BotMessageSquare,
-  ChartPie,
-  Cloud,
-  Code2,
-  Monitor,
-  ShieldCheck,
-  type LucideIcon,
+  Bookmark,
+  Layers3,
+  LockKeyhole,
+  Wrench,
 } from "lucide-react"
-import { startTransition, useState } from "react"
 
-import { cn } from "@/lib/utils"
 import { ScreenshotLightbox } from "@/components/screenshot-lightbox"
 
-type HeroCard = {
-  eyebrow: string
-  title: string
-  detail: string
-  imageTitle: string
-  stat: string
-  statLabel: string
-  src: string
-  alt: string
-  icon: LucideIcon
-}
-
-const heroCards: HeroCard[] = [
+const principles = [
   {
-    eyebrow: "Collection",
-    title: "Your library, clearly organized",
-    detail: "Search, filter, pin, and browse every piece in one place.",
-    imageTitle: "Knife collection",
-    stat: "Local-first",
-    statLabel: "Private by default",
-    src: "/screenshots/collection.png",
-    alt: "BladeVault collection screenshot",
-    icon: ShieldCheck,
+    icon: Bookmark,
+    title: "Views that stay current",
+    detail: "Saved filters update as the vault changes.",
   },
   {
-    eyebrow: "Detail view",
-    title: "Every detail preserved",
-    detail: "Keep specifications, source links, and image sets together.",
-    imageTitle: "Knife detail record",
-    stat: "Deep detail",
-    statLabel: "One complete record",
-    src: "/screenshots/detail.png",
-    alt: "BladeVault knife detail screenshot",
-    icon: Cloud,
+    icon: Layers3,
+    title: "Variants without clutter",
+    detail: "Related models group without losing detail.",
   },
   {
-    eyebrow: "Compare",
-    title: "Differences made clear",
-    detail: "Compare as many knives as you need, then print or export to PDF.",
-    imageTitle: "Side-by-side comparison",
-    stat: "Unlimited",
-    statLabel: "Comparison columns",
-    src: "/screenshots/compare.png",
-    alt: "BladeVault knife comparison screenshot",
-    icon: Monitor,
+    icon: Wrench,
+    title: "Care with context",
+    detail: "Service history belongs to the knife.",
   },
   {
-    eyebrow: "Insights",
-    title: "Know your collection",
-    detail: "See patterns across makers, materials, dimensions, and more.",
-    imageTitle: "Collection insights",
-    stat: "Live insights",
-    statLabel: "Built from your collection",
-    src: "/screenshots/insights.png",
-    alt: "BladeVault collection insights screenshot",
-    icon: ChartPie,
+    icon: LockKeyhole,
+    title: "Your data, locally",
+    detail: "SQLite and images stay under your control.",
   },
 ]
 
-export function Hero() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [loadedIndices, setLoadedIndices] = useState(() => new Set([0]))
-  const activeCard = heroCards[activeIndex]
+type PreviewProps = {
+  src: string
+  alt: string
+  title: string
+  meta: string
+  className?: string
+  imageClassName?: string
+  priority?: boolean
+  children?: React.ReactNode
+}
 
-  function activateCard(index: number) {
-    startTransition(() => {
-      setActiveIndex(index)
-      setLoadedIndices((prev) => {
-        const next = new Set(prev)
-        next.add(index)
-        return next
-      })
-    })
-  }
-
+function ScreenPreview({
+  src,
+  alt,
+  title,
+  meta,
+  className = "",
+  imageClassName = "",
+  priority = false,
+  children,
+}: PreviewProps) {
   return (
-    <section id="overview" className="vault-shell overflow-hidden">
-      <div className="grid lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]">
-        <div className="flex flex-col justify-center border-b border-border/70 p-6 sm:p-9 lg:border-r lg:border-b-0 xl:p-12">
-          <p className="vault-label">Private collection manager</p>
-          <h1 className="mt-4 max-w-[12ch] text-4xl leading-[1.02] font-semibold tracking-[-0.045em] text-foreground sm:text-5xl xl:text-[3.6rem]">
-            Home for your{" "}
-            <span className="text-[var(--bladevault-title)]">
-              blade collection.
-            </span>
+    <article
+      className={`relative min-w-0 overflow-hidden rounded-lg border border-[var(--bladevault-line)]/65 bg-white shadow-[0_10px_28px_rgb(46_52_23/9%)] ${className}`}
+    >
+      <ScreenshotLightbox
+        src={src}
+        alt={alt}
+        title={title}
+        className="absolute inset-0 h-full w-full"
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          sizes="(min-width: 1280px) 42vw, (min-width: 1024px) 36vw, 94vw"
+          className={`object-cover object-top transition-transform duration-500 group-hover/screenshot:scale-[1.018] ${imageClassName}`}
+        />
+      </ScreenshotLightbox>
+      {children}
+      <div className="pointer-events-none absolute right-2 bottom-2 left-2 z-10 flex items-center justify-between gap-2 rounded-md border border-[var(--bladevault-line)]/65 bg-[#fffefa]/90 px-3 py-2 text-[var(--bladevault-olive)] shadow-lg backdrop-blur-md">
+        <span className="text-xs font-semibold">{title}</span>
+        <span className="hidden font-mono text-[8px] tracking-[0.08em] text-[var(--bladevault-title)] uppercase sm:block">
+          {meta}
+        </span>
+      </div>
+    </article>
+  )
+}
+
+export function Hero() {
+  return (
+    <>
+      <section
+        id="overview"
+        className="relative grid items-center gap-10 overflow-hidden py-16 lg:min-h-[47rem] lg:grid-cols-[minmax(0,0.82fr)_minmax(36rem,1.18fr)] lg:gap-[clamp(2.5rem,6vw,6rem)] lg:py-24"
+      >
+        <div className="pointer-events-none absolute top-[18%] -right-[12rem] -z-10 size-[37rem] rounded-full border border-[var(--bladevault-gold)]/20" />
+        <div>
+          <p className="vault-label">Local-first collection system · v1.1</p>
+          <h1 className="mt-5 max-w-[10ch] text-[clamp(3.4rem,6.2vw,6.7rem)] leading-[0.91] font-semibold tracking-[-0.065em] text-balance text-foreground">
+            Your collection, kept{" "}
+            <span className="text-[var(--bladevault-title)]">useful.</span>
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground">
-            A focused, local-first desktop vault for cataloging, comparing,
-            reviewing, and exploring every knife you own.
+          <p className="mt-7 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg">
+            Group matching model variants, save live collection views, track
+            every service, compare the details, and keep the database on
+            hardware you control.
           </p>
-
-          <Link
-            href="/whats-new"
-            aria-label="Read about BladeVault MCP support in the v1.0.3 release notes"
-            className="group mt-6 grid max-w-xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-3 overflow-hidden rounded-lg border border-[var(--bladevault-gold)]/50 bg-[linear-gradient(110deg,color-mix(in_srgb,var(--bladevault-gold)_11%,var(--card)),var(--card)_62%)] p-3.5 transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-[var(--bladevault-gold)] focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none"
-          >
-            <span className="flex size-10 items-center justify-center rounded-md border border-[var(--bladevault-gold)]/35 bg-card text-[var(--bladevault-title)] shadow-sm">
-              <BotMessageSquare className="size-5" />
-            </span>
-            <span className="min-w-0">
-              <span className="vault-label block">New in v1.0.3 · MCP</span>
-              <span className="mt-0.5 block text-sm font-semibold text-foreground">
-                Talk to your collection
-              </span>
-              <span className="mt-0.5 block text-xs text-muted-foreground">
-                Claude, Codex, or your local LLM
-              </span>
-            </span>
-            <ArrowUpRight className="size-4 text-[var(--bladevault-title)] transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
-
-          <div className="mt-5 flex flex-wrap gap-2.5">
+          <div className="mt-8 flex flex-wrap gap-3">
             <a href="#install" className="vault-action vault-action-primary">
               <ArrowDownToLine className="size-4" />
               Install BladeVault
             </a>
-            <a
-              href="https://github.com/dedkola/bladevault"
-              className="vault-action"
-            >
-              <Code2 className="size-4" />
-              View on GitHub
+            <a href="#workflow" className="vault-action">
+              Explore the workflow
+              <ArrowRight className="size-4" />
             </a>
           </div>
-
-          <div className="mt-7 grid grid-cols-3 border-y border-border/60 py-4">
-            <div>
-              <p className="text-sm font-semibold text-foreground">Local</p>
-              <p className="vault-label mt-1">Storage</p>
-            </div>
-            <div className="border-l border-border/60 pl-4">
-              <p className="text-sm font-semibold text-foreground">Free</p>
-              <p className="vault-label mt-1">Open source</p>
-            </div>
-            <div className="border-l border-border/60 pl-4">
-              <p className="text-sm font-semibold text-foreground">Desktop</p>
-              <p className="vault-label mt-1">Mac + Windows</p>
-            </div>
+          <div className="mt-10 grid max-w-xl grid-cols-1 border-y border-border/65 sm:grid-cols-3">
+            {[
+              ["No account", "Private by default"],
+              ["Free & open", "MIT licensed"],
+              ["Mac + Windows", "Or self-host"],
+            ].map(([title, detail], index) => (
+              <div
+                key={title}
+                className={`py-3.5 sm:px-4 sm:py-4 ${index ? "border-t border-border/55 sm:border-t-0 sm:border-l" : ""}`}
+              >
+                <strong className="block text-sm text-foreground">
+                  {title}
+                </strong>
+                <span className="mt-1 block font-mono text-[9px] tracking-[0.09em] text-muted-foreground uppercase">
+                  {detail}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="vault-grid min-w-0 bg-muted/25 p-4 sm:p-6 lg:p-8">
-          <div className="vault-window">
+        <div className="relative min-w-0 pt-4">
+          <div className="absolute -top-1 right-5 z-20 rounded-md border border-[var(--bladevault-line)] bg-[#f6f1e5] px-3 py-2 font-mono text-[9px] font-semibold tracking-[0.08em] text-[var(--bladevault-olive)] uppercase shadow-lg">
+            Collection · Compare · Care · Insights
+          </div>
+          <div className="vault-window overflow-hidden rounded-2xl shadow-[0_24px_65px_rgb(46_52_23/14%)]">
             <div className="vault-window-bar">
               <div className="flex items-center gap-2">
                 <span className="size-2 rounded-full bg-[var(--bladevault-olive)]" />
                 <span className="size-2 rounded-full bg-[var(--bladevault-gold)]" />
                 <span className="size-2 rounded-full border border-border bg-card" />
               </div>
-              <p className="vault-label truncate">{activeCard.imageTitle}</p>
-              <span className="hidden text-[10px] font-medium text-muted-foreground sm:inline">
-                BladeVault / {activeCard.eyebrow}
+              <span className="vault-label">
+                BladeVault / Working collection
+              </span>
+              <span className="hidden font-mono text-[9px] text-muted-foreground uppercase sm:inline">
+                5 connected views
               </span>
             </div>
-
-            <div className="relative aspect-video overflow-hidden bg-white">
-              {heroCards.map((card, index) => {
-                const isActive = index === activeIndex
-                const isLoaded = loadedIndices.has(index)
-                if (!isActive && !isLoaded) return null
-
-                return (
-                  <div
-                    key={card.src}
-                    className={cn(
-                      "absolute inset-0 transition-all duration-300",
-                      isActive
-                        ? "scale-100 opacity-100"
-                        : "pointer-events-none scale-[1.008] opacity-0"
-                    )}
-                  >
-                    <ScreenshotLightbox
-                      src={card.src}
-                      alt={card.alt}
-                      className="absolute inset-0"
-                    >
-                      <Image
-                        src={card.src}
-                        alt={card.alt}
-                        fill
-                        loading={index === 0 ? "eager" : "lazy"}
-                        sizes="(min-width: 1280px) 760px, (min-width: 1024px) 56vw, 100vw"
-                        className="object-cover object-top"
-                      />
-                    </ScreenshotLightbox>
+            <div className="vault-grid grid min-h-[31rem] grid-cols-1 gap-2 bg-[#f4f0e5]/55 p-2 sm:grid-cols-[minmax(0,1.28fr)_minmax(13rem,0.72fr)]">
+              <ScreenPreview
+                src="/screenshots/collection.png"
+                alt="BladeVault collection showing search, filters, sidebar navigation, and image-rich knife records"
+                title="Collection"
+                meta="Search · Smart views · Model families"
+                className="min-h-[18rem] sm:min-h-[29.7rem]"
+                priority
+              />
+              <div className="grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-1 sm:grid-rows-[0.86fr_1.14fr]">
+                <ScreenPreview
+                  src="/screenshots/compare.png"
+                  alt="BladeVault comparison table with knife specifications aligned side by side"
+                  title="Compare"
+                  meta="Any number · PDF export"
+                  className="min-h-[13rem]"
+                />
+                <ScreenPreview
+                  src="/screenshots/detail.png"
+                  alt="BladeVault knife detail page with image gallery and structured specifications"
+                  title="Item record"
+                  meta="Images · Specs · Care"
+                  imageClassName="object-[38%_top]"
+                  className="min-h-[13rem]"
+                >
+                  <div className="pointer-events-none absolute right-2 bottom-14 left-2 z-10 rounded-md border border-[var(--bladevault-line)] bg-[#fffefa]/95 p-2 shadow-lg backdrop-blur-md">
+                    <div className="flex items-center justify-between gap-2 text-[10px] font-bold text-[var(--bladevault-olive)]">
+                      <span>Maintenance</span>
+                      <span className="font-mono text-[8px] text-[var(--bladevault-title)] uppercase">
+                        Care history
+                      </span>
+                    </div>
+                    <div className="mt-2 grid grid-cols-2 gap-1">
+                      <span className="rounded bg-[#f6f1e5] px-2 py-1 text-[8px] text-muted-foreground">
+                        Sharpened
+                        <b className="block font-mono text-[9px] text-[var(--bladevault-olive)]">
+                          23 days
+                        </b>
+                      </span>
+                      <span className="rounded bg-[#f6f1e5] px-2 py-1 text-[8px] text-muted-foreground">
+                        Cleaned
+                        <b className="block font-mono text-[9px] text-[var(--bladevault-olive)]">
+                          Today
+                        </b>
+                      </span>
+                    </div>
                   </div>
-                )
-              })}
+                </ScreenPreview>
+              </div>
+              <div className="pointer-events-none absolute top-16 right-4 z-10 grid grid-cols-[auto_1fr] items-center gap-2 rounded-lg border border-[var(--bladevault-line)]/65 bg-[#fffefa]/92 px-3 py-2 shadow-xl backdrop-blur-md sm:top-auto sm:right-[12rem] sm:bottom-5">
+                <span className="grid size-10 place-items-center rounded-full bg-[conic-gradient(var(--bladevault-olive)_0_342deg,#e2dac3_342deg)]">
+                  <span className="grid size-7 place-items-center rounded-full bg-[#fffefa] font-mono text-[10px] font-bold text-[var(--bladevault-olive)]">
+                    95
+                  </span>
+                </span>
+                <span>
+                  <strong className="block text-[10px] text-[var(--bladevault-olive)]">
+                    Collection insights
+                  </strong>
+                  <small className="block text-[8px] text-muted-foreground">
+                    95% complete · 18 makers
+                  </small>
+                </span>
+              </div>
             </div>
           </div>
-
-          <div className="mt-3 grid gap-2 sm:grid-cols-2 xl:grid-cols-4">
-            {heroCards.map((card, index) => {
-              const Icon = card.icon
-              const isActive = index === activeIndex
-
-              return (
-                <button
-                  key={card.title}
-                  type="button"
-                  onMouseEnter={() => activateCard(index)}
-                  onFocus={() => activateCard(index)}
-                  onClick={() => activateCard(index)}
-                  aria-pressed={isActive}
-                  className={cn(
-                    "group rounded-lg border p-3 text-left transition-colors focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none",
-                    isActive
-                      ? "border-[var(--bladevault-gold)] bg-card"
-                      : "border-border/60 bg-card/70 hover:bg-card"
-                  )}
-                >
-                  <div className="flex items-center gap-2">
-                    <Icon
-                      className={cn(
-                        "size-3.5",
-                        isActive
-                          ? "text-[var(--bladevault-title)]"
-                          : "text-muted-foreground"
-                      )}
-                    />
-                    <span className="vault-label">{card.eyebrow}</span>
-                  </div>
-                  <p className="mt-2 text-sm font-semibold text-foreground">
-                    {card.title}
-                  </p>
-                  <p className="mt-1 hidden text-xs leading-5 text-muted-foreground xl:block">
-                    {card.detail}
-                  </p>
-                </button>
-              )
-            })}
-          </div>
-
-          <div className="mt-3 flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted-foreground">
-            <span>{activeCard.stat}</span>
-            <span>{activeCard.statLabel}</span>
+          <div className="absolute -right-1 -bottom-7 z-20 max-w-56 -rotate-1 rounded-lg border border-[var(--bladevault-line)] bg-[#f6f1e5] px-4 py-3 text-xs leading-5 font-semibold text-[var(--bladevault-olive)] shadow-xl">
+            One local vault. Every working view.
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section
+        aria-label="Product principles"
+        className="grid border-y border-border/70 sm:grid-cols-2 lg:grid-cols-4"
+      >
+        {principles.map(({ icon: Icon, title, detail }, index) => (
+          <div
+            key={title}
+            className={`px-5 py-6 ${index ? "border-t border-border/60 sm:border-t-0 sm:border-l" : ""} ${index === 2 ? "sm:border-t lg:border-t-0" : ""}`}
+          >
+            <Icon className="size-4 text-[var(--bladevault-title)]" />
+            <strong className="mt-3 block text-sm text-foreground">
+              {title}
+            </strong>
+            <span className="mt-1 block text-xs leading-5 text-muted-foreground">
+              {detail}
+            </span>
+          </div>
+        ))}
+      </section>
+    </>
   )
 }
