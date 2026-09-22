@@ -29,11 +29,48 @@ export const metadata: Metadata = {
 
 const releases = [
   {
+    version: "v1.1.4",
+    date: "2026-09-15",
+    major: true,
+    latest: true,
+    changes: [
+      "Search by model number with a dedicated search mode.",
+      "Collection inspector photo navigation switched to clearer chevron arrows.",
+      "Global search pill animation and focus ring were polished.",
+    ],
+  },
+  {
+    version: "v1.1.3",
+    date: "2026-09-14",
+    changes: [
+      "Collection card actions now stay contained within their cards.",
+      "Global search island animation is smoother.",
+    ],
+  },
+  {
+    version: "v1.1.2",
+    date: "2026-09-14",
+    major: true,
+    changes: [
+      "Overview charts surface sharper insights and maintenance visibility.",
+      "Collection gallery redesigned with full-width layouts and capped card sizing.",
+      "Desktop build and release pipeline hardened.",
+    ],
+  },
+  {
+    version: "v1.1.1",
+    date: "2026-09-11",
+    changes: [
+      "App metadata and icons refreshed with favicon and Apple touch icon.",
+      "Family variant previews are larger and persist while switching between variants.",
+      "Mobile search pill stays clear of the header.",
+    ],
+  },
+  {
     version: "v1.1.0",
     date: "2026-09-09",
     major: true,
     milestone: true,
-    latest: true,
     changes: [
       "Save search, category, measurement-range, and missing-specification filters as named Smart Collections, with live counts in the sidebar.",
       "Browse matching brand and model records as families, then preview and switch between variants from the knife detail page.",
