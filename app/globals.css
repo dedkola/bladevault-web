@@ -91,6 +91,7 @@
 }
 
 .dark {
+  --bladevault-title: #e2bd62;
   --background: #16130d;
   --foreground: #f2e6c2;
   --card: #221d12;
@@ -134,6 +135,10 @@
   html {
     @apply scroll-smooth font-sans;
   }
+  main[id],
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
   body {
     @apply bg-background text-foreground;
     min-height: 100vh;
@@ -153,6 +158,14 @@
 }
 
 @layer components {
+  .vault-illustration {
+    --foreground: #302e29;
+    --muted-foreground: #706956;
+    --bladevault-title: #a46608;
+    --secondary: #f6f1e5;
+    background-color: #f8f4e9;
+  }
+
   .bladevault-video {
     display: block;
     object-fit: contain;
@@ -184,6 +197,10 @@
 
   .vault-chip {
     @apply inline-flex items-center rounded-full bg-secondary px-2.5 py-1 text-[10px] font-semibold tracking-[0.08em] text-[var(--bladevault-local)] uppercase dark:text-[var(--bladevault-gold)];
+  }
+
+  .vault-illustration .vault-chip {
+    color: var(--bladevault-local);
   }
 
   .vault-grid {

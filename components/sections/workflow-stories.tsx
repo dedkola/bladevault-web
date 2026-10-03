@@ -48,7 +48,7 @@ function StoryCopy({
 }) {
   return (
     <div className={className}>
-      <div className="flex items-center gap-3 font-mono text-[10px] font-semibold tracking-[0.11em] text-[var(--bladevault-title)] uppercase">
+      <div className="flex items-center gap-3 font-mono text-[11px] font-semibold tracking-[0.11em] text-[var(--bladevault-title)] uppercase">
         <span>
           {index} · {eyebrow}
         </span>
@@ -88,9 +88,9 @@ function DemoWindow({
 }) {
   return (
     <div
-      className={`vault-grid overflow-hidden rounded-xl border border-[var(--bladevault-line)]/75 bg-[#f8f4e9]/65 shadow-[0_18px_55px_rgb(46_52_23/9%)] ${className}`}
+      className={`vault-illustration vault-grid overflow-hidden rounded-xl border border-[var(--bladevault-line)]/75 shadow-[0_18px_55px_rgb(46_52_23/9%)] ${className}`}
     >
-      <div className="flex min-h-11 items-center justify-between gap-4 border-b border-[var(--bladevault-line)]/55 px-4 font-mono text-[9px] tracking-[0.09em] text-muted-foreground uppercase">
+      <div className="flex min-h-11 items-center justify-between gap-4 border-b border-[var(--bladevault-line)]/55 px-4 font-mono text-[11px] tracking-[0.09em] text-muted-foreground uppercase">
         <span>{label}</span>
         <span>{status}</span>
       </div>
@@ -120,7 +120,7 @@ export function WorkflowStories() {
               <h3 className="text-sm font-semibold text-[var(--bladevault-olive)]">
                 Saved views
               </h3>
-              <div className="mt-4 space-y-2 text-[10px] text-muted-foreground">
+              <div className="mt-4 space-y-2 text-[11px] text-muted-foreground">
                 {[
                   ["Titanium folders", "18"],
                   ["Under 3 oz", "12"],
@@ -141,7 +141,7 @@ export function WorkflowStories() {
               <h3 className="text-sm font-semibold text-[var(--bladevault-olive)]">
                 Titanium folders
               </h3>
-              <div className="mt-4 flex items-center gap-2 rounded-md border border-[var(--bladevault-line)]/70 bg-white px-3 py-2 text-[10px] text-muted-foreground">
+              <div className="mt-4 flex items-center gap-2 rounded-md border border-[var(--bladevault-line)]/70 bg-white px-3 py-2 text-[11px] text-muted-foreground">
                 <Search className="size-3" /> Search model name…
               </div>
               <div className="mt-3 flex flex-wrap gap-1.5">
@@ -149,7 +149,7 @@ export function WorkflowStories() {
                   (filter) => (
                     <span
                       key={filter}
-                      className="rounded border border-[var(--bladevault-line)]/70 bg-[#f6f1e5] px-2 py-1 font-mono text-[8px] text-muted-foreground"
+                      className="rounded border border-[var(--bladevault-line)]/70 bg-[#f6f1e5] px-2 py-1 font-mono text-[11px] text-muted-foreground"
                     >
                       {filter}
                     </span>
@@ -175,14 +175,14 @@ export function WorkflowStories() {
                       <KnifeIllustration />
                     </div>
                     <span className="min-w-0">
-                      <strong className="block truncate text-[10px] text-foreground">
+                      <strong className="block truncate text-[11px] text-foreground">
                         {name}
                       </strong>
-                      <small className="block truncate text-[8px] text-muted-foreground">
+                      <small className="block truncate text-[11px] text-muted-foreground">
                         {detail}
                       </small>
                     </span>
-                    <span className="font-mono text-[8px] text-[var(--bladevault-title)]">
+                    <span className="font-mono text-[11px] text-[var(--bladevault-title)]">
                       {photos} photos
                     </span>
                   </div>
@@ -217,11 +217,11 @@ export function WorkflowStories() {
                 <h3 className="text-sm font-semibold text-[var(--bladevault-olive)]">
                   Vosteed · Porcupine
                 </h3>
-                <p className="mt-1 text-[10px] text-muted-foreground">
+                <p className="mt-1 text-[11px] text-muted-foreground">
                   One family, three distinct configurations
                 </p>
               </div>
-              <span className="hidden rounded-md border border-[var(--bladevault-line)] bg-[#f6f1e5] px-3 py-2 font-mono text-[8px] text-[var(--bladevault-title)] sm:block">
+              <span className="hidden rounded-md border border-[var(--bladevault-line)] bg-[#f6f1e5] px-3 py-2 font-mono text-[11px] text-[var(--bladevault-title)] sm:block">
                 Open family view ↓
               </span>
             </div>
@@ -249,13 +249,13 @@ export function WorkflowStories() {
                     <KnifeIllustration handle={handle} />
                   </div>
                   <div className="border-t border-[var(--bladevault-line)]/45 p-3">
-                    <small className="font-mono text-[8px] tracking-[0.08em] text-[var(--bladevault-title)] uppercase">
+                    <small className="font-mono text-[11px] tracking-[0.08em] text-[var(--bladevault-title)] uppercase">
                       {label}
                     </small>
                     <strong className="mt-1 block text-[11px] text-foreground">
                       {title}
                     </strong>
-                    <p className="mt-1 text-[9px] text-muted-foreground">
+                    <p className="mt-1 text-[11px] text-muted-foreground">
                       {detail}
                     </p>
                   </div>
@@ -293,10 +293,10 @@ export function WorkflowStories() {
                   ["Disassembled", "4 months"],
                 ].map(([label, value]) => (
                   <div key={label} className="rounded-md bg-[#f6f1e5] p-3">
-                    <span className="text-[9px] text-muted-foreground">
+                    <span className="text-[11px] text-muted-foreground">
                       {label}
                     </span>
-                    <strong className="mt-1 block font-mono text-[10px] text-[var(--bladevault-olive)]">
+                    <strong className="mt-1 block font-mono text-[11px] text-[var(--bladevault-olive)]">
                       {value}
                     </strong>
                   </div>
@@ -307,7 +307,7 @@ export function WorkflowStories() {
                   (action) => (
                     <span
                       key={action}
-                      className="rounded-md border border-[var(--bladevault-line)]/65 bg-white px-2.5 py-2 text-[9px] text-[var(--bladevault-olive)]"
+                      className="rounded-md border border-[var(--bladevault-line)]/65 bg-white px-2.5 py-2 text-[11px] text-[var(--bladevault-olive)]"
                     >
                       {action}
                     </span>
@@ -337,7 +337,7 @@ export function WorkflowStories() {
                     <strong className="block text-[11px] text-foreground">
                       {title}
                     </strong>
-                    <span className="mt-1 block text-[9px] leading-4 text-muted-foreground">
+                    <span className="mt-1 block text-[11px] leading-4 text-muted-foreground">
                       {detail}
                     </span>
                   </div>

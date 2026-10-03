@@ -42,6 +42,10 @@ export function LocalFirst() {
           makes cloud backup an opt-in choice—not the price of using your own
           records.
         </p>
+        <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">
+          Add an optional local password in Settings → App lock, and use Lock
+          now whenever you step away.
+        </p>
         <div className="mt-10 grid gap-5 sm:grid-cols-3">
           {steps.map((step) => (
             <div key={step.number} className="border-t border-border/70 pt-4">
@@ -60,7 +64,7 @@ export function LocalFirst() {
       </div>
 
       <div
-        className="vault-grid overflow-hidden rounded-xl border border-[var(--bladevault-line)]/75 bg-[#f8f4e9]/65 shadow-[0_18px_55px_rgb(46_52_23/9%)]"
+        className="vault-illustration vault-grid overflow-hidden rounded-xl border border-[var(--bladevault-line)]/75 shadow-[0_18px_55px_rgb(46_52_23/9%)]"
         aria-label="Illustration of the BladeVault local data folder"
       >
         <div className="flex items-center justify-between gap-3 border-b border-[var(--bladevault-line)]/55 px-4 py-3">
@@ -99,7 +103,7 @@ export function LocalFirst() {
                 <strong className="mt-2 block text-xs text-[var(--bladevault-olive)]">
                   {title}
                 </strong>
-                <span className="mt-1 block text-[10px] leading-4 text-muted-foreground">
+                <span className="mt-1 block text-xs leading-5 text-muted-foreground">
                   {detail}
                 </span>
               </div>

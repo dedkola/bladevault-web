@@ -65,8 +65,8 @@ export function CapabilityMosaic() {
           </h2>
         </div>
         <p className="max-w-xl text-base leading-8 text-[#c9c2a7]">
-          Core capabilities stay visible without another giant feature grid.
-          Each one shows an outcome, not a checkbox.
+          Keep named comparisons, explore collection insights, create printable
+          reports, and ask your own records questions through MCP.
         </p>
       </div>
 
@@ -84,7 +84,7 @@ export function CapabilityMosaic() {
           alt="BladeVault comparison table with knife specifications aligned side by side"
           label="Compare"
           title="Differences, aligned."
-          body="Compare any number of knives and print the table as a landscape PDF."
+          body="Save multiple named comparison lists, switch between them, and export a comparison as a landscape PDF."
         />
 
         <article className="relative min-h-72 overflow-hidden rounded-xl border border-[#ecdaa3]/25 bg-white/5">
@@ -155,6 +155,7 @@ export function CapabilityMosaic() {
       <div className="mx-4 mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-[#ecdaa3]/20 px-1 pt-5 font-mono text-[10px] tracking-[0.05em] text-[#c9c2a7] uppercase sm:mx-8">
         <strong className="text-[#e2c365]">Also included</strong>
         <span>URL product import</span>
+        <span>Source-page screenshots</span>
         <span>Bulk edit</span>
         <span>Custom fields</span>
         <span>Multi-image galleries</span>

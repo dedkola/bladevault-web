@@ -74,6 +74,7 @@ const videoEntries = [
 
 export const siteConfig = {
   name: "BladeVault",
+  releaseVersion: "v1.4.0",
   shortName: "BladeVault",
   defaultTitle: "BladeVault",
   description:
@@ -109,6 +110,9 @@ export const siteConfig = {
     "Grouped model families with distinct variant records",
     "Knife maintenance history and detailed service logs",
     "Collection insights and side-by-side comparison views",
+    "Multiple named comparison lists and PDF exports",
+    "Source-page screenshots saved with URL imports",
+    "Optional local app password lock",
     "Local-first storage, complete backups, and MCP access",
   ],
   videoEntries,
