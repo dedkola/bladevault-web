@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-import { PromoSidebar } from "@/components/site/promo-sidebar"
+import { ReleaseContents } from "@/components/site/release-contents"
+import { releaseAnchor } from "@/lib/navigation"
 import { cn } from "@/lib/utils"
 
 export const dynamic = "force-static"
@@ -476,12 +477,13 @@ const releases = [
 ] as const
 
 const releaseBaseUrl = "https://github.com/dedkola/bladevault/releases/tag/"
+const releaseLinks = releases.map(({ version, date }) => ({ version, date }))
 
 export default function WhatsNewPage() {
   return (
     <main id="main" className="mx-auto w-full max-w-[1600px] px-4 py-4 sm:px-6">
       <div className="grid min-w-0 gap-4 lg:grid-cols-[240px_minmax(0,1fr)]">
-        <PromoSidebar />
+        <ReleaseContents releases={releaseLinks} />
 
         <section className="vault-shell min-w-0 overflow-hidden">
           <header className="vault-grid border-b border-border/70 px-6 py-10 sm:px-8 sm:py-12 xl:px-10">
@@ -489,6 +491,7 @@ export default function WhatsNewPage() {
             <h1 className="mt-3 max-w-3xl text-3xl font-semibold tracking-[-0.035em] text-[var(--bladevault-title)] sm:text-4xl">
               What’s new in BladeVault
             </h1>
+            <ReleaseContents releases={releaseLinks} mobile />
           </header>
 
           <div className="p-4 sm:p-6 xl:p-8">
@@ -500,8 +503,10 @@ export default function WhatsNewPage() {
                 return (
                   <article
                     key={release.version}
+                    id={releaseAnchor(release.version)}
+                    tabIndex={-1}
                     className={cn(
-                      "vault-panel p-5 sm:p-6",
+                      "vault-panel p-5 focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none sm:p-6",
                       isMajor && "bg-[var(--bladevault-gold)]/[0.03]",
                       isMilestone &&
                         "relative overflow-hidden border-[var(--bladevault-gold)]/60 bg-[linear-gradient(135deg,var(--card)_0%,color-mix(in_srgb,var(--bladevault-gold)_8%,var(--card))_100%)] p-6 before:absolute before:inset-x-0 before:top-0 before:h-1 before:bg-[var(--bladevault-gold)] sm:p-8"

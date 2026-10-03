@@ -10,7 +10,7 @@ Promo website for [BladeVault](https://github.com/dedkola/bladevault), the local
 
 ## About
 
-The site is built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4. The homepage presents BladeVault through a shared site header, spacious editorial sections, and app screenshots sourced from the main repository. The `/whats-new` release notes page includes a compact promotional sidebar.
+The site is built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4. The homepage presents BladeVault through a shared site header, spacious editorial sections, and app screenshots sourced from the main repository. The `/whats-new` release notes page has a local version table of contents on desktop and a “Jump to a release” disclosure on smaller screens.
 
 If you need the application itself, use the main [BladeVault repo](https://github.com/dedkola/bladevault).
 

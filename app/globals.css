@@ -136,7 +136,8 @@
     @apply scroll-smooth font-sans;
   }
   main[id],
-  section[id] {
+  section[id],
+  article[id] {
     scroll-margin-top: 5rem;
   }
   body {

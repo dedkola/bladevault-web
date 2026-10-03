@@ -1,3 +1,5 @@
+import { siteUtilityLinks } from "@/lib/navigation"
+
 export function SiteFooter() {
   const year = new Date().getFullYear()
 
@@ -16,7 +18,13 @@ export function SiteFooter() {
         </div>
         <div className="flex flex-wrap items-center gap-4">
           <a
-            href="https://github.com/dedkola/bladevault"
+            href={siteUtilityLinks[0].href}
+            className="text-[var(--bladevault-title)] transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none"
+          >
+            {siteUtilityLinks[0].label}
+          </a>
+          <a
+            href={siteUtilityLinks[1].href}
             aria-label="BladeVault on GitHub"
             className="text-[var(--bladevault-title)] transition-colors hover:text-foreground"
           >

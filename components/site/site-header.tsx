@@ -7,20 +7,28 @@ import { useEffect, useId, useRef, useState } from "react"
 
 import { BladevaultLogoMark } from "@/components/site/bladevault-logo-mark"
 import { ThemeToggle } from "@/components/theme-toggle"
-
-const navLinks = [
-  { href: "/#workflow", label: "Workflow" },
-  { href: "/#capabilities", label: "Capabilities" },
-  { href: "/#local-first", label: "Local-first" },
-  { href: "/#install", label: "Install" },
-  { href: "/whats-new", label: "What’s new" },
-]
+import { useActiveSection } from "@/components/site/use-active-section"
+import {
+  homepageSectionIds,
+  siteNavigation,
+  siteUtilityLinks,
+} from "@/lib/navigation"
 
 export function SiteHeader() {
   const pathname = usePathname()
+  const activeSection = useActiveSection(homepageSectionIds, pathname === "/")
   const [menuOpen, setMenuOpen] = useState(false)
   const menuId = useId()
   const menuButtonRef = useRef<HTMLButtonElement>(null)
+
+  function currentLocation(link: (typeof siteNavigation)[number]) {
+    if (link.sectionId) {
+      return pathname === "/" && activeSection === link.sectionId
+        ? ("location" as const)
+        : undefined
+    }
+    return pathname === link.href ? ("page" as const) : undefined
+  }
 
   useEffect(() => {
     if (!menuOpen) return
@@ -66,12 +74,12 @@ export function SiteHeader() {
           aria-label="Main navigation"
           className="hidden items-center justify-center gap-8 lg:flex"
         >
-          {navLinks.map((link) => (
+          {siteNavigation.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              aria-current={pathname === link.href ? "page" : undefined}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-[var(--bladevault-title)] focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none"
+              aria-current={currentLocation(link)}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-[var(--bladevault-title)] focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none aria-[current]:text-[var(--bladevault-title)] aria-[current]:underline aria-[current]:decoration-[var(--bladevault-gold)] aria-[current]:underline-offset-8"
             >
               {link.label}
             </Link>
@@ -113,17 +121,29 @@ export function SiteHeader() {
         className="border-t border-border/70 px-4 py-3 sm:px-6 lg:hidden"
       >
         <div className="mx-auto grid max-w-[1600px] gap-1">
-          {navLinks.map((link) => (
+          {siteNavigation.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              aria-current={pathname === link.href ? "page" : undefined}
+              aria-current={currentLocation(link)}
               onClick={() => setMenuOpen(false)}
-              className="rounded-lg px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none aria-[current=page]:bg-accent"
+              className="rounded-lg px-3 py-3 text-sm font-medium text-foreground transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none aria-[current]:bg-accent"
             >
               {link.label}
             </Link>
           ))}
+          <div className="mt-2 flex gap-5 border-t border-border/60 px-3 pt-3 pb-1">
+            {siteUtilityLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className="py-1 text-sm text-[var(--bladevault-title)] transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
         </div>
       </nav>
     </header>
