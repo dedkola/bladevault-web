@@ -1,10 +1,9 @@
 "use client"
 
 import {
-  BookOpen,
   Download,
-  Film,
   FolderKanban,
+  HardDrive,
   LayoutDashboard,
   LifeBuoy,
   Newspaper,
@@ -21,9 +20,14 @@ import { cn } from "@/lib/utils"
 
 const links = [
   { href: "#overview", label: "Overview", icon: LayoutDashboard, kind: "hash" },
-  { href: "#features", label: "Features", icon: FolderKanban, kind: "hash" },
-  { href: "#workflows", label: "Workflows", icon: Film, kind: "hash" },
-  { href: "#gallery", label: "Gallery", icon: BookOpen, kind: "hash" },
+  { href: "#workflow", label: "Workflow", icon: FolderKanban, kind: "hash" },
+  {
+    href: "#capabilities",
+    label: "Capabilities",
+    icon: FolderKanban,
+    kind: "hash",
+  },
+  { href: "#local-first", label: "Local-first", icon: HardDrive, kind: "hash" },
   { href: "#install", label: "Install", icon: Terminal, kind: "hash" },
   {
     href: "/whats-new",
@@ -67,7 +71,7 @@ export function PromoSidebar() {
 
   return (
     <aside className="hidden lg:block">
-      <div className="vault-shell sticky top-4 flex h-[calc(100vh-2rem)] flex-col overflow-hidden bg-sidebar">
+      <div className="vault-shell sticky top-20 flex max-h-[calc(100dvh-6rem)] flex-col overflow-hidden bg-sidebar">
         <div className="flex items-center gap-3 border-b border-sidebar-border/75 px-5 py-5">
           <div className="flex size-11 shrink-0 items-center justify-center">
             <BladevaultLogoMark className="size-9" />
@@ -80,7 +84,10 @@ export function PromoSidebar() {
           </div>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-4">
+        <nav
+          aria-label="Site navigation"
+          className="min-h-0 flex-1 overflow-y-auto px-3 py-4"
+        >
           <p className="vault-label px-2 pb-2.5">Main</p>
           <div className="space-y-1">
             {links.map((link) => {
@@ -111,6 +118,7 @@ export function PromoSidebar() {
                 <Link
                   key={link.href}
                   href={href}
+                  aria-current={isActive ? "page" : undefined}
                   onClick={() => {
                     if (link.kind === "hash" && pathname === "/") {
                       setActiveHref(link.href)

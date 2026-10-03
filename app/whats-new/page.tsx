@@ -8,7 +8,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "What’s new in BladeVault"
 const pageDescription =
-  "BladeVault release notes, including Smart Collections, model family browsing, maintenance history, collection reports, and MCP support."
+  "BladeVault release notes, including the optional app lock, saved comparison lists, source-page screenshots, Smart Collections, maintenance history, and MCP support."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -29,10 +29,56 @@ export const metadata: Metadata = {
 
 const releases = [
   {
+    version: "v1.4.0",
+    date: "2026-10-03",
+    major: true,
+    latest: true,
+    changes: [
+      "Set an optional local vault password in Settings → App lock. The lock is off by default and asks for your password on the next app launch or browser session.",
+      "Change or remove the password from Settings, or use Lock now to lock the current session. Cloud Backup sign-in remains separate.",
+    ],
+  },
+  {
+    version: "v1.3.1",
+    date: "2026-09-30",
+    changes: [
+      "Maker Mix and Lock Types tooltips stay visible without being clipped by their charts.",
+      "Self-hosted Docker pages load more efficiently, and Insights charts load as they approach the visible part of the page.",
+    ],
+  },
+  {
+    version: "v1.3.0",
+    date: "2026-09-27",
+    major: true,
+    changes: [
+      "New URL imports capture a full-page screenshot of the source webpage alongside the product images.",
+      "Open captured pages in a scrollable viewer with source and download actions. Capture or replace a screenshot from Edit → Images.",
+      "Capture source pages for older items from Settings. Local and cloud backups include the saved screenshots.",
+    ],
+  },
+  {
+    version: "v1.2.1",
+    date: "2026-09-26",
+    changes: [
+      "Pinned sidebar details follow your collection card field selection, order, and formatting, including for single knives.",
+      "Model family dialogs use more space on large screens, and Compare navigation has a consistent hover area.",
+      "Collection browsing loads less data upfront while preserving complete galleries and notes in the inspector and detail views.",
+    ],
+  },
+  {
+    version: "v1.2.0",
+    date: "2026-09-24",
+    major: true,
+    changes: [
+      "Keep multiple named comparison lists and choose a destination when adding knives to Compare.",
+      "Rename, duplicate, clear, or delete lists with Undo, switch lists on mobile, and export comparisons with their saved names.",
+      "Existing comparison selections move into a list named My comparison.",
+    ],
+  },
+  {
     version: "v1.1.4",
     date: "2026-09-15",
     major: true,
-    latest: true,
     changes: [
       "Search by model number with a dedicated search mode.",
       "Collection inspector photo navigation switched to clearer chevron arrows.",
@@ -433,7 +479,7 @@ const releaseBaseUrl = "https://github.com/dedkola/bladevault/releases/tag/"
 
 export default function WhatsNewPage() {
   return (
-    <main className="mx-auto w-full max-w-[1600px] px-4 py-4">
+    <main id="main" className="mx-auto w-full max-w-[1600px] px-4 py-4 sm:px-6">
       <div className="grid min-w-0 gap-4 lg:grid-cols-[240px_minmax(0,1fr)]">
         <PromoSidebar />
 
@@ -474,7 +520,7 @@ export default function WhatsNewPage() {
                         >
                           {release.version}
                         </Link>
-                        {isMajor && (
+                        {(isLatest || isMajor) && (
                           <span className="vault-chip">
                             {isLatest
                               ? "Latest release"
