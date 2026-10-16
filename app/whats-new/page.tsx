@@ -30,9 +30,19 @@ export const metadata: Metadata = {
 
 const releases = [
   {
+    version: "v1.4.6",
+    date: "2026-10-16",
+    latest: true,
+    major: true,
+    changes: [
+      "Knives can be marked as sold, so a collection can track what has left the shelf as well as what is still on it.",
+      "Pasted product links are imported one at a time, in order, so a long list no longer races ahead of itself.",
+      "Batch scraping skips products already saved from the same source URL instead of creating a duplicate record.",
+    ],
+  },
+  {
     version: "v1.4.5",
     date: "2026-10-14",
-    latest: true,
     changes: [
       "Cloud backup uploads and restores are no longer speed-limited, so large vaults move noticeably faster.",
       "A browser-only preview of BladeVault now runs on free static hosting at bladevault.tkweb.dev, starting from an empty collection with session-only changes.",
