@@ -9,7 +9,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "What’s new in BladeVault"
 const pageDescription =
-  "BladeVault release notes, including the optional app lock, saved comparison lists, source-page screenshots, Smart Collections, maintenance history, and MCP support."
+  "BladeVault release notes, including quiet background cloud backups and restores, the optional app lock, saved comparison lists, source-page screenshots, Smart Collections, maintenance history, and MCP support."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -30,10 +30,65 @@ export const metadata: Metadata = {
 
 const releases = [
   {
+    version: "v1.4.6",
+    date: "2026-10-16",
+    latest: true,
+    major: true,
+    changes: [
+      "Knives can be marked as sold, so a collection can track what has left the shelf as well as what is still on it.",
+      "Pasted product links are imported one at a time, in order, so a long list no longer races ahead of itself.",
+      "Batch scraping skips products already saved from the same source URL instead of creating a duplicate record.",
+    ],
+  },
+  {
+    version: "v1.4.5",
+    date: "2026-10-14",
+    changes: [
+      "Cloud backup uploads and restores are no longer speed-limited, so large vaults move noticeably faster.",
+      "A browser-only preview of BladeVault now runs on free static hosting at bladevault.tkweb.dev, starting from an empty collection with session-only changes.",
+    ],
+  },
+  {
+    version: "v1.4.4",
+    date: "2026-10-13",
+    major: true,
+    changes: [
+      "Cloud restores now run on the local server, so switching pages or reloading no longer cancels a restore that has already started. You can keep browsing the current vault while the backup downloads and validates.",
+      "Edits and automatic backups pause while a restore is prepared, then the restored vault installs and open views and images refresh. Progress stays quiet, with no completion popup.",
+      "Responsive layouts and collection cards were polished for consistent spacing.",
+    ],
+  },
+  {
+    version: "v1.4.3",
+    date: "2026-10-11",
+    major: true,
+    changes: [
+      "Cloud backups run quietly in the background and continue across page navigation and browser reloads. Settings shows a calm status with the last successful backup.",
+      "The selected knife drawer gained Pin / Unpin and Edit actions alongside Open full page and Add to compare.",
+    ],
+  },
+  {
+    version: "v1.4.2",
+    date: "2026-10-08",
+    changes: [
+      "The Data completeness page was redesigned to make reviewing and filling in missing details easier.",
+      "Insight detail pages use unified full-width responsive layouts, and desktop typography and settings layouts were polished for large and 4K displays.",
+      "Redundant explanatory copy was removed from the interface.",
+    ],
+  },
+  {
+    version: "v1.4.1",
+    date: "2026-10-05",
+    major: true,
+    changes: [
+      "Completeness now guides you through cleaning up incomplete collection records.",
+      "Measurements are corrected and populated fields are preserved when importing products.",
+    ],
+  },
+  {
     version: "v1.4.0",
     date: "2026-10-03",
     major: true,
-    latest: true,
     changes: [
       "Set an optional local vault password in Settings → App lock. The lock is off by default and asks for your password on the next app launch or browser session.",
       "Change or remove the password from Settings, or use Lock now to lock the current session. Cloud Backup sign-in remains separate.",
