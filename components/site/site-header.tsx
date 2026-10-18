@@ -27,7 +27,9 @@ export function SiteHeader() {
         ? ("location" as const)
         : undefined
     }
-    return pathname === link.href ? ("page" as const) : undefined
+    return pathname === link.href || pathname.startsWith(`${link.href}/`)
+      ? ("page" as const)
+      : undefined
   }
 
   useEffect(() => {

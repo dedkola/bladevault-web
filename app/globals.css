@@ -253,7 +253,27 @@
   /* ---------- docs section ---------- */
 
   .docs-prose {
-    @apply text-[16px] leading-[26px] text-foreground;
+    @apply min-w-0 text-[15px] leading-7 text-foreground;
+    overflow-wrap: anywhere;
+  }
+
+  .docs-intro {
+    background-color: color-mix(in srgb, var(--secondary) 32%, transparent);
+  }
+
+  .docs-intro .docs-prose {
+    max-width: 46rem;
+  }
+
+  .docs-intro .docs-prose p {
+    @apply text-[15px] leading-7 text-muted-foreground sm:text-base;
+    margin-bottom: 0;
+    text-wrap: pretty;
+  }
+
+  .docs-intro .docs-prose p strong {
+    font-weight: 500;
+    color: inherit;
   }
 
   .docs-prose > :first-child {
@@ -261,15 +281,15 @@
   }
 
   .docs-prose h1 {
-    @apply text-[30px] leading-[38px] font-bold tracking-[-0.02em] sm:text-[36px] sm:leading-[45px];
-    margin: 0 0 18px;
+    @apply text-3xl leading-tight font-semibold tracking-[-0.035em] text-[var(--bladevault-title)] sm:text-4xl;
+    text-wrap: balance;
+    margin: 0 0 16px;
   }
 
   .docs-prose h2 {
-    @apply text-[21px] leading-[30px] font-semibold sm:text-[23px] sm:leading-[32px];
-    margin: 38px 0 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
+    @apply text-xl leading-8 font-semibold tracking-tight sm:text-[22px];
+    margin: 44px 0 16px;
+    text-wrap: pretty;
   }
 
   .docs-prose h3 {
@@ -278,7 +298,7 @@
   }
 
   .docs-prose :is(h1, h2, h3) {
-    scroll-margin-top: 8.5rem;
+    scroll-margin-top: 6rem;
   }
 
   .docs-prose p {
@@ -303,6 +323,23 @@
     margin: 6px 0;
   }
 
+  .docs-prose li > p {
+    margin-bottom: 8px;
+  }
+
+  .docs-prose li > :is(ul, ol) {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .docs-prose :is(a, button):focus-visible,
+  .docs-table-wrap:focus-visible,
+  .docs-code-copy:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
   .docs-prose li::marker {
     color: var(--bladevault-gold);
   }
@@ -311,7 +348,11 @@
     @apply font-medium;
     color: var(--bladevault-title);
     text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--bladevault-gold) 55%, transparent);
+    text-decoration-color: color-mix(
+      in srgb,
+      var(--bladevault-gold) 55%,
+      transparent
+    );
     text-underline-offset: 3px;
   }
 
@@ -337,7 +378,7 @@
 
   .docs-prose pre {
     position: relative;
-    margin: 0 0 18px;
+    margin: 24px 0;
     padding: 42px 16px 16px;
     overflow-x: auto;
     background: var(--muted);
@@ -364,7 +405,7 @@
   .docs-prose .docs-code-lang {
     position: absolute;
     top: 12px;
-    right: 66px;
+    left: 16px;
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.08em;
@@ -384,13 +425,19 @@
     background-color: var(--muted) !important;
   }
 
-  .docs-prose table {
-    display: block;
+  .docs-table-wrap {
     max-width: 100%;
     overflow-x: auto;
+    margin: 24px 0;
+    border: 1px solid color-mix(in srgb, var(--border) 55%, transparent);
+    border-radius: 8px;
+  }
+
+  .docs-prose table {
+    width: 100%;
     border-collapse: collapse;
-    margin: 0 0 18px;
-    font-size: 14.5px;
+    font-size: 13px;
+    line-height: 1.7;
   }
 
   .docs-prose th,
@@ -405,7 +452,7 @@
     @apply font-semibold;
     font-size: 12px;
     letter-spacing: 0.04em;
-    text-transform: uppercase;
+    background: var(--muted);
     color: var(--muted-foreground);
   }
 
@@ -422,12 +469,15 @@
   }
 
   .docs-prose figure {
-    margin: 0 0 22px;
+    margin: 28px 0;
   }
 
   .docs-prose img {
-    width: 100%;
+    display: block;
+    width: auto;
+    max-width: 100%;
     height: auto;
+    margin-inline: auto;
     border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
     border-radius: 10px;
     background: var(--card);

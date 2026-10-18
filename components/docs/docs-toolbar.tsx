@@ -2,9 +2,10 @@
 
 import { ArrowUpRight, Check, ClipboardCopy } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { DocsSearch } from "@/components/docs/docs-search"
+import { copyText } from "@/lib/clipboard"
 
 interface DocsToolbarProps {
   title: string
@@ -14,30 +15,35 @@ interface DocsToolbarProps {
   editUrl: string
 }
 
-export function DocsToolbar({ title, group, route, markdown, editUrl }: DocsToolbarProps) {
-  const [copied, setCopied] = useState(false)
+export function DocsToolbar({
+  title,
+  group,
+  route,
+  markdown,
+  editUrl,
+}: DocsToolbarProps) {
+  const [status, setStatus] = useState<"idle" | "copied" | "error">("idle")
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  useEffect(() => () => clearTimeout(timer.current), [])
+  const copied = status === "copied"
 
   async function copyPage() {
+    clearTimeout(timer.current)
     try {
-      await navigator.clipboard.writeText(markdown)
+      await copyText(markdown)
+      setStatus("copied")
     } catch {
-      const textarea = document.createElement("textarea")
-      textarea.value = markdown
-      textarea.style.position = "fixed"
-      textarea.style.opacity = "0"
-      document.body.appendChild(textarea)
-      textarea.focus()
-      textarea.select()
-      document.execCommand("copy")
-      document.body.removeChild(textarea)
+      setStatus("error")
     }
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    timer.current = setTimeout(() => setStatus("idle"), 2000)
   }
 
   return (
-    <div className="sticky top-16 z-30 flex flex-wrap items-center justify-between gap-3 border-b border-border/70 bg-background/85 py-2.5 backdrop-blur-xl">
-      <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-2 text-[13px]">
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-t-xl border-b border-border/60 bg-muted/40 px-5 py-3 sm:px-8 xl:px-10">
+      <nav
+        aria-label="Breadcrumb"
+        className="flex min-w-0 flex-1 items-center gap-2 text-xs"
+      >
         <Link
           href="/docs"
           className="text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none"
@@ -49,41 +55,53 @@ export function DocsToolbar({ title, group, route, markdown, editUrl }: DocsTool
             <span aria-hidden="true" className="text-muted-foreground/60">
               ›
             </span>
-            <span className="hidden text-muted-foreground sm:inline">{group}</span>
+            <span className="text-muted-foreground">{group}</span>
           </>
         ) : null}
-        <span aria-hidden="true" className="text-muted-foreground/60">
-          ›
-        </span>
-        <span aria-current="page" className="min-w-0 truncate font-semibold text-foreground">
+        <span aria-current="page" className="sr-only">
           {title}
         </span>
         <span className="sr-only">{route}</span>
       </nav>
 
       <div className="flex items-center gap-2">
+        <span role="status" className="sr-only">
+          {status === "error"
+            ? "Copy failed. Please try again."
+            : copied
+              ? "Page markdown copied."
+              : ""}
+        </span>
         <DocsSearch />
 
         <button
           type="button"
           onClick={copyPage}
           className="vault-action h-9 gap-1.5 px-3 text-[13px]"
-          aria-label={copied ? "Page markdown copied" : "Copy page markdown"}
+          aria-label={
+            status === "error"
+              ? "Copy failed. Try again"
+              : copied
+                ? "Page markdown copied"
+                : "Copy page markdown"
+          }
         >
           {copied ? (
             <Check className="size-4" aria-hidden="true" />
           ) : (
             <ClipboardCopy className="size-4" aria-hidden="true" />
           )}
-          <span className="hidden sm:inline">{copied ? "Copied" : "Copy page"}</span>
+          <span className="hidden sm:inline">
+            {status === "error" ? "Try again" : copied ? "Copied" : "Copy page"}
+          </span>
         </button>
 
         <a
           href={editUrl}
           target="_blank"
           rel="noreferrer"
-          title="Edit this page on GitHub"
-          aria-label="Edit this page on GitHub"
+          title="View source on GitHub"
+          aria-label="View source on GitHub"
           className="vault-action h-9 w-9 justify-center px-0"
         >
           <ArrowUpRight className="size-4" aria-hidden="true" />

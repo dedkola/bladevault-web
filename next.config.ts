@@ -32,7 +32,13 @@ function legacyDocsRedirects(): DocsRedirect[] {
   const nav = JSON.parse(fs.readFileSync(NAV_FILE, "utf8")) as DocsNavFile
 
   return Object.entries(nav.redirects ?? {})
-    .filter(([source]) => source.startsWith("/") && !source.startsWith("/docs"))
+    .filter(
+      ([source, destination]) =>
+        source.startsWith("/") &&
+        source !== "/" &&
+        source !== "/docs" &&
+        source !== destination
+    )
     .map(([source, destination]) => ({ source, destination, permanent: true }))
 }
 

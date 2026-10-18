@@ -9,19 +9,19 @@ import {
   renderDocsPage,
 } from "@/lib/docs"
 
-/**
- * One rendered documentation page: toolbar, the 768 px content column with the sticky "On this page" rail,
- * and the SUMMARY-ordered prev/next pair. Both `/docs` and `/docs/[...slug]` render through this.
- */
 export async function DocsPageView({ page }: { page: DocsPage }) {
   const nav = getDocsNav()
-  const { html, markdown } = await renderDocsPage(page)
+  const { introHtml, html, markdown } = await renderDocsPage(page)
 
-  const prev = page.prev ? (nav.pages.find((entry) => entry.route === page.prev) ?? null) : null
-  const next = page.next ? (nav.pages.find((entry) => entry.route === page.next) ?? null) : null
+  const prev = page.prev
+    ? (nav.pages.find((entry) => entry.route === page.prev) ?? null)
+    : null
+  const next = page.next
+    ? (nav.pages.find((entry) => entry.route === page.next) ?? null)
+    : null
 
   return (
-    <div className="pb-2">
+    <div className="vault-shell min-w-0">
       <DocsToolbar
         title={page.title}
         group={page.group}
@@ -30,18 +30,20 @@ export async function DocsPageView({ page }: { page: DocsPage }) {
         editUrl={getDocsEditUrl(page)}
       />
 
-      <div className="pt-8">
-        <div className="grid gap-14 xl:grid-cols-[minmax(0,768px)_232px]">
-          <DocsContent html={html} />
-          <DocsToc headings={page.headings} />
-        </div>
+      <header className="docs-intro vault-grid rounded-t-none border-b border-border/60 px-5 py-8 sm:px-8 sm:py-10 xl:px-10">
+        <p className="vault-label mb-4">{page.group ?? "Documentation"}</p>
+        <div
+          className="docs-prose"
+          dangerouslySetInnerHTML={{ __html: introHtml }}
+        />
+      </header>
 
-        <div className="xl:max-w-[768px]">
-          <DocsPager
-            prev={prev ? { title: prev.title, route: prev.route } : null}
-            next={next ? { title: next.title, route: next.route } : null}
-          />
+      <div className="grid min-w-0 gap-8 px-5 py-8 sm:px-8 xl:grid-cols-[minmax(0,1fr)_180px] xl:gap-10 xl:px-10 xl:py-10">
+        <div className="max-w-3xl min-w-0">
+          <DocsContent key={page.route} html={html} />
+          <DocsPager prev={prev} next={next} />
         </div>
+        <DocsToc key={page.route} headings={page.headings} />
       </div>
     </div>
   )

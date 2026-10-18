@@ -6,24 +6,30 @@ export type DocsPagerLink = {
   route: string
 } | null
 
-export function DocsPager({ prev, next }: { prev: DocsPagerLink; next: DocsPagerLink }) {
+export function DocsPager({
+  prev,
+  next,
+}: {
+  prev: DocsPagerLink
+  next: DocsPagerLink
+}) {
   if (!prev && !next) return null
 
   return (
     <nav
       aria-label="Page navigation"
-      className="mt-10 flex flex-col gap-3.5 border-t border-border/70 pt-6 sm:flex-row sm:justify-between"
+      className="mt-12 grid grid-cols-1 gap-3 border-t border-border/60 pt-6 sm:grid-cols-2"
     >
       {prev ? (
         <Link
           href={prev.route}
           rel="prev"
-          className="vault-panel max-w-full p-3.5 transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none sm:max-w-[45%]"
+          className="vault-panel group min-w-0 p-4 transition-colors hover:border-[var(--bladevault-gold)] hover:bg-accent/50 focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none"
         >
           <span className="block text-[11px] tracking-[0.08em] text-muted-foreground uppercase">
             Previous
           </span>
-          <span className="mt-0.5 flex items-center gap-1.5 font-semibold">
+          <span className="mt-0.5 flex items-center gap-2 text-sm font-medium">
             <ChevronLeft className="size-4 shrink-0" aria-hidden="true" />
             {prev.title}
           </span>
@@ -36,12 +42,12 @@ export function DocsPager({ prev, next }: { prev: DocsPagerLink; next: DocsPager
         <Link
           href={next.route}
           rel="next"
-          className="vault-panel max-w-full p-3.5 transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none sm:ml-auto sm:max-w-[45%] sm:text-right"
+          className="vault-panel group min-w-0 p-4 transition-colors hover:border-[var(--bladevault-gold)] hover:bg-accent/50 focus-visible:ring-2 focus-visible:ring-ring/45 focus-visible:outline-none sm:text-right"
         >
           <span className="block text-[11px] tracking-[0.08em] text-muted-foreground uppercase">
             Next
           </span>
-          <span className="mt-0.5 flex items-center gap-1.5 font-semibold sm:justify-end">
+          <span className="mt-0.5 flex items-center gap-2 text-sm font-medium sm:justify-end">
             {next.title}
             <ChevronRight className="size-4 shrink-0" aria-hidden="true" />
           </span>

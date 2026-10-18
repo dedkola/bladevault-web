@@ -2,25 +2,10 @@
 
 import { useEffect } from "react"
 
+import { copyText } from "@/lib/clipboard"
+
 const DEFAULT_LABEL = "Copy"
 const COPIED_LABEL = "Copied"
-
-async function copyText(text: string) {
-  try {
-    await navigator.clipboard.writeText(text)
-    return
-  } catch {
-    const textarea = document.createElement("textarea")
-    textarea.value = text
-    textarea.style.position = "fixed"
-    textarea.style.opacity = "0"
-    document.body.appendChild(textarea)
-    textarea.focus()
-    textarea.select()
-    document.execCommand("copy")
-    document.body.removeChild(textarea)
-  }
-}
 
 /**
  * Code blocks arrive as build-time highlighted HTML (server-rendered, no client markdown library), so the
@@ -39,10 +24,13 @@ export function CodeBlockDecorator({ containerId }: { containerId: string }) {
       pre.dataset.docsCode = "ready"
 
       const code = pre.querySelector("code")
-      const language = code?.className.match(/(?:^|\s)language-([a-z0-9+#-]+)/i)?.[1]
+      const language = code?.className.match(
+        /(?:^|\s)language-([a-z0-9+#-]+)/i
+      )?.[1]
 
+      let label: HTMLSpanElement | undefined
       if (language && language !== "text") {
-        const label = document.createElement("span")
+        label = document.createElement("span")
         label.className = "docs-code-lang"
         label.textContent = language
         pre.appendChild(label)
@@ -52,17 +40,28 @@ export function CodeBlockDecorator({ containerId }: { containerId: string }) {
       button.type = "button"
       button.className = "docs-code-copy"
       button.textContent = DEFAULT_LABEL
-      button.setAttribute("aria-label", language ? `Copy ${language} code` : "Copy code")
+      button.setAttribute(
+        "aria-label",
+        language ? `Copy ${language} code` : "Copy code"
+      )
 
       let timer: number | undefined
-      function onClick() {
-        void copyText(code?.textContent ?? "")
-        button.textContent = COPIED_LABEL
-        button.setAttribute("aria-label", "Code copied")
+      async function onClick() {
+        try {
+          await copyText(code?.textContent ?? "")
+          button.textContent = COPIED_LABEL
+          button.setAttribute("aria-label", "Code copied")
+        } catch {
+          button.textContent = "Try again"
+          button.setAttribute("aria-label", "Copy failed. Try again")
+        }
         window.clearTimeout(timer)
         timer = window.setTimeout(() => {
           button.textContent = DEFAULT_LABEL
-          button.setAttribute("aria-label", language ? `Copy ${language} code` : "Copy code")
+          button.setAttribute(
+            "aria-label",
+            language ? `Copy ${language} code` : "Copy code"
+          )
         }, 1600)
       }
 
@@ -73,6 +72,8 @@ export function CodeBlockDecorator({ containerId }: { containerId: string }) {
         window.clearTimeout(timer)
         button.removeEventListener("click", onClick)
         button.remove()
+        label?.remove()
+        delete pre.dataset.docsCode
       })
     })
 

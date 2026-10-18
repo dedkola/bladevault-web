@@ -33,7 +33,9 @@ import { visit } from "unist-util-visit"
 const UPSTREAM_REPO = "dedkola/bladevault"
 const REQUESTED_REF = process.env.DOCS_REF?.trim() || "main"
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN?.trim()
-const SITE_URL = (process.env.SITE_URL?.trim() || "https://bladevault.pro").replace(/\/$/, "")
+const SITE_URL = (
+  process.env.SITE_URL?.trim() || "https://bladevault.pro"
+).replace(/\/$/, "")
 
 const ROOT = process.cwd()
 const CACHE_DIR = path.join(ROOT, ".docs-cache")
@@ -67,7 +69,8 @@ function extractDocsFromTarball(gzipped, destination) {
 
     const name = readTarString(header, 0, 100)
     const prefix = readTarString(header, 345, 155)
-    const size = Number.parseInt(readTarString(header, 124, 12).trim() || "0", 8) || 0
+    const size =
+      Number.parseInt(readTarString(header, 124, 12).trim() || "0", 8) || 0
     const typeFlag = String.fromCharCode(header[156] || 0x30)
     const fullName = prefix ? `${prefix}/${name}` : name
 
@@ -118,10 +121,13 @@ async function resolveSha(ref) {
     { headers }
   )
   if (!response.ok) {
-    throw new Error(`GitHub API ${response.status} resolving ${UPSTREAM_REPO}@${ref}`)
+    throw new Error(
+      `GitHub API ${response.status} resolving ${UPSTREAM_REPO}@${ref}`
+    )
   }
   const payload = await response.json()
-  if (!payload?.sha) throw new Error(`GitHub API returned no sha for ${UPSTREAM_REPO}@${ref}`)
+  if (!payload?.sha)
+    throw new Error(`GitHub API returned no sha for ${UPSTREAM_REPO}@${ref}`)
   return payload.sha
 }
 
@@ -129,7 +135,9 @@ function cachedRevisions() {
   if (!fs.existsSync(CACHE_DIR)) return []
   return fs
     .readdirSync(CACHE_DIR)
-    .filter((entry) => fs.existsSync(path.join(CACHE_DIR, entry, "docs", "SUMMARY.md")))
+    .filter((entry) =>
+      fs.existsSync(path.join(CACHE_DIR, entry, "docs", "SUMMARY.md"))
+    )
     .map((entry) => ({
       sha: entry,
       modified: fs.statSync(path.join(CACHE_DIR, entry)).mtimeMs,
@@ -161,7 +169,10 @@ async function ensureRevision(sha) {
   fs.rmSync(staging, { recursive: true, force: true })
   fs.mkdirSync(staging, { recursive: true })
   const extracted = extractDocsFromTarball(archive, staging)
-  if (!fs.existsSync(path.join(staging, "docs", "SUMMARY.md")) || extracted === 0) {
+  if (
+    !fs.existsSync(path.join(staging, "docs", "SUMMARY.md")) ||
+    extracted === 0
+  ) {
     fs.rmSync(staging, { recursive: true, force: true })
     throw new Error(`tarball for ${UPSTREAM_REPO}@${sha} contained no docs/`)
   }
@@ -192,7 +203,8 @@ function mdastText(node) {
 
 function firstParagraph(mdast) {
   for (const child of mdast.children ?? []) {
-    if (child.type === "paragraph") return mdastText(child).replace(/\s+/g, " ").trim()
+    if (child.type === "paragraph")
+      return mdastText(child).replace(/\s+/g, " ").trim()
   }
   return ""
 }
@@ -206,10 +218,19 @@ async function analyzePage(markdown) {
     if (node.tagName !== "h2" && node.tagName !== "h3") return
     const text = hastText(node).trim()
     if (!text) return
-    headings.push({ depth: Number(node.tagName.slice(1)), id: node.properties?.id ?? "", text })
+    headings.push({
+      depth: Number(node.tagName.slice(1)),
+      id: node.properties?.id ?? "",
+      text,
+    })
   })
 
-  const body = mdastText({ type: "root", children: (mdast.children ?? []).filter((child) => child.type !== "code" && child.type !== "html") })
+  const body = mdastText({
+    type: "root",
+    children: (mdast.children ?? []).filter(
+      (child) => child.type !== "code" && child.type !== "html"
+    ),
+  })
 
   return {
     headings,
@@ -251,7 +272,10 @@ function routeForPage(page, groupTitle) {
   const fileSlug = slugify(path.posix.basename(page.source))
 
   if (directory === ".") {
-    if (!groupTitle) throw new Error(`root-level page ${page.source} has no SUMMARY group to route under`)
+    if (!groupTitle)
+      throw new Error(
+        `root-level page ${page.source} has no SUMMARY group to route under`
+      )
     return `/docs/${slugify(groupTitle)}/${fileSlug}`
   }
   return `/docs/${slugify(directory)}/${fileSlug}`
@@ -261,7 +285,13 @@ function routeForPage(page, groupTitle) {
 
 const LINK_PATTERN = /(!?)\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g
 
-function validatePage(relativeSource, markdown, knownSources, docsDir, problems) {
+function validatePage(
+  relativeSource,
+  markdown,
+  knownSources,
+  docsDir,
+  problems
+) {
   const baseDir = path.posix.dirname(relativeSource)
   let inFence = false
 
@@ -274,10 +304,17 @@ function validatePage(relativeSource, markdown, knownSources, docsDir, problems)
 
     for (const match of line.matchAll(LINK_PATTERN)) {
       const [full, bang, , target] = match
-      if (/^[a-z][a-z0-9+.-]*:/i.test(target) || target.startsWith("#") || target.startsWith("/")) continue
+      if (
+        /^[a-z][a-z0-9+.-]*:/i.test(target) ||
+        target.startsWith("#") ||
+        target.startsWith("/")
+      )
+        continue
 
       const [targetPath] = target.split("#")
-      const resolved = path.posix.normalize(path.posix.join(baseDir, targetPath))
+      const resolved = path.posix.normalize(
+        path.posix.join(baseDir, targetPath)
+      )
       const lineNumber = index + 1
       const location = `${relativeSource}:${lineNumber} (${full})`
 
@@ -326,9 +363,13 @@ function parseGitbookRedirects(configText, pagesBySource, problems) {
     if (!match) continue
 
     const [, from, to] = match
-    const target = to.endsWith(".md") ? pagesBySource.get(to) : pagesBySource.get(`${to}.md`)
+    const target = to.endsWith(".md")
+      ? pagesBySource.get(to)
+      : pagesBySource.get(`${to}.md`)
     if (!target) {
-      problems.push(`.gitbook.yaml redirect ${from} -> ${to} points at an unknown page`)
+      problems.push(
+        `.gitbook.yaml redirect ${from} -> ${to} points at an unknown page`
+      )
       continue
     }
     redirects.set(`/${from}`, target.route)
@@ -355,7 +396,9 @@ async function main() {
     sha = cached[0].sha
     stale = true
     revisionDir = path.join(CACHE_DIR, sha)
-    warn(`${error.message} — falling back to cached ${UPSTREAM_REPO}@${sha.slice(0, 7)}`)
+    warn(
+      `${error.message} — falling back to cached ${UPSTREAM_REPO}@${sha.slice(0, 7)}`
+    )
   }
 
   const docsDir = path.join(revisionDir, "docs")
@@ -366,12 +409,19 @@ async function main() {
   const pagesBySource = new Map()
   for (const page of rootPages) {
     if (pagesBySource.has(page.source)) continue
-    pagesBySource.set(page.source, { title: page.title, group: null, route: "/docs", source: page.source })
+    pagesBySource.set(page.source, {
+      title: page.title,
+      group: null,
+      route: "/docs",
+      source: page.source,
+    })
   }
   for (const group of groups) {
     for (const page of group.pages) {
       if (pagesBySource.has(page.source)) {
-        warn(`SUMMARY.md lists ${page.source} more than once — keeping the first entry`)
+        warn(
+          `SUMMARY.md lists ${page.source} more than once — keeping the first entry`
+        )
         continue
       }
       pagesBySource.set(page.source, {
@@ -401,7 +451,11 @@ async function main() {
 
   const gitbookConfigPath = path.join(docsDir, ".gitbook.yaml")
   const redirects = fs.existsSync(gitbookConfigPath)
-    ? parseGitbookRedirects(fs.readFileSync(gitbookConfigPath, "utf8"), pagesBySource, problems)
+    ? parseGitbookRedirects(
+        fs.readFileSync(gitbookConfigPath, "utf8"),
+        pagesBySource,
+        problems
+      )
     : new Map()
 
   if (problems.length) {
@@ -417,7 +471,8 @@ async function main() {
     description: analyses.get(page.source)?.description ?? "",
     headings: analyses.get(page.source)?.headings ?? [],
     prev: index > 0 ? orderedPages[index - 1].route : null,
-    next: index < orderedPages.length - 1 ? orderedPages[index + 1].route : null,
+    next:
+      index < orderedPages.length - 1 ? orderedPages[index + 1].route : null,
   }))
 
   const navGroups = groups
@@ -441,6 +496,21 @@ async function main() {
   for (const page of orderedPages) {
     if (page.route === "/docs") continue
     redirectMap[page.route.replace(/^\/docs/, "")] = page.route
+  }
+  // GitBook opens the first article when a section URL is visited directly.
+  for (const group of navGroups) {
+    const firstPage = group.pages[0]
+    const sectionRoute = firstPage.route.slice(
+      0,
+      firstPage.route.lastIndexOf("/")
+    )
+    if (
+      sectionRoute === "/docs" ||
+      flatPages.some((page) => page.route === sectionRoute)
+    )
+      continue
+    redirectMap[sectionRoute] = firstPage.route
+    redirectMap[sectionRoute.replace(/^\/docs/, "")] = firstPage.route
   }
   for (const [from, to] of redirects) redirectMap[from] = to
 
@@ -477,7 +547,10 @@ async function main() {
     fs.mkdirSync(path.dirname(currentPath), { recursive: true })
     fs.writeFileSync(currentPath, markdown)
 
-    const rawRelative = page.route === "/docs" ? "index.md" : `${page.route.replace(/^\/docs\//, "")}.md`
+    const rawRelative =
+      page.route === "/docs"
+        ? "index.md"
+        : `${page.route.replace(/^\/docs\//, "")}.md`
     const rawPath = path.join(PUBLIC_DOCS_DIR, rawRelative)
     fs.mkdirSync(path.dirname(rawPath), { recursive: true })
     fs.writeFileSync(rawPath, markdown)
@@ -495,7 +568,9 @@ async function main() {
   for (const group of navGroups) {
     llmsLines.push(`## ${group.title}`, "")
     for (const page of group.pages) {
-      const description = flatPages.find((entry) => entry.route === page.route)?.description
+      const description = flatPages.find(
+        (entry) => entry.route === page.route
+      )?.description
       llmsLines.push(
         description
           ? `- [${page.title}](${SITE_URL}${page.route}): ${description}`
@@ -509,7 +584,10 @@ async function main() {
 
   writeJson(path.join(CURRENT_DIR, "nav.json"), nav)
   writeJson(path.join(PUBLIC_DOCS_DIR, "search-index.json"), searchIndex)
-  fs.writeFileSync(path.join(PUBLIC_DOCS_DIR, "llms.txt"), `${llmsLines.join("\n").trimEnd()}\n`)
+  fs.writeFileSync(
+    path.join(PUBLIC_DOCS_DIR, "llms.txt"),
+    `${llmsLines.join("\n").trimEnd()}\n`
+  )
 
   const imageCount = fs.readdirSync(IMAGES_DIR).length
   log(

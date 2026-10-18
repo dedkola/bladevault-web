@@ -20,7 +20,8 @@ export function DocsToc({ headings }: { headings: DocsHeading[] }) {
     function spy() {
       let current = elements[0].id
       for (const element of elements) {
-        if (element.getBoundingClientRect().top <= TOP_OFFSET) current = element.id
+        if (element.getBoundingClientRect().top <= TOP_OFFSET)
+          current = element.id
       }
       setActive(current)
     }
@@ -39,19 +40,22 @@ export function DocsToc({ headings }: { headings: DocsHeading[] }) {
   return (
     <aside
       aria-label="On this page"
-      className="hidden xl:sticky xl:top-[7.5rem] xl:block xl:self-start"
+      className="hidden xl:sticky xl:top-24 xl:block xl:max-h-[calc(100dvh-8rem)] xl:self-start xl:overflow-y-auto"
     >
       <p className="text-[11px] font-semibold tracking-[0.1em] text-muted-foreground uppercase">
         On this page
       </p>
       <ul className="mt-2 border-l border-border/70">
         {headings.map((heading) => (
-          <li key={heading.id} className={cn("my-1.5", heading.depth === 3 && "pl-2.5")}>
+          <li
+            key={heading.id}
+            className={cn("my-1.5", heading.depth === 3 && "pl-2.5")}
+          >
             <a
               href={`#${heading.id}`}
               aria-current={active === heading.id ? "true" : undefined}
               className={cn(
-                "-ml-px block border-l-2 py-0.5 pl-3 text-sm transition-colors focus-visible:outline-none",
+                "-ml-px block border-l-2 py-0.5 pl-3 text-xs leading-5 transition-colors focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none",
                 active === heading.id
                   ? "border-[var(--bladevault-gold)] font-semibold text-[var(--bladevault-title)]"
                   : "border-transparent text-muted-foreground hover:text-foreground"

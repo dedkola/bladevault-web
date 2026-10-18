@@ -120,11 +120,19 @@ function routeBySource(): Map<string, string> {
  * root-absolute or hash-only is left alone. Broken targets are caught by the fetch pipeline before the
  * build ever renders a page.
  */
-function remarkRewriteDocsLinks(options: { source: string; routes: Map<string, string> }) {
+function remarkRewriteDocsLinks(options: {
+  source: string
+  routes: Map<string, string>
+}) {
   const baseDir = path.posix.dirname(options.source)
 
   function rewrite(url: string): string | null {
-    if (!url || /^[a-z][a-z0-9+.-]*:/i.test(url) || url.startsWith("#") || url.startsWith("/")) {
+    if (
+      !url ||
+      /^[a-z][a-z0-9+.-]*:/i.test(url) ||
+      url.startsWith("#") ||
+      url.startsWith("/")
+    ) {
       return null
     }
 
@@ -171,6 +179,21 @@ const anchorContent: ElementContent = {
 function rehypeDocsFigures() {
   return (tree: HastRoot) => {
     visit(tree, "element", (node: HastElement, index, parent) => {
+      if (node.tagName === "table" && typeof index === "number" && parent) {
+        parent.children[index] = {
+          type: "element",
+          tagName: "div",
+          properties: {
+            className: ["docs-table-wrap"],
+            tabIndex: 0,
+            role: "region",
+            ariaLabel: "Table",
+          },
+          children: [node],
+        }
+        return
+      }
+
       if (node.tagName === "img") {
         node.properties ??= {}
         node.properties.loading = "lazy"
@@ -188,7 +211,8 @@ function rehypeDocsFigures() {
       const image = meaningful[0]
       if (image.type !== "element" || image.tagName !== "img") return
 
-      const alt = typeof image.properties?.alt === "string" ? image.properties.alt : ""
+      const alt =
+        typeof image.properties?.alt === "string" ? image.properties.alt : ""
       const figure: HastElement = {
         type: "element",
         tagName: "figure",
@@ -214,6 +238,7 @@ function rehypeDocsFigures() {
 }
 
 export type RenderedDocs = {
+  introHtml: string
   html: string
   markdown: string
 }
@@ -221,19 +246,22 @@ export type RenderedDocs = {
 export async function renderDocsPage(page: DocsPage): Promise<RenderedDocs> {
   const markdown = getDocsMarkdown(page)
 
-  const file = await unified()
+  const processor = unified()
     .use(remarkParse)
     .use(remarkGfm)
-    .use(remarkRewriteDocsLinks, { source: page.source, routes: routeBySource() })
+    .use(remarkRewriteDocsLinks, {
+      source: page.source,
+      routes: routeBySource(),
+    })
     .use(remarkRehype)
     .use(rehypeSlug)
     .use(rehypeDocsFigures)
     .use(rehypeAutolinkHeadings, {
+      test: ["h2", "h3", "h4"],
       behavior: "append",
       properties: {
         className: ["docs-anchor"],
-        ariaHidden: "true",
-        tabIndex: -1,
+        ariaLabel: "Link to this section",
       },
       content: anchorContent,
     })
@@ -247,7 +275,24 @@ export async function renderDocsPage(page: DocsPage): Promise<RenderedDocs> {
       addLanguageClass: true,
     })
     .use(rehypeStringify)
-    .process(markdown)
 
-  return { html: String(file), markdown }
+  const tree = await processor.run(processor.parse(markdown))
+  // Give the Markdown title and opening paragraph the same editorial header as the site.
+  // Keep the actual nodes intact, including emphasis, links and generated heading IDs.
+  const titleIndex = tree.children.findIndex(
+    (node) => node.type === "element" && node.tagName === "h1"
+  )
+  let introEnd = titleIndex + 1
+  if (titleIndex >= 0) {
+    while (tree.children[introEnd]?.type === "text") introEnd += 1
+    const next = tree.children[introEnd]
+    if (next?.type === "element" && next.tagName === "p") introEnd += 1
+  }
+  const intro = tree.children.splice(0, titleIndex >= 0 ? introEnd : 0)
+
+  return {
+    introHtml: processor.stringify({ type: "root", children: intro }),
+    html: processor.stringify(tree),
+    markdown,
+  }
 }
