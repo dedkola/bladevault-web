@@ -15,6 +15,10 @@
 /.next/
 /out/
 
+# docs pipeline (fetched from dedkola/bladevault at build time — never committed)
+/.docs-cache/
+/public/docs/
+
 # production
 /build
 

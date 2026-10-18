@@ -1,8 +1,12 @@
 import type { MetadataRoute } from "next"
 
+import { getDocsNav } from "@/lib/docs"
 import { absoluteUrl, absoluteVideoUrl, siteConfig } from "@/lib/site"
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const docs = getDocsNav()
+  const docsLastModified = new Date(docs.generatedAt)
+
   return [
     {
       url: absoluteUrl("/"),
@@ -23,5 +27,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    ...docs.pages.map((page) => ({
+      url: absoluteUrl(page.route),
+      lastModified: docsLastModified,
+      changeFrequency: "weekly" as const,
+      priority: page.route === "/docs" ? 0.8 : 0.6,
+    })),
   ]
 }
