@@ -39,7 +39,7 @@ export async function DocsPageView({ page }: { page: DocsPage }) {
       </header>
 
       <div className="grid min-w-0 gap-8 px-5 py-8 sm:px-8 xl:grid-cols-[minmax(0,1fr)_180px] xl:gap-10 xl:px-10 xl:py-10">
-        <div className="max-w-3xl min-w-0">
+        <div className="mx-auto w-full max-w-3xl min-w-0">
           <DocsContent key={page.route} html={html} />
           <DocsPager prev={prev} next={next} />
         </div>
