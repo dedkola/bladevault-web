@@ -18,6 +18,8 @@ import remarkRehype from "remark-rehype"
 import { unified } from "unified"
 import { visit } from "unist-util-visit"
 
+import { docsVideo } from "./docs-video.mjs"
+
 /**
  * Server-side data layer for the `/docs` section.
  *
@@ -237,6 +239,52 @@ function rehypeDocsFigures() {
   }
 }
 
+/** Build only allowlisted players; raw HTML from Markdown stays disabled. */
+function remarkDocsVideos() {
+  return (tree: Root) => {
+    visit(tree, "paragraph", (node) => {
+      const video = docsVideo(node)
+      if (!video) return
+      node.data = {
+        ...node.data,
+        hName: "figure",
+        hProperties: { className: ["docs-video"] },
+        hChildren: [
+          {
+            type: "element",
+            tagName: "iframe",
+            properties: {
+              src: `https://www.youtube-nocookie.com/embed/${video.id}`,
+              title: video.title,
+              loading: "lazy",
+              referrerPolicy: "strict-origin-when-cross-origin",
+              allow:
+                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+              allowFullScreen: true,
+            },
+            children: [],
+          },
+          {
+            type: "element",
+            tagName: "figcaption",
+            properties: {},
+            children: [
+              {
+                type: "element",
+                tagName: "a",
+                properties: {
+                  href: `https://www.youtube.com/watch?v=${video.id}`,
+                },
+                children: [{ type: "text", value: "Watch on YouTube" }],
+              },
+            ],
+          },
+        ],
+      }
+    })
+  }
+}
+
 export type RenderedDocs = {
   introHtml: string
   html: string
@@ -253,6 +301,7 @@ export async function renderDocsPage(page: DocsPage): Promise<RenderedDocs> {
       source: page.source,
       routes: routeBySource(),
     })
+    .use(remarkDocsVideos)
     .use(remarkRehype)
     .use(rehypeSlug)
     .use(rehypeDocsFigures)
