@@ -30,6 +30,8 @@ import rehypeSlug from "rehype-slug"
 import { unified } from "unified"
 import { visit } from "unist-util-visit"
 
+import { docsVideo } from "../lib/docs-video.mjs"
+
 const UPSTREAM_REPO = "dedkola/bladevault"
 const REQUESTED_REF = process.env.DOCS_REF?.trim() || "main"
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN?.trim()
@@ -203,8 +205,9 @@ function mdastText(node) {
 
 function firstParagraph(mdast) {
   for (const child of mdast.children ?? []) {
-    if (child.type === "paragraph")
-      return mdastText(child).replace(/\s+/g, " ").trim()
+    if (child.type !== "paragraph" || docsVideo(child)) continue
+    const text = mdastText(child).replace(/\s+/g, " ").trim()
+    if (text) return text
   }
   return ""
 }
@@ -228,7 +231,8 @@ async function analyzePage(markdown) {
   const body = mdastText({
     type: "root",
     children: (mdast.children ?? []).filter(
-      (child) => child.type !== "code" && child.type !== "html"
+      (child) =>
+        child.type !== "code" && child.type !== "html" && !docsVideo(child)
     ),
   })
 
