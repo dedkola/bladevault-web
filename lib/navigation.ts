@@ -8,6 +8,7 @@ export const siteNavigation: readonly SiteNavigationLink[] = [
   { href: "/#workflow", label: "Workflow", sectionId: "workflow" },
   { href: "/#capabilities", label: "Capabilities", sectionId: "capabilities" },
   { href: "/#local-first", label: "Local-first", sectionId: "local-first" },
+  { href: "/compare", label: "Compare" },
   { href: "/#install", label: "Install", sectionId: "install" },
   { href: "/tutorials", label: "Video tutorials" },
   { href: "/docs", label: "Docs" },
