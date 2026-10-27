@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 
+import { ScreenshotLightbox } from "@/components/screenshot-lightbox"
 import { ReleaseContents } from "@/components/site/release-contents"
 import { releaseAnchor } from "@/lib/navigation"
 import { cn } from "@/lib/utils"
@@ -567,6 +569,27 @@ const releases = [
 const releaseBaseUrl = "https://github.com/dedkola/bladevault/releases/tag/"
 const releaseLinks = releases.map(({ version, date }) => ({ version, date }))
 
+const v2Highlights = [
+  {
+    label: "Studio",
+    detail: "A visual library for the whole vault",
+    src: "/screenshots/studio.jpg",
+    alt: "Studio visual library with a randomised gallery of knife photographs",
+  },
+  {
+    label: "Collection pulse",
+    detail: "Growth, coverage, makers, and steels",
+    src: "/screenshots/collection-pulse.jpg",
+    alt: "Collection pulse dashboard with catalogue growth and collection coverage",
+  },
+  {
+    label: "Modern workspace",
+    detail: "A quieter table with a docked inspector",
+    src: "/screenshots/collection-modern.jpg",
+    alt: "Modern Collection table with a docked knife inspector and shared header search",
+  },
+]
+
 export default function WhatsNewPage() {
   return (
     <main id="main" className="mx-auto w-full max-w-[1600px] px-4 py-4 sm:px-6">
@@ -642,6 +665,42 @@ export default function WhatsNewPage() {
                         </li>
                       ))}
                     </ul>
+
+                    {isLatest && (
+                      <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                        {v2Highlights.map((highlight) => (
+                          <figure
+                            key={highlight.label}
+                            className="overflow-hidden rounded-lg border border-border/70 bg-card"
+                          >
+                            <ScreenshotLightbox
+                              src={highlight.src}
+                              alt={highlight.alt}
+                              title={highlight.label}
+                              className="block w-full"
+                            >
+                              <Image
+                                src={highlight.src}
+                                alt={highlight.alt}
+                                width={1800}
+                                height={1125}
+                                loading="lazy"
+                                sizes="(min-width: 640px) 25vw, 100vw"
+                                className="h-auto w-full object-cover object-top"
+                              />
+                            </ScreenshotLightbox>
+                            <figcaption className="border-t border-border/60 px-3 py-2.5">
+                              <span className="block text-sm font-semibold text-foreground">
+                                {highlight.label}
+                              </span>
+                              <span className="mt-0.5 block text-[11px] leading-4 text-muted-foreground">
+                                {highlight.detail}
+                              </span>
+                            </figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    )}
                   </article>
                 )
               })}

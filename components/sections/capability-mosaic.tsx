@@ -65,23 +65,23 @@ export function CapabilityMosaic() {
           </h2>
         </div>
         <p className="max-w-xl text-base leading-8 text-[#c9c2a7]">
-          Keep named comparisons, explore collection insights, create printable
+          Keep named comparisons, read Collection pulse, create printable
           reports, and ask your own records questions through MCP.
         </p>
       </div>
 
       <div className="mt-12 grid gap-3 px-3 sm:px-6 md:grid-cols-2 lg:mt-16 xl:grid-cols-[1.25fr_0.75fr_0.85fr] xl:grid-rows-2">
         <ScreenshotCapability
-          src="/screenshots/insights.png"
-          alt="BladeVault collection insights with charts for makers, blade lengths, steel, and data completeness"
-          label="Insights"
-          title="See the shape of your collection."
-          body="Explore makers, materials, dimensions, recent activity, and data completeness—then open the records behind a chart."
+          src="/screenshots/collection-pulse-card.jpg"
+          alt="Collection pulse with catalogue growth, coverage, maker mix, and carry profile"
+          label="Collection pulse"
+          title="See the shape of the collection."
+          body="Explore growth, coverage, makers, steels, carry profile, and recent additions, then open the records behind a chart."
           className="min-h-[34rem] md:row-span-2 xl:min-h-[34rem]"
         />
         <ScreenshotCapability
-          src="/screenshots/compare.png"
-          alt="BladeVault comparison table with knife specifications aligned side by side"
+          src="/screenshots/compare-modern.jpg"
+          alt="Modern Compare view with named lists and knife specifications aligned side by side"
           label="Compare"
           title="Differences, aligned."
           body="Save multiple named comparison lists, switch between them, and export a comparison as a landscape PDF."
@@ -154,12 +154,14 @@ export function CapabilityMosaic() {
 
       <div className="mx-4 mt-5 flex flex-wrap gap-x-6 gap-y-2 border-t border-[#ecdaa3]/20 px-1 pt-5 font-mono text-[10px] tracking-[0.05em] text-[#c9c2a7] uppercase sm:mx-8">
         <strong className="text-[#e2c365]">Also included</strong>
-        <span>URL product import</span>
-        <span>Source-page screenshots</span>
-        <span>Bulk edit</span>
-        <span>Custom fields</span>
-        <span>Multi-image galleries</span>
-        <span>Pinned items</span>
+        <span>Studio</span>
+        <span>Modern columns</span>
+        <span>Start page</span>
+        <span>Smart Collections</span>
+        <span>Model families</span>
+        <span>Sold status</span>
+        <span>Source screenshots</span>
+        <span>App lock</span>
       </div>
     </section>
   )

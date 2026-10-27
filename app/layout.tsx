@@ -4,6 +4,7 @@ import Script from "next/script"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AnnouncementBar } from "@/components/site/announcement-bar"
 import { SiteHeader } from "@/components/site/site-header"
 import { SiteFooter } from "@/components/site/site-footer"
 import { cn } from "@/lib/utils"
@@ -145,6 +146,7 @@ export default function RootLayout({
           >
             Skip to content
           </a>
+          <AnnouncementBar />
           <SiteHeader />
           {children}
           <SiteFooter />

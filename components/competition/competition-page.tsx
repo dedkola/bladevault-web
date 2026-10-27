@@ -428,16 +428,16 @@ export function CompetitionPage() {
               <span className="vault-label">Collection / Compare</span>
             </div>
             <ScreenshotLightbox
-              src="/screenshots/compare.png"
-              alt="BladeVault comparison table with knife specifications aligned side by side"
+              src="/screenshots/compare-modern.jpg"
+              alt="Modern BladeVault comparison table with knife specifications aligned side by side"
               title="BladeVault comparison view"
               className="block"
             >
               <Image
-                src="/screenshots/compare.png"
-                width={1440}
-                height={900}
-                alt="BladeVault comparison table with knife specifications aligned side by side"
+                src="/screenshots/compare-modern.jpg"
+                width={1800}
+                height={1125}
+                alt="Modern BladeVault comparison table with knife specifications aligned side by side"
                 className="h-auto w-full"
               />
             </ScreenshotLightbox>
