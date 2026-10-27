@@ -9,7 +9,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "What’s new in BladeVault"
 const pageDescription =
-  "BladeVault release notes, including quiet background cloud backups and restores, the optional app lock, saved comparison lists, source-page screenshots, Smart Collections, maintenance history, and MCP support."
+  "BladeVault release notes, including the Modern appearance and Studio visual library, customizable collection columns, a choice of start page, Collection pulse insights, cloud backups, app lock, Smart Collections, maintenance, and MCP support."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -30,9 +30,42 @@ export const metadata: Metadata = {
 
 const releases = [
   {
+    version: "v2.0.0",
+    date: "2026-10-27",
+    latest: true,
+    major: true,
+    milestone: true,
+    changes: [
+      "A new Modern appearance refreshes Collection, Compare, and Logs with a shared header and search, a quieter sidebar, and inline log details. The original Current theme stays the default.",
+      "Studio is a new visual library with randomized layouts for browsing by model family, plus filters, sorting, quick actions, and a focus mode for single-knife viewing.",
+      "Modern Collection columns can be shown, hidden, dragged into a new order, and resized, with every choice remembered across reloads.",
+      "Select knives directly from the modern Collection list to bulk edit, add to Compare, pin, or delete them.",
+      "Insights was rebuilt as Collection pulse, combining collection growth, field coverage, maker and steel mix, blade length versus weight, and recent additions with links back to the records.",
+      "Settings → Appearance → Start page lets BladeVault open on Insights, Studio, or Collection at launch.",
+    ],
+  },
+  {
+    version: "v1.4.8",
+    date: "2026-10-22",
+    changes: [
+      "Model names can be bulk edited across several knives at once.",
+      "Product imports preserve the complete scraped details and screenshots instead of trimming them.",
+      "Standard field extraction was improved across supported retailers.",
+    ],
+  },
+  {
+    version: "v1.4.7",
+    date: "2026-10-19",
+    changes: [
+      "The Add and Update product views gained a full-width preview you can resize while reviewing an import.",
+      "The interactive import browser clears popup overlays, so retailer pages that block the normal importer stay usable.",
+      "Vosteed imports separate their specifications more reliably and flag conflicting values from the source page.",
+      "Compare search now accepts model numbers.",
+    ],
+  },
+  {
     version: "v1.4.6",
     date: "2026-10-16",
-    latest: true,
     major: true,
     changes: [
       "Knives can be marked as sold, so a collection can track what has left the shelf as well as what is still on it.",
