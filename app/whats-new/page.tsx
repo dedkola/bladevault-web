@@ -11,7 +11,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "What’s new in BladeVault"
 const pageDescription =
-  "BladeVault release notes, including the Modern appearance and Studio visual library, customizable collection columns, a choice of start page, Collection pulse insights, cloud backups, app lock, Smart Collections, maintenance, and MCP support."
+  "BladeVault release notes, including the Modern appearance and theme options, Studio visual library, customizable collection columns, a choice of start page, Collection pulse insights, cloud backups, app lock, Smart Collections, maintenance, and MCP support."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -44,6 +44,7 @@ const releases = [
       "Select knives directly from the modern Collection list to bulk edit, add to Compare, pin, or delete them.",
       "Insights was rebuilt as Collection pulse, combining collection growth, field coverage, maker and steel mix, blade length versus weight, and recent additions with links back to the records.",
       "Settings → Appearance → Start page lets BladeVault open on Insights, Studio, or Collection at launch.",
+      "Choose Current or Modern in Settings → Appearance. More theme options are on the way.",
     ],
   },
   {
@@ -588,6 +589,12 @@ const v2Highlights = [
     src: "/screenshots/collection-modern.jpg",
     alt: "Modern Collection table with a docked knife inspector and shared header search",
   },
+  {
+    label: "Theme options",
+    detail: "Current, Modern, and more to come",
+    src: "/screenshots/theme-options.jpg",
+    alt: "Settings appearance panel with Current and Modern theme choices",
+  },
 ]
 
 export default function WhatsNewPage() {
@@ -667,7 +674,7 @@ export default function WhatsNewPage() {
                     </ul>
 
                     {isLatest && (
-                      <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                      <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                         {v2Highlights.map((highlight) => (
                           <figure
                             key={highlight.label}
@@ -685,7 +692,7 @@ export default function WhatsNewPage() {
                                 width={1800}
                                 height={1125}
                                 loading="lazy"
-                                sizes="(min-width: 640px) 25vw, 100vw"
+                                sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
                                 className="h-auto w-full object-cover object-top"
                               />
                             </ScreenshotLightbox>

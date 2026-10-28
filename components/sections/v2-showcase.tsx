@@ -55,6 +55,21 @@ const tabs = [
     image: "/screenshots/collection-modern.jpg",
     alt: "Modern Collection table with a docked knife inspector, shared header search, and filter controls",
   },
+  {
+    id: "themes",
+    label: "Theme options",
+    note: "Two looks, more coming",
+    title: "Pick the room you work in.",
+    description:
+      "Current keeps the warm BladeVault look. Modern adds the cool graphite workspace. Both are available today, with more themes on the way.",
+    points: [
+      "Current: the default warm palette.",
+      "Modern: cool graphite with the shared workspace.",
+      "More themes are coming soon.",
+    ],
+    image: "/screenshots/theme-options.jpg",
+    alt: "Settings appearance panel with Current and Modern theme choices, color mode, start page, and time format",
+  },
 ] as const
 
 const extras = [
@@ -120,12 +135,12 @@ export function V2Showcase() {
       <div className={styles.spotlightHead}>
         <p className={styles.sectionTag}>New in 2.0</p>
         <h2 id="v2-title" className={styles.displayTitle}>
-          The vault, three ways.
+          The vault, four ways.
         </h2>
         <p>
-          Version 2.0 adds a visual library, a live read on the catalogue, and a
-          quieter workspace. Your records, Smart Collections, and existing views
-          stay exactly where they are.
+          Version 2.0 adds a visual library, a live read on the catalogue, a
+          quieter workspace, and a choice of themes. Your records, Smart
+          Collections, and existing views stay exactly where they are.
         </p>
       </div>
 
@@ -159,8 +174,8 @@ export function V2Showcase() {
             </button>
           ))}
           <p className={styles.tabsNote}>
-            Current stays the default warm look. Modern is a choice, not a
-            replacement.
+            Current remains the default. Modern is the second option, with more
+            themes on the way.
           </p>
         </div>
 

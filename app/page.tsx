@@ -16,7 +16,7 @@ export const dynamic = "force-static"
 const pageTitle =
   "Studio, Collection pulse, and local-first knife collection management | BladeVault"
 const pageDescription =
-  "Browse the vault in Studio, read Collection pulse, shape a customizable workspace, compare knives, and keep every record in a private local-first collection manager."
+  "Browse the vault in Studio, read Collection pulse, choose a theme, shape a customizable workspace, compare knives, and keep every record in a private local-first collection manager."
 
 export const metadata: Metadata = {
   title: pageTitle,

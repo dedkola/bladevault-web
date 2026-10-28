@@ -1059,7 +1059,7 @@
 
   .tab {
     flex: 0 0 auto;
-    min-width: 12rem;
+    min-width: 10.5rem;
     padding: 14px 18px;
     border-bottom: 0;
   }
