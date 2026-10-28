@@ -46,7 +46,13 @@ async function readPublicImageAsDataUrl(relativePath: string) {
 
   const promise = readFile(
     join(process.cwd(), "public", relativePath.replace(/^\//, ""))
-  ).then((buffer) => `data:image/png;base64,${buffer.toString("base64")}`)
+  ).then((buffer) => {
+    const extension = relativePath.split(".").pop()?.toLowerCase()
+    const mime =
+      extension === "jpg" || extension === "jpeg" ? "image/jpeg" : "image/png"
+
+    return `data:${mime};base64,${buffer.toString("base64")}`
+  })
 
   screenshotCache.set(relativePath, promise)
 

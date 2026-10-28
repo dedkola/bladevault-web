@@ -1,8 +1,11 @@
 import type { Metadata } from "next"
 
 import { Hero } from "@/components/sections/hero"
-import { WorkflowStories } from "@/components/sections/workflow-stories"
+import { V2Showcase } from "@/components/sections/v2-showcase"
+import { WorkspaceFit } from "@/components/sections/workspace-fit"
 import { CapabilityMosaic } from "@/components/sections/capability-mosaic"
+import { WorkflowBand } from "@/components/sections/workflow-band"
+import { ReleaseLedger } from "@/components/sections/release-ledger"
 import { LocalFirst } from "@/components/sections/local-first"
 import { GuideStrip } from "@/components/sections/guide-strip"
 import { InstallCta } from "@/components/sections/install-cta"
@@ -10,9 +13,10 @@ import { absoluteUrl, siteConfig } from "@/lib/site"
 
 export const dynamic = "force-static"
 
-const pageTitle = "Local-first, AI-ready knife collection manager | BladeVault"
+const pageTitle =
+  "Studio, Collection pulse, and local-first knife collection management | BladeVault"
 const pageDescription =
-  "Group model variants, save Smart Collections, track maintenance, compare details, and explore insights in a private local-first knife collection manager."
+  "Browse the vault in Studio, read Collection pulse, choose a theme, shape a customizable workspace, compare knives, and keep every record in a private local-first collection manager."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -31,7 +35,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/opengraph-image",
-        alt: "BladeVault preview card for a local-first, AI-ready knife collection manager",
+        alt: "BladeVault preview card for Studio, Collection pulse, and a local-first knife collection manager",
       },
     ],
   },
@@ -90,8 +94,11 @@ export default function Page() {
         className="mx-auto w-full max-w-[1600px] overflow-hidden px-4 pb-4 sm:px-6"
       >
         <Hero />
-        <WorkflowStories />
+        <V2Showcase />
+        <WorkspaceFit />
         <CapabilityMosaic />
+        <WorkflowBand />
+        <ReleaseLedger />
         <LocalFirst />
         <GuideStrip />
         <div className="mt-4">

@@ -1,202 +1,144 @@
 import Image from "next/image"
 import {
-  ArrowRight,
   ArrowDownToLine,
-  Bookmark,
+  ArrowRight,
+  Database,
   Layers3,
   LockKeyhole,
-  Wrench,
+  Monitor,
 } from "lucide-react"
 
 import { ScreenshotLightbox } from "@/components/screenshot-lightbox"
 import { siteConfig } from "@/lib/site"
 
+import styles from "./v2-homepage.module.css"
+
 const principles = [
   {
-    icon: Bookmark,
-    title: "Views that stay current",
-    detail: "Saved filters update as the vault changes.",
+    icon: LockKeyhole,
+    title: "No account",
+    detail: "Private by default",
   },
   {
     icon: Layers3,
-    title: "Variants without clutter",
-    detail: "Related models group without losing detail.",
+    title: "Free and open",
+    detail: "MIT licensed",
   },
   {
-    icon: Wrench,
-    title: "Care with context",
-    detail: "Service history belongs to the knife.",
+    icon: Monitor,
+    title: "Desktop",
+    detail: "macOS and Windows",
   },
   {
-    icon: LockKeyhole,
-    title: "Your data, locally",
-    detail: "SQLite and images stay under your control.",
+    icon: Database,
+    title: "Local SQLite",
+    detail: "Images stay yours",
   },
 ]
 
-type PreviewProps = {
-  src: string
-  alt: string
-  title: string
-  meta: string
-  className?: string
-  imageClassName?: string
-  eager?: boolean
-}
-
-function ScreenPreview({
-  src,
-  alt,
-  title,
-  meta,
-  className = "",
-  imageClassName = "",
-  eager = false,
-}: PreviewProps) {
+function WindowDots() {
   return (
-    <article
-      className={`relative flex min-w-0 flex-col overflow-hidden rounded-lg border border-[var(--bladevault-line)]/65 bg-white shadow-[0_10px_28px_rgb(46_52_23/9%)] ${className}`}
-    >
-      <ScreenshotLightbox
-        src={src}
-        alt={alt}
-        title={title}
-        className="relative min-h-0 w-full flex-1"
-      >
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          loading={eager ? "eager" : "lazy"}
-          fetchPriority={eager ? "high" : "auto"}
-          sizes="(min-width: 1280px) 42vw, (min-width: 1024px) 36vw, 94vw"
-          className={`object-cover object-top transition-transform duration-500 group-hover/screenshot:scale-[1.018] ${imageClassName}`}
-        />
-      </ScreenshotLightbox>
-      <div className="vault-illustration flex flex-wrap items-center justify-between gap-2 border-t border-[var(--bladevault-line)]/65 px-3 py-2 text-[var(--bladevault-olive)]">
-        <span className="text-xs font-semibold">{title}</span>
-        <span className="hidden text-[11px] text-muted-foreground sm:block">
-          {meta}
-        </span>
-      </div>
-    </article>
+    <span className={styles.windowDots} aria-hidden="true">
+      <i />
+      <i />
+      <i />
+    </span>
   )
 }
 
 export function Hero() {
   return (
     <>
-      <section
-        id="overview"
-        className="relative grid items-center gap-7 overflow-hidden py-10 sm:gap-10 sm:py-16 lg:min-h-[47rem] lg:grid-cols-[minmax(0,0.82fr)_minmax(36rem,1.18fr)] lg:gap-[clamp(2.5rem,6vw,6rem)] lg:py-24"
-      >
-        <div className="pointer-events-none absolute top-[18%] -right-[12rem] -z-10 size-[37rem] rounded-full border border-[var(--bladevault-gold)]/20" />
-        <div>
-          <p className="vault-label">
+      <section id="overview" className={styles.hero}>
+        <div className={styles.heroCopy}>
+          <p className={styles.heroEyebrow}>
+            <span className={styles.statusDot} aria-hidden="true" />
             Local-first knife collection · {siteConfig.releaseVersion}
           </p>
-          <h1 className="mt-5 max-w-[10ch] text-[clamp(3.4rem,6.2vw,6.7rem)] leading-[0.91] font-semibold tracking-[-0.065em] text-balance text-foreground">
-            Your collection, kept{" "}
-            <span className="text-[var(--bladevault-title)]">useful.</span>
+          <h1 className={styles.heroTitle}>
+            Your collection, kept <em>useful.</em>
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-7 text-muted-foreground sm:mt-7 sm:text-lg sm:leading-8">
-            A local-first home for your knife collection. Save live views, track
-            care, compare models, and keep your records on hardware you control.
+          <p className={styles.heroSub}>
+            See the whole vault in Studio, read its patterns in Collection
+            pulse, and shape a workspace that fits.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
+          <div className={styles.heroActions}>
             <a href="#install" className="vault-action vault-action-primary">
-              <ArrowDownToLine className="size-4" />
+              <ArrowDownToLine className="size-4" aria-hidden="true" />
               Install BladeVault
             </a>
-            <a href="#workflow" className="vault-action">
-              Explore the workflow
-              <ArrowRight className="size-4" />
+            <a href="#whats-new" className="vault-action">
+              Explore v2.0
+              <ArrowRight className="size-4" aria-hidden="true" />
             </a>
-          </div>
-          <div className="mt-6 grid max-w-xl grid-cols-3 border-y border-border/65 sm:mt-10">
-            {[
-              ["No account", "Private by default"],
-              ["Free & open", "MIT licensed"],
-              ["Desktop", "Mac + Windows"],
-            ].map(([title, detail], index) => (
-              <div
-                key={title}
-                className={`py-3 pr-2 sm:px-4 sm:py-4 ${index ? "border-l border-border/55 pl-3" : ""}`}
-              >
-                <strong className="block text-xs text-foreground sm:text-sm">
-                  {title}
-                </strong>
-                <span className="mt-1 block text-[11px] leading-4 text-muted-foreground">
-                  {detail}
-                </span>
-              </div>
-            ))}
           </div>
         </div>
 
-        <div className="relative min-w-0">
-          <div className="vault-window overflow-hidden rounded-2xl shadow-[0_24px_65px_rgb(46_52_23/14%)]">
-            <div className="vault-window-bar">
-              <div className="flex items-center gap-2">
-                <span className="size-2 rounded-full bg-[var(--bladevault-olive)]" />
-                <span className="size-2 rounded-full bg-[var(--bladevault-gold)]" />
-                <span className="size-2 rounded-full border border-border bg-card" />
-              </div>
-              <span className="vault-label">BladeVault / Collection</span>
+        <div className={styles.heroStage} aria-label="BladeVault v2.0 screens">
+          <span className={styles.editionStamp}>
+            <b>v2.0</b> Studio + pulse
+          </span>
+
+          <div className={`${styles.window} ${styles.heroWindowMain}`}>
+            <div className={styles.windowBar}>
+              <WindowDots />
+              <span className={styles.windowLabel}>BladeVault / Studio</span>
             </div>
-            <div className="vault-grid grid grid-cols-1 gap-2 bg-muted/55 p-2 sm:min-h-[31rem] sm:grid-cols-[minmax(0,1.28fr)_minmax(13rem,0.72fr)]">
-              <ScreenPreview
-                src="/screenshots/collection.png"
-                alt="BladeVault collection showing search, filters, sidebar navigation, and image-rich knife records"
-                title="Collection"
-                meta="Search · Smart views · Model families"
-                className="min-h-[18rem] sm:min-h-[29.7rem]"
-                eager
+            <ScreenshotLightbox
+              src="/screenshots/studio.jpg"
+              alt="BladeVault Studio in the Current theme, showing a randomised gallery of knife photographs"
+              title="Studio"
+              className={styles.windowImage}
+            >
+              <Image
+                src="/screenshots/studio.jpg"
+                alt="BladeVault Studio in the Current theme, showing a randomised gallery of knife photographs"
+                fill
+                loading="eager"
+                sizes="(min-width: 1100px) 48vw, 94vw"
+                fetchPriority="high"
+                className="object-cover object-top"
               />
-              <div className="grid min-w-0 grid-cols-1 gap-2 sm:grid-cols-1 sm:grid-rows-[0.86fr_1.14fr]">
-                <ScreenPreview
-                  src="/screenshots/compare.png"
-                  alt="BladeVault comparison table with knife specifications aligned side by side"
-                  title="Compare"
-                  meta="Saved lists · PDF export"
-                  className="min-h-[13rem]"
-                />
-                <ScreenPreview
-                  src="/screenshots/detail.png"
-                  alt="BladeVault knife detail page with image gallery and structured specifications"
-                  title="Item record"
-                  meta="Images · Specs · Care"
-                  imageClassName="object-[38%_top]"
-                  className="min-h-[13rem]"
-                />
-              </div>
-            </div>
+            </ScreenshotLightbox>
           </div>
-          <p className="mt-3 text-right text-xs leading-5 text-muted-foreground">
-            One local vault. Every working view.
-          </p>
+
+          <div className={`${styles.window} ${styles.heroWindowFloat}`}>
+            <div className={styles.windowBar}>
+              <WindowDots />
+              <span className={styles.windowLabel}>Collection pulse</span>
+            </div>
+            <ScreenshotLightbox
+              src="/screenshots/collection-pulse.jpg"
+              alt="Collection pulse dashboard with catalogue growth, field coverage, maker mix, and carry profile"
+              title="Collection pulse"
+              className={styles.windowImage}
+            >
+              <Image
+                src="/screenshots/collection-pulse.jpg"
+                alt="Collection pulse dashboard with catalogue growth, field coverage, maker mix, and carry profile"
+                fill
+                loading="lazy"
+                sizes="(min-width: 1100px) 22vw, 60vw"
+                className="object-cover object-top"
+              />
+            </ScreenshotLightbox>
+          </div>
         </div>
       </section>
 
-      <section
-        aria-label="Product principles"
-        className="grid border-y border-border/70 sm:grid-cols-2 lg:grid-cols-4"
-      >
-        {principles.map(({ icon: Icon, title, detail }, index) => (
-          <div
-            key={title}
-            className={`px-5 py-6 ${index ? "border-t border-border/60 sm:border-t-0 sm:border-l" : ""} ${index === 2 ? "sm:border-t lg:border-t-0" : ""}`}
-          >
-            <Icon className="size-4 text-[var(--bladevault-title)]" />
-            <strong className="mt-3 block text-sm text-foreground">
-              {title}
-            </strong>
-            <span className="mt-1 block text-xs leading-5 text-muted-foreground">
-              {detail}
+      <div className={styles.principles} aria-label="BladeVault principles">
+        {principles.map(({ icon: Icon, title, detail }) => (
+          <div key={title} className={styles.principle}>
+            <span className={styles.principleIcon}>
+              <Icon aria-hidden="true" />
+            </span>
+            <span>
+              <strong>{title}</strong>
+              <span>{detail}</span>
             </span>
           </div>
         ))}
-      </section>
+      </div>
     </>
   )
 }

@@ -43,6 +43,10 @@ export function LocalFirst() {
           records.
         </p>
         <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">
+          Studio and Collection pulse read that same local vault. The new views
+          do not add a cloud dependency or move your records anywhere new.
+        </p>
+        <p className="mt-4 max-w-xl text-sm leading-6 text-muted-foreground">
           Add an optional local password in Settings → App lock, and use Lock
           now whenever you step away.
         </p>

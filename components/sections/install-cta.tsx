@@ -61,7 +61,7 @@ export function InstallCta() {
             className="vault-action vault-action-primary"
           >
             <Download className="size-4" />
-            Download latest release
+            Download {siteConfig.releaseVersion}
           </a>
           <a href={siteConfig.githubUrl} className="vault-action">
             View source <ArrowRight className="size-4" />

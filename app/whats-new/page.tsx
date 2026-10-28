@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 
+import { ScreenshotLightbox } from "@/components/screenshot-lightbox"
 import { ReleaseContents } from "@/components/site/release-contents"
 import { releaseAnchor } from "@/lib/navigation"
 import { cn } from "@/lib/utils"
@@ -9,7 +11,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "What’s new in BladeVault"
 const pageDescription =
-  "BladeVault release notes, including the Modern appearance and Studio visual library, customizable collection columns, a choice of start page, Collection pulse insights, cloud backups, app lock, Smart Collections, maintenance, and MCP support."
+  "BladeVault release notes, including the Modern appearance and theme options, Studio visual library, customizable collection columns, a choice of start page, Collection pulse insights, cloud backups, app lock, Smart Collections, maintenance, and MCP support."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -42,6 +44,7 @@ const releases = [
       "Select knives directly from the modern Collection list to bulk edit, add to Compare, pin, or delete them.",
       "Insights was rebuilt as Collection pulse, combining collection growth, field coverage, maker and steel mix, blade length versus weight, and recent additions with links back to the records.",
       "Settings → Appearance → Start page lets BladeVault open on Insights, Studio, or Collection at launch.",
+      "Choose Current or Modern in Settings → Appearance. More theme options are on the way.",
     ],
   },
   {
@@ -567,6 +570,33 @@ const releases = [
 const releaseBaseUrl = "https://github.com/dedkola/bladevault/releases/tag/"
 const releaseLinks = releases.map(({ version, date }) => ({ version, date }))
 
+const v2Highlights = [
+  {
+    label: "Studio",
+    detail: "A visual library for the whole vault",
+    src: "/screenshots/studio.jpg",
+    alt: "Studio visual library with a randomised gallery of knife photographs",
+  },
+  {
+    label: "Collection pulse",
+    detail: "Growth, coverage, makers, and steels",
+    src: "/screenshots/collection-pulse.jpg",
+    alt: "Collection pulse dashboard with catalogue growth and collection coverage",
+  },
+  {
+    label: "Modern workspace",
+    detail: "A quieter table with a docked inspector",
+    src: "/screenshots/collection-modern.jpg",
+    alt: "Modern Collection table with a docked knife inspector and shared header search",
+  },
+  {
+    label: "Theme options",
+    detail: "Current, Modern, and more to come",
+    src: "/screenshots/theme-options.jpg",
+    alt: "Settings appearance panel with Current and Modern theme choices",
+  },
+]
+
 export default function WhatsNewPage() {
   return (
     <main id="main" className="mx-auto w-full max-w-[1600px] px-4 py-4 sm:px-6">
@@ -642,6 +672,42 @@ export default function WhatsNewPage() {
                         </li>
                       ))}
                     </ul>
+
+                    {isLatest && (
+                      <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                        {v2Highlights.map((highlight) => (
+                          <figure
+                            key={highlight.label}
+                            className="overflow-hidden rounded-lg border border-border/70 bg-card"
+                          >
+                            <ScreenshotLightbox
+                              src={highlight.src}
+                              alt={highlight.alt}
+                              title={highlight.label}
+                              className="block w-full"
+                            >
+                              <Image
+                                src={highlight.src}
+                                alt={highlight.alt}
+                                width={1800}
+                                height={1125}
+                                loading="lazy"
+                                sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
+                                className="h-auto w-full object-cover object-top"
+                              />
+                            </ScreenshotLightbox>
+                            <figcaption className="border-t border-border/60 px-3 py-2.5">
+                              <span className="block text-sm font-semibold text-foreground">
+                                {highlight.label}
+                              </span>
+                              <span className="mt-0.5 block text-[11px] leading-4 text-muted-foreground">
+                                {highlight.detail}
+                              </span>
+                            </figcaption>
+                          </figure>
+                        ))}
+                      </div>
+                    )}
                   </article>
                 )
               })}
