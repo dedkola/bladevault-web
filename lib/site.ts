@@ -74,7 +74,7 @@ const videoEntries = [
 
 export const siteConfig = {
   name: "BladeVault",
-  releaseVersion: "v2.0.0",
+  releaseVersion: "v2.0.3",
   shortName: "BladeVault",
   defaultTitle: "BladeVault",
   description:

@@ -32,9 +32,36 @@ export const metadata: Metadata = {
 
 const releases = [
   {
+    version: "v2.0.3",
+    date: "2026-10-31",
+    latest: true,
+    changes: [
+      "Studio blends photo backgrounds into the cards in gallery tiles, focus mode, and Quick Look, in both light and dark modes.",
+      "Boker imports read the original photo URLs from product galleries, so every gallery image is imported in order without unrelated brand logos.",
+    ],
+  },
+  {
+    version: "v2.0.2",
+    date: "2026-10-31",
+    changes: [
+      "Modern Collection, Insights, and Studio start higher on screen now that their extra header rows are gone. Smart Collection controls moved into the Collection toolbar.",
+      "Collection additions in Modern Insights always covers the last 12 calendar months, including the current month, without a date-range selector.",
+      "Poikilo Blade pages load fully before importing, so the brand, price, lock, and gallery are captured instead of footer text and unrelated images. Protected gallery photos download with the required referrer.",
+      "Zero Tolerance imports wait for the dynamic product content and prefer the complete description and explicitly labeled specifications, skipping recommendation images, video thumbnails, and placeholder lock values.",
+    ],
+  },
+  {
+    version: "v2.0.1",
+    date: "2026-10-29",
+    changes: [
+      "Studio\u2019s repeated workspace row is gone, and Focus mode is now an icon button in the workspace header.",
+      "Studio quick look browses every saved photo of a knife, with buttons and left/right arrow keys, a photo counter, and a larger image above a compact footer.",
+      "Modern Insights shows monthly catalogue additions as labelled bars and adds switchable Blade, Overall, Weight, and Thickness histograms with expandable data tables.",
+    ],
+  },
+  {
     version: "v2.0.0",
     date: "2026-10-27",
-    latest: true,
     major: true,
     milestone: true,
     changes: [
@@ -673,7 +700,7 @@ export default function WhatsNewPage() {
                       ))}
                     </ul>
 
-                    {isLatest && (
+                    {isMilestone && (
                       <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                         {v2Highlights.map((highlight) => (
                           <figure
