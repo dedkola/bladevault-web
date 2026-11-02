@@ -153,7 +153,7 @@ export function CompetitionPage() {
               Download BladeVault
               <ArrowRight className="size-4" />
             </a>
-            <Link href="/#capabilities" className="vault-action">
+            <Link href="/#features" className="vault-action">
               See the capabilities
               <ArrowRight className="size-4" />
             </Link>

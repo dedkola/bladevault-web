@@ -1,22 +1,20 @@
 import type { Metadata } from "next"
 
-import { Hero } from "@/components/sections/hero"
-import { V2Showcase } from "@/components/sections/v2-showcase"
-import { WorkspaceFit } from "@/components/sections/workspace-fit"
-import { CapabilityMosaic } from "@/components/sections/capability-mosaic"
-import { WorkflowBand } from "@/components/sections/workflow-band"
-import { ReleaseLedger } from "@/components/sections/release-ledger"
-import { LocalFirst } from "@/components/sections/local-first"
-import { GuideStrip } from "@/components/sections/guide-strip"
+import { HomepageAi } from "@/components/sections/homepage-ai"
+import { HomepageDevices } from "@/components/sections/homepage-devices"
+import { HomepageFeatures } from "@/components/sections/homepage-features"
+import { HomepageHero } from "@/components/sections/homepage-hero"
+import { HomepageImport } from "@/components/sections/homepage-import"
 import { InstallCta } from "@/components/sections/install-cta"
+import styles from "@/components/sections/homepage-v3.module.css"
 import { absoluteUrl, siteConfig } from "@/lib/site"
 
 export const dynamic = "force-static"
 
 const pageTitle =
-  "Studio, Collection pulse, and local-first knife collection management | BladeVault"
+  "Auto scrape, AI access, and a local-first knife vault | BladeVault"
 const pageDescription =
-  "Browse the vault in Studio, read Collection pulse, choose a theme, shape a customizable workspace, compare knives, and keep every record in a private local-first collection manager."
+  "Paste a product URL and let BladeVault fill the record. Read the vault, connect Claude or Codex through MCP, lock it with a password, and open it on macOS, iPad, or iPhone."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -35,7 +33,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/opengraph-image",
-        alt: "BladeVault preview card for Studio, Collection pulse, and a local-first knife collection manager",
+        alt: "BladeVault preview card for automatic product-page scraping, AI access, and a local-first knife collection manager",
       },
     ],
   },
@@ -93,16 +91,15 @@ export default function Page() {
         id="main"
         className="mx-auto w-full max-w-[1600px] overflow-hidden px-4 pb-4 sm:px-6"
       >
-        <Hero />
-        <V2Showcase />
-        <WorkspaceFit />
-        <CapabilityMosaic />
-        <WorkflowBand />
-        <ReleaseLedger />
-        <LocalFirst />
-        <GuideStrip />
-        <div className="mt-4">
-          <InstallCta />
+        <div className={styles.homepage}>
+          <HomepageHero />
+          <HomepageImport />
+          <HomepageDevices />
+          <HomepageAi />
+          <HomepageFeatures />
+          <div className={styles.installWrap}>
+            <InstallCta />
+          </div>
         </div>
       </main>
     </>

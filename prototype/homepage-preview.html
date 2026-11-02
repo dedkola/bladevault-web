@@ -1,0 +1,2770 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='4' fill='%232e3417'/%3E%3Ccircle cx='8' cy='8' r='3' fill='%23d3a42f'/%3E%3C/svg%3E"
+    />
+    <title>BladeVault — Your collection, kept useful.</title>
+    <meta
+      name="description"
+      content="BladeVault is a local-first knife collection manager with automatic product-page scraping, AI access through MCP, app lock, and a responsive vault for macOS, iPad, and iPhone."
+    />
+    <script>
+      document.documentElement.classList.add("js")
+    </script>
+    <style>
+      /* ------------------------------------------------------------------
+         BladeVault homepage concept
+         Self-contained HTML. Real screenshots from a live local vault.
+      ------------------------------------------------------------------ */
+
+      :root {
+        --paper: #fbfaf7;
+        --paper-2: #f6f1e5;
+        --paper-3: #efe7d3;
+        --card: #fffefa;
+        --ink: #302e29;
+        --ink-soft: #5f5949;
+        --muted: #706956;
+        --olive: #2e3417;
+        --olive-2: #4f5821;
+        --gold: #d3a42f;
+        --gold-2: #e2bd62;
+        --title: #a46608;
+        --line: #ddc58e;
+        --line-soft: rgba(221, 197, 142, 0.45);
+        --line-faint: rgba(221, 197, 142, 0.24);
+        --shadow: 0 1px 2px rgba(46, 52, 23, 0.04);
+        --shadow-lg: 0 28px 80px rgba(46, 52, 23, 0.14);
+        --radius: 18px;
+        --font-sans:
+          "Geist", "Inter", ui-sans-serif, system-ui, -apple-system,
+          BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-mono: "Geist Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-width: 320px;
+        overflow-x: clip;
+        margin: 0;
+        color: var(--ink);
+        background:
+          radial-gradient(
+            circle at 88% -4%,
+            rgba(211, 164, 47, 0.14),
+            transparent 34rem
+          ),
+          radial-gradient(
+            circle at 2% 18%,
+            rgba(79, 88, 33, 0.07),
+            transparent 30rem
+          ),
+          linear-gradient(180deg, #fff 0, var(--paper) 22rem, var(--paper) 100%);
+        font-family: var(--font-sans);
+        font-size: 16px;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      ::selection {
+        color: var(--ink);
+        background: rgba(211, 164, 47, 0.32);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .hero-copy,
+      .hero-visual,
+      .window,
+      .scrape-step,
+      .scrape-thumb,
+      .scrape-result,
+      .device,
+      .device-frame,
+      .ai-card,
+      .lock-card,
+      .ai-shot,
+      .lock-shot,
+      .feature-card,
+      .install-card {
+        min-width: 0;
+      }
+
+      figure {
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      p {
+        margin-top: 0;
+      }
+
+      svg {
+        display: block;
+      }
+
+      .ico {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .apple-path {
+        fill: currentColor;
+        stroke: none;
+      }
+
+      .wrap {
+        width: min(100% - 40px, 1440px);
+        margin-inline: auto;
+      }
+
+      .skip-link {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 300;
+        padding: 10px 14px;
+        border: 1px solid var(--gold);
+        border-radius: 999px;
+        color: var(--ink);
+        background: var(--card);
+        font-size: 13px;
+        font-weight: 650;
+        text-decoration: none;
+        transform: translateY(-160%);
+        transition: transform 160ms ease;
+      }
+
+      .skip-link:focus {
+        transform: translateY(0);
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--title);
+        outline-offset: 3px;
+      }
+
+      /* ---------- top bar ---------- */
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid var(--line-faint);
+        background: rgba(251, 250, 247, 0.9);
+        backdrop-filter: blur(18px);
+      }
+
+      .topbar-inner {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 22px;
+        align-items: center;
+        width: min(100% - 40px, 1440px);
+        min-height: 68px;
+        margin-inline: auto;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 30px;
+        height: 30px;
+        flex: 0 0 auto;
+        place-items: center;
+      }
+
+      .brand-mark svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .brand-name {
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 650;
+        letter-spacing: -0.04em;
+        white-space: nowrap;
+      }
+
+      .brand-name span {
+        color: var(--title);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: center;
+        gap: 2px;
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav a {
+        padding: 8px 11px;
+        border-radius: 999px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        line-height: 1;
+        text-decoration: none;
+        white-space: nowrap;
+        transition:
+          color 160ms ease,
+          background 160ms ease;
+      }
+
+      .nav a:hover,
+      .nav a[aria-current="true"] {
+        color: var(--title);
+        background: var(--paper-2);
+      }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 40px;
+        padding: 0 14px;
+        border: 1px solid var(--olive);
+        border-radius: 999px;
+        color: var(--paper);
+        background: var(--olive);
+        font-size: 12px;
+        font-weight: 650;
+        line-height: 1;
+        text-decoration: none;
+        white-space: nowrap;
+        transition:
+          background 160ms ease,
+          transform 160ms ease;
+      }
+
+      .nav-cta:hover {
+        background: #3b4320;
+        transform: translateY(-1px);
+      }
+
+      .nav-cta .ico {
+        width: 14px;
+        height: 14px;
+      }
+
+      /* ---------- shared type ---------- */
+
+      .eyebrow,
+      .section-kicker {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 9px;
+        align-items: center;
+        margin: 0;
+        color: var(--title);
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 650;
+        letter-spacing: 0.13em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .eyebrow .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--olive-2);
+        box-shadow: 0 0 0 3px rgba(79, 88, 33, 0.12);
+      }
+
+      .section-kicker .num {
+        display: inline-grid;
+        width: 24px;
+        height: 24px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--title);
+        background: var(--paper-2);
+        font-size: 9px;
+        letter-spacing: 0;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        min-height: 46px;
+        padding: 0 17px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--ink);
+        background: var(--card);
+        font-size: 13px;
+        font-weight: 650;
+        line-height: 1;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          transform 160ms ease,
+          background 160ms ease,
+          border-color 160ms ease;
+      }
+
+      .button:hover {
+        border-color: var(--gold);
+        transform: translateY(-1px);
+      }
+
+      .button-primary {
+        border-color: var(--olive);
+        color: var(--paper);
+        background: var(--olive);
+      }
+
+      .button-primary:hover {
+        border-color: var(--olive);
+        background: #3b4320;
+      }
+
+      .button .ico {
+        width: 15px;
+        height: 15px;
+      }
+
+      /* ---------- hero ---------- */
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(28rem, 0.98fr);
+        gap: clamp(2.5rem, 5vw, 6rem);
+        align-items: start;
+        padding-block: clamp(3.6rem, 6vw, 7rem) clamp(3.4rem, 5vw, 5.5rem);
+      }
+
+      .hero-copy {
+        max-width: 48rem;
+        animation: rise 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      .hero h1 {
+        max-width: 9.8ch;
+        margin: 20px 0 0;
+        font-size: clamp(3.8rem, 7vw, 7.4rem);
+        font-weight: 620;
+        letter-spacing: -0.075em;
+        line-height: 0.9;
+        text-wrap: balance;
+      }
+
+      .hero h1 em {
+        color: var(--title);
+        font-style: normal;
+      }
+
+      .hero-sub {
+        max-width: 50ch;
+        margin: 26px 0 0;
+        color: var(--muted);
+        font-size: clamp(16px, 1.3vw, 19px);
+        line-height: 1.7;
+        text-wrap: pretty;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 30px;
+      }
+
+      .hero-trust {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        margin-top: 24px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .hero-trust span {
+        display: inline-flex;
+        gap: 7px;
+        align-items: center;
+      }
+
+      .hero-trust span::before {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--gold);
+        content: "";
+      }
+
+      .hero-visual {
+        position: relative;
+        min-width: 0;
+        padding: 18px 0 0;
+        animation: rise 880ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      .hero-visual::before {
+        position: absolute;
+        top: 4%;
+        right: -1rem;
+        z-index: -1;
+        width: 26rem;
+        height: 26rem;
+        border: 1px solid rgba(211, 164, 47, 0.18);
+        border-radius: 50%;
+        content: "";
+      }
+
+      .hero-badge {
+        position: absolute;
+        top: -12px;
+        right: 20px;
+        z-index: 3;
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        min-height: 30px;
+        padding: 0 11px;
+        border: 1px solid rgba(236, 218, 163, 0.28);
+        border-radius: 999px;
+        color: var(--paper);
+        background: var(--olive);
+        box-shadow: 0 12px 30px rgba(46, 52, 23, 0.18);
+        font-family: var(--font-mono);
+        font-size: 8px;
+        font-weight: 650;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      .hero-badge b {
+        color: var(--gold-2);
+        font-size: 10px;
+        letter-spacing: 0.04em;
+      }
+
+      .window {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--card);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .window-bar {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 34px;
+        padding: 0 12px;
+        border-bottom: 1px solid var(--line-faint);
+        color: var(--muted);
+        background: var(--paper-2);
+        font-family: var(--font-mono);
+        font-size: 8px;
+        letter-spacing: 0.08em;
+        line-height: 1.2;
+        text-transform: uppercase;
+      }
+
+      .window-bar .dots {
+        display: flex;
+        gap: 5px;
+      }
+
+      .window-bar .dots i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--olive-2);
+      }
+
+      .window-bar .dots i:nth-child(2) {
+        background: var(--gold);
+      }
+
+      .window-bar .dots i:nth-child(3) {
+        border: 1px solid var(--line);
+        background: transparent;
+      }
+
+      .hero-window img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top left;
+      }
+
+      .hero-window-caption {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 12px;
+        border-top: 1px solid var(--line-faint);
+        background: rgba(246, 241, 229, 0.58);
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 8px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .hero-window-caption b {
+        color: var(--title);
+        font-weight: 650;
+      }
+
+      /* ---------- principle strip ---------- */
+
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-block: 1px solid var(--line-soft);
+      }
+
+      .principle {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 18px 20px;
+      }
+
+      .principle + .principle {
+        border-left: 1px solid var(--line-faint);
+      }
+
+      .principle-icon {
+        display: grid;
+        width: 30px;
+        height: 30px;
+        flex: 0 0 auto;
+        place-items: center;
+        border: 1px solid var(--line-soft);
+        border-radius: 9px;
+        color: var(--title);
+        background: var(--paper-2);
+      }
+
+      .principle-icon .ico {
+        width: 15px;
+        height: 15px;
+      }
+
+      .principle strong {
+        display: block;
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 650;
+        letter-spacing: -0.01em;
+      }
+
+      .principle span {
+        display: block;
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.45;
+      }
+
+      /* ---------- sections ---------- */
+
+      .section {
+        padding-block: clamp(4rem, 7vw, 7.5rem);
+        border-bottom: 1px solid var(--line-soft);
+        scroll-margin-top: 88px;
+      }
+
+      .section:last-of-type {
+        border-bottom: 0;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.72fr);
+        gap: 18px clamp(2rem, 5vw, 5rem);
+        align-items: end;
+        margin-bottom: clamp(2rem, 4vw, 3.4rem);
+      }
+
+      .section-head .section-kicker {
+        grid-column: 1 / -1;
+      }
+
+      .section-head h2 {
+        grid-column: 1;
+        max-width: 15ch;
+        margin: 0;
+        font-size: clamp(2.5rem, 4.8vw, 4.8rem);
+        font-weight: 620;
+        letter-spacing: -0.065em;
+        line-height: 0.95;
+        text-wrap: balance;
+      }
+
+      .section-intro {
+        grid-column: 2;
+        align-self: end;
+        max-width: 54ch;
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      /* ---------- import ---------- */
+
+      .import-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+      }
+
+      .scrape-steps {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .scrape-step {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 18px;
+        border: 1px solid var(--line-soft);
+        border-radius: 14px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 254, 250, 0.96),
+          rgba(255, 254, 250, 0.8)
+        );
+        box-shadow: var(--shadow);
+      }
+
+      .step-num {
+        display: grid;
+        width: 30px;
+        height: 30px;
+        margin-bottom: 11px;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        color: var(--title);
+        background: var(--paper-2);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        font-weight: 650;
+        letter-spacing: 0;
+      }
+
+      .scrape-step h3 {
+        margin: 0;
+        color: var(--ink);
+        font-size: 15px;
+        font-weight: 650;
+        letter-spacing: -0.025em;
+        line-height: 1.25;
+      }
+
+      .scrape-step p {
+        max-width: 40ch;
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .scrape-thumb {
+        overflow: hidden;
+        margin-top: 12px;
+        border: 1px solid var(--line-soft);
+        border-radius: 10px;
+        background: var(--card);
+      }
+
+      .scrape-thumb img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top left;
+      }
+
+      .step-checks {
+        display: grid;
+        gap: 5px;
+        margin: 14px 0 0;
+        padding: 12px 0 0;
+        border-top: 1px solid var(--line-faint);
+        list-style: none;
+      }
+
+      .step-checks li {
+        position: relative;
+        padding-left: 15px;
+        color: var(--ink-soft);
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      .step-checks li::before {
+        position: absolute;
+        top: 7px;
+        left: 0;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--gold);
+        content: "";
+      }
+
+      .import-foot {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 22px;
+        align-items: center;
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line-soft);
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      .import-foot b {
+        color: var(--ink-soft);
+        font-weight: 650;
+      }
+
+      .import-foot a {
+        color: var(--title);
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      .import-foot a:hover {
+        text-decoration: underline;
+      }
+
+      .scrape-result {
+        order: -1;
+        width: min(100%, 980px);
+        min-width: 0;
+        margin-inline: auto;
+      }
+
+      .scrape-result .window {
+        box-shadow: 0 24px 65px rgba(46, 52, 23, 0.13);
+      }
+
+      .scrape-result img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top left;
+      }
+
+      .scrape-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+
+      .scrape-tags span {
+        padding: 6px 9px;
+        border: 1px solid var(--line-soft);
+        border-radius: 999px;
+        color: var(--ink-soft);
+        background: rgba(246, 241, 229, 0.65);
+        font-family: var(--font-mono);
+        font-size: 8px;
+        letter-spacing: 0.06em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .scrape-tags span:first-child {
+        border-color: rgba(211, 164, 47, 0.5);
+        color: var(--title);
+        background: #fbf1d7;
+      }
+
+      /* ---------- devices ---------- */
+
+      .device-stage {
+        position: relative;
+        min-height: 750px;
+        margin-top: 18px;
+      }
+
+      .device-stage::before {
+        position: absolute;
+        top: 10%;
+        left: 50%;
+        z-index: -1;
+        width: min(70vw, 54rem);
+        height: min(70vw, 54rem);
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(211, 164, 47, 0.13),
+          transparent 66%
+        );
+        content: "";
+        transform: translateX(-50%);
+      }
+
+      .device {
+        margin: 0;
+      }
+
+      .device-mac {
+        position: relative;
+        z-index: 1;
+        width: 72%;
+      }
+
+      .device-mac .window {
+        border-radius: 14px;
+        box-shadow: 0 34px 90px rgba(46, 52, 23, 0.18);
+      }
+
+      .device-mac img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        object-position: top left;
+      }
+
+      .device-ipad {
+        position: absolute;
+        bottom: 0;
+        left: 4%;
+        z-index: 2;
+        width: 36%;
+        transform: rotate(-1.4deg);
+      }
+
+      .device-ipad .device-frame {
+        position: relative;
+        padding: 6px;
+        overflow: hidden;
+        border: 1px solid rgba(46, 52, 23, 0.14);
+        border-radius: 24px;
+        background: linear-gradient(180deg, #fbf8ef, #e8e2d4);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.8),
+          0 22px 55px rgba(46, 52, 23, 0.14);
+      }
+
+      .device-ipad .device-frame::before {
+        position: absolute;
+        top: 3px;
+        left: 50%;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: rgba(46, 52, 23, 0.25);
+        content: "";
+        transform: translateX(-50%);
+      }
+
+      .device-ipad img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        border-radius: 18px;
+        box-shadow: inset 0 0 0 1px rgba(46, 52, 23, 0.06);
+        object-fit: cover;
+        object-position: top left;
+      }
+
+      .device-iphone {
+        position: absolute;
+        right: 5%;
+        bottom: 0;
+        z-index: 3;
+        width: 14.5%;
+        transform: rotate(1.8deg);
+      }
+
+      .device-iphone .device-frame {
+        position: relative;
+        padding: 5px;
+        overflow: hidden;
+        border: 1px solid rgba(46, 52, 23, 0.14);
+        border-radius: 30px;
+        background: linear-gradient(180deg, #fbf8ef, #e8e2d4);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.8),
+          0 22px 55px rgba(46, 52, 23, 0.16);
+      }
+
+      .device-iphone .device-frame::before {
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        z-index: 2;
+        width: 30%;
+        height: 6px;
+        border-radius: 999px;
+        background: #2e3417;
+        content: "";
+        opacity: 0.85;
+        transform: translateX(-50%);
+      }
+
+      .device-iphone img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 390 / 844;
+        border-radius: 25px;
+        box-shadow: inset 0 0 0 1px rgba(46, 52, 23, 0.06);
+        object-fit: cover;
+        object-position: top left;
+      }
+
+      .device-legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        align-items: center;
+        justify-content: center;
+        margin-top: 26px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .device-legend span {
+        display: inline-flex;
+        gap: 7px;
+        align-items: center;
+      }
+
+      .device-legend span::before {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--gold);
+        content: "";
+      }
+
+      .device-note {
+        max-width: 56ch;
+        margin: 14px auto 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      /* ---------- AI + security ---------- */
+
+      .ai-section {
+        width: min(100% - 24px, 1464px);
+        margin-block: 2rem;
+        padding: clamp(2.4rem, 5vw, 5rem) clamp(1.2rem, 3vw, 3.4rem);
+        border-radius: 30px;
+        color: var(--paper);
+        background:
+          radial-gradient(
+            circle at 84% 2%,
+            rgba(211, 164, 47, 0.18),
+            transparent 26rem
+          ),
+          radial-gradient(
+            circle at 6% 92%,
+            rgba(79, 88, 33, 0.34),
+            transparent 30rem
+          ),
+          var(--olive);
+        scroll-margin-top: 88px;
+      }
+
+      .ai-section .section-kicker {
+        color: var(--gold-2);
+      }
+
+      .ai-section .section-kicker .num {
+        border-color: rgba(236, 218, 163, 0.24);
+        color: var(--gold-2);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .ai-head {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.72fr);
+        gap: 18px clamp(2rem, 5vw, 5rem);
+        align-items: end;
+        margin-bottom: clamp(2rem, 4vw, 3.2rem);
+      }
+
+      .ai-head .section-kicker {
+        grid-column: 1 / -1;
+      }
+
+      .ai-head h2 {
+        grid-column: 1;
+        max-width: 14ch;
+        margin: 0;
+        color: var(--paper);
+        font-size: clamp(2.5rem, 4.8vw, 4.8rem);
+        font-weight: 620;
+        letter-spacing: -0.065em;
+        line-height: 0.95;
+        text-wrap: balance;
+      }
+
+      .ai-head .section-intro {
+        grid-column: 2;
+        align-self: end;
+        max-width: 54ch;
+        margin: 0;
+        color: rgba(244, 237, 207, 0.7);
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      .ai-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.18fr) minmax(20rem, 0.82fr);
+        gap: 14px;
+        align-items: stretch;
+      }
+
+      .ai-card,
+      .lock-card {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: clamp(20px, 3vw, 28px);
+        border: 1px solid rgba(236, 218, 163, 0.2);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.045);
+      }
+
+      .ai-badge {
+        display: inline-flex;
+        align-self: flex-start;
+        gap: 8px;
+        align-items: center;
+        padding: 5px 9px;
+        border: 1px solid rgba(236, 218, 163, 0.24);
+        border-radius: 999px;
+        color: var(--gold-2);
+        background: rgba(255, 255, 255, 0.05);
+        font-family: var(--font-mono);
+        font-size: 8px;
+        font-weight: 650;
+        letter-spacing: 0.1em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .ai-badge .ico {
+        width: 12px;
+        height: 12px;
+      }
+
+      .ai-card h3,
+      .lock-card h3 {
+        margin: 0;
+        color: var(--paper);
+        font-size: clamp(1.5rem, 2.3vw, 2.3rem);
+        font-weight: 620;
+        letter-spacing: -0.05em;
+        line-height: 1;
+      }
+
+      .ai-card > p,
+      .lock-card > p {
+        max-width: 58ch;
+        margin: 0;
+        color: rgba(244, 237, 207, 0.68);
+        font-size: 13px;
+        line-height: 1.68;
+      }
+
+      .chat {
+        display: grid;
+        gap: 9px;
+        padding: 16px;
+        border: 1px solid rgba(236, 218, 163, 0.16);
+        border-radius: 12px;
+        background: #171a0c;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        line-height: 1.7;
+      }
+
+      .chat p {
+        margin: 0;
+      }
+
+      .chat b {
+        margin-right: 6px;
+        color: var(--gold-2);
+        font-weight: 650;
+        letter-spacing: 0.04em;
+      }
+
+      .chat .you {
+        color: rgba(244, 237, 207, 0.7);
+      }
+
+      .chat .bot {
+        color: var(--paper);
+      }
+
+      .chat pre {
+        margin: 0;
+        color: rgba(244, 237, 207, 0.78);
+        font: inherit;
+        white-space: pre-wrap;
+      }
+
+      .chat .status {
+        margin-top: 3px;
+        padding-top: 9px;
+        border-top: 1px solid rgba(236, 218, 163, 0.14);
+        color: rgba(244, 237, 207, 0.46);
+        font-size: 8px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .client-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .client-pills span {
+        padding: 6px 9px;
+        border: 1px solid rgba(236, 218, 163, 0.2);
+        border-radius: 999px;
+        color: rgba(244, 237, 207, 0.78);
+        font-family: var(--font-mono);
+        font-size: 8px;
+        letter-spacing: 0.05em;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+
+      .ai-shot {
+        overflow: hidden;
+        margin-top: auto;
+        border: 1px solid rgba(236, 218, 163, 0.18);
+        border-radius: 10px;
+        background: #fff;
+      }
+
+      .ai-shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .ai-points,
+      .lock-points {
+        display: grid;
+        gap: 6px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .ai-points li,
+      .lock-points li {
+        position: relative;
+        padding-left: 15px;
+        color: rgba(244, 237, 207, 0.68);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .ai-points li::before,
+      .lock-points li::before {
+        position: absolute;
+        top: 7px;
+        left: 0;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--gold-2);
+        content: "";
+      }
+
+      .lock-icon {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border: 1px solid rgba(236, 218, 163, 0.24);
+        border-radius: 11px;
+        color: var(--gold-2);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .lock-icon .ico {
+        width: 19px;
+        height: 19px;
+      }
+
+      .lock-shot {
+        overflow: hidden;
+        border: 1px solid rgba(236, 218, 163, 0.18);
+        border-radius: 10px;
+        background: #fff;
+      }
+
+      .lock-shot img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .lock-note {
+        margin: 0;
+        padding-top: 10px;
+        border-top: 1px solid rgba(236, 218, 163, 0.14);
+        color: rgba(244, 237, 207, 0.44);
+        font-family: var(--font-mono);
+        font-size: 8px;
+        letter-spacing: 0.05em;
+        line-height: 1.6;
+        text-transform: uppercase;
+      }
+
+      /* ---------- features ---------- */
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .feature-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow: hidden;
+        padding: 22px;
+        border: 1px solid var(--line-soft);
+        border-radius: 16px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 254, 250, 0.97),
+          rgba(255, 254, 250, 0.84)
+        );
+        box-shadow: var(--shadow);
+        transition:
+          transform 220ms ease,
+          border-color 220ms ease,
+          box-shadow 220ms ease;
+      }
+
+      .feature-card::after {
+        position: absolute;
+        top: -70px;
+        right: -60px;
+        width: 170px;
+        height: 170px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(211, 164, 47, 0.09),
+          transparent 68%
+        );
+        content: "";
+        pointer-events: none;
+      }
+
+      .feature-card:hover {
+        border-color: rgba(211, 164, 47, 0.55);
+        box-shadow: 0 16px 42px rgba(46, 52, 23, 0.08);
+        transform: translateY(-2px);
+      }
+
+      .feature-icon {
+        display: grid;
+        width: 36px;
+        height: 36px;
+        place-items: center;
+        border: 1px solid var(--line-soft);
+        border-radius: 10px;
+        color: var(--title);
+        background: var(--paper-2);
+      }
+
+      .feature-icon .ico {
+        width: 18px;
+        height: 18px;
+      }
+
+      .feature-card h3 {
+        margin: 2px 0 0;
+        color: var(--ink);
+        font-size: 1.05rem;
+        font-weight: 650;
+        letter-spacing: -0.035em;
+        line-height: 1.2;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.68;
+      }
+
+      .feature-card p code {
+        padding: 1px 4px;
+        border: 1px solid var(--line-faint);
+        border-radius: 4px;
+        color: var(--title);
+        background: var(--paper-2);
+        font-family: var(--font-mono);
+        font-size: 0.86em;
+      }
+
+      .feature-list {
+        display: grid;
+        gap: 5px;
+        margin: 2px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .feature-list li {
+        position: relative;
+        padding-left: 14px;
+        color: var(--ink-soft);
+        font-size: 11px;
+        line-height: 1.5;
+      }
+
+      .feature-list li::before {
+        position: absolute;
+        top: 7px;
+        left: 0;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--gold);
+        content: "";
+      }
+
+      .also-included {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px solid var(--line-soft);
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .also-included b {
+        color: var(--title);
+        font-weight: 650;
+      }
+
+      .also-included span {
+        padding: 5px 8px;
+        border: 1px solid var(--line-soft);
+        border-radius: 999px;
+        background: rgba(246, 241, 229, 0.6);
+      }
+
+      /* ---------- install ---------- */
+
+      .install {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(32rem, 1.2fr);
+        overflow: hidden;
+        border: 1px solid var(--line-soft);
+        border-radius: 18px;
+        background: var(--card);
+        box-shadow: var(--shadow);
+        scroll-margin-top: 88px;
+      }
+
+      .install-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(26px, 4vw, 52px);
+        border-right: 1px solid var(--line-soft);
+      }
+
+      .install-copy h2 {
+        max-width: 10ch;
+        margin: 14px 0 0;
+        font-size: clamp(2.6rem, 4.6vw, 4.6rem);
+        font-weight: 620;
+        letter-spacing: -0.065em;
+        line-height: 0.95;
+        text-wrap: balance;
+      }
+
+      .install-copy p {
+        max-width: 42ch;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .install-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 26px;
+      }
+
+      .install-note {
+        margin-top: 18px;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .install-options {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .install-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 210px;
+        padding: 26px;
+        text-decoration: none;
+        transition: background 160ms ease;
+      }
+
+      .install-card:nth-child(odd) {
+        border-right: 1px solid var(--line-soft);
+      }
+
+      .install-card:nth-child(n + 3) {
+        border-top: 1px solid var(--line-soft);
+      }
+
+      .install-card:hover {
+        background: rgba(246, 241, 229, 0.55);
+      }
+
+      .install-card .feature-icon {
+        width: 34px;
+        height: 34px;
+      }
+
+      .install-card h3 {
+        margin: 24px 0 0;
+        font-size: 16px;
+        font-weight: 650;
+        letter-spacing: -0.03em;
+      }
+
+      .install-card p {
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.55;
+      }
+
+      .install-card span {
+        display: flex;
+        gap: 7px;
+        align-items: center;
+        margin-top: auto;
+        padding-top: 20px;
+        color: var(--title);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        font-weight: 650;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .install-card span .ico {
+        width: 12px;
+        height: 12px;
+        transition: transform 160ms ease;
+      }
+
+      .install-card:hover span .ico {
+        transform: translate(1px, -1px);
+      }
+
+      /* ---------- footer ---------- */
+
+      .footer {
+        margin-top: 2rem;
+        padding-block: 28px 34px;
+        border-top: 1px solid var(--line-soft);
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        align-items: center;
+        justify-content: space-between;
+        width: min(100% - 40px, 1440px);
+        margin-inline: auto;
+      }
+
+      .footer-brand {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .footer-brand b {
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 650;
+        letter-spacing: -0.03em;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .footer-links a {
+        text-decoration: none;
+        transition: color 160ms ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--title);
+      }
+
+      /* ---------- motion ---------- */
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 700ms ease,
+          transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .js .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+
+        .js .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ---------- responsive ---------- */
+
+      @media (max-width: 1180px) {
+        .topbar-inner {
+          grid-template-columns: auto 1fr auto;
+          grid-template-rows: auto auto;
+        }
+
+        .brand {
+          grid-column: 1;
+          grid-row: 1;
+        }
+
+        .nav-cta {
+          grid-column: 3;
+          grid-row: 1;
+          justify-self: end;
+        }
+
+        .nav {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          justify-content: flex-start;
+          padding: 4px 0 7px;
+          border-top: 1px solid var(--line-faint);
+        }
+
+        .section,
+        .ai-section,
+        .install {
+          scroll-margin-top: 120px;
+        }
+
+        .hero {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 2.6rem;
+        }
+
+        .hero-copy {
+          max-width: 58rem;
+        }
+
+        .hero h1 {
+          max-width: 11ch;
+        }
+
+        .hero-visual {
+          max-width: 56rem;
+        }
+
+        .section-head,
+        .ai-head {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .section-head h2,
+        .ai-head h2 {
+          max-width: 16ch;
+        }
+
+        .section-intro,
+        .ai-head .section-intro {
+          grid-column: 1;
+          max-width: 62ch;
+        }
+
+        .scrape-result {
+          max-width: 56rem;
+        }
+
+        .scrape-steps {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .ai-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .features-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .install {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .install-copy {
+          border-right: 0;
+          border-bottom: 1px solid var(--line-soft);
+        }
+
+        .device-stage {
+          min-height: 680px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .principles {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .principle:nth-child(3) {
+          border-left: 0;
+        }
+
+        .principle:nth-child(n + 3) {
+          border-top: 1px solid var(--line-faint);
+        }
+
+        .device-stage {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr);
+          min-height: auto;
+          gap: 28px;
+        }
+
+        .device-stage::before {
+          top: 18%;
+          width: 80vw;
+          height: 80vw;
+        }
+
+        .device-mac,
+        .device-ipad,
+        .device-iphone {
+          position: static;
+          width: 100%;
+          transform: none;
+        }
+
+        .device-ipad {
+          width: min(72%, 36rem);
+          justify-self: center;
+        }
+
+        .device-iphone {
+          width: min(34%, 16rem);
+          justify-self: center;
+        }
+
+        .device-legend {
+          margin-top: 6px;
+        }
+
+        .install-options {
+          border-top: 1px solid var(--line-soft);
+        }
+      }
+
+      @media (max-width: 700px) {
+        .wrap,
+        .topbar-inner,
+        .footer-inner {
+          width: min(100% - 28px, 640px);
+        }
+
+        .topbar-inner {
+          gap: 10px;
+        }
+
+        .brand-name {
+          font-size: 16px;
+        }
+
+        .brand-mark {
+          width: 26px;
+          height: 26px;
+        }
+
+        .brand-mark svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        .nav a {
+          padding: 8px 9px;
+        }
+
+        .nav-cta {
+          min-height: 36px;
+          padding: 0 11px;
+          font-size: 10px;
+        }
+
+        .hero {
+          padding-top: 2.8rem;
+        }
+
+        .hero h1 {
+          max-width: 10ch;
+          font-size: clamp(3.2rem, 15vw, 5.4rem);
+        }
+
+        .hero-sub {
+          font-size: 16px;
+        }
+
+        .hero-visual {
+          padding-top: 12px;
+        }
+
+        .hero-visual::before {
+          display: none;
+        }
+
+        .hero-badge {
+          top: -10px;
+          right: 10px;
+        }
+
+        .principles {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .principle + .principle {
+          border-left: 0;
+          border-top: 1px solid var(--line-faint);
+        }
+
+        .section-head h2,
+        .ai-head h2 {
+          font-size: clamp(2.2rem, 11vw, 3.4rem);
+        }
+
+        .features-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .scrape-steps {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .install-options {
+          grid-template-columns: 1fr;
+        }
+
+        .install-card:nth-child(odd) {
+          border-right: 0;
+        }
+
+        .install-card:nth-child(n + 2) {
+          border-top: 1px solid var(--line-soft);
+        }
+
+        .install-card {
+          min-height: 0;
+        }
+
+        .device-ipad {
+          width: min(86%, 32rem);
+        }
+
+        .device-iphone {
+          width: min(48%, 15rem);
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .topbar-inner {
+          min-height: 58px;
+        }
+
+        .hero h1 {
+          max-width: 9ch;
+          font-size: clamp(2.9rem, 15vw, 4.6rem);
+        }
+
+        .hero-actions .button {
+          width: 100%;
+        }
+
+        .scrape-step {
+          grid-template-columns: 30px minmax(0, 1fr);
+          gap: 11px;
+        }
+
+        .step-num {
+          width: 26px;
+          height: 26px;
+          font-size: 8px;
+        }
+
+        .device-ipad {
+          width: 100%;
+        }
+
+        .device-iphone {
+          width: 82%;
+        }
+
+        .device-legend {
+          justify-content: flex-start;
+        }
+
+        .device-note {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="BladeVault home">
+          <span class="brand-mark" aria-hidden="true">
+            <svg
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.8 6.6 4.6 2.9c-.1-.2.1-.6.4-.6h6.6c.1 0 .3-.1.4-.2l.9-1.5c.1-.3-.1-.6-.5-.6H.7C.4 0 .2.3.4.6l4.4 7.6c.1.2.5.3.6.1l1.2-1.2c.2-.1.2-.3.2-.5ZM8.1 13.9l1.1 1.9c.2.3.6.3.7 0l1-1.7c.1-.1.1-.3 0-.4l-.8-1.4c-.1-.3-.4-.3-.6-.1l-1.2 1.2c-.2.2-.2.4-.1.5Z"
+                fill="#2e3417"
+              />
+              <path
+                d="M14.4 5.5c-.9.9-1.8 1.8-2.7 2.7-.2.2-.4.2-.7 0-.2-.2-.4-.2-.6 0-.2.2-.5.2-.7 0C9.4 8 9.2 7.7 8.9 7.5 8.8 7.3 8.8 7.2 8.9 7c.6-.6 1.3-1.3 1.9-1.9C12.2 3.7 13.6 2.3 15 1c.2-.2.4-.2.5.1.1.4.2.9.2 1.4 0 1.1-.5 2.1-1.3 3ZM14.5 2.9c-.1 0-.2 0-.2.2-.2.8-.7 1.4-1.3 2-.2.2-.3.3-.5.5-.1.1-.1.3 0 .3.1.1.2.1.3 0 .3-.3.7-.7 1-1 .4-.4.7-1 .9-1.6v-.1c0-.2-.1-.3-.2-.3ZM5.4 13.6h-.1c-.6-.1-1-.4-1.1-.9-.2-.5 0-.9.4-1.3C5.8 10.2 7 9 8.2 7.8c.2-.2.3-.2.4 0 .3.3.7.7 1 1 .4.4.4.8-.2.9-.2.1-.4.3-.6.5-.7 1.1-1.5 2.1-2.4 3-.3.2-.6.4-1 .4Zm0-1.5c-.2 0-.3.2-.3.3 0 .2.1.3.3.3.2 0 .3-.1.3-.3 0-.2-.1-.3-.3-.3Z"
+                fill="#d3a42f"
+              />
+            </svg>
+          </span>
+          <span class="brand-name">Blade<span>Vault</span></span>
+        </a>
+
+        <nav class="nav" aria-label="Main navigation">
+          <a href="#import">Import</a>
+          <a href="#devices">Devices</a>
+          <a href="#ai">AI</a>
+          <a href="#features">Features</a>
+          <a href="#install">Install</a>
+        </nav>
+
+        <a
+          class="nav-cta"
+          href="https://github.com/dedkola/bladevault/releases/latest"
+        >
+          <svg class="ico" aria-hidden="true"><use href="#i-download" /></svg>
+          Download
+        </a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero wrap" id="top">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="dot" aria-hidden="true"></span>
+            Local-first knife collection &middot; v2.0
+          </p>
+          <h1>Your collection, kept <em>useful.</em></h1>
+          <p class="hero-sub">
+            Paste a product link and let BladeVault fill the record. Then read
+            the whole vault, connect the AI you already use, and keep it locked
+            down &mdash; on your Mac, iPad, or phone.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button button-primary"
+              href="https://github.com/dedkola/bladevault/releases/latest"
+            >
+              <svg class="ico" aria-hidden="true">
+                <use href="#i-download" />
+              </svg>
+              Download BladeVault
+            </a>
+            <a class="button" href="#import">
+              See auto scrape
+              <svg class="ico" aria-hidden="true">
+                <use href="#i-arrow-down" />
+              </svg>
+            </a>
+          </div>
+          <div class="hero-trust" aria-label="Product principles">
+            <span>Free</span>
+            <span>MIT licensed</span>
+            <span>No account</span>
+            <span>Local SQLite</span>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <span class="hero-badge"><b>Example vault</b> Studio</span>
+          <figure class="window hero-window">
+            <div class="window-bar">
+              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span>BladeVault / Studio</span>
+              <span>Visual library</span>
+            </div>
+            <img
+              src="../public/screenshots/live/studio-desktop.jpg"
+              alt="BladeVault Studio on macOS with an example knife collection, including Vosteed, Kizer, and CIVIVI models"
+              width="1440"
+              height="900"
+              fetchpriority="high"
+            />
+            <figcaption class="hero-window-caption">
+              <span><b>Collection</b> Example vault</span>
+              <span>Randomised family layouts</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="principles wrap" aria-label="BladeVault principles">
+        <div class="principle">
+          <span class="principle-icon" aria-hidden="true">
+            <svg class="ico"><use href="#i-link" /></svg>
+          </span>
+          <div><strong>Auto scrape</strong><span>URL in, record out</span></div>
+        </div>
+        <div class="principle">
+          <span class="principle-icon" aria-hidden="true">
+            <svg class="ico"><use href="#i-database" /></svg>
+          </span>
+          <div><strong>Local-first</strong><span>SQLite and images</span></div>
+        </div>
+        <div class="principle">
+          <span class="principle-icon" aria-hidden="true">
+            <svg class="ico"><use href="#i-terminal" /></svg>
+          </span>
+          <div>
+            <strong>AI-ready</strong><span>MCP, read-only by default</span>
+          </div>
+        </div>
+        <div class="principle">
+          <span class="principle-icon" aria-hidden="true">
+            <svg class="ico"><use href="#i-monitor" /></svg>
+          </span>
+          <div><strong>Any screen</strong><span>Mac, iPad, iPhone</span></div>
+        </div>
+      </section>
+
+      <section class="section wrap reveal" id="import">
+        <div class="section-head">
+          <p class="section-kicker">
+            <span class="num" aria-hidden="true">01</span>
+            Auto scrape
+          </p>
+          <h2>Paste a link. Get a record.</h2>
+          <p class="section-intro">
+            BladeVault opens the product page, reads the specs and images, and
+            drops them into an editable record. You review the details, choose
+            the photos, and save. No field-by-field copying.
+          </p>
+        </div>
+
+        <div class="import-layout">
+          <div>
+            <div class="scrape-steps">
+              <article class="scrape-step">
+                <span class="step-num" aria-hidden="true">01</span>
+                <div>
+                  <h3>Paste the product URL</h3>
+                  <p>
+                    A supported retailer page is enough. Batch scrape takes a
+                    list of links when you have more than one.
+                  </p>
+                  <div class="scrape-thumb">
+                    <img
+                      src="../public/screenshots/live/add-empty-crop-3x.jpg"
+                      alt="BladeVault Add knife screen with the Scrape URL tab and an empty product URL field"
+                      width="3642"
+                      height="2340"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </article>
+
+              <article class="scrape-step">
+                <span class="step-num" aria-hidden="true">02</span>
+                <div>
+                  <h3>BladeVault reads the page</h3>
+                  <p>
+                    Title, brand, price, specifications, and images are pulled
+                    in while you wait. The source page is captured too.
+                  </p>
+                  <div class="scrape-thumb">
+                    <img
+                      src="../public/screenshots/live/add-result-crop-3x.jpg"
+                      alt="BladeVault after reading a Vosteed product page, with the form filled and the scraped page preview open"
+                      width="3642"
+                      height="2340"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </article>
+
+              <article class="scrape-step">
+                <span class="step-num" aria-hidden="true">03</span>
+                <div>
+                  <h3>Review, choose images, save</h3>
+                  <p>
+                    Every field stays editable. Keep the source-page preview,
+                    pick the cover, and save the knife to the vault.
+                  </p>
+                  <ul class="step-checks">
+                    <li>Every field editable</li>
+                    <li>12 images selectable</li>
+                    <li>Source preview saved</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+
+            <div class="import-foot">
+              <span><b>Have a list?</b> Batch scrape one URL per line.</span>
+              <a href="#features">No product page? Add it manually &rarr;</a>
+            </div>
+          </div>
+
+          <figure class="scrape-result">
+            <div class="window">
+              <div class="window-bar">
+                <span class="dots" aria-hidden="true"
+                  ><i></i><i></i><i></i
+                ></span>
+                <span>BladeVault / Add knife</span>
+                <span>Vosteed &middot; Raccoon TiSlim</span>
+              </div>
+              <img
+                src="../public/screenshots/live/add-result-3x.jpg"
+                alt="BladeVault after scraping a Vosteed Raccoon TiSlim page: filled identity fields, a scraped page preview, and a library of 12 selectable images"
+                width="4320"
+                height="2700"
+                loading="lazy"
+              />
+            </div>
+            <figcaption class="scrape-tags">
+              <span>12 images</span>
+              <span>Brand</span>
+              <span>Model</span>
+              <span>Price</span>
+              <span>Specs</span>
+              <span>Source preview</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section wrap reveal" id="devices">
+        <div class="section-head">
+          <p class="section-kicker">
+            <span class="num" aria-hidden="true">02</span>
+            Any screen
+          </p>
+          <h2>One vault. Every screen.</h2>
+          <p class="section-intro">
+            The same collection, on the machines you already use. Open the vault
+            in a browser on your Mac, iPad, or phone &mdash; no second database,
+            no export, no sync service.
+          </p>
+        </div>
+
+        <div class="device-stage">
+          <figure class="device device-mac">
+            <div class="window">
+              <div class="window-bar">
+                <span class="dots" aria-hidden="true"
+                  ><i></i><i></i><i></i
+                ></span>
+                <span>BladeVault / Studio</span>
+                <span>macOS</span>
+              </div>
+              <img
+                src="../public/screenshots/live/collection-desktop.jpg"
+                alt="BladeVault Collection on macOS with the knife table and inspector open"
+                width="1440"
+                height="900"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+
+          <figure class="device device-ipad">
+            <div class="device-frame">
+              <img
+                src="../public/screenshots/live/studio-ipad.jpg"
+                alt="BladeVault Studio on an iPad in landscape, showing the collection in three columns"
+                width="1024"
+                height="768"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+
+          <figure class="device device-iphone">
+            <div class="device-frame">
+              <img
+                src="../public/screenshots/live/studio-iphone.jpg"
+                alt="BladeVault Studio on an iPhone, showing the collection in two columns"
+                width="390"
+                height="844"
+                loading="lazy"
+              />
+            </div>
+          </figure>
+        </div>
+
+        <div class="device-legend" aria-label="Supported screens">
+          <span>macOS</span>
+          <span>iPad</span>
+          <span>iPhone</span>
+        </div>
+        <p class="device-note">
+          Browser-ready on iPad and iPhone. The vault runs where you host it, so
+          the same records open on every screen.
+        </p>
+      </section>
+
+      <section class="ai-section reveal" id="ai">
+        <div class="ai-head">
+          <p class="section-kicker">
+            <span class="num" aria-hidden="true">03</span>
+            AI + privacy
+          </p>
+          <h2>Let AI read the vault. You keep the keys.</h2>
+          <p class="section-intro">
+            Connect Claude, Codex, Cursor, or a local model to your own
+            database. Read-only by default; allow writes when you want AI to
+            update records or log maintenance. Then set a local password and
+            lock the vault when you step away.
+          </p>
+        </div>
+
+        <div class="ai-grid">
+          <article class="ai-card">
+            <span class="ai-badge">
+              <svg class="ico" aria-hidden="true">
+                <use href="#i-terminal" />
+              </svg>
+              MCP &middot; 10 tools
+            </span>
+            <h3>Ask your own database.</h3>
+            <p>
+              Search records, find missing fields or duplicates, preview
+              metadata changes, and log maintenance from the AI client you
+              already use.
+            </p>
+
+            <div class="chat" aria-label="Example MCP conversation">
+              <p class="you">
+                <b>YOU</b> Which folders under 3 oz are missing a designer?
+              </p>
+              <p class="bot"><b>BLADEVAULT</b> I found 4 matching records.</p>
+              <pre>
+├─ Vosteed Mini Labrador
+├─ Kizer Feist
+├─ QSP Canary Folder
+└─ CIVIVI Lumi</pre>
+              <p class="status">
+                read-only by default &middot; write mode optional
+              </p>
+            </div>
+
+            <div class="client-pills" aria-label="Supported AI clients">
+              <span>Claude</span>
+              <span>Codex</span>
+              <span>Cursor</span>
+              <span>LM Studio</span>
+            </div>
+
+            <ul class="ai-points">
+              <li>Permanent token and ready-to-copy client config.</li>
+              <li>Write access is opt-in and audited.</li>
+              <li>Metadata updates require the expected record timestamp.</li>
+            </ul>
+
+            <figure class="ai-shot">
+              <img
+                src="../public/screenshots/live/mcp-settings.jpg"
+                alt="BladeVault AI and MCP settings showing MCP enabled, write access, and recent activity"
+                width="900"
+                height="270"
+                loading="lazy"
+              />
+            </figure>
+          </article>
+
+          <article class="lock-card">
+            <span class="lock-icon" aria-hidden="true">
+              <svg class="ico"><use href="#i-lock" /></svg>
+            </span>
+            <h3>Protect the vault.</h3>
+            <p>
+              Set a password in Settings &rarr; App lock. Lock now when you step
+              away. Change or disable it later from the same panel.
+            </p>
+
+            <figure class="lock-shot">
+              <img
+                src="../public/screenshots/live/app-lock.jpg"
+                alt="BladeVault App lock settings with password and confirm-password fields and an Enable App lock button"
+                width="900"
+                height="360"
+                loading="lazy"
+              />
+            </figure>
+
+            <ul class="lock-points">
+              <li>Off by default. Works offline.</li>
+              <li>No account and no cloud dependency.</li>
+              <li>Included in full-vault backups.</li>
+            </ul>
+            <p class="lock-note">
+              A simple local access lock. The vault is not encrypted.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section wrap reveal" id="features">
+        <div class="section-head">
+          <p class="section-kicker">
+            <span class="num" aria-hidden="true">04</span>
+            The rest of the vault
+          </p>
+          <h2>Everything else you need.</h2>
+          <p class="section-intro">
+            The daily workflows around the record: finding, comparing, cleaning
+            up, and keeping it local.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="ico"><use href="#i-search" /></svg>
+            </span>
+            <h3>Find anything</h3>
+            <p>
+              Global search, <code>/model</code> lookup, field filters, and
+              measurement ranges. Save the question as a Smart Collection with a
+              live count.
+            </p>
+            <ul class="feature-list">
+              <li>Model names and model numbers</li>
+              <li>Brand, steel, lock, shape, carry</li>
+              <li>Pinned sidebar and pinned-first ordering</li>
+            </ul>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="ico"><use href="#i-image" /></svg>
+            </span>
+            <h3>Records that hold everything</h3>
+            <p>
+              Specifications, price, provenance, notes, custom fields, and a
+              multi-image gallery. Choose the cover and keep the source page.
+            </p>
+            <ul class="feature-list">
+              <li>Text, number, and date fields</li>
+              <li>Multi-image upload and fullscreen gallery</li>
+              <li>Card fields and pinned sidebar parity</li>
+            </ul>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="ico"><use href="#i-scale" /></svg>
+            </span>
+            <h3>Compare with context</h3>
+            <p>
+              Named shortlists keep their own membership. Hide what matches,
+              then print or export the matrix as a landscape PDF.
+            </p>
+            <ul class="feature-list">
+              <li>Differences-only view</li>
+              <li>Add a knife to several lists</li>
+              <li>Print or export as PDF</li>
+            </ul>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="ico"><use href="#i-chart" /></svg>
+            </span>
+            <h3>Know your data</h3>
+            <p>
+              Collection pulse shows the shape of the vault. Data completeness
+              and measurement review show the records that need another pass.
+            </p>
+            <ul class="feature-list">
+              <li>Missing fields and coverage gaps</li>
+              <li>Guided measurement review</li>
+              <li>Label consistency and source review</li>
+            </ul>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="ico"><use href="#i-wrench" /></svg>
+            </span>
+            <h3>Care history</h3>
+            <p>
+              Sharpening, cleaning, lubrication, stropping, and service details
+              stay with the knife. Logs keep the change history.
+            </p>
+            <ul class="feature-list">
+              <li>Dated maintenance events</li>
+              <li>Grit, angle, system, and passes</li>
+              <li>Searchable activity logs</li>
+            </ul>
+          </article>
+
+          <article class="feature-card">
+            <span class="feature-icon" aria-hidden="true">
+              <svg class="ico"><use href="#i-database" /></svg>
+            </span>
+            <h3>Local-first, backed up</h3>
+            <p>
+              SQLite and images in one folder. Create a portable ZIP backup, and
+              opt into cloud backup only when you want it.
+            </p>
+            <ul class="feature-list">
+              <li>No account, works offline</li>
+              <li>Complete local ZIP restore</li>
+              <li>Opt-in cloud upload and restore</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="also-included" aria-label="Also included">
+          <b>Also included</b>
+          <span>Smart Collections</span>
+          <span>Model families</span>
+          <span>Sold status</span>
+          <span>Custom fields</span>
+          <span>Current / Modern</span>
+          <span>Light / dark</span>
+          <span>Columns</span>
+          <span>Start page</span>
+        </div>
+      </section>
+
+      <section class="section wrap reveal" id="install">
+        <div class="install">
+          <div class="install-copy">
+            <p class="section-kicker">
+              <span class="num" aria-hidden="true">05</span>
+              Install
+            </p>
+            <h2>Bring the vault home.</h2>
+            <p>
+              Start with the desktop app or run BladeVault wherever you keep
+              your tools. Free, open source, and yours.
+            </p>
+            <div class="install-actions">
+              <a
+                class="button button-primary"
+                href="https://github.com/dedkola/bladevault/releases/latest"
+              >
+                <svg class="ico" aria-hidden="true">
+                  <use href="#i-download" />
+                </svg>
+                Download v2.0.0
+              </a>
+              <a class="button" href="https://github.com/dedkola/bladevault">
+                View source
+              </a>
+            </div>
+            <p class="install-note">
+              Free and open source &middot; MIT licensed
+            </p>
+          </div>
+
+          <div class="install-options">
+            <a
+              class="install-card"
+              href="https://github.com/dedkola/bladevault/releases/latest/download/BladeVault.dmg"
+            >
+              <span class="feature-icon" aria-hidden="true">
+                <svg class="ico"><use href="#i-apple" /></svg>
+              </span>
+              <h3>macOS</h3>
+              <p>Native desktop app for macOS 13 or newer.</p>
+              <span>
+                Download DMG
+                <svg class="ico" aria-hidden="true">
+                  <use href="#i-arrow" />
+                </svg>
+              </span>
+            </a>
+
+            <a
+              class="install-card"
+              href="https://github.com/dedkola/bladevault/releases/latest/download/BladeVault-Setup.exe"
+            >
+              <span class="feature-icon" aria-hidden="true">
+                <svg class="ico"><use href="#i-monitor" /></svg>
+              </span>
+              <h3>Windows</h3>
+              <p>Native installer with in-app update support.</p>
+              <span>
+                Download EXE
+                <svg class="ico" aria-hidden="true">
+                  <use href="#i-arrow" />
+                </svg>
+              </span>
+            </a>
+
+            <a
+              class="install-card"
+              href="https://github.com/dedkola/bladevault#run-in-a-container"
+            >
+              <span class="feature-icon" aria-hidden="true">
+                <svg class="ico"><use href="#i-box" /></svg>
+              </span>
+              <h3>Docker / Podman</h3>
+              <p>Run locally with a persistent data folder.</p>
+              <span>
+                View command
+                <svg class="ico" aria-hidden="true">
+                  <use href="#i-arrow" />
+                </svg>
+              </span>
+            </a>
+
+            <a
+              class="install-card"
+              href="https://github.com/dedkola/bladevault/tree/main/charts/bladevault"
+            >
+              <span class="feature-icon" aria-hidden="true">
+                <svg class="ico"><use href="#i-layers" /></svg>
+              </span>
+              <h3>Kubernetes</h3>
+              <p>Install the official Helm chart on your cluster.</p>
+              <span>
+                Open chart guide
+                <svg class="ico" aria-hidden="true">
+                  <use href="#i-arrow" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <b>BladeVault</b>
+          <span>Local-first knife collection manager.</span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="https://bladevault.pro/docs">Docs</a>
+          <a href="https://bladevault.pro/whats-new">What&rsquo;s new</a>
+          <a href="https://github.com/dedkola/bladevault">GitHub</a>
+          <a href="mailto:support@bladevault.pro">Support</a>
+        </nav>
+      </div>
+    </footer>
+
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <symbol id="i-link" viewBox="0 0 24 24">
+          <path
+            d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+          />
+          <path
+            d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+          />
+        </symbol>
+        <symbol id="i-database" viewBox="0 0 24 24">
+          <ellipse cx="12" cy="5" rx="9" ry="3" />
+          <path d="M3 5v14a9 3 0 0 0 18 0V5" />
+          <path d="M3 12a9 3 0 0 0 18 0" />
+        </symbol>
+        <symbol id="i-terminal" viewBox="0 0 24 24">
+          <path d="m4 7 5 5-5 5" />
+          <path d="M12 17h8" />
+        </symbol>
+        <symbol id="i-monitor" viewBox="0 0 24 24">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <path d="M8 21h8" />
+          <path d="M12 17v4" />
+        </symbol>
+        <symbol id="i-download" viewBox="0 0 24 24">
+          <path d="M12 3v12" />
+          <path d="m7 10 5 5 5-5" />
+          <path d="M5 21h14" />
+        </symbol>
+        <symbol id="i-arrow-down" viewBox="0 0 24 24">
+          <path d="M12 5v14" />
+          <path d="m19 12-7 7-7-7" />
+        </symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24">
+          <path d="M7 17 17 7" />
+          <path d="M8 7h9v9" />
+        </symbol>
+        <symbol id="i-search" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="7" />
+          <path d="m21 21-4.3-4.3" />
+        </symbol>
+        <symbol id="i-image" viewBox="0 0 24 24">
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+          <circle cx="9" cy="9" r="2" />
+          <path d="m21 15-5-5L5 21" />
+        </symbol>
+        <symbol id="i-scale" viewBox="0 0 24 24">
+          <path d="M12 3v18" />
+          <path d="M5 7h14" />
+          <path d="m5 7-3 6a3 3 0 0 0 6 0L5 7Z" />
+          <path d="m19 7-3 6a3 3 0 0 0 6 0l-3-6Z" />
+          <path d="M8 21h8" />
+        </symbol>
+        <symbol id="i-chart" viewBox="0 0 24 24">
+          <path d="M3 3v18h18" />
+          <path d="M7 16v-4" />
+          <path d="M12 16V8" />
+          <path d="M17 16v-6" />
+        </symbol>
+        <symbol id="i-wrench" viewBox="0 0 24 24">
+          <path
+            d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.8-2.8 2.4-2.8Z"
+          />
+        </symbol>
+        <symbol id="i-lock" viewBox="0 0 24 24">
+          <rect x="4" y="10" width="16" height="11" rx="2" />
+          <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+        </symbol>
+        <symbol id="i-apple" viewBox="0 0 24 24">
+          <path
+            class="apple-path"
+            d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09Z"
+          />
+          <path
+            class="apple-path"
+            d="M15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701Z"
+          />
+        </symbol>
+        <symbol id="i-box" viewBox="0 0 24 24">
+          <path d="m12 2 9 5-9 5-9-5 9-5Z" />
+          <path d="M3 7v10l9 5 9-5V7" />
+          <path d="M12 12v10" />
+        </symbol>
+        <symbol id="i-layers" viewBox="0 0 24 24">
+          <path d="m12 2 9 5-9 5-9-5 9-5Z" />
+          <path d="m3 12 9 5 9-5" />
+          <path d="m3 17 9 5 9-5" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <script>
+      ;(() => {
+        const revealItems = document.querySelectorAll(".reveal")
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("in")
+                  observer.unobserve(entry.target)
+                }
+              })
+            },
+            { rootMargin: "0px 0px -8% 0px", threshold: 0.05 }
+          )
+          revealItems.forEach((item) => observer.observe(item))
+        } else {
+          revealItems.forEach((item) => item.classList.add("in"))
+        }
+
+        const navLinks = [...document.querySelectorAll(".nav a")]
+        const sections = navLinks
+          .map((link) => document.querySelector(link.getAttribute("href")))
+          .filter(Boolean)
+
+        if ("IntersectionObserver" in window && sections.length) {
+          const sectionObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return
+                navLinks.forEach((link) => {
+                  const active =
+                    link.getAttribute("href") === `#${entry.target.id}`
+                  if (active) link.setAttribute("aria-current", "true")
+                  else link.removeAttribute("aria-current")
+                })
+              })
+            },
+            { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+          )
+          sections.forEach((section) => sectionObserver.observe(section))
+        }
+      })()
+    </script>
+  </body>
+</html>
