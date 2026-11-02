@@ -13,7 +13,7 @@ export function SiteFooter() {
             <span>Local-first knife collection manager.</span>
           </div>
           <p className="text-[10px] font-semibold tracking-[0.1em] text-[var(--bladevault-title)] uppercase">
-            Organize, compare, and review your collection.
+            Auto scrape, organize, and review your collection.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-4">

@@ -3,7 +3,7 @@ import { createSocialImageResponse } from "@/lib/seo-art"
 export const runtime = "nodejs"
 
 export const alt =
-  "BladeVault Studio, Collection pulse, and a customizable local-first knife collection manager"
+  "BladeVault auto scrape, AI access, and a local-first knife collection manager"
 
 export const size = {
   width: 1200,
@@ -14,10 +14,10 @@ export const contentType = "image/png"
 
 export default function OpenGraphImage() {
   return createSocialImageResponse({
-    eyebrow: "Studio · Collection pulse · v2.0",
-    title: "See the whole vault.",
+    eyebrow: "Auto scrape · AI access · v2.0",
+    title: "Paste a link. Get a record.",
     description:
-      "Browse a visual library, read collection patterns, and shape a workspace that fits. Local-first, no account.",
-    screenshotPath: "/screenshots/studio.jpg",
+      "Import a knife from a product page, ask the vault through MCP, and keep it local on macOS, iPad, or iPhone.",
+    screenshotPath: "/screenshots/live/add-result-3x.jpg",
   })
 }

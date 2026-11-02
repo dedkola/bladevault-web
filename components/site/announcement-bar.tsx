@@ -16,10 +16,12 @@ export function AnnouncementBar() {
       <div className={styles.inner}>
         <p>
           <strong>v2.0 is here.</strong>{" "}
-          <span>Studio, Collection pulse, and a workspace that fits.</span>
+          <span>
+            Auto scrape, AI access, and a vault that fits every screen.
+          </span>
         </p>
-        <Link href="/#whats-new" className={styles.link}>
-          See what changed
+        <Link href="/#import" className={styles.link}>
+          See how it works
           <ArrowRight aria-hidden="true" />
         </Link>
       </div>

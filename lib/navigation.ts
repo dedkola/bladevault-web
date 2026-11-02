@@ -5,13 +5,13 @@ type SiteNavigationLink = {
 }
 
 export const siteNavigation: readonly SiteNavigationLink[] = [
-  { href: "/#workflow", label: "Workflow", sectionId: "workflow" },
-  { href: "/#capabilities", label: "Capabilities", sectionId: "capabilities" },
-  { href: "/#local-first", label: "Local-first", sectionId: "local-first" },
+  { href: "/#import", label: "Import", sectionId: "import" },
+  { href: "/#devices", label: "Devices", sectionId: "devices" },
+  { href: "/#ai", label: "AI", sectionId: "ai" },
+  { href: "/#features", label: "Features", sectionId: "features" },
   { href: "/compare", label: "Compare" },
-  { href: "/#install", label: "Install", sectionId: "install" },
-  { href: "/tutorials", label: "Video tutorials" },
   { href: "/docs", label: "Docs" },
+  { href: "/tutorials", label: "Tutorials" },
   { href: "/whats-new", label: "What’s new" },
 ]
 
