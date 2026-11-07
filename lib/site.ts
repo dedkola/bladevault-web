@@ -1,3 +1,5 @@
+import { latestRelease } from "@/lib/releases"
+
 const LOCAL_SITE_URL = "http://localhost:3000"
 const DEFAULT_PRODUCTION_SITE_URL = "https://bladevault.pro"
 const DEFAULT_VIDEO_URL = "https://video.bladevault.pro"
@@ -74,7 +76,7 @@ const videoEntries = [
 
 export const siteConfig = {
   name: "BladeVault",
-  releaseVersion: "v2.0.3",
+  releaseVersion: latestRelease.version,
   shortName: "BladeVault",
   defaultTitle: "BladeVault",
   description:

@@ -1,0 +1,83 @@
+name: Sync BladeVault releases
+
+# Adds new releases from dedkola/bladevault to the What's new page
+# (data/releases.json) and opens an auto-merging PR.
+#
+# Triggers:
+# - schedule: checks for new releases every hour, no setup needed.
+# - repository_dispatch: instant update. In the bladevault repo, on release
+#   "published", send event type "bladevault-release" with
+#   client_payload.tag (needs a token with access to this repo).
+# - workflow_dispatch: run by hand, optionally for one tag.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  repository_dispatch:
+    types: [bladevault-release]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag to add (empty = all new releases)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-releases
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # A PAT lets the PR trigger required checks (CodeQL). Falls back to
+          # GITHUB_TOKEN, whose PRs don't start other workflows.
+          token: ${{ secrets.RELEASE_SYNC_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+
+      - name: Add new releases
+        id: sync
+        run: node scripts/sync-releases.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: ${{ github.event.inputs.tag || github.event.client_payload.tag || '' }}
+
+      - name: Open PR
+        if: steps.sync.outputs.added != ''
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_SYNC_TOKEN || secrets.GITHUB_TOKEN }}
+          ADDED: ${{ steps.sync.outputs.added }}
+          LATEST: ${{ steps.sync.outputs.latest }}
+        run: |
+          # One reusable branch: re-running refreshes the open PR instead of
+          # opening a new one that would conflict with it.
+          branch="release-sync"
+          title="feat(whats-new): add ${ADDED} release notes"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git switch -C "$branch"
+          git add data/releases.json
+          git commit -m "$title"
+          git push --force origin "$branch"
+
+          body="Adds ${ADDED} from https://github.com/dedkola/bladevault/releases to the What's new page.
+
+          The notes were generated from the release changelog. Edit \`data/releases.json\` on this branch to polish the wording before it merges."
+
+          url=$(gh pr list --head "$branch" --state open --json url -q '.[0].url')
+          if [ -n "$url" ]; then
+            gh pr edit "$url" --title "$title" --body "$body"
+          else
+            url=$(gh pr create --base main --head "$branch" --title "$title" --body "$body")
+          fi
+          gh pr merge --auto --squash "$url"

@@ -1,0 +1,637 @@
+[
+  {
+    "version": "v2.2.1",
+    "date": "2026-11-07",
+    "changes": [
+      "Count product imports per retailer in Sentry."
+    ]
+  },
+  {
+    "version": "v2.2.0",
+    "date": "2026-11-07",
+    "changes": [
+      "Add opt-in Sentry error reporting for the app.",
+      "Add opt-in Sentry crash and error reporting."
+    ]
+  },
+  {
+    "version": "v2.1.0",
+    "date": "2026-11-07",
+    "changes": [
+      "Import product details from a saved page.",
+      "Address audit usability and accessibility findings.",
+      "Import bot-protected pages from a BladeVault browser.",
+      "Keep selected table row readable in Classic style."
+    ]
+  },
+  {
+    "version": "v2.0.9",
+    "date": "2026-11-06",
+    "changes": [
+      "Show custom fields first in Modern column picker.",
+      "Add table view to Classic style."
+    ]
+  },
+  {
+    "version": "v2.0.8",
+    "date": "2026-11-05",
+    "changes": [
+      "Support metric, imperial, and dual measurement displays."
+    ]
+  },
+  {
+    "version": "v2.0.7",
+    "date": "2026-11-05",
+    "changes": [
+      "Prevent large manual uploads from failing on save."
+    ]
+  },
+  {
+    "version": "v2.0.6",
+    "date": "2026-11-04",
+    "changes": [
+      "Support SOG product pages and detect blocked imports."
+    ]
+  },
+  {
+    "version": "v2.0.5",
+    "date": "2026-11-03",
+    "changes": [
+      "Open knives on double-click across themes.",
+      "Prevent indefinite loading and improve errors."
+    ]
+  },
+  {
+    "version": "v2.0.4",
+    "date": "2026-11-03",
+    "changes": [
+      "Support Remette product pages.",
+      "Stop proxy from truncating large archive uploads.",
+      "Add Alloy black-and-gold theme.",
+      "Exclude runtime backup image paths from Turbopack tracing.",
+      "Refine Alloy section headers and toolbar controls."
+    ]
+  },
+  {
+    "version": "v2.0.3",
+    "date": "2026-10-31",
+    "changes": [
+      "Studio blends photo backgrounds into the cards in gallery tiles, focus mode, and Quick Look, in both light and dark modes.",
+      "Boker imports read the original photo URLs from product galleries, so every gallery image is imported in order without unrelated brand logos."
+    ]
+  },
+  {
+    "version": "v2.0.2",
+    "date": "2026-10-31",
+    "changes": [
+      "Modern Collection, Insights, and Studio start higher on screen now that their extra header rows are gone. Smart Collection controls moved into the Collection toolbar.",
+      "Collection additions in Modern Insights always covers the last 12 calendar months, including the current month, without a date-range selector.",
+      "Poikilo Blade pages load fully before importing, so the brand, price, lock, and gallery are captured instead of footer text and unrelated images. Protected gallery photos download with the required referrer.",
+      "Zero Tolerance imports wait for the dynamic product content and prefer the complete description and explicitly labeled specifications, skipping recommendation images, video thumbnails, and placeholder lock values."
+    ]
+  },
+  {
+    "version": "v2.0.1",
+    "date": "2026-10-29",
+    "changes": [
+      "Studio’s repeated workspace row is gone, and Focus mode is now an icon button in the workspace header.",
+      "Studio quick look browses every saved photo of a knife, with buttons and left/right arrow keys, a photo counter, and a larger image above a compact footer.",
+      "Modern Insights shows monthly catalogue additions as labelled bars and adds switchable Blade, Overall, Weight, and Thickness histograms with expandable data tables."
+    ]
+  },
+  {
+    "version": "v2.0.0",
+    "date": "2026-10-27",
+    "major": true,
+    "milestone": true,
+    "changes": [
+      "A new Modern appearance refreshes Collection, Compare, and Logs with a shared header and search, a quieter sidebar, and inline log details. The original Current theme stays the default.",
+      "Studio is a new visual library with randomized layouts for browsing by model family, plus filters, sorting, quick actions, and a focus mode for single-knife viewing.",
+      "Modern Collection columns can be shown, hidden, dragged into a new order, and resized, with every choice remembered across reloads.",
+      "Select knives directly from the modern Collection list to bulk edit, add to Compare, pin, or delete them.",
+      "Insights was rebuilt as Collection pulse, combining collection growth, field coverage, maker and steel mix, blade length versus weight, and recent additions with links back to the records.",
+      "Settings → Appearance → Start page lets BladeVault open on Insights, Studio, or Collection at launch.",
+      "Choose Current or Modern in Settings → Appearance. More theme options are on the way."
+    ]
+  },
+  {
+    "version": "v1.4.8",
+    "date": "2026-10-22",
+    "changes": [
+      "Model names can be bulk edited across several knives at once.",
+      "Product imports preserve the complete scraped details and screenshots instead of trimming them.",
+      "Standard field extraction was improved across supported retailers."
+    ]
+  },
+  {
+    "version": "v1.4.7",
+    "date": "2026-10-19",
+    "changes": [
+      "The Add and Update product views gained a full-width preview you can resize while reviewing an import.",
+      "The interactive import browser clears popup overlays, so retailer pages that block the normal importer stay usable.",
+      "Vosteed imports separate their specifications more reliably and flag conflicting values from the source page.",
+      "Compare search now accepts model numbers."
+    ]
+  },
+  {
+    "version": "v1.4.6",
+    "date": "2026-10-16",
+    "major": true,
+    "changes": [
+      "Knives can be marked as sold, so a collection can track what has left the shelf as well as what is still on it.",
+      "Pasted product links are imported one at a time, in order, so a long list no longer races ahead of itself.",
+      "Batch scraping skips products already saved from the same source URL instead of creating a duplicate record."
+    ]
+  },
+  {
+    "version": "v1.4.5",
+    "date": "2026-10-14",
+    "changes": [
+      "Cloud backup uploads and restores are no longer speed-limited, so large vaults move noticeably faster.",
+      "A browser-only preview of BladeVault now runs on free static hosting at bladevault.tkweb.dev, starting from an empty collection with session-only changes."
+    ]
+  },
+  {
+    "version": "v1.4.4",
+    "date": "2026-10-13",
+    "major": true,
+    "changes": [
+      "Cloud restores now run on the local server, so switching pages or reloading no longer cancels a restore that has already started. You can keep browsing the current vault while the backup downloads and validates.",
+      "Edits and automatic backups pause while a restore is prepared, then the restored vault installs and open views and images refresh. Progress stays quiet, with no completion popup.",
+      "Responsive layouts and collection cards were polished for consistent spacing."
+    ]
+  },
+  {
+    "version": "v1.4.3",
+    "date": "2026-10-11",
+    "major": true,
+    "changes": [
+      "Cloud backups run quietly in the background and continue across page navigation and browser reloads. Settings shows a calm status with the last successful backup.",
+      "The selected knife drawer gained Pin / Unpin and Edit actions alongside Open full page and Add to compare."
+    ]
+  },
+  {
+    "version": "v1.4.2",
+    "date": "2026-10-08",
+    "changes": [
+      "The Data completeness page was redesigned to make reviewing and filling in missing details easier.",
+      "Insight detail pages use unified full-width responsive layouts, and desktop typography and settings layouts were polished for large and 4K displays.",
+      "Redundant explanatory copy was removed from the interface."
+    ]
+  },
+  {
+    "version": "v1.4.1",
+    "date": "2026-10-05",
+    "major": true,
+    "changes": [
+      "Completeness now guides you through cleaning up incomplete collection records.",
+      "Measurements are corrected and populated fields are preserved when importing products."
+    ]
+  },
+  {
+    "version": "v1.4.0",
+    "date": "2026-10-03",
+    "major": true,
+    "changes": [
+      "Set an optional local vault password in Settings → App lock. The lock is off by default and asks for your password on the next app launch or browser session.",
+      "Change or remove the password from Settings, or use Lock now to lock the current session. Cloud Backup sign-in remains separate."
+    ]
+  },
+  {
+    "version": "v1.3.1",
+    "date": "2026-09-30",
+    "changes": [
+      "Maker Mix and Lock Types tooltips stay visible without being clipped by their charts.",
+      "Self-hosted Docker pages load more efficiently, and Insights charts load as they approach the visible part of the page."
+    ]
+  },
+  {
+    "version": "v1.3.0",
+    "date": "2026-09-27",
+    "major": true,
+    "changes": [
+      "New URL imports capture a full-page screenshot of the source webpage alongside the product images.",
+      "Open captured pages in a scrollable viewer with source and download actions. Capture or replace a screenshot from Edit → Images.",
+      "Capture source pages for older items from Settings. Local and cloud backups include the saved screenshots."
+    ]
+  },
+  {
+    "version": "v1.2.1",
+    "date": "2026-09-26",
+    "changes": [
+      "Pinned sidebar details follow your collection card field selection, order, and formatting, including for single knives.",
+      "Model family dialogs use more space on large screens, and Compare navigation has a consistent hover area.",
+      "Collection browsing loads less data upfront while preserving complete galleries and notes in the inspector and detail views."
+    ]
+  },
+  {
+    "version": "v1.2.0",
+    "date": "2026-09-24",
+    "major": true,
+    "changes": [
+      "Keep multiple named comparison lists and choose a destination when adding knives to Compare.",
+      "Rename, duplicate, clear, or delete lists with Undo, switch lists on mobile, and export comparisons with their saved names.",
+      "Existing comparison selections move into a list named My comparison."
+    ]
+  },
+  {
+    "version": "v1.1.4",
+    "date": "2026-09-15",
+    "major": true,
+    "changes": [
+      "Search by model number with a dedicated search mode.",
+      "Collection inspector photo navigation switched to clearer chevron arrows.",
+      "Global search pill animation and focus ring were polished."
+    ]
+  },
+  {
+    "version": "v1.1.3",
+    "date": "2026-09-14",
+    "changes": [
+      "Collection card actions now stay contained within their cards.",
+      "Global search island animation is smoother."
+    ]
+  },
+  {
+    "version": "v1.1.2",
+    "date": "2026-09-14",
+    "major": true,
+    "changes": [
+      "Overview charts surface sharper insights and maintenance visibility.",
+      "Collection gallery redesigned with full-width layouts and capped card sizing.",
+      "Desktop build and release pipeline hardened."
+    ]
+  },
+  {
+    "version": "v1.1.1",
+    "date": "2026-09-11",
+    "changes": [
+      "App metadata and icons refreshed with favicon and Apple touch icon.",
+      "Family variant previews are larger and persist while switching between variants.",
+      "Mobile search pill stays clear of the header."
+    ]
+  },
+  {
+    "version": "v1.1.0",
+    "date": "2026-09-09",
+    "major": true,
+    "milestone": true,
+    "changes": [
+      "Save search, category, measurement-range, and missing-specification filters as named Smart Collections, with live counts in the sidebar.",
+      "Browse matching brand and model records as families, then preview and switch between variants from the knife detail page.",
+      "Open activity details directly beneath a log row without losing your place in the list."
+    ]
+  },
+  {
+    "version": "v1.0.16",
+    "date": "2026-09-07",
+    "changes": [
+      "Collection and brand views now load more knives automatically as you scroll.",
+      "Knife details use a lighter, compact specification grid that keeps long, custom, and missing values easy to scan.",
+      "Primary navigation and product detail labels were simplified."
+    ]
+  },
+  {
+    "version": "v1.0.15",
+    "date": "2026-09-05",
+    "major": true,
+    "changes": [
+      "Create a printable collection report from Settings → Backup & Restore.",
+      "Global knife search is now a compact floating control that leaves more room for the page beneath it.",
+      "Collection cards, knife details, forms, settings, navigation, and comparison tables were refined across phone and tablet layouts."
+    ]
+  },
+  {
+    "version": "v1.0.14",
+    "date": "2026-09-04",
+    "changes": [
+      "Knife names in Logs now link directly to their detail pages.",
+      "Gallery controls, thumbnail borders, and long tooltip text received a focused visual polish pass."
+    ]
+  },
+  {
+    "version": "v1.0.13",
+    "date": "2026-09-01",
+    "changes": [
+      "Database connections now reopen cleanly after a restore, preventing stale SQLite handles from interrupting the recovered collection."
+    ]
+  },
+  {
+    "version": "v1.0.12",
+    "date": "2026-09-01",
+    "changes": [
+      "Record a stropping session from the knife maintenance quick actions."
+    ]
+  },
+  {
+    "version": "v1.0.11",
+    "date": "2026-08-27",
+    "changes": [
+      "Logs is now a primary navigation destination, while Collection filters start collapsed to leave more room for browsing.",
+      "Choose your preferred time format in Settings and filter Logs to maintenance activity.",
+      "Collection filtering and local backup creation are faster for larger vaults."
+    ]
+  },
+  {
+    "version": "v1.0.9",
+    "date": "2026-08-25",
+    "changes": [
+      "Automatic cloud backups now group nearby collection changes into a single upload."
+    ]
+  },
+  {
+    "version": "v1.0.8",
+    "date": "2026-08-25",
+    "major": true,
+    "changes": [
+      "Track sharpening, cleaning, lubrication, repairs, and other maintenance in a timeline on each knife.",
+      "A new Logs workspace groups collection activity into sessions and opens detailed before-and-after changes.",
+      "Restore a cloud backup directly from Settings, with collection and image counts shown before recovery."
+    ]
+  },
+  {
+    "version": "v1.0.6",
+    "date": "2026-08-21",
+    "changes": [
+      "MCP now provides a permanent access token and ready-to-copy client configuration that survive restarts and updates.",
+      "Connection guidance and endpoint handling are clearer for LAN and remote MCP clients."
+    ]
+  },
+  {
+    "version": "v1.0.5",
+    "date": "2026-08-21",
+    "changes": [
+      "The macOS desktop app now keeps a stable MCP port so saved AI client connections continue working across launches."
+    ]
+  },
+  {
+    "version": "v1.0.4",
+    "date": "2026-08-21",
+    "changes": [
+      "Local and cloud restores now clear stale SQLite sidecar files while preserving them in the safety backup, making recovery more reliable."
+    ]
+  },
+  {
+    "version": "v1.0.3",
+    "date": "2026-08-20",
+    "major": true,
+    "changes": [
+      "Talk to your existing collection from MCP clients such as Claude Desktop, Codex, Cursor, or local models in LM Studio—without a separate database or cloud account.",
+      "Eight purpose-built tools can search records, retrieve full knife details, summarize the collection, and find missing fields or likely duplicates.",
+      "AI can preview suggested metadata changes before applying them. Write access is off by default, timestamp-checked, and recorded in an audit log.",
+      "Settings now includes an AI / MCP workspace for connection setup, access controls, and recent activity, with dedicated connection paths for Docker, source installs, and the macOS app."
+    ]
+  },
+  {
+    "version": "v1.0.0",
+    "date": "2026-08-13",
+    "major": true,
+    "milestone": true,
+    "changes": [
+      "Collection Insights is now the home view, with interactive summaries for makers, blade dimensions, steels, profiles, lock types, designers, and collection completeness.",
+      "Select a chart segment to see the matching knives and continue into the filtered collection.",
+      "A 12-month activity heat map tracks additions and edits and stays current as the collection changes.",
+      "Knife images now stream from disk for more efficient browsing in image-heavy collections."
+    ]
+  },
+  {
+    "version": "v0.2.50",
+    "date": "2026-08-12",
+    "changes": [
+      "Pin or unpin multiple knives at once from collection selection mode.",
+      "Press Escape to clear active collection filters without interrupting open dialogs or menus.",
+      "Image-count badges now appear on collection cards and item details.",
+      "Collection filters calculate more efficiently for smoother browsing."
+    ]
+  },
+  {
+    "version": "v0.2.49",
+    "date": "2026-08-08",
+    "changes": [
+      "Compare search results now include thumbnails, making similar models easier to identify."
+    ]
+  },
+  {
+    "version": "v0.2.47",
+    "date": "2026-08-08",
+    "changes": [
+      "Search the collection when adding several knives to Compare, with model-name matching that avoids irrelevant specification hits."
+    ]
+  },
+  {
+    "version": "v0.2.46",
+    "date": "2026-08-07",
+    "changes": [
+      "Compare view row removal controls are now reachable with the keyboard.",
+      "Search clear button shows a visible focus indicator for keyboard navigation.",
+      "Compare rows no longer display an unwanted white shadow.",
+      "Development Container setup uses a persistent home directory and builds native dependencies reliably."
+    ]
+  },
+  {
+    "version": "v0.2.45",
+    "date": "2026-08-05",
+    "changes": [
+      "Routine dependency updates and CI hardening."
+    ]
+  },
+  {
+    "version": "v0.2.44",
+    "date": "2026-08-03",
+    "changes": [
+      "Filter menus and sidebar disclosures are easier to navigate with a keyboard.",
+      "Collection and compare views load custom fields more efficiently.",
+      "Knife form and image-library controls are fully keyboard accessible.",
+      "Specification sections on item detail pages are reorganized for clearer scanning."
+    ]
+  },
+  {
+    "version": "v0.2.43",
+    "date": "2026-08-02",
+    "changes": [
+      "The default search field is hidden until needed for a cleaner collection view.",
+      "Cloud backup reliability is improved with safer database checkpoint handling."
+    ]
+  },
+  {
+    "version": "v0.2.42",
+    "date": "2026-07-31",
+    "major": true,
+    "changes": [
+      "BladeVault can now be installed on Kubernetes via an official Helm chart.",
+      "Helm chart documentation and lifecycle commands are published to GitHub Pages.",
+      "Fullscreen image viewer and collection filter-chip focus were polished."
+    ]
+  },
+  {
+    "version": "v0.2.41",
+    "date": "2026-07-27",
+    "changes": [
+      "Docker builds are more reliable after fixing native dependency compilation.",
+      "Transitive security dependencies were updated."
+    ]
+  },
+  {
+    "version": "v0.2.40",
+    "date": "2026-07-26",
+    "changes": [
+      "Dashboard charts resize more reliably on smaller screens.",
+      "Gallery controls hide when only one image is present.",
+      "Fullscreen gallery navigation now works with the keyboard."
+    ]
+  },
+  {
+    "version": "v0.2.39",
+    "date": "2026-07-22",
+    "major": true,
+    "changes": [
+      "Upload several images at once with the file picker, drag and drop, or clipboard paste.",
+      "Collection, compare, card, gallery, and settings controls now adapt more cleanly to small screens.",
+      "Item detail pages show a structured loading state while their content is prepared."
+    ]
+  },
+  {
+    "version": "v0.2.37",
+    "date": "2026-07-21",
+    "changes": [
+      "Empty compare views now offer direct next steps instead of leaving you at a dead end.",
+      "Backup controls and manual-add form actions are clearer and easier to reach."
+    ]
+  },
+  {
+    "version": "v0.2.36",
+    "date": "2026-07-20",
+    "changes": [
+      "Choose which knife details appear on collection cards from Settings.",
+      "Cloud restore progress stays visible on the tab where the restore was started."
+    ]
+  },
+  {
+    "version": "v0.2.35",
+    "date": "2026-07-20",
+    "major": true,
+    "changes": [
+      "Select multiple knives and update their shared fields in one bulk edit.",
+      "Cloud backup setup, status, and controls are easier to understand.",
+      "The dashboard links directly to the newest collection entry."
+    ]
+  },
+  {
+    "version": "v0.2.34",
+    "date": "2026-07-20",
+    "changes": [
+      "Newly added comparison items appear first.",
+      "Important comparison columns stay visible while scrolling.",
+      "An empty collection now offers direct add and import actions."
+    ]
+  },
+  {
+    "version": "v0.2.33",
+    "date": "2026-07-19",
+    "changes": [
+      "Large collections open faster with progressive card loading and earlier loading of the first image."
+    ]
+  },
+  {
+    "version": "v0.2.29",
+    "date": "2026-07-18",
+    "changes": [
+      "Windows updates can download and install through the app with a more reliable, verified update flow."
+    ]
+  },
+  {
+    "version": "v0.2.28",
+    "date": "2026-07-18",
+    "changes": [
+      "BladeVault warns before you leave a form with unsaved changes.",
+      "Pinned knives stay at the top of collection views for quicker access."
+    ]
+  },
+  {
+    "version": "v0.2.23",
+    "date": "2026-07-16",
+    "major": true,
+    "changes": [
+      "Create reusable custom text, number, and date fields for the details unique to your collection.",
+      "Custom fields work across add, edit, detail, collection, and compare views.",
+      "Knife forms and detail pages use clearer, more consistent sections."
+    ]
+  },
+  {
+    "version": "v0.2.22",
+    "date": "2026-07-16",
+    "major": true,
+    "changes": [
+      "The dashboard gained collection insights for recent additions, makers, and acquisition activity.",
+      "Filters, brand navigation, and comparison actions were streamlined."
+    ]
+  },
+  {
+    "version": "v0.2.21",
+    "date": "2026-07-16",
+    "major": true,
+    "changes": [
+      "BladeVault became available as an Unraid Community Applications template."
+    ]
+  },
+  {
+    "version": "v0.2.19",
+    "date": "2026-07-14",
+    "major": true,
+    "changes": [
+      "Settings moved to a dedicated page with a clearer layout.",
+      "Desktop update status and controls became available inside BladeVault.",
+      "Product imports gained better brand detection, name cleanup, price, and last-updated details."
+    ]
+  },
+  {
+    "version": "v0.2.18",
+    "date": "2026-07-13",
+    "major": true,
+    "changes": [
+      "Choose and move the local data folder from Settings.",
+      "Product import can open an interactive browser when a retailer blocks the normal importer.",
+      "Desktop context menus add quick editing and navigation actions.",
+      "Search responds faster, themes persist, and printed comparisons clean up more reliably."
+    ]
+  },
+  {
+    "version": "v0.2.12",
+    "date": "2026-07-08",
+    "changes": [
+      "The macOS installer gained a guided launch helper for a smoother first run."
+    ]
+  },
+  {
+    "version": "v0.2.9",
+    "date": "2026-07-06",
+    "changes": [
+      "Automatic cloud backup now runs after collection changes, keeping backups current without an hourly timer."
+    ]
+  },
+  {
+    "version": "v0.2.6",
+    "date": "2026-07-05",
+    "changes": [
+      "Filters gained Select All, while brand and compare links show useful item counts.",
+      "Settings now shows where local data is stored, including Docker host paths when available."
+    ]
+  },
+  {
+    "version": "v0.2.3",
+    "date": "2026-06-30",
+    "major": true,
+    "changes": [
+      "macOS desktop releases gained code signing and notarization support."
+    ]
+  },
+  {
+    "version": "v0.2.2",
+    "date": "2026-06-30",
+    "major": true,
+    "changes": [
+      "BladeVault launched as a native desktop app for macOS and Windows.",
+      "Desktop builds keep the local-first web experience while managing their own server and data location."
+    ]
+  }
+]
