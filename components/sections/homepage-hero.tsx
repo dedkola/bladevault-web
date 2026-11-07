@@ -1,15 +1,9 @@
 import Image from "next/image"
-import {
-  ArrowDown,
-  ArrowDownToLine,
-  Database,
-  Link2,
-  Monitor,
-  Terminal,
-} from "lucide-react"
+import { Database, Link2, Monitor, Terminal } from "lucide-react"
 
 import { siteConfig } from "@/lib/site"
 
+import { HeroDownload } from "./hero-download"
 import styles from "./homepage-v3.module.css"
 
 const principles = [
@@ -31,7 +25,7 @@ const principles = [
   {
     icon: Monitor,
     title: "Any screen",
-    detail: "Mac, iPad, iPhone",
+    detail: "Mac, Windows, iPad, iPhone",
   },
 ]
 
@@ -45,26 +39,14 @@ export function HomepageHero() {
             Local-first knife collection &middot; {siteConfig.releaseVersion}
           </p>
           <h1 className={styles.heroTitle}>
-            Your collection, kept <em>useful.</em>
+            Your knife collection, <em>filled in.</em>
           </h1>
           <p className={styles.heroSub}>
-            Paste a product link and let BladeVault fill the record. Then read
-            the whole vault, connect the AI you already use, and keep it locked
-            down &mdash; on your Mac, iPad, or phone.
+            Paste a product link and BladeVault fills in the specs, price, and
+            photos. Keep the vault on your Mac or Windows PC, connect the AI you
+            already use, or self-host it and browse from your iPad and iPhone.
           </p>
-          <div className={styles.heroActions}>
-            <a
-              className={`${styles.button} ${styles.buttonPrimary}`}
-              href={siteConfig.releasesUrl}
-            >
-              <ArrowDownToLine aria-hidden="true" />
-              Download BladeVault
-            </a>
-            <a className={styles.button} href="#import">
-              See auto scrape
-              <ArrowDown aria-hidden="true" />
-            </a>
-          </div>
+          <HeroDownload />
           <div className={styles.heroTrust} aria-label="Product principles">
             <span>Free</span>
             <span>MIT licensed</span>

@@ -17,7 +17,7 @@ export default function OpenGraphImage() {
     eyebrow: "Auto scrape · AI access · v2.0",
     title: "Paste a link. Get a record.",
     description:
-      "Import a knife from a product page, ask the vault through MCP, and keep it local on macOS, iPad, or iPhone.",
+      "Import a knife from a product page, ask the vault through MCP, and keep it local on macOS or Windows, or self-host it for iPad and iPhone.",
     screenshotPath: "/screenshots/live/add-result-3x.jpg",
   })
 }

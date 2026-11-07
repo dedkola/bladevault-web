@@ -14,7 +14,7 @@ export const dynamic = "force-static"
 const pageTitle =
   "Auto scrape, AI access, and a local-first knife vault | BladeVault"
 const pageDescription =
-  "Paste a product URL and let BladeVault fill the record. Read the vault, connect Claude or Codex through MCP, lock it with a password, and open it on macOS, iPad, or iPhone."
+  "Paste a product URL and let BladeVault fill the record. Connect Claude or Codex through MCP, lock it with a password, and run it on macOS or Windows, or self-host it for iPad and iPhone."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -64,7 +64,7 @@ export default function Page() {
         "@id": `${absoluteUrl("/")}#software`,
         name: siteConfig.name,
         applicationCategory: "UtilitiesApplication",
-        operatingSystem: "macOS, Windows",
+        operatingSystem: "macOS, Windows, Linux",
         url: absoluteUrl("/"),
         image: absoluteUrl("/opengraph-image"),
         screenshot: siteConfig.screenshotPaths.map((path) => absoluteUrl(path)),
