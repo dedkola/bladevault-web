@@ -78,7 +78,7 @@ export const siteConfig = {
   shortName: "BladeVault",
   defaultTitle: "BladeVault",
   description:
-    "BladeVault is a local-first knife collection manager with automatic product-page scraping, Studio, Collection pulse, AI access through MCP, optional audited writes, app lock, and responsive browser access on macOS, iPad, and iPhone.",
+    "BladeVault is a local-first knife collection manager with automatic product-page scraping, Studio, Collection pulse, AI access through MCP, optional audited writes, app lock, native desktop apps for macOS and Windows, and self-hosted browser access on iPad and iPhone.",
   category: "software",
   locale: "en_US",
   url: siteUrl,
@@ -128,7 +128,8 @@ export const siteConfig = {
     "Optional local app password lock",
     "Local-first storage, complete backups, and MCP access",
     "Read-only MCP tools with opt-in audited writes",
-    "Responsive browser access on macOS, iPad, and iPhone",
+    "Native desktop apps for macOS and Windows",
+    "Self-hosted browser access on iPad and iPhone with Docker or Helm",
   ],
   videoEntries,
   videoUrl,

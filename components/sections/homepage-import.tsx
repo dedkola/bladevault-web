@@ -7,7 +7,7 @@ const steps = [
   {
     number: "01",
     title: "Paste the product URL",
-    body: "A supported retailer page is enough. Batch scrape takes a list of links when you have more than one.",
+    body: "Most knife shop product pages work. Batch scrape takes a list of links when you have more than one.",
     image: "/screenshots/live/add-empty-crop-3x.jpg",
     alt: "BladeVault Add knife screen with the Scrape URL tab and an empty product URL field",
     width: 3642,
@@ -42,6 +42,27 @@ const resultTags = [
   "Specs",
   "Source preview",
 ]
+
+// Stores with dedicated parsing, and maker sites the importer names the brand
+// for. Keep in sync with lib/scrape.ts in dedkola/bladevault.
+const tunedStores = ["Vosteed", "SOG", "Artisan Cutlery"]
+
+const makerSites = [
+  "Spyderco",
+  "Benchmade",
+  "Kizer",
+  "CIVIVI",
+  "WE",
+  "Microtech",
+  "Chris Reeve",
+  "Zero Tolerance",
+  "Böker",
+  "Buck",
+  "Victorinox",
+  "Fällkniven",
+]
+
+const moreMakerSites = 9
 
 export function HomepageImport() {
   return (
@@ -119,6 +140,39 @@ export function HomepageImport() {
             ) : null}
           </article>
         ))}
+      </div>
+
+      <div className={styles.retailerPanel}>
+        <div>
+          <h3>Where it works</h3>
+          <p>
+            Most knife shops work out of the box: BladeVault reads standard
+            product data and understands Shopify and WooCommerce stores. If a
+            site blocks the import or asks for a check, choose{" "}
+            <b>Interact with page</b>, finish it yourself, and continue.
+          </p>
+        </div>
+        <div className={styles.retailerGroups}>
+          <div>
+            <span className={styles.retailerLabel}>Extra parsing for</span>
+            <ul className={styles.retailerChips}>
+              {tunedStores.map((store) => (
+                <li key={store} data-tuned="">
+                  {store}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <span className={styles.retailerLabel}>Maker sites recognized</span>
+            <ul className={styles.retailerChips}>
+              {makerSites.map((maker) => (
+                <li key={maker}>{maker}</li>
+              ))}
+              <li>+{moreMakerSites} more</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <div className={styles.importFoot}>
