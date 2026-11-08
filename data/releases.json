@@ -1,5 +1,15 @@
 [
   {
+    "version": "v2.2.2",
+    "date": "2026-11-08",
+    "changes": [
+      "Show what's new after an update.",
+      "Explain the usage data prompt to users who already agreed.",
+      "Ignore Linux thread IDs when checking stale vault leases.",
+      "Polish the Classic theme."
+    ]
+  },
+  {
     "version": "v2.2.1",
     "date": "2026-11-07",
     "changes": [
