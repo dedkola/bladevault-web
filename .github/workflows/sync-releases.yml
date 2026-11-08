@@ -24,6 +24,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pull-requests: write
 
 concurrency:
@@ -76,8 +77,8 @@ jobs:
 
           url=$(gh pr list --head "$branch" --state open --json url -q '.[0].url')
           if [ -n "$url" ]; then
-            gh pr edit "$url" --title "$title" --body "$body"
+            gh pr edit "$url" --title "$title" --body "$body" --add-assignee dedkola
           else
-            url=$(gh pr create --base main --head "$branch" --title "$title" --body "$body")
+            url=$(gh pr create --base main --head "$branch" --title "$title" --body "$body" --assignee dedkola)
           fi
           gh pr merge --auto --squash "$url"
