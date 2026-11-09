@@ -42,7 +42,10 @@ type ThemeStyle = {
   name: string
   note: string
   isNew?: boolean
-  lightOnly?: boolean
+  /** Styles that ignore the color mode, as in the app. */
+  fixedMode?: Mode
+  /** Logo and swatch accent when the main button color would vanish. */
+  mark?: string
   radius: string
   pill: string
   palettes: Record<Mode, Palette>
@@ -170,7 +173,7 @@ const themes: ThemeStyle[] = [
     name: "Lumen",
     note: "Pure white with orange on the main action",
     isNew: true,
-    lightOnly: true,
+    fixedMode: "light",
     radius: "6px",
     pill: "6px",
     palettes: {
@@ -205,41 +208,81 @@ const themes: ThemeStyle[] = [
     },
   },
   {
-    id: "amber",
-    name: "Amber",
-    note: "Clean white surfaces with amber accents",
+    id: "espresso",
+    name: "Espresso",
+    note: "Cream paper and dark roast, amber glow",
     isNew: true,
-    lightOnly: true,
-    radius: "8px",
-    pill: "6px",
+    fixedMode: "light",
+    mark: "#f59e0b",
+    radius: "10px",
+    pill: "8px",
     palettes: {
       light: {
-        bg: "#ffffff",
-        card: "#ffffff",
-        ink: "#1f2328",
-        muted: "#59636e",
-        line: "#d1d9e0",
-        side: "#ffffff",
-        sideInk: "#1f2328",
-        sideMuted: "#59636e",
-        accent: "#f59e0b",
-        accentFill: "#f59e0b",
-        accentInk: "#1f2328",
-        plate: "#f6f8fa",
+        bg: "#f8f2e7",
+        card: "#fffcf6",
+        ink: "#2a2018",
+        muted: "#7a6a55",
+        line: "#e6d9c0",
+        side: "#1f1812",
+        sideInk: "#f6ead3",
+        sideMuted: "#b8a586",
+        accent: "#b45309",
+        accentFill: "#2a2018",
+        accentInk: "#fbbf24",
+        plate: "linear-gradient(180deg, #fffdf8, #f6eedf)",
       },
       dark: {
-        bg: "#ffffff",
-        card: "#ffffff",
-        ink: "#1f2328",
-        muted: "#59636e",
-        line: "#d1d9e0",
-        side: "#ffffff",
-        sideInk: "#1f2328",
-        sideMuted: "#59636e",
-        accent: "#f59e0b",
-        accentFill: "#f59e0b",
-        accentInk: "#1f2328",
-        plate: "#f6f8fa",
+        bg: "#f8f2e7",
+        card: "#fffcf6",
+        ink: "#2a2018",
+        muted: "#7a6a55",
+        line: "#e6d9c0",
+        side: "#1f1812",
+        sideInk: "#f6ead3",
+        sideMuted: "#b8a586",
+        accent: "#b45309",
+        accentFill: "#2a2018",
+        accentInk: "#fbbf24",
+        plate: "linear-gradient(180deg, #fffdf8, #f6eedf)",
+      },
+    },
+  },
+  {
+    id: "phosphor",
+    name: "Phosphor",
+    note: "Amber terminal, mono labels, square corners",
+    isNew: true,
+    fixedMode: "dark",
+    radius: "2px",
+    pill: "2px",
+    palettes: {
+      light: {
+        bg: "#0d0b08",
+        card: "#15110b",
+        ink: "#f5c66b",
+        muted: "#a8875a",
+        line: "#2a2218",
+        side: "#0d0b08",
+        sideInk: "#f5c66b",
+        sideMuted: "#a8875a",
+        accent: "#ffb000",
+        accentFill: "#ffb000",
+        accentInk: "#0d0b08",
+        plate: "linear-gradient(180deg, #f7ecd3, #ecdbb6)",
+      },
+      dark: {
+        bg: "#0d0b08",
+        card: "#15110b",
+        ink: "#f5c66b",
+        muted: "#a8875a",
+        line: "#2a2218",
+        side: "#0d0b08",
+        sideInk: "#f5c66b",
+        sideMuted: "#a8875a",
+        accent: "#ffb000",
+        accentFill: "#ffb000",
+        accentInk: "#0d0b08",
+        plate: "linear-gradient(180deg, #f7ecd3, #ecdbb6)",
       },
     },
   },
@@ -399,6 +442,10 @@ const inspectorTabs = ["Overview", "Specs", "Maintenance", "History"]
 
 const alsoNew = [
   {
+    title: "Style name under the logo",
+    body: "The active style shows in small caps under the BladeVault wordmark, so you always know which look is on.",
+  },
+  {
     title: "Tabbed knife inspector",
     body: "Overview, Specifications, Maintenance, and History tabs keep the side panel short. Classic gets a Maintenance tab.",
   },
@@ -445,7 +492,7 @@ function KnifeGlyph({ className }: { className?: string }) {
 }
 
 function themeVars(theme: ThemeStyle, mode: Mode) {
-  const p = theme.palettes[theme.lightOnly ? "light" : mode]
+  const p = theme.palettes[theme.fixedMode ?? mode]
 
   return {
     "--t-bg": p.bg,
@@ -459,6 +506,7 @@ function themeVars(theme: ThemeStyle, mode: Mode) {
     "--t-accent": p.accent,
     "--t-accent-fill": p.accentFill,
     "--t-accent-ink": p.accentInk,
+    "--t-mark": theme.mark ?? p.accentFill,
     "--t-plate": p.plate,
     "--t-radius": theme.radius,
     "--t-pill": theme.pill,
@@ -470,7 +518,7 @@ export function HomepageThemes() {
   const [mode, setMode] = useState<Mode>("dark")
 
   const active = themes.find((theme) => theme.id === activeId) ?? themes[0]
-  const shownMode: Mode = active.lightOnly ? "light" : mode
+  const shownMode: Mode = active.fixedMode ?? mode
   const newCount = themes.filter((theme) => theme.isNew).length
 
   return (
@@ -483,11 +531,11 @@ export function HomepageThemes() {
           Appearance
           <span className={styles.newTag}>{newCount} new styles</span>
         </p>
-        <h2>Eight ways to see the vault.</h2>
+        <h2>Nine ways to see the vault.</h2>
         <p className={base.sectionIntro}>
-          Forge, Titanium, Field, Lumen, and Amber join Classic, Modern, and
-          Alloy. Switch in Settings &rarr; Appearance at any time. The look
-          changes; your records, columns, and start page stay put.
+          Forge, Titanium, Field, Lumen, Espresso, and Phosphor join Classic,
+          Modern, and Alloy. Switch in Settings &rarr; Appearance at any time.
+          The look changes; your records, columns, and start page stay put.
         </p>
       </div>
 
@@ -500,7 +548,7 @@ export function HomepageThemes() {
           >
             {themes.map((theme) => {
               const selected = theme.id === active.id
-              const swatch = theme.palettes[theme.lightOnly ? "light" : mode]
+              const swatch = theme.palettes[theme.fixedMode ?? mode]
 
               return (
                 <button
@@ -526,7 +574,7 @@ export function HomepageThemes() {
                     <span className={styles.swatchBody}>
                       <span
                         className={styles.swatchTitle}
-                        style={{ background: swatch.accentFill }}
+                        style={{ background: theme.mark ?? swatch.accentFill }}
                       />
                       <span
                         className={styles.swatchCard}
@@ -566,7 +614,9 @@ export function HomepageThemes() {
                   type="button"
                   role="radio"
                   aria-checked={shownMode === value}
-                  disabled={active.lightOnly && value === "dark"}
+                  disabled={
+                    Boolean(active.fixedMode) && value !== active.fixedMode
+                  }
                   className={cn(
                     styles.modeButton,
                     shownMode === value && styles.isActive
@@ -583,8 +633,8 @@ export function HomepageThemes() {
               ))}
             </div>
             <p className={styles.modeNote} aria-live="polite">
-              {active.lightOnly
-                ? `${active.name} is light only.`
+              {active.fixedMode
+                ? `${active.name} is ${active.fixedMode} only.`
                 : "This style follows light and dark mode."}
             </p>
           </div>
@@ -611,7 +661,10 @@ export function HomepageThemes() {
               <aside className={styles.sidebar}>
                 <span className={styles.brand}>
                   <span className={styles.brandMark} />
-                  BladeVault
+                  <span className={styles.brandText}>
+                    BladeVault
+                    <small>{active.name}</small>
+                  </span>
                 </span>
                 <ul className={styles.nav}>
                   {navItems.map(({ icon: Icon, label, count }, index) => (

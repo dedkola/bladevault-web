@@ -117,7 +117,7 @@ export const siteConfig = {
     "Automatic product-page scraping with editable specs and image review",
     "Studio visual library with focus mode and quick look",
     "Collection pulse analytics with drill-down links and print",
-    "Eight theme styles: Forge, Titanium, Field, Lumen, Amber, Classic, Modern, and Alloy",
+    "Nine theme styles: Forge, Titanium, Field, Lumen, Espresso, Phosphor, Classic, Modern, and Alloy",
     "Tabbed knife inspector with Overview, Specifications, Maintenance, and History",
     "Customizable collection columns with remembered order and widths",
     "Bulk selection directly in the modern collection table",

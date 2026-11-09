@@ -315,8 +315,25 @@
 .brandMark {
   width: 16px;
   height: 16px;
+  flex: none;
   border-radius: 5px;
-  background: var(--t-accent-fill);
+  background: var(--t-mark);
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+/* The app shows the active style name under the wordmark. */
+.brandText small {
+  color: var(--t-side-muted);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .nav,
@@ -368,7 +385,7 @@
   left: -10px;
   width: 3px;
   border-radius: 0 3px 3px 0;
-  background: var(--t-accent-fill);
+  background: var(--t-mark);
   content: "";
 }
 
@@ -717,7 +734,7 @@
 
 .alsoNew ul {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
   margin: 0;
   padding: 0;
@@ -746,6 +763,10 @@
 /* ---------- responsive ---------- */
 
 @media (max-width: 1180px) {
+  .alsoNew ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .app {
     grid-template-columns: 140px minmax(0, 1fr);
   }
@@ -852,4 +873,82 @@
   .window * {
     transition: none;
   }
+}
+
+/* Espresso: dark roast sidebar with an amber-tinted current row. */
+
+.window[data-theme="espresso"] .windowBar {
+  color: var(--t-side-muted);
+}
+
+.window[data-theme="espresso"] .nav li.navActive {
+  background: rgb(245 158 11 / 16%);
+}
+
+.window[data-theme="espresso"] .nav li.navActive svg {
+  color: #fbbf24;
+}
+
+/* Pinned thumbnails keep their light plates on the dark sidebar. */
+.window[data-theme="espresso"] .pinThumb {
+  color: #2a2018;
+  background: #f6eedf;
+}
+
+.window[data-theme="espresso"] .cardSelected {
+  border-color: rgb(217 119 6 / 70%);
+  box-shadow:
+    0 0 0 1px rgb(217 119 6 / 35%),
+    0 8px 22px rgb(217 119 6 / 20%);
+}
+
+/* Phosphor: amber terminal with mono labels and square corners. */
+
+.window[data-theme="phosphor"]
+  :is(.brand, .nav li, .toolbar strong, .addButton, .inspectorTitle, .tabs) {
+  font-family: var(--font-mono);
+  letter-spacing: 0;
+}
+
+.window[data-theme="phosphor"] :is(.toolbar strong, .brandText) {
+  text-transform: uppercase;
+}
+
+.window[data-theme="phosphor"] .brandText {
+  letter-spacing: 0.04em;
+}
+
+/* Solid amber block for the current row, no side bar. */
+.window[data-theme="phosphor"] .nav li.navActive,
+.window[data-theme="phosphor"] .nav li.navActive svg {
+  color: #0d0b08;
+}
+
+.window[data-theme="phosphor"] .nav li.navActive {
+  background: #ffb000;
+}
+
+.window[data-theme="phosphor"] .nav li.navActive::before {
+  display: none;
+}
+
+/* Main action is outlined in amber. */
+.window[data-theme="phosphor"] .addButton {
+  border: 1px solid #ffb000;
+  color: #ffb000;
+  background: transparent;
+}
+
+.window[data-theme="phosphor"] .cardSelected {
+  border-color: #ffb000;
+  box-shadow: 0 0 12px -4px rgb(255 176 0 / 55%);
+}
+
+/* Photo plates stay light, so the knife reads dark on them. */
+.window[data-theme="phosphor"] :is(.plate, .pinThumb) {
+  color: #2a2018;
+}
+
+.window[data-theme="phosphor"] .pinThumb {
+  background: #ecdbb6;
 }
