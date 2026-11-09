@@ -1,5 +1,19 @@
 [
   {
+    "version": "v2.3.0",
+    "date": "2026-11-09",
+    "changes": [
+      "One card-size toggle and compact cards in every theme.",
+      "Redesign Compare and Logs icons.",
+      "Add Forge, Titanium and Field styles on the Modern layout.",
+      "Disable Classic floating search transition for reduced motion.",
+      "Tabbed knife inspector with Maintenance tab in Classic.",
+      "Add Pin and Compare icons to the inspector in Forge, Titanium and Field.",
+      "Add Lumen, a light-only style on the Forge layout.",
+      "Add Amber, a light-only style with GitHub surfaces and amber accents."
+    ]
+  },
+  {
     "version": "v2.2.2",
     "date": "2026-11-08",
     "changes": [
