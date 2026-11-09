@@ -5,6 +5,7 @@ import { HomepageDevices } from "@/components/sections/homepage-devices"
 import { HomepageFeatures } from "@/components/sections/homepage-features"
 import { HomepageHero } from "@/components/sections/homepage-hero"
 import { HomepageImport } from "@/components/sections/homepage-import"
+import { HomepageThemes } from "@/components/sections/homepage-themes"
 import { InstallCta } from "@/components/sections/install-cta"
 import styles from "@/components/sections/homepage-v3.module.css"
 import { absoluteUrl, siteConfig } from "@/lib/site"
@@ -96,6 +97,7 @@ export default function Page() {
           <HomepageImport />
           <HomepageDevices />
           <HomepageAi />
+          <HomepageThemes />
           <HomepageFeatures />
           <div className={styles.installWrap}>
             <InstallCta />
