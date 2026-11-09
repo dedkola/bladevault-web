@@ -15,13 +15,15 @@ export function AnnouncementBar() {
     <div className={styles.bar}>
       <div className={styles.inner}>
         <p>
-          <strong>v2.0 is here.</strong>{" "}
+          <span className={styles.badge}>New</span>{" "}
+          <strong>Five new themes.</strong>{" "}
           <span>
-            Auto scrape, AI access, and a vault that fits every screen.
+            Forge, Titanium, Field, Lumen, and Amber join Classic, Modern, and
+            Alloy.
           </span>
         </p>
-        <Link href="/#import" className={styles.link}>
-          See how it works
+        <Link href="/#themes" className={styles.link}>
+          Preview the styles
           <ArrowRight aria-hidden="true" />
         </Link>
       </div>

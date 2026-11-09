@@ -83,7 +83,7 @@ const alsoIncluded = [
   "Model families",
   "Sold status",
   "Custom fields",
-  "Current / Modern",
+  "8 theme styles",
   "Light / dark",
   "Columns",
   "Start page",
@@ -95,7 +95,7 @@ export function HomepageFeatures() {
       <div className={styles.sectionHead}>
         <p className={styles.sectionKicker}>
           <span className={styles.sectionNum} aria-hidden="true">
-            04
+            05
           </span>
           The rest of the vault
         </p>
