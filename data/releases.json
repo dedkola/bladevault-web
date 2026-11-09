@@ -1,5 +1,14 @@
 [
   {
+    "version": "v2.3.2",
+    "date": "2026-11-09",
+    "changes": [
+      "Calendar activity map and richer activity details on Forge.",
+      "Calendar activity map on Insights for all styles but Classic.",
+      "Orange glow on hovered and active Lumen cards."
+    ]
+  },
+  {
     "version": "v2.3.1",
     "date": "2026-11-09",
     "changes": [
