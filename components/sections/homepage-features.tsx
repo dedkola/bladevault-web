@@ -83,7 +83,7 @@ const alsoIncluded = [
   "Model families",
   "Sold status",
   "Custom fields",
-  "8 theme styles",
+  "9 theme styles",
   "Light / dark",
   "Columns",
   "Start page",

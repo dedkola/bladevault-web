@@ -16,10 +16,10 @@ export function AnnouncementBar() {
       <div className={styles.inner}>
         <p>
           <span className={styles.badge}>New</span>{" "}
-          <strong>Five new themes.</strong>{" "}
+          <strong>Six new themes.</strong>{" "}
           <span>
-            Forge, Titanium, Field, Lumen, and Amber join Classic, Modern, and
-            Alloy.
+            Forge, Titanium, Field, Lumen, Espresso, and Phosphor join Classic,
+            Modern, and Alloy.
           </span>
         </p>
         <Link href="/#themes" className={styles.link}>
