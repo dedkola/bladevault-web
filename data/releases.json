@@ -1,5 +1,18 @@
 [
   {
+    "version": "v2.3.3",
+    "date": "2026-11-10",
+    "changes": [
+      "Fit long specs on Forge cards.",
+      "Honor card fields in modern card layouts.",
+      "Add quick theme switcher to the Modern footer.",
+      "Add pinned item field selection.",
+      "Show the compact workspace footer in the Classic layout.",
+      "Include Classic in the footer theme rotation.",
+      "Move Classic footer actions into a full-width footer."
+    ]
+  },
+  {
     "version": "v2.3.2",
     "date": "2026-11-09",
     "changes": [
