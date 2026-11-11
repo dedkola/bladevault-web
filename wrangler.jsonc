@@ -19,4 +19,10 @@
   ],
   // Branch builds deploy with `npx wrangler preview`, which needs this block to exist.
   "previews": {},
+  // Workers Logs. Kept in config so `wrangler deploy` doesn't reset the dashboard toggle.
+  // Assets-only Workers can't use Logpush or Tail Workers; those need a Worker script.
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+  },
 }
