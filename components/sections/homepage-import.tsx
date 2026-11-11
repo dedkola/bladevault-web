@@ -6,21 +6,21 @@ import styles from "./homepage-v3.module.css"
 const steps = [
   {
     number: "01",
-    title: "Paste the product URL",
-    body: "Most knife shop product pages work. Batch scrape takes a list of links when you have more than one.",
+    title: "Paste the product link",
+    body: "Add knife is a single link field. Paste a shop or maker page, or switch to batch scrape when you have a list.",
     image: "/screenshots/live/add-empty-crop-3x.jpg",
-    alt: "BladeVault Add knife screen with the Scrape URL tab and an empty product URL field",
-    width: 3642,
-    height: 2340,
+    alt: "BladeVault Add knife screen with a single product link field, plus Batch scrape, Import saved page, and Enter manually options",
+    width: 2390,
+    height: 1536,
   },
   {
     number: "02",
     title: "BladeVault reads the page",
-    body: "Title, brand, price, specifications, and images are pulled in while you wait. The source page is captured too.",
+    body: "Title, brand, model number, designer, price, specifications, and images are pulled in while you wait. The source page is captured too.",
     image: "/screenshots/live/add-result-crop-3x.jpg",
-    alt: "BladeVault after reading a Vosteed product page, with the form filled and the scraped page preview open",
-    width: 3642,
-    height: 2340,
+    alt: "BladeVault after reading a Vosteed Raccoon TiSlim page, with identity fields filled and the scraped page preview open",
+    width: 2390,
+    height: 1536,
   },
   {
     number: "03",
@@ -28,16 +28,17 @@ const steps = [
     body: "Every field stays editable. Keep the source-page preview, pick the cover, and save the knife to the vault.",
     checks: [
       "Every field editable",
-      "12 images selectable",
+      "Whole image library selectable",
       "Source preview saved",
     ],
   },
 ] as const
 
 const resultTags = [
-  "12 images",
+  "37 images",
   "Brand",
-  "Model",
+  "Model number",
+  "Designer",
   "Price",
   "Specs",
   "Source preview",
@@ -45,7 +46,13 @@ const resultTags = [
 
 // Stores with dedicated parsing, and maker sites the importer names the brand
 // for. Keep in sync with lib/scrape.ts in dedkola/bladevault.
-const tunedStores = ["Vosteed", "SOG", "Artisan Cutlery"]
+const tunedStores = [
+  "Vosteed",
+  "SOG",
+  "Artisan Cutlery",
+  "Straight Line EDC",
+  "Poikilo Blade",
+]
 
 const makerSites = [
   "Spyderco",
@@ -95,9 +102,9 @@ export function HomepageImport() {
           </div>
           <Image
             src="/screenshots/live/add-result-3x.jpg"
-            alt="BladeVault after scraping a Vosteed Raccoon TiSlim page: filled identity fields, a scraped page preview, and a library of 12 selectable images"
-            width={4320}
-            height={2700}
+            alt="BladeVault after scraping a Vosteed Raccoon TiSlim page: brand, model number, designer, and price filled in next to the scraped page preview"
+            width={2880}
+            height={1800}
             sizes="(min-width: 1180px) 980px, 94vw"
             quality={90}
             className={styles.scrapeResultImage}
@@ -148,8 +155,11 @@ export function HomepageImport() {
           <p>
             Most knife shops work out of the box: BladeVault reads standard
             product data and understands Shopify and WooCommerce stores. If a
-            site blocks the import or asks for a check, choose{" "}
-            <b>Interact with page</b>, finish it yourself, and continue.
+            popup or security check gets in the way, choose{" "}
+            <b>Interact with page</b>, finish it yourself, and continue. For
+            bot-protected shops, the desktop app opens the page in its own
+            BladeVault browser, or you can import a page you saved with{" "}
+            <b>File &rarr; Save Page As</b>.
           </p>
         </div>
         <div className={styles.retailerGroups}>
@@ -177,7 +187,8 @@ export function HomepageImport() {
 
       <div className={styles.importFoot}>
         <span>
-          <b>Have a list?</b> Batch scrape one URL per line.
+          <b>Have a list?</b> Batch scrape one URL per line. Links you already
+          saved are skipped.
         </span>
         <Link href="/docs/guides/add-knife-in-manual-mode">
           No product page? Add it manually &rarr;

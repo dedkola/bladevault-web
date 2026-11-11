@@ -9,8 +9,8 @@ const accessSteps = [
     title: "Self-host the vault",
     body: (
       <>
-        Run the Docker image or Helm chart on a Mac, PC, NAS, or Unraid box that
-        stays on.
+        Run the Docker image or Helm chart on a Mac, PC, Linux server, NAS, or
+        Unraid box that stays on.
       </>
     ),
   },
@@ -48,9 +48,10 @@ export function HomepageDevices() {
         </p>
         <h2>One vault. Every screen.</h2>
         <p className={styles.sectionIntro}>
-          Use the desktop app on Mac or Windows. Want it on the couch too? Run
-          BladeVault on a home server and open the same vault in the browser on
-          your iPad and iPhone &mdash; no second database, no sync service.
+          Use the desktop app on Mac, Windows, or Linux. Want it on the couch
+          too? Run BladeVault on a home server and open the same vault in the
+          browser on your iPad and iPhone &mdash; no second database, no sync
+          service.
         </p>
       </div>
 
@@ -68,9 +69,9 @@ export function HomepageDevices() {
             </div>
             <Image
               src="/screenshots/live/collection-desktop.jpg"
-              alt="BladeVault Collection on macOS with the knife table and inspector open"
-              width={1440}
-              height={900}
+              alt="BladeVault Collection on macOS in the Lumen style, with the knife table, dual metric and imperial measurements, and the knife inspector open"
+              width={2880}
+              height={1800}
               sizes="(min-width: 1180px) 72vw, 100vw"
               quality={90}
               className={styles.deviceMacImage}
@@ -83,8 +84,8 @@ export function HomepageDevices() {
             <Image
               src="/screenshots/live/studio-ipad.jpg"
               alt="BladeVault Studio on an iPad in landscape, showing the collection in three columns"
-              width={1024}
-              height={768}
+              width={2048}
+              height={1536}
               sizes="(min-width: 1180px) 36vw, (min-width: 900px) 40vw, 86vw"
               quality={90}
               className={styles.deviceIpadImage}
@@ -97,8 +98,8 @@ export function HomepageDevices() {
             <Image
               src="/screenshots/live/studio-iphone.jpg"
               alt="BladeVault Studio on an iPhone, showing the collection in two columns"
-              width={390}
-              height={844}
+              width={1170}
+              height={2532}
               sizes="(min-width: 1180px) 15vw, (min-width: 900px) 20vw, 48vw"
               quality={90}
               className={styles.deviceIphoneImage}
@@ -110,6 +111,7 @@ export function HomepageDevices() {
       <div className={styles.deviceLegend} aria-label="Supported screens">
         <span>macOS app</span>
         <span>Windows app</span>
+        <span>Linux app</span>
         <span>iPad browser</span>
         <span>iPhone browser</span>
       </div>

@@ -16,14 +16,14 @@ export function AnnouncementBar() {
       <div className={styles.inner}>
         <p>
           <span className={styles.badge}>New</span>{" "}
-          <strong>Six new themes.</strong>{" "}
+          <strong>Notes, history, and Linux.</strong>{" "}
           <span>
-            Forge, Titanium, Field, Lumen, Espresso, and Phosphor join Classic,
-            Modern, and Alloy.
+            Dated Markdown notes on every knife, a linked History, and desktop
+            builds for Linux.
           </span>
         </p>
-        <Link href="/#themes" className={styles.link}>
-          Preview the styles
+        <Link href="/#journal" className={styles.link}>
+          See what&rsquo;s new
           <ArrowRight aria-hidden="true" />
         </Link>
       </div>

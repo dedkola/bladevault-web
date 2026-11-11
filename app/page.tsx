@@ -5,6 +5,7 @@ import { HomepageDevices } from "@/components/sections/homepage-devices"
 import { HomepageFeatures } from "@/components/sections/homepage-features"
 import { HomepageHero } from "@/components/sections/homepage-hero"
 import { HomepageImport } from "@/components/sections/homepage-import"
+import { HomepageJournal } from "@/components/sections/homepage-journal"
 import { HomepageThemes } from "@/components/sections/homepage-themes"
 import { InstallCta } from "@/components/sections/install-cta"
 import styles from "@/components/sections/homepage-v3.module.css"
@@ -13,9 +14,9 @@ import { absoluteUrl, siteConfig } from "@/lib/site"
 export const dynamic = "force-static"
 
 const pageTitle =
-  "Auto scrape, AI access, and a local-first knife vault | BladeVault"
+  "Auto scrape, notes, AI access, and a local-first knife vault | BladeVault"
 const pageDescription =
-  "Paste a product URL and let BladeVault fill the record. Connect Claude or Codex through MCP, lock it with a password, and run it on macOS or Windows, or self-host it for iPad and iPhone."
+  "Paste a product URL and let BladeVault fill the record. Keep dated notes and history for every knife, connect Claude or Codex through MCP, and run it on macOS, Windows, or Linux, or self-host it for iPad and iPhone."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -97,6 +98,7 @@ export default function Page() {
           <HomepageImport />
           <HomepageDevices />
           <HomepageAi />
+          <HomepageJournal />
           <HomepageThemes />
           <HomepageFeatures />
           <div className={styles.installWrap}>
