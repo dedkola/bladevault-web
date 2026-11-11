@@ -1,5 +1,19 @@
 [
   {
+    "version": "v2.4.0",
+    "date": "2026-11-11",
+    "changes": [
+      "Sort inspector History newest first.",
+      "Move item maintenance into a side tab and notes under the photos.",
+      "Bring Classic Logs up to date with the Lumen layout.",
+      "Link inspector History events to their entry and rename Logs to History.",
+      "Add dated personal notes to the knife page.",
+      "Link inspector History note rows to their log entry.",
+      "Add Markdown formatting to knife notes.",
+      "Add Linux AppImage and Debian desktop builds."
+    ]
+  },
+  {
     "version": "v2.3.3",
     "date": "2026-11-10",
     "changes": [
