@@ -47,7 +47,7 @@ Preview URLs on `workers.dev` won't transform images (see above).
 
 ### 4. Domain cutover
 
-- [ ] Uncomment `routes` in `wrangler.jsonc` (apex + `www`), then run `pnpm deploy`. Cloudflare creates the DNS records and certificates.
+- [x] `routes` in `wrangler.jsonc` attach the apex and `www` as custom domains on deploy. Cloudflare creates the DNS records and certificates.
 - [ ] Remove the conflicting Vercel A/CNAME records for `bladevault.pro` / `www`.
 - [ ] Decide the `www` ↔ apex canonical, and add a Redirect Rule (Rules → Redirect Rules) for the other host.
 - [ ] Check `video.bladevault.pro` separately. It isn't served by this project, so make sure its DNS record survives the zone move.

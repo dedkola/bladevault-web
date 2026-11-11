@@ -11,9 +11,10 @@
     // Next writes its not-found page to out/404.html
     "not_found_handling": "404-page",
   },
-  // Custom domains are attached once the zone is on Cloudflare — see CLOUDFLARE_MIGRATION.md.
-  // "routes": [
-  //   { "pattern": "bladevault.pro", "custom_domain": true },
-  //   { "pattern": "www.bladevault.pro", "custom_domain": true }
-  // ],
+  // Custom domains: Cloudflare creates the DNS records and certificates on deploy.
+  // www → apex is a Redirect Rule on the zone (Rules → Redirect Rules), not part of this Worker.
+  "routes": [
+    { "pattern": "bladevault.pro", "custom_domain": true },
+    { "pattern": "www.bladevault.pro", "custom_domain": true },
+  ],
 }
