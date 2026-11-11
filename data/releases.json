@@ -1,5 +1,15 @@
 [
   {
+    "version": "v2.4.1",
+    "date": "2026-11-11",
+    "changes": [
+      "Support Straight Line EDC product pages in the scraper.",
+      "Show Smart Collections in the Studio filter.",
+      "Replace the Lumen collection filter panel with a chip filter bar.",
+      "Simplify the Add knife page to a single link field."
+    ]
+  },
+  {
     "version": "v2.4.0",
     "date": "2026-11-11",
     "changes": [
