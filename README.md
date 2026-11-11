@@ -4,7 +4,7 @@
 [![React](https://img.shields.io/badge/React-19-20232a?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06b6d4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Vercel](https://img.shields.io/badge/Vercel-Ready-black?logo=vercel)](https://vercel.com/)
+[![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare)](https://workers.cloudflare.com/)
 
 Promo website for [BladeVault](https://github.com/dedkola/bladevault), the local-first desktop knife collection manager. This repository contains the marketing site and screenshot-driven product presentation, not the main app codebase.
 
@@ -63,16 +63,16 @@ pnpm typecheck
 pnpm build
 ```
 
-Serve the production build with `pnpm start`. Use `pnpm format` to format the repository with Prettier; this command writes changes to files.
+The build is a static export in `out/`. Preview it on the local Workers runtime with `pnpm preview`, and deploy it with `pnpm deploy` (see [CLOUDFLARE_MIGRATION.md](CLOUDFLARE_MIGRATION.md)). Use `pnpm format` to format the repository with Prettier; this command writes changes to files.
 
 ## Configuration
 
 URL configuration is optional. To override the defaults locally, copy `.env.example` to `.env.local` and set the appropriate values before starting the development server or building the site.
 
-| Setting                                                    | Resolution order                                                              | Default                                                                        |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Site URL for canonical links, social metadata, and sitemap | `NEXT_PUBLIC_SITE_URL`, then `SITE_URL`, then `VERCEL_PROJECT_PRODUCTION_URL` | `https://bladevault.pro` in production; `http://localhost:3000` in development |
-| Base URL for hosted video assets                           | `NEXT_PUBLIC_VIDEO_URL`, then `VIDEO_URL`                                     | `https://video.bladevault.pro`                                                 |
+| Setting                                                    | Resolution order                          | Default                                                                        |
+| ---------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------ |
+| Site URL for canonical links, social metadata, and sitemap | `NEXT_PUBLIC_SITE_URL`, then `SITE_URL`   | `https://bladevault.pro` in production; `http://localhost:3000` in development |
+| Base URL for hosted video assets                           | `NEXT_PUBLIC_VIDEO_URL`, then `VIDEO_URL` | `https://video.bladevault.pro`                                                 |
 
 The first defined variable in each row is used. Invalid URLs fall back to the corresponding default. Video files are hosted separately from this repository.
 

@@ -13,8 +13,11 @@
     "dev": "next dev",
     "prebuild": "node scripts/fetch-docs.mjs",
     "build": "next build",
+    "postbuild": "node scripts/cloudflare-routing.mjs",
     "docs:fetch": "node scripts/fetch-docs.mjs",
-    "start": "next start",
+    "preview": "NEXT_PUBLIC_CF_IMAGE_TRANSFORMS=off pnpm build && wrangler dev",
+    "deploy": "pnpm build && wrangler deploy",
+    "cf-typegen": "wrangler types",
     "lint": "eslint",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit"
@@ -54,6 +57,7 @@
     "prettier-plugin-tailwindcss": "^0.8.1",
     "shadcn": "^4.23.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.160.0"
   }
 }

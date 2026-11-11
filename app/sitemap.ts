@@ -3,6 +3,8 @@ import type { MetadataRoute } from "next"
 import { getDocsNav } from "@/lib/docs"
 import { absoluteUrl, absoluteVideoUrl, siteConfig } from "@/lib/site"
 
+export const dynamic = "force-static"
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const docs = getDocsNav()
   const docsLastModified = new Date(docs.generatedAt)

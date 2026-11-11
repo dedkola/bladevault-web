@@ -16,7 +16,7 @@ This repo is a Next.js 16 marketing site for BladeVault. Route entry points live
 
 ## Build, Test, and Development Commands
 
-Use `pnpm dev` for local development, `pnpm build` for a production build, and `pnpm start` to serve the built app. Quality gates are `pnpm lint`, `pnpm typecheck`, and `pnpm format`. Run lint and typecheck before opening a PR; run build for layout or routing changes.
+Use `pnpm dev` for local development, `pnpm build` for a production build, `pnpm preview` to serve the static export on the local Workers runtime, and `pnpm deploy` to publish it to Cloudflare. Quality gates are `pnpm lint`, `pnpm typecheck`, and `pnpm format`. Run lint and typecheck before opening a PR; run build for layout or routing changes.
 
 ## Coding Style & Naming Conventions
 

@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Assets-only Worker: serves the `next build` static export from out/. No Worker script runs,
+  // so requests are free and unlimited on every plan.
+  "name": "bladevault-web",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out",
+    // /docs/foo → out/docs/foo.html, /docs/ → /docs
+    "html_handling": "drop-trailing-slash",
+    // Next writes its not-found page to out/404.html
+    "not_found_handling": "404-page",
+  },
+  // Custom domains are attached once the zone is on Cloudflare — see CLOUDFLARE_MIGRATION.md.
+  // "routes": [
+  //   { "pattern": "bladevault.pro", "custom_domain": true },
+  //   { "pattern": "www.bladevault.pro", "custom_domain": true }
+  // ],
+}

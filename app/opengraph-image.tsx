@@ -1,6 +1,6 @@
 import { createSocialImageResponse } from "@/lib/seo-art"
 
-export const runtime = "nodejs"
+export const dynamic = "force-static"
 
 export const alt =
   "BladeVault auto scrape, AI access, and a local-first knife collection manager"
