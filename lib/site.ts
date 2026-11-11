@@ -92,6 +92,7 @@ export const siteConfig = {
     "https://github.com/dedkola/bladevault/releases/latest/download/BladeVault.AppImage",
   linuxDebUrl:
     "https://github.com/dedkola/bladevault/releases/latest/download/BladeVault.deb",
+  linuxInstallGuidePath: "/docs/installation/desktop#linux",
   keywords: [
     "knife collection manager",
     "local-first collection manager",

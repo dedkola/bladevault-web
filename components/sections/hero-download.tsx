@@ -36,9 +36,9 @@ const options: Record<Platform, { href: string; label: string; note: string }> =
       note: `${siteConfig.releaseVersion} · Windows installer`,
     },
     linux: {
-      href: siteConfig.linuxAppImageUrl,
-      label: "Download for Linux",
-      note: `${siteConfig.releaseVersion} · AppImage (x64), .deb also available`,
+      href: siteConfig.linuxInstallGuidePath,
+      label: "Install on Linux",
+      note: `${siteConfig.releaseVersion} · AppImage or Debian package (x64)`,
     },
     mobile: {
       href: "#install",

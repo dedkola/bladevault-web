@@ -28,8 +28,8 @@ const installOptions = [
   {
     title: "Linux",
     detail: "AppImage for any x64 distro, or a .deb for Debian and Ubuntu.",
-    action: "Download AppImage",
-    href: siteConfig.linuxAppImageUrl,
+    action: "Linux install guide",
+    href: siteConfig.linuxInstallGuidePath,
     icon: Terminal,
   },
   {
