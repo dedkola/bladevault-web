@@ -442,8 +442,8 @@ const inspectorTabs = ["Overview", "Specs", "Maintenance", "History"]
 
 const alsoNew = [
   {
-    title: "Style name under the logo",
-    body: "The active style shows in small caps under the BladeVault wordmark, so you always know which look is on.",
+    title: "Quick theme switcher",
+    body: "A palette button in the footer rotates through the styles, Classic included. The active style name sits under the logo.",
   },
   {
     title: "Tabbed knife inspector",
@@ -455,7 +455,7 @@ const alsoNew = [
   },
   {
     title: "Pin and Compare in reach",
-    body: "Pin and Compare sit right in the inspector, and Compare and Logs have new icons across the app.",
+    body: "Pin and Compare sit right in the inspector, and Compare and History have new icons across the app.",
   },
 ]
 
@@ -526,7 +526,7 @@ export function HomepageThemes() {
       <div className={base.sectionHead}>
         <p className={base.sectionKicker}>
           <span className={base.sectionNum} aria-hidden="true">
-            04
+            05
           </span>
           Appearance
           <span className={styles.newTag}>{newCount} new styles</span>

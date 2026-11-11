@@ -7,7 +7,7 @@ import { siteConfig } from "@/lib/site"
 
 import styles from "./homepage-v3.module.css"
 
-type Platform = "mac" | "windows" | "mobile" | "other"
+type Platform = "mac" | "windows" | "linux" | "mobile" | "other"
 
 function detectPlatform(): Platform {
   const ua = navigator.userAgent
@@ -17,6 +17,7 @@ function detectPlatform(): Platform {
     return navigator.maxTouchPoints > 1 ? "mobile" : "mac"
   }
   if (/Windows/i.test(ua)) return "windows"
+  if (/Linux|X11/i.test(ua)) return "linux"
   return "other"
 }
 
@@ -34,6 +35,11 @@ const options: Record<Platform, { href: string; label: string; note: string }> =
       label: "Download for Windows",
       note: `${siteConfig.releaseVersion} · Windows installer`,
     },
+    linux: {
+      href: siteConfig.linuxAppImageUrl,
+      label: "Download for Linux",
+      note: `${siteConfig.releaseVersion} · AppImage (x64), .deb also available`,
+    },
     mobile: {
       href: "#install",
       label: "See install options",
@@ -42,7 +48,7 @@ const options: Record<Platform, { href: string; label: string; note: string }> =
     other: {
       href: siteConfig.releasesUrl,
       label: "Download BladeVault",
-      note: `${siteConfig.releaseVersion} · macOS, Windows, Docker`,
+      note: `${siteConfig.releaseVersion} · macOS, Windows, Linux, Docker`,
     },
   }
 

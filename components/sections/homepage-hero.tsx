@@ -25,7 +25,7 @@ const principles = [
   {
     icon: Monitor,
     title: "Any screen",
-    detail: "Mac, Windows, iPad, iPhone",
+    detail: "Mac, Windows, Linux, iPad, iPhone",
   },
 ]
 
@@ -43,8 +43,9 @@ export function HomepageHero() {
           </h1>
           <p className={styles.heroSub}>
             Paste a product link and BladeVault fills in the specs, price, and
-            photos. Keep the vault on your Mac or Windows PC, connect the AI you
-            already use, or self-host it and browse from your iPad and iPhone.
+            photos. Keep dated notes and a full history for every knife, run the
+            vault on Mac, Windows, or Linux, connect the AI you already use, or
+            self-host it and browse from your iPad and iPhone.
           </p>
           <HeroDownload />
           <div className={styles.heroTrust} aria-label="Product principles">
@@ -71,9 +72,9 @@ export function HomepageHero() {
             </div>
             <Image
               src="/screenshots/live/studio-desktop.jpg"
-              alt="BladeVault Studio with an example knife collection, including Vosteed, Kizer, and CIVIVI models"
-              width={1440}
-              height={900}
+              alt="BladeVault Studio in the Lumen style with an example knife collection, including CIVIVI and Vosteed models, and Smart Collections in the filter bar"
+              width={2880}
+              height={1800}
               priority
               sizes="(min-width: 1180px) 48vw, 94vw"
               quality={90}
@@ -83,7 +84,7 @@ export function HomepageHero() {
               <span>
                 <b>Collection</b> Example vault
               </span>
-              <span>Randomised family layouts</span>
+              <span>Smart Collections in the filter</span>
             </figcaption>
           </figure>
         </div>

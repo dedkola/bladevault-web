@@ -5,6 +5,7 @@ import {
   Download,
   Layers3,
   Monitor,
+  Terminal,
 } from "lucide-react"
 
 import { siteConfig } from "@/lib/site"
@@ -23,6 +24,13 @@ const installOptions = [
     action: "Download EXE",
     href: siteConfig.windowsDownloadUrl,
     icon: Monitor,
+  },
+  {
+    title: "Linux",
+    detail: "AppImage for any x64 distro, or a .deb for Debian and Ubuntu.",
+    action: "Download AppImage",
+    href: siteConfig.linuxAppImageUrl,
+    icon: Terminal,
   },
   {
     title: "Docker / Podman",
@@ -75,7 +83,7 @@ export function InstallCta() {
             <a
               key={title}
               href={href}
-              className={`group flex min-h-52 flex-col p-7 transition-colors hover:bg-accent/55 focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none focus-visible:ring-inset sm:p-9 ${index % 2 ? "sm:border-l" : ""} ${index > 1 ? "border-t" : index ? "border-t sm:border-t-0" : ""} border-border/65`}
+              className={`group flex min-h-52 flex-col p-7 transition-colors hover:bg-accent/55 focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none focus-visible:ring-inset sm:p-9 ${index % 2 ? "sm:border-l" : ""} ${index > 1 ? "border-t" : index ? "border-t sm:border-t-0" : ""} ${index === installOptions.length - 1 && index % 2 === 0 ? "sm:col-span-2" : ""} border-border/65`}
             >
               <span className="vault-icon-box">
                 <Icon className="size-4" />

@@ -29,11 +29,11 @@ const features = [
   {
     icon: ImageIcon,
     title: "Records that hold everything",
-    body: "Specifications, price, provenance, notes, custom fields, and a multi-image gallery. Choose the cover and keep the source page.",
+    body: "Specifications, price, provenance, dated notes, custom fields, and a multi-image gallery. Choose the cover and keep the source page.",
     points: [
-      "Text, number, and date fields",
+      "Metric, imperial, or both side by side",
       "Multi-image upload and fullscreen gallery",
-      "Card fields and pinned sidebar parity",
+      "Choose card and pinned-item fields",
     ],
   },
   {
@@ -49,7 +49,7 @@ const features = [
   {
     icon: Gauge,
     title: "Know your data",
-    body: "Collection pulse shows the shape of the vault. Data completeness and measurement review show the records that need another pass.",
+    body: "Collection pulse shows the shape of the vault, with a calendar of recent activity. Data completeness and measurement review show the records that need another pass.",
     points: [
       "Missing fields and coverage gaps",
       "Guided measurement review",
@@ -59,11 +59,11 @@ const features = [
   {
     icon: Wrench,
     title: "Care history",
-    body: "Sharpening, cleaning, lubrication, stropping, and service details stay with the knife. Logs keep the change history.",
+    body: "Sharpening, cleaning, lubrication, stropping, and service details stay with the knife in their own tab. History keeps every change.",
     points: [
       "Dated maintenance events",
       "Grit, angle, system, and passes",
-      "Searchable activity logs",
+      "Searchable, linked History",
     ],
   },
   {
@@ -73,7 +73,7 @@ const features = [
     points: [
       "No account, works offline",
       "Complete local ZIP restore",
-      "Opt-in cloud upload and restore",
+      "Opt-in cloud backup and crash reports",
     ],
   },
 ] as const
@@ -85,8 +85,11 @@ const alsoIncluded = [
   "Custom fields",
   "9 theme styles",
   "Light / dark",
+  "Compact cards",
   "Columns",
   "Start page",
+  "What's new after updates",
+  "Linux AppImage + .deb",
 ]
 
 export function HomepageFeatures() {
@@ -95,7 +98,7 @@ export function HomepageFeatures() {
       <div className={styles.sectionHead}>
         <p className={styles.sectionKicker}>
           <span className={styles.sectionNum} aria-hidden="true">
-            05
+            06
           </span>
           The rest of the vault
         </p>
