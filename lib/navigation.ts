@@ -27,6 +27,11 @@ export const siteUtilityLinks = [
   { href: "https://github.com/dedkola/bladevault", label: "GitHub" },
 ] as const
 
+export const siteLegalLinks = [
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
+] as const
+
 export function releaseAnchor(version: string) {
   return `release-${version}`
 }
