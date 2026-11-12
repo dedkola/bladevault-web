@@ -1,5 +1,14 @@
 [
   {
+    "version": "v2.4.4",
+    "date": "2026-11-12",
+    "changes": [
+      "Extract Amazon listings and detect Amazon's human checkpoint.",
+      "Treat a release without this platform's installer as up to date.",
+      "Scope Kershaw galleries and placeholder embeds in the scrape preview."
+    ]
+  },
+  {
     "version": "v2.4.3",
     "date": "2026-11-12",
     "changes": [
