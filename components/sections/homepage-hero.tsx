@@ -1,8 +1,17 @@
 import Image from "next/image"
-import { Database, Link2, Monitor, Terminal } from "lucide-react"
+import Link from "next/link"
+import {
+  ArrowRight,
+  CheckCircle2,
+  CloudUpload,
+  Link2,
+  Monitor,
+  Terminal,
+} from "lucide-react"
 
 import { siteConfig } from "@/lib/site"
 
+import { CloudMark } from "./cloud-mark"
 import { HeroDownload } from "./hero-download"
 import styles from "./homepage-v3.module.css"
 
@@ -13,9 +22,9 @@ const principles = [
     detail: "URL in, record out",
   },
   {
-    icon: Database,
-    title: "Local-first",
-    detail: "SQLite and images",
+    icon: CloudUpload,
+    title: "Local-first, cloud-safe",
+    detail: "SQLite locally, backup in your Google Drive",
   },
   {
     icon: Terminal,
@@ -38,14 +47,20 @@ export function HomepageHero() {
             <span className={styles.eyebrowDot} aria-hidden="true" />
             Local-first knife collection &middot; {siteConfig.releaseVersion}
           </p>
+          <Link href="/#backup" className={styles.heroNews}>
+            <span className={styles.newBadge}>New</span>
+            Back up your vault to Google Drive
+            <ArrowRight aria-hidden="true" />
+          </Link>
           <h1 className={styles.heroTitle}>
             Your knife collection, <em>filled in.</em>
           </h1>
           <p className={styles.heroSub}>
             Paste a product link and BladeVault fills in the specs, price, and
-            photos. Keep dated notes and a full history for every knife, run the
-            vault on Mac, Windows, or Linux, connect the AI you already use, or
-            self-host it and browse from your iPad and iPhone.
+            photos. Keep dated notes and a full history for every knife, back
+            the vault up to your own Google Drive, run it on Mac, Windows, or
+            Linux, connect the AI you already use, or self-host it for iPad and
+            iPhone.
           </p>
           <HeroDownload />
           <div className={styles.heroTrust} aria-label="Product principles">
@@ -53,6 +68,7 @@ export function HomepageHero() {
             <span>MIT licensed</span>
             <span>No account</span>
             <span>Local SQLite</span>
+            <span>Google Drive backup</span>
           </div>
         </div>
 
@@ -87,6 +103,18 @@ export function HomepageHero() {
               <span>Smart Collections in the filter</span>
             </figcaption>
           </figure>
+
+          <Link href="/#backup" className={styles.heroCloud}>
+            <CloudMark className={styles.heroCloudArt} />
+            <span className={styles.heroCloudText}>
+              <small>
+                <CheckCircle2 aria-hidden="true" />
+                Backed up
+              </small>
+              <strong>Google Drive</strong>
+              <span>Restore on any device</span>
+            </span>
+          </Link>
         </div>
       </section>
 

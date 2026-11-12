@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { HomepageAi } from "@/components/sections/homepage-ai"
+import { HomepageBackup } from "@/components/sections/homepage-backup"
 import { HomepageDevices } from "@/components/sections/homepage-devices"
 import { HomepageFeatures } from "@/components/sections/homepage-features"
 import { HomepageHero } from "@/components/sections/homepage-hero"
@@ -14,9 +15,9 @@ import { absoluteUrl, siteConfig } from "@/lib/site"
 export const dynamic = "force-static"
 
 const pageTitle =
-  "Auto scrape, notes, AI access, and a local-first knife vault | BladeVault"
+  "Auto scrape, Google Drive backup, AI access, and a local-first knife vault | BladeVault"
 const pageDescription =
-  "Paste a product URL and let BladeVault fill the record. Keep dated notes and history for every knife, connect Claude or Codex through MCP, and run it on macOS, Windows, or Linux, or self-host it for iPad and iPhone."
+  "Paste a product URL and let BladeVault fill the record. Keep dated notes and history for every knife, back up to your own Google Drive, connect Claude or Codex through MCP, and run it on macOS, Windows, or Linux, or self-host it for iPad and iPhone."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -95,6 +96,7 @@ export default function Page() {
       >
         <div className={styles.homepage}>
           <HomepageHero />
+          <HomepageBackup />
           <HomepageImport />
           <HomepageDevices />
           <HomepageAi />
