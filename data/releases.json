@@ -1,5 +1,20 @@
 [
   {
+    "version": "v2.4.3",
+    "date": "2026-11-12",
+    "changes": [
+      "Use the calendar activity map in the Classic theme.",
+      "Keep modern compare columns the same size for every knife.",
+      "Match the notes add button to the Add knife pill in Lumen.",
+      "Match the notes add button to the Add knife pill in every theme.",
+      "Remove the sort dropdown from Studio.",
+      "Style the notes add button like the item header actions.",
+      "Hide the header search on Studio and Collection.",
+      "Back up only to Google Drive and add automatic Drive backup.",
+      "Refresh the READMEs and header badges for recent features."
+    ]
+  },
+  {
     "version": "v2.4.2",
     "date": "2026-11-12",
     "changes": [
