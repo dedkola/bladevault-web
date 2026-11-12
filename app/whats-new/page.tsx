@@ -12,7 +12,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "What’s new in BladeVault"
 const pageDescription =
-  "BladeVault release notes, including the Modern appearance and theme options, Studio visual library, customizable collection columns, a choice of start page, Collection pulse insights, cloud backups, app lock, Smart Collections, maintenance, and MCP support."
+  "BladeVault release notes, including the Modern appearance and theme options, Studio visual library, customizable collection columns, a choice of start page, Collection pulse insights, Google Drive and cloud backups, app lock, Smart Collections, maintenance, and MCP support."
 
 export const metadata: Metadata = {
   title: pageTitle,
