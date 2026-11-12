@@ -22,7 +22,7 @@ export function AnnouncementBar() {
             in to the same Google account.
           </span>
         </p>
-        <Link href="/#features" className={styles.link}>
+        <Link href="/#backup" className={styles.link}>
           See what&rsquo;s new
           <ArrowRight aria-hidden="true" />
         </Link>
