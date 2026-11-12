@@ -1,5 +1,13 @@
 [
   {
+    "version": "v2.4.2",
+    "date": "2026-11-12",
+    "changes": [
+      "Back up and restore your vault in your own Google Drive, with one archive that follows you to any device signed in to the same account.",
+      "Flatten Settings into a single reading column."
+    ]
+  },
+  {
     "version": "v2.4.1",
     "date": "2026-11-11",
     "changes": [

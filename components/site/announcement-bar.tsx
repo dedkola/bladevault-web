@@ -16,13 +16,13 @@ export function AnnouncementBar() {
       <div className={styles.inner}>
         <p>
           <span className={styles.badge}>New</span>{" "}
-          <strong>Notes, history, and Linux.</strong>{" "}
+          <strong>Backup to your own Google Drive.</strong>{" "}
           <span>
-            Dated Markdown notes on every knife, a linked History, and desktop
-            builds for Linux.
+            Keep one vault archive in Drive and restore it on any device signed
+            in to the same Google account.
           </span>
         </p>
-        <Link href="/#journal" className={styles.link}>
+        <Link href="/#features" className={styles.link}>
           See what&rsquo;s new
           <ArrowRight aria-hidden="true" />
         </Link>

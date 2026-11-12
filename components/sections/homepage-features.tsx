@@ -69,11 +69,11 @@ const features = [
   {
     icon: Database,
     title: "Local-first, backed up",
-    body: "SQLite and images in one folder. Create a portable ZIP backup, and opt into cloud backup only when you want it.",
+    body: "SQLite and images in one folder. Create a portable ZIP backup, keep a copy in your own Google Drive, and opt into cloud backup only when you want it.",
     points: [
       "No account, works offline",
       "Complete local ZIP restore",
-      "Opt-in cloud backup and crash reports",
+      "Google Drive or opt-in cloud backup",
     ],
   },
 ] as const
@@ -90,6 +90,7 @@ const alsoIncluded = [
   "Start page",
   "What's new after updates",
   "Linux AppImage + .deb",
+  "Google Drive backup",
 ]
 
 export function HomepageFeatures() {

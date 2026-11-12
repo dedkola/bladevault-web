@@ -137,7 +137,7 @@ export const siteConfig = {
     "Multiple named comparison lists and PDF exports",
     "Source-page screenshots saved with URL imports",
     "Optional local app password lock",
-    "Local-first storage, complete backups, and MCP access",
+    "Local-first storage, local ZIP and Google Drive backups, and MCP access",
     "Read-only MCP tools with opt-in audited writes",
     "Native desktop apps for macOS, Windows, and Linux (AppImage and Debian)",
     "Self-hosted browser access on iPad and iPhone with Docker or Helm",
