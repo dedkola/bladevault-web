@@ -208,6 +208,45 @@ const themes: ThemeStyle[] = [
     },
   },
   {
+    id: "atrium",
+    name: "Atrium",
+    note: "Gallery tiles in Lumen colors, floating dock",
+    isNew: true,
+    fixedMode: "light",
+    radius: "14px",
+    pill: "99px",
+    palettes: {
+      light: {
+        bg: "#ffffff",
+        card: "#ffffff",
+        ink: "#18181b",
+        muted: "#737373",
+        line: "#ebebeb",
+        side: "#ffffff",
+        sideInk: "#18181b",
+        sideMuted: "#737373",
+        accent: "#f6821f",
+        accentFill: "#f6821f",
+        accentInk: "#ffffff",
+        plate: "#f6f6f5",
+      },
+      dark: {
+        bg: "#ffffff",
+        card: "#ffffff",
+        ink: "#18181b",
+        muted: "#737373",
+        line: "#ebebeb",
+        side: "#ffffff",
+        sideInk: "#18181b",
+        sideMuted: "#737373",
+        accent: "#f6821f",
+        accentFill: "#f6821f",
+        accentInk: "#ffffff",
+        plate: "#f6f6f5",
+      },
+    },
+  },
+  {
     id: "espresso",
     name: "Espresso",
     note: "Cream paper and dark roast, amber glow",
@@ -404,7 +443,7 @@ const navItems = [
   { icon: Images, label: "Studio" },
   { icon: ChartColumn, label: "Insights" },
   { icon: Columns2, label: "Compare", count: "3" },
-  { icon: History, label: "Logs" },
+  { icon: History, label: "History" },
 ]
 
 const stats = [
@@ -531,11 +570,12 @@ export function HomepageThemes() {
           Appearance
           <span className={styles.newTag}>{newCount} new styles</span>
         </p>
-        <h2>Nine ways to see the vault.</h2>
+        <h2>Ten ways to see the vault.</h2>
         <p className={base.sectionIntro}>
-          Forge, Titanium, Field, Lumen, Espresso, and Phosphor join Classic,
-          Modern, and Alloy. Switch in Settings &rarr; Appearance at any time.
-          The look changes; your records, columns, and start page stay put.
+          Atrium, Forge, Titanium, Field, Lumen, Espresso, and Phosphor join
+          Classic, Modern, and Alloy. Atrium trades the sidebar for large photo
+          tiles and a floating dock. Switch in Settings &rarr; Appearance at any
+          time; your records, columns, and start page stay put.
         </p>
       </div>
 
@@ -774,6 +814,21 @@ export function HomepageThemes() {
                 </span>
               </aside>
             </div>
+
+            {active.id === "atrium" ? (
+              <span className={styles.dock} aria-hidden="true">
+                {navItems.map(({ icon: Icon, label, count }, index) => (
+                  <span
+                    key={label}
+                    className={cn(index === 0 && styles.dockActive)}
+                  >
+                    <Icon />
+                    {label}
+                    {count ? <b>{count}</b> : null}
+                  </span>
+                ))}
+              </span>
+            ) : null}
           </div>
           <figcaption className={styles.caption}>
             Preview of the {active.name} style. Colors come from the app&rsquo;s

@@ -6,7 +6,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "Privacy Policy"
 const pageDescription =
-  "How BladeVault handles your data: a local-first app that stores your collection on your device, with opt-in Google Drive backups, cloud backups, and error reporting."
+  "How BladeVault handles your data: a local-first app that stores your collection on your device, with opt-in Google Drive backups and error reporting."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -41,8 +41,8 @@ const sections = [
         </p>
         <p>
           Data leaves your device only when you turn on a feature that needs it:
-          Google Drive backup, BladeVault cloud backup, product import from
-          websites you choose, or crash and usage reporting.
+          Google Drive backup, product import from websites you choose, or crash
+          and usage reporting.
         </p>
       </>
     ),
@@ -140,15 +140,15 @@ const sections = [
   },
   {
     id: "cloud-backup",
-    title: "BladeVault account and cloud backup",
+    title: "Discontinued BladeVault cloud backup",
     body: (
       <p>
-        If you sign in to the optional BladeVault cloud backup service with
-        Google, we store your name, email address, profile image URL, and
-        session records so we can identify your account and authorize your
-        backups. Backups you upload to that service are stored only to let you
-        restore them. You can ask us to delete your account and backups at any
-        time.
+        BladeVault previously offered an optional cloud backup service with a
+        BladeVault account. That service has been discontinued, and the app no
+        longer offers BladeVault account sign-in or uploads backups to
+        BladeVault servers. Google Drive backup replaces it. If you used the old
+        service and have a question about data from it, contact us using the
+        details below.
       </p>
     ),
   },
@@ -209,9 +209,8 @@ const sections = [
     body: (
       <p>
         Local data stays until you delete it. Google Drive backups stay in your
-        Drive until you delete them. Account and cloud backup data is kept while
-        your account is active and deleted on request. Error reports are kept
-        according to Sentry’s retention settings, typically 90 days.
+        Drive until you delete them. Error reports are kept according to
+        Sentry’s retention settings, typically 90 days.
       </p>
     ),
   },
@@ -264,7 +263,7 @@ export default function PrivacyPage() {
     <LegalPage
       eyebrow="BladeVault / Legal"
       title="Privacy Policy"
-      updated="November 12, 2026"
+      updated="November 13, 2026"
       intro={
         <p>
           This policy explains what data the BladeVault apps (desktop, Docker,

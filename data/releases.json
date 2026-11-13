@@ -1,5 +1,14 @@
 [
   {
+    "version": "v2.4.5",
+    "date": "2026-11-13",
+    "changes": [
+      "Add split-flap showcase mode to Studio.",
+      "Add the Atrium style: a gallery layout with a floating dock.",
+      "Combine cloud and local backup into one Backup & Restore settings tab."
+    ]
+  },
+  {
     "version": "v2.4.4",
     "date": "2026-11-12",
     "changes": [
