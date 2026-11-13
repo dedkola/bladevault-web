@@ -21,25 +21,25 @@ const steps = [
   },
   {
     icon: FolderArchive,
-    title: "One archive, always current",
-    body: "Records, notes, history, and images go into one archive in a BladeVault folder in your Drive. The archive never touches BladeVault servers.",
+    title: "Back up automatically",
+    body: "Turn on Automatic backup to Google Drive and BladeVault keeps one archive of records, notes, history, and images current in a BladeVault folder in your Drive. It never touches BladeVault servers.",
   },
   {
     icon: RefreshCcw,
     title: "Restore anywhere",
-    body: "On a new computer, sign in to the same Google account and restore. The vault picks up exactly where you left it.",
+    body: "On a new computer, open Settings → Backup & Restore, sign in to the same Google account, and restore. Local ZIP backup sits on the same tab.",
   },
 ]
 
 const recentlyShipped = [
-  "Single-column Settings",
-  "Straight Line EDC scraping",
-  "Smart Collections in Studio",
-  "Chip filter bar in Lumen",
-  "One-field Add knife",
-  "Markdown knife notes",
-  "Linked History",
-  "Linux AppImage + .deb",
+  "Atrium style",
+  "Split-flap Studio showcase",
+  "One Backup & Restore tab",
+  "Automatic Drive backup",
+  "Amazon listing import",
+  "Kershaw gallery scraping",
+  "Calendar map in Classic",
+  "Notes button in every theme",
 ]
 
 const recentVersions = releases.slice(0, 3).map((release) => release.version)
@@ -54,9 +54,9 @@ export function HomepageBackup() {
         </p>
         <h2>Your vault, safe in your own cloud.</h2>
         <p className={styles.sectionIntro}>
-          BladeVault still lives on your computer. Now it can also keep a backup
-          in the Google Drive you already have, and bring the whole collection
-          back on any device signed in to the same account.
+          BladeVault still lives on your computer. It can also back itself up to
+          the Google Drive you already have, automatically, and bring the whole
+          collection back on any device signed in to the same account.
         </p>
       </div>
 

@@ -952,3 +952,125 @@
 .window[data-theme="phosphor"] .pinThumb {
   background: #ecdbb6;
 }
+
+/* Atrium: no sidebar or docked inspector, large photo tiles, and a
+   floating dock for navigation, as in the app's own shell. */
+
+.window[data-theme="atrium"] {
+  position: relative;
+}
+
+.window[data-theme="atrium"] .app {
+  grid-template-columns: minmax(0, 1fr);
+  padding-bottom: 64px;
+}
+
+.window[data-theme="atrium"] :is(.sidebar, .inspector) {
+  display: none;
+}
+
+.window[data-theme="atrium"] .main {
+  gap: 14px;
+  padding: 16px 18px;
+}
+
+.window[data-theme="atrium"] .stats {
+  display: none;
+}
+
+.window[data-theme="atrium"] .cards {
+  gap: 14px;
+}
+
+.window[data-theme="atrium"] .card {
+  padding: 0 0 10px;
+  border-color: transparent;
+  background: transparent;
+}
+
+.window[data-theme="atrium"] .cardSelected {
+  box-shadow: none;
+}
+
+.window[data-theme="atrium"] .plate {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--t-radius);
+}
+
+.window[data-theme="atrium"] .cardSelected .plate {
+  box-shadow: 0 0 0 2px var(--t-accent);
+}
+
+.window[data-theme="atrium"] :is(.maker, .model, .specs) {
+  padding-inline: 2px;
+}
+
+.dock {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  border: 1px solid var(--t-line);
+  border-radius: 16px;
+  background: rgb(255 255 255 / 92%);
+  box-shadow: 0 16px 40px -18px rgb(0 0 0 / 30%);
+  backdrop-filter: blur(14px);
+  transform: translateX(-50%);
+}
+
+.dock > span {
+  position: relative;
+  display: flex;
+  width: 58px;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 0 5px;
+  border-radius: 12px;
+  color: var(--t-muted);
+  font-size: 9.5px;
+}
+
+.dock svg {
+  width: 15px;
+  height: 15px;
+  stroke-width: 1.7;
+}
+
+.dock b {
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  min-width: 13px;
+  height: 13px;
+  padding: 0 3px;
+  border-radius: 99px;
+  color: #ffffff;
+  background: var(--t-accent);
+  font-size: 8px;
+  font-weight: 600;
+  line-height: 13px;
+  text-align: center;
+}
+
+.dock > .dockActive {
+  color: var(--t-ink);
+}
+
+.dock > .dockActive::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--t-accent);
+}
+
+@media (max-width: 700px) {
+  .dock > span {
+    width: 48px;
+  }
+}

@@ -6,7 +6,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "Terms of Service"
 const pageDescription =
-  "The terms for using the BladeVault apps, optional backup services, and bladevault.pro."
+  "The terms for using the BladeVault apps, optional Google Drive backup, and bladevault.pro."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -74,11 +74,10 @@ const sections = [
     title: "Optional services",
     body: (
       <p>
-        Google Drive backup, BladeVault cloud backup, AI features, and error
-        reporting are optional. Google Drive and AI providers are third-party
-        services with their own terms. We may change, limit, or discontinue
-        optional services, and will try to give reasonable notice so you can
-        export or restore your data.
+        Google Drive backup, AI features, and error reporting are optional.
+        Google Drive and AI providers are third-party services with their own
+        terms. We may change, limit, or discontinue optional services, and will
+        try to give reasonable notice so you can export or restore your data.
       </p>
     ),
   },
@@ -155,11 +154,11 @@ export default function TermsPage() {
     <LegalPage
       eyebrow="BladeVault / Legal"
       title="Terms of Service"
-      updated="November 12, 2026"
+      updated="November 13, 2026"
       intro={
         <p>
-          These terms cover the BladeVault apps, the optional backup services,
-          and this website.
+          These terms cover the BladeVault apps, the optional Google Drive
+          backup, and this website.
         </p>
       }
       sections={sections}
