@@ -1,5 +1,22 @@
 [
   {
+    "version": "v2.4.6",
+    "date": "2026-11-15",
+    "changes": [
+      "Add Atrium to the theme switcher and arrow-key photo stepping.",
+      "Add photos to notes and show them in the item gallery.",
+      "Time-box the desktop smoke unlock steps and cleanup.",
+      "Remove dead exports and stale allowScripts pins.",
+      "Float Studio focus controls as a small centered pill.",
+      "Switch every theme from the footer button.",
+      "Give Alloy the shared compact footer.",
+      "Fix arrow-key, scroll and measurement display issues from UI audit.",
+      "Add the Shelf style: a collector's catalogue with a command palette.",
+      "Add the Ledger style: an account-book layout with a list/document split.",
+      "Make Classic's Add knife a gilded split button with an add menu."
+    ]
+  },
+  {
     "version": "v2.4.5",
     "date": "2026-11-13",
     "changes": [
