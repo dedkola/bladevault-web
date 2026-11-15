@@ -272,6 +272,15 @@
   color: var(--t-side-muted);
 }
 
+/* Alloy's shell stays black in light mode, so its bar uses the panel colors. */
+.window[data-theme="alloy"] .windowBar {
+  color: var(--t-side-muted);
+}
+
+.window[data-theme="alloy"] .windowBar > span:last-child {
+  color: var(--t-mark);
+}
+
 .dots {
   display: inline-flex;
   gap: 6px;
@@ -390,7 +399,8 @@
 }
 
 .window[data-theme="field"] .nav li.navActive svg,
-.window[data-theme="classic"] .nav li.navActive svg {
+.window[data-theme="classic"] .nav li.navActive svg,
+.window[data-theme="alloy"] .nav li.navActive svg {
   color: var(--t-accent-fill);
 }
 
