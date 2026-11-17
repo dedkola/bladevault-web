@@ -1,5 +1,28 @@
 [
   {
+    "version": "v2.5.0",
+    "date": "2026-11-17",
+    "changes": [
+      "See which knives are due for sharpening, cleaning or lubrication, with care badges, a Care filter, a Care status card and maintenance dashboard on Insights, and an Inbox that tells you when a knife needs care.",
+      "Studio now opens with a Knife of the day from your collection, which you can shuffle for a different pick.",
+      "History now shows your collection as a timeline with photos, milestones and a Year in review, including knives added before History started recording.",
+      "The Modern, Forge, Titanium, Field, Espresso, Phosphor and Ledger styles now have Lumen's search bar on the Collection page, which suggests brands, steels, locks and other fields to filter by as you type.",
+      "Maintenance has its own page in the sidebar, and knives that need care are flagged in the collection.",
+      "The Maintenance \"Coming up\" timeline now names every knife that is due or overdue and includes a color legend.",
+      "See a progress bar in the bottom notice while a Google Drive backup or restore is running.",
+      "Maintenance entries now have their own searchable Care log, opened from Recent care on the Maintenance page; History shows collection changes only.",
+      "Reschedule overdue or upcoming care from the Maintenance timeline: push it to tomorrow, next week or next month, or skip it.",
+      "The Maintenance page now shows a Care history timeline of every care session per knife, with the full log for a session on hover.",
+      "In the Ledger style, the collection list no longer shows rows as selected before you pick one.",
+      "Use the shared footer padding in Alloy.",
+      "Delete .codex/environments directory.",
+      "Group release notes by PR label and add a downloads section.",
+      "Ask agents to label PRs and fill the release note.",
+      "Stop building Cloudflare previews for pull requests.",
+      "Flag due care on the knife page Maintenance tab and open it from the Inbox."
+    ]
+  },
+  {
     "version": "v2.4.6",
     "date": "2026-11-15",
     "changes": [
