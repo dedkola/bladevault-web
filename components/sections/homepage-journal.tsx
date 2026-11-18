@@ -6,18 +6,18 @@ import styles from "./homepage-v3.module.css"
 const points = [
   {
     icon: NotebookPen,
-    title: "Dated personal notes",
-    body: "Add a note to any knife with its own date. Bold, italics, lists, and links render as Markdown, right under the photos.",
+    title: "Dated notes with photos",
+    body: "Add a note to any knife with its own date. Bold, italics, lists, and links render as Markdown, and photos in a note also show up in the item gallery.",
   },
   {
     icon: History,
     title: "History that links back",
-    body: "Every edit, note, and maintenance event lands in History, newest first. Click a row to jump to the entry it changed.",
+    body: "Every addition, edit, and deletion lands in History. Expand an entry to see exactly what changed.",
   },
   {
     icon: Wrench,
-    title: "Maintenance in its own tab",
-    body: "Sharpening, cleaning, and service records sit in a side tab next to the details, so care history is one click away.",
+    title: "Care on the knife page",
+    body: "The knife's Maintenance tab flags care that is due, with quick buttons to log sharpening, cleaning, or lubrication for today.",
   },
   {
     icon: CalendarDays,
@@ -34,7 +34,7 @@ export function HomepageJournal() {
           <span className={styles.sectionNum} aria-hidden="true">
             04
           </span>
-          Notes + history
+          Notes + activity
         </p>
         <h2>Every knife keeps its story.</h2>
         <p className={styles.sectionIntro}>

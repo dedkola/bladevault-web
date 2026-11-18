@@ -27,19 +27,20 @@ const steps = [
   {
     icon: RefreshCcw,
     title: "Restore anywhere",
-    body: "On a new computer, open Settings → Backup & Restore, sign in to the same Google account, and restore. Local ZIP backup sits on the same tab.",
+    body: "On a new computer, open Settings → Backup & Restore, sign in to the same Google account, and restore while a progress bar tracks it. Local ZIP backup sits on the same tab.",
   },
 ]
 
 const recentlyShipped = [
+  "Care reminders + Inbox",
+  "Maintenance page",
+  "Knife of the day in Studio",
+  "History timeline + Year in review",
+  "Shelf and Ledger styles",
+  "Photos in notes",
+  "Drive backup progress bar",
   "Atrium style",
   "Split-flap Studio showcase",
-  "One Backup & Restore tab",
-  "Automatic Drive backup",
-  "Amazon listing import",
-  "Kershaw gallery scraping",
-  "Calendar map in Classic",
-  "Notes button in every theme",
 ]
 
 const recentVersions = releases.slice(0, 3).map((release) => release.version)
@@ -48,10 +49,7 @@ export function HomepageBackup() {
   return (
     <section id="backup" className={styles.section}>
       <div className={styles.sectionHead}>
-        <p className={styles.sectionKicker}>
-          <span className={styles.newBadge}>New</span>
-          Google Drive backup &middot; {releases[0].version}
-        </p>
+        <p className={styles.sectionKicker}>Google Drive backup</p>
         <h2>Your vault, safe in your own cloud.</h2>
         <p className={styles.sectionIntro}>
           BladeVault still lives on your computer. It can also back itself up to

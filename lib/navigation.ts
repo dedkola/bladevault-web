@@ -9,6 +9,7 @@ export const siteNavigation: readonly SiteNavigationLink[] = [
   { href: "/#devices", label: "Devices", sectionId: "devices" },
   { href: "/#ai", label: "AI", sectionId: "ai" },
   { href: "/#journal", label: "Notes", sectionId: "journal" },
+  { href: "/#care", label: "Care", sectionId: "care" },
   { href: "/#themes", label: "Themes", sectionId: "themes" },
   { href: "/#features", label: "Features", sectionId: "features" },
   { href: "/compare", label: "Compare" },

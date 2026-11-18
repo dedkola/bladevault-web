@@ -16,13 +16,13 @@ export function AnnouncementBar() {
       <div className={styles.inner}>
         <p>
           <span className={styles.badge}>New</span>{" "}
-          <strong>Backup to your own Google Drive.</strong>{" "}
+          <strong>Care reminders in BladeVault 2.5.</strong>{" "}
           <span>
-            Keep one vault archive in Drive and restore it on any device signed
-            in to the same Google account.
+            See which knives are due for sharpening, cleaning, or lubrication,
+            and plan care from the new Maintenance page.
           </span>
         </p>
-        <Link href="/#backup" className={styles.link}>
+        <Link href="/#care" className={styles.link}>
           See what&rsquo;s new
           <ArrowRight aria-hidden="true" />
         </Link>

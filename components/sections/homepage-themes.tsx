@@ -13,9 +13,12 @@ import {
   Plus,
   Search,
   Sun,
+  Wrench,
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
+
+import { KnifeGlyph } from "./knife-glyph"
 
 import base from "./homepage-v3.module.css"
 import styles from "./homepage-themes.module.css"
@@ -55,10 +58,86 @@ type ThemeStyle = {
 // the Settings swatches), so the preview matches what users will see.
 const themes: ThemeStyle[] = [
   {
+    id: "shelf",
+    name: "Shelf",
+    note: "Collector's catalogue, oxblood and serif",
+    isNew: true,
+    radius: "4px",
+    pill: "99px",
+    palettes: {
+      light: {
+        bg: "#f5f3ef",
+        card: "#fbfaf8",
+        ink: "#1b1715",
+        muted: "#766c65",
+        line: "#e3ded6",
+        side: "#f5f3ef",
+        sideInk: "#1b1715",
+        sideMuted: "#766c65",
+        accent: "#8c1d2e",
+        accentFill: "linear-gradient(135deg, #b0384a, #8c1d2e 55%, #5e1220)",
+        accentInk: "#fbf6f1",
+        plate: "#ffffff",
+      },
+      dark: {
+        bg: "#141211",
+        card: "#1b1817",
+        ink: "#f0ebe4",
+        muted: "#a3978e",
+        line: "#2d2826",
+        side: "#141211",
+        sideInk: "#f0ebe4",
+        sideMuted: "#a3978e",
+        accent: "#e07c8a",
+        accentFill: "linear-gradient(135deg, #f0a1ac, #e07c8a 55%, #b8566a)",
+        accentInk: "#1f0b0f",
+        plate: "#f6f3ee",
+      },
+    },
+  },
+  {
+    id: "ledger",
+    name: "Ledger",
+    note: "Account book, cloth green and mono figures",
+    isNew: true,
+    mark: "#c9a24a",
+    radius: "3px",
+    pill: "3px",
+    palettes: {
+      light: {
+        bg: "#f7f8f2",
+        card: "#fdfdf9",
+        ink: "#16241d",
+        muted: "#627266",
+        line: "#dbe3d3",
+        side: "#123d2c",
+        sideInk: "#f1ecd9",
+        sideMuted: "rgb(241 236 217 / 66%)",
+        accent: "#1d6b47",
+        accentFill: "linear-gradient(135deg, #2f8f5b, #1d6b47 55%, #123d2c)",
+        accentInk: "#fdfdf9",
+        plate: "#eef4e6",
+      },
+      dark: {
+        bg: "#101814",
+        card: "#141e19",
+        ink: "#e4ebe5",
+        muted: "#8d9d92",
+        line: "#24332b",
+        side: "#0a120e",
+        sideInk: "#e6e2cf",
+        sideMuted: "rgb(230 226 207 / 58%)",
+        accent: "#4fbf88",
+        accentFill: "linear-gradient(135deg, #7fd7a8, #4fbf88 55%, #2f8f5b)",
+        accentInk: "#07130d",
+        plate: "#17231d",
+      },
+    },
+  },
+  {
     id: "forge",
     name: "Forge",
     note: "Graphite and ember, glow-line controls",
-    isNew: true,
     radius: "12px",
     pill: "999px",
     palettes: {
@@ -96,7 +175,6 @@ const themes: ThemeStyle[] = [
     id: "titanium",
     name: "Titanium",
     note: "Anodized violet, teal and bronze",
-    isNew: true,
     radius: "12px",
     pill: "10px",
     palettes: {
@@ -134,7 +212,6 @@ const themes: ThemeStyle[] = [
     id: "field",
     name: "Field",
     note: "Tactical stone with acid lime",
-    isNew: true,
     radius: "6px",
     pill: "4px",
     palettes: {
@@ -172,7 +249,6 @@ const themes: ThemeStyle[] = [
     id: "lumen",
     name: "Lumen",
     note: "Pure white with orange on the main action",
-    isNew: true,
     fixedMode: "light",
     radius: "6px",
     pill: "6px",
@@ -250,7 +326,6 @@ const themes: ThemeStyle[] = [
     id: "espresso",
     name: "Espresso",
     note: "Cream paper and dark roast, amber glow",
-    isNew: true,
     fixedMode: "light",
     mark: "#f59e0b",
     radius: "10px",
@@ -290,7 +365,6 @@ const themes: ThemeStyle[] = [
     id: "phosphor",
     name: "Phosphor",
     note: "Amber terminal, mono labels, square corners",
-    isNew: true,
     fixedMode: "dark",
     radius: "2px",
     pill: "2px",
@@ -446,6 +520,7 @@ const navItems = [
   { icon: Images, label: "Studio" },
   { icon: ChartColumn, label: "Insights" },
   { icon: Columns2, label: "Compare", count: "3" },
+  { icon: Wrench, label: "Maintenance", count: "2" },
   { icon: History, label: "History" },
 ]
 
@@ -484,54 +559,22 @@ const inspectorTabs = ["Overview", "Specs", "Maintenance", "History"]
 
 const alsoNew = [
   {
-    title: "Quick theme switcher",
-    body: "A palette button in the footer rotates through the styles, Classic included. The active style name sits under the logo.",
+    title: "Search that suggests",
+    body: "Modern, Forge, Titanium, Field, Espresso, Phosphor, and Ledger now get Lumen's Collection search bar, which suggests brands, steels, locks, and other fields as you type.",
   },
   {
-    title: "Tabbed knife inspector",
-    body: "Overview, Specifications, Maintenance, and History tabs keep the side panel short. Classic gets a Maintenance tab.",
+    title: "Switch from the footer",
+    body: "The palette button in the footer rotates through every style, Atrium, Shelf, and Ledger included. The active style name sits under the logo.",
   },
   {
-    title: "One card-size toggle",
-    body: "A single button switches between large and compact cards in every theme. Table and List stay one click away.",
+    title: "Classic's gilded Add knife",
+    body: "Classic's Add knife is now a gilded split button, with an add menu for the other ways to bring a knife in.",
   },
   {
-    title: "Pin and Compare in reach",
-    body: "Pin and Compare sit right in the inspector, and Compare and History have new icons across the app.",
+    title: "Arrow-key photo stepping",
+    body: "Step through a knife's photos with the arrow keys, and add photos to notes so they show up in the item gallery too.",
   },
 ]
-
-function KnifeGlyph({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 120 36"
-      className={className}
-      aria-hidden="true"
-      focusable="false"
-    >
-      {/* Handle with a lanyard hole */}
-      <path
-        fillRule="evenodd"
-        d="M6 18c0-4 3-7 7-7h40c3 0 5 1 6 3v8c-1 2-3 3-6 3H15c-6 0-9-3-9-7zm7 0a2.4 2.4 0 1 0 4.8 0a2.4 2.4 0 1 0-4.8 0z"
-        fill="currentColor"
-        opacity="0.5"
-      />
-      {/* Drop-point blade with pivot */}
-      <path
-        fillRule="evenodd"
-        d="M55 12h39c9 0 17 2 23 5-8 6-24 9-43 9H58c-2 0-3-1-3-3V12zm3 6a2.6 2.6 0 1 0 5.2 0a2.6 2.6 0 1 0-5.2 0z"
-        fill="currentColor"
-      />
-      <path
-        d="M66 21.5c16 0 32-1 46-4"
-        fill="none"
-        stroke="currentColor"
-        strokeOpacity="0.35"
-        strokeWidth="0.8"
-      />
-    </svg>
-  )
-}
 
 function themeVars(theme: ThemeStyle, mode: Mode) {
   const p = theme.palettes[theme.fixedMode ?? mode]
@@ -568,17 +611,20 @@ export function HomepageThemes() {
       <div className={base.sectionHead}>
         <p className={base.sectionKicker}>
           <span className={base.sectionNum} aria-hidden="true">
-            05
+            06
           </span>
           Appearance
           <span className={styles.newTag}>{newCount} new styles</span>
         </p>
-        <h2>Ten ways to see the vault.</h2>
+        <h2>Twelve ways to see the vault.</h2>
         <p className={base.sectionIntro}>
-          Atrium, Forge, Titanium, Field, Lumen, Espresso, and Phosphor join
-          Classic, Modern, and Alloy. Atrium trades the sidebar for large photo
-          tiles and a floating dock. Switch in Settings &rarr; Appearance at any
-          time; your records, columns, and start page stay put.
+          Shelf and Ledger join Atrium, Forge, Titanium, Field, Lumen, Espresso,
+          Phosphor, Classic, Modern, and Alloy. Shelf is a collector&rsquo;s
+          catalogue with a masthead and a &#8984;K command palette; Ledger is a
+          bound account book with index tabs, a grouped list, and a full
+          document for the selected knife. Switch in Settings &rarr; Appearance
+          or from the footer at any time; your records, columns, and start page
+          stay put.
         </p>
       </div>
 
@@ -699,6 +745,28 @@ export function HomepageThemes() {
               <span>BladeVault / Collection</span>
               <span>{active.name}</span>
             </div>
+
+            {active.id === "shelf" || active.id === "ledger" ? (
+              <div className={styles.masthead} aria-hidden="true">
+                <span className={styles.mastBrand}>
+                  <span className={styles.brandMark} />
+                  BladeVault
+                </span>
+                <span className={styles.mastNav}>
+                  {navItems.map(({ label }, index) => (
+                    <span
+                      key={label}
+                      className={cn(index === 0 && styles.mastActive)}
+                    >
+                      {label}
+                    </span>
+                  ))}
+                </span>
+                {active.id === "shelf" ? (
+                  <span className={styles.mastKbd}>&#8984;K</span>
+                ) : null}
+              </div>
+            ) : null}
 
             <div className={styles.app}>
               <aside className={styles.sidebar}>
