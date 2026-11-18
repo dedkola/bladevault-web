@@ -1,28 +1,39 @@
 import Image from "next/image"
-import { CalendarDays, History, NotebookPen, Wrench } from "lucide-react"
+import {
+  BellRing,
+  CalendarClock,
+  History,
+  NotebookPen,
+  Wrench,
+} from "lucide-react"
 
 import styles from "./homepage-v3.module.css"
 
 const points = [
   {
-    icon: NotebookPen,
-    title: "Dated personal notes",
-    body: "Add a note to any knife with its own date. Bold, italics, lists, and links render as Markdown, right under the photos.",
+    icon: Wrench,
+    title: "Care that knows what's due",
+    body: "Sharpening every 90 days, cleaning every 60, lubrication every 180, or your own intervals per knife. Care badges and a Care filter flag the knives that need attention.",
+  },
+  {
+    icon: BellRing,
+    title: "An Inbox for care",
+    body: "When a knife turns due soon or overdue, a message lands in the Inbox. Log the care for today, snooze it, or dismiss it.",
+  },
+  {
+    icon: CalendarClock,
+    title: "A Maintenance page",
+    body: "A Coming up timeline names every knife that is due, with a push to tomorrow, next week, or next month. Care history and a searchable Care log sit beside it.",
   },
   {
     icon: History,
-    title: "History that links back",
-    body: "Every edit, note, and maintenance event lands in History, newest first. Click a row to jump to the entry it changed.",
+    title: "History as a timeline",
+    body: "Collection changes appear as a timeline with photos, milestones, and a Year in review, including knives added before History started recording.",
   },
   {
-    icon: Wrench,
-    title: "Maintenance in its own tab",
-    body: "Sharpening, cleaning, and service records sit in a side tab next to the details, so care history is one click away.",
-  },
-  {
-    icon: CalendarDays,
-    title: "Calendar activity map",
-    body: "Insights shows additions, edits, and maintenance as a 52-week calendar. Pick any day to see what changed.",
+    icon: NotebookPen,
+    title: "Dated notes with photos",
+    body: "Add a note to any knife with its own date, Markdown formatting, and photos that also show up in the item gallery.",
   },
 ]
 
@@ -34,13 +45,14 @@ export function HomepageJournal() {
           <span className={styles.sectionNum} aria-hidden="true">
             04
           </span>
-          Notes + history
+          Care + history
+          <span className={styles.newBadge}>New</span>
         </p>
-        <h2>Every knife keeps its story.</h2>
+        <h2>Every knife keeps its story, and its schedule.</h2>
         <p className={styles.sectionIntro}>
-          Write down how a knife carries, when you sharpened it, and what you
-          changed. BladeVault dates every note and event and shows the whole
-          collection&rsquo;s activity at a glance.
+          Log when you sharpened, cleaned, or oiled a knife and BladeVault tells
+          you when it is due again. Notes, care, and changes are dated, so the
+          whole collection&rsquo;s story is one timeline away.
         </p>
       </div>
 

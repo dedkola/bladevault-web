@@ -47,9 +47,9 @@ export function HomepageHero() {
             <span className={styles.eyebrowDot} aria-hidden="true" />
             Local-first knife collection &middot; {siteConfig.releaseVersion}
           </p>
-          <Link href="/#backup" className={styles.heroNews}>
+          <Link href="/#journal" className={styles.heroNews}>
             <span className={styles.newBadge}>New</span>
-            Back up your vault to Google Drive
+            Care reminders and a Maintenance page
             <ArrowRight aria-hidden="true" />
           </Link>
           <h1 className={styles.heroTitle}>
@@ -57,10 +57,10 @@ export function HomepageHero() {
           </h1>
           <p className={styles.heroSub}>
             Paste a product link and BladeVault fills in the specs, price, and
-            photos. Keep dated notes and a full history for every knife, back
-            the vault up to your own Google Drive, run it on Mac, Windows, or
-            Linux, connect the AI you already use, or self-host it for iPad and
-            iPhone.
+            photos. Keep dated notes, care reminders, and a full history for
+            every knife, back the vault up to your own Google Drive, run it on
+            Mac, Windows, or Linux, connect the AI you already use, or self-host
+            it for iPad and iPhone.
           </p>
           <HeroDownload />
           <div className={styles.heroTrust} aria-label="Product principles">

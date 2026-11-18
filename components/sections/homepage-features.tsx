@@ -58,12 +58,12 @@ const features = [
   },
   {
     icon: Wrench,
-    title: "Care history",
-    body: "Sharpening, cleaning, lubrication, stropping, and service details stay with the knife in their own tab. History keeps every change.",
+    title: "Care on schedule",
+    body: "Sharpening, cleaning, lubrication, and service details stay with the knife. Reminders, a Maintenance page, and an Inbox tell you what is due next.",
     points: [
-      "Dated maintenance events",
+      "Due-soon and overdue badges",
       "Grit, angle, system, and passes",
-      "Searchable, linked History",
+      "Reschedule or skip from the timeline",
     ],
   },
   {
@@ -83,7 +83,10 @@ const alsoIncluded = [
   "Model families",
   "Sold status",
   "Custom fields",
-  "10 theme styles",
+  "12 theme styles",
+  "Knife of the day",
+  "Year in review",
+  "Photos in notes",
   "Light / dark",
   "Compact cards",
   "Columns",
