@@ -10,7 +10,7 @@ Promo website for [BladeVault](https://github.com/dedkola/bladevault), the local
 
 ## About
 
-The site is built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4. The homepage presents BladeVault through a shared site header, spacious editorial sections, and app screenshots sourced from the main repository. The `/whats-new` release notes page has a local version table of contents on desktop and a “Jump to a release” disclosure on smaller screens.
+The site is built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4. The homepage presents BladeVault through a shared site header, spacious editorial sections, and app screenshots sourced from the main repository. Beyond the homepage, the site serves curated release notes at `/whats-new`, a documentation section at `/docs` whose markdown is fetched from the main repository at build time, video tutorials at `/tutorials`, a feature comparison at `/compare`, and legal pages at `/privacy` and `/terms`. The `/whats-new` page has a local version table of contents on desktop and a “Jump to a release” disclosure on smaller screens.
 
 If you need the application itself, use the main [BladeVault repo](https://github.com/dedkola/bladevault).
 
@@ -39,11 +39,16 @@ If you need the application itself, use the main [BladeVault repo](https://githu
 
 - `app/` - Next.js routes, layout, and global styles
 - `app/page.tsx` - homepage assembled from reusable sections
+- `app/docs/` - documentation pages rendered from markdown fetched at build time
 - `app/whats-new/page.tsx` - curated BladeVault release notes
+- `app/tutorials/`, `app/compare/`, `app/privacy/`, `app/terms/` - remaining site routes
 - `components/sections/` - homepage content blocks
 - `components/site/` - shared site chrome such as header, footer, and sidebar
+- `components/docs/`, `components/tutorials/`, `components/legal/`, `components/competition/` - page-specific components
 - `components/ui/` - reusable UI primitives
+- `data/releases.json` - curated release notes data behind `/whats-new`
 - `lib/site.ts` - shared site metadata, download links, screenshot paths, and video configuration
+- `scripts/` - build-time docs fetch, release sync, and Cloudflare routing helpers
 - `public/screenshots/` - BladeVault product screenshots used in the promo site
 
 ## Development
@@ -55,6 +60,8 @@ pnpm install
 pnpm dev
 ```
 
+Both `pnpm dev` and `pnpm build` first run `scripts/fetch-docs.mjs`, which downloads the `/docs` markdown from the main BladeVault repository into `.docs-cache/` (published assets land in `public/docs/`). The fetch needs network access to GitHub; set `GITHUB_TOKEN` to raise the API rate limit and `DOCS_REF` to fetch a specific revision (default `main`). If GitHub is unreachable, the newest cached revision is reused so the site still builds.
+
 Run the quality gates with:
 
 ```bash
@@ -63,11 +70,13 @@ pnpm typecheck
 pnpm build
 ```
 
+The docs video embed helper has a small test suite; run it with `node --test scripts/docs-video.test.mjs`.
+
 The build is a static export in `out/`. Preview it on the local Workers runtime with `pnpm preview`, and deploy it with `pnpm deploy` (see [CLOUDFLARE_MIGRATION.md](CLOUDFLARE_MIGRATION.md)). Use `pnpm format` to format the repository with Prettier; this command writes changes to files.
 
 ## Configuration
 
-URL configuration is optional. To override the defaults locally, copy `.env.example` to `.env.local` and set the appropriate values before starting the development server or building the site.
+URL configuration is optional. To override the defaults locally, set the variables in `.env.local` (created next to `package.json`) before starting the development server or building the site.
 
 | Setting                                                    | Resolution order                          | Default                                                                        |
 | ---------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------ |
