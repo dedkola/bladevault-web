@@ -1,5 +1,28 @@
 [
   {
+    "version": "v2.5.2",
+    "date": "2026-11-18",
+    "changes": [
+      "Price monitoring can now let AI find your monitored knives on Amazon, confirm the listing, and watch its price alongside the knife's own store."
+    ]
+  },
+  {
+    "version": "v2.5.1",
+    "date": "2026-11-18",
+    "changes": [
+      "Connect BladeVault to Claude Desktop with one click from Settings → AI / MCP.",
+      "Track store prices for knives in your collection: BladeVault checks them gently in the background and shows drops, increases and stock changes on a new Price Drops page and in your Inbox.",
+      "When AI assistance is on, BladeVault works through cookie banners, pop-ups and variant pickers to read prices, and you can pass a store's bot check yourself with Solve in browser from Price Drops or the Inbox.",
+      "Google Drive backups now say when they finish or fail, failed backups stay in the Inbox until fixed, and the Inbox has All, Maintenance and System tabs.",
+      "Choose an exact date when rescheduling a care job from the Maintenance timeline.",
+      "The open BladeVault window now shows changes made by AI assistants over MCP automatically, and the footer has a Reload data button.",
+      "The Price Drops monitoring timeline gives upcoming checks more room and shows knives waiting to be checked as a single queue at Now.",
+      "Price monitoring now checks different stores in parallel, so the \"Stores checked at the same time\" setting is gone; each store is still checked one product at a time with its minimum pause.",
+      "Price alert Minimum change is now a single percentage field: price changes smaller than it don't notify.",
+      "Trim duplicate and low-value CI test runs."
+    ]
+  },
+  {
     "version": "v2.5.0",
     "date": "2026-11-17",
     "changes": [
