@@ -103,7 +103,7 @@ export function HomepageFeatures() {
       <div className={styles.sectionHead}>
         <p className={styles.sectionKicker}>
           <span className={styles.sectionNum} aria-hidden="true">
-            06
+            07
           </span>
           The rest of the vault
         </p>

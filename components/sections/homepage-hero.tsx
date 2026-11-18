@@ -47,7 +47,7 @@ export function HomepageHero() {
             <span className={styles.eyebrowDot} aria-hidden="true" />
             Local-first knife collection &middot; {siteConfig.releaseVersion}
           </p>
-          <Link href="/#journal" className={styles.heroNews}>
+          <Link href="/#care" className={styles.heroNews}>
             <span className={styles.newBadge}>New</span>
             Care reminders and a Maintenance page
             <ArrowRight aria-hidden="true" />

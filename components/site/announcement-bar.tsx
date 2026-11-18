@@ -22,7 +22,7 @@ export function AnnouncementBar() {
             and plan care from the new Maintenance page.
           </span>
         </p>
-        <Link href="/#journal" className={styles.link}>
+        <Link href="/#care" className={styles.link}>
           See what&rsquo;s new
           <ArrowRight aria-hidden="true" />
         </Link>

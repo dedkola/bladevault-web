@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 import { HomepageAi } from "@/components/sections/homepage-ai"
 import { HomepageBackup } from "@/components/sections/homepage-backup"
+import { HomepageCare } from "@/components/sections/homepage-care"
 import { HomepageDevices } from "@/components/sections/homepage-devices"
 import { HomepageFeatures } from "@/components/sections/homepage-features"
 import { HomepageHero } from "@/components/sections/homepage-hero"
@@ -101,6 +102,7 @@ export default function Page() {
           <HomepageDevices />
           <HomepageAi />
           <HomepageJournal />
+          <HomepageCare />
           <HomepageThemes />
           <HomepageFeatures />
           <div className={styles.installWrap}>
