@@ -1,5 +1,21 @@
 [
   {
+    "version": "v2.5.3",
+    "date": "2026-11-19",
+    "changes": [
+      "Choose how much AI price monitoring may use: Limited with daily request and token caps (the default), or Unlimited for models that can run all day.",
+      "An optional AI supervisor reviews all price monitoring and decides what to check first, which failing pages to retry with AI, and which gone pages to pause; it can only observe or act within fixed limits.",
+      "With AI connected, BladeVault can confirm price changes against the store page before notifying you, spot-check page readings in Unlimited mode, and post a short daily price summary in the Inbox.",
+      "Price Drops shows the AI supervisor: its latest summary, coverage, what still needs you, and a feed of every action it took, with a switch between Off, Observe and Act.",
+      "AI price reading now works with large reasoning models such as GLM: it reads most of the product page, gets enough time and answer room, and Settings shows what AI did in the last 24 hours.",
+      "Stores whose product pages include review widgets, such as Civivi, are no longer mistaken for bot checks, and Solve in browser's Done now saves for them.",
+      "Price monitoring now checks every store's US edition in US dollars, even when your IP is in another country.",
+      "Other stores now finds knives on Amazon, and the AI advisor works, when the AI model is a reasoning model that used to return empty answers.",
+      "Price monitoring's AI is harder to trick with text on store pages: it never follows links off a store, never touches sign-in forms, and only pauses products whose page is really gone.",
+      "Update CLAUDE.md with tooling and server details."
+    ]
+  },
+  {
     "version": "v2.5.2",
     "date": "2026-11-18",
     "changes": [
