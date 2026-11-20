@@ -1,5 +1,12 @@
 [
   {
+    "version": "v2.5.9",
+    "date": "2026-11-20",
+    "changes": [
+      "New store listings, including ones found on other stores, get their first price within minutes instead of waiting for the store's next scheduled check."
+    ]
+  },
+  {
     "version": "v2.5.8",
     "date": "2026-11-20",
     "changes": [
