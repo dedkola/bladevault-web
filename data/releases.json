@@ -1,5 +1,16 @@
 [
   {
+    "version": "v2.5.6",
+    "date": "2026-11-20",
+    "changes": [
+      "The Checks per hour chart on Price Drops now has a colour legend showing what each bar colour means.",
+      "Price comparisons now say \"Regular price\" instead of \"You paid\", since many knives in a collection were added rather than bought.",
+      "Supervisor activity now has its own tab on Price Drops, with a run timeline and a table of each run's actions.",
+      "Price monitoring now finds your knives on Amazon, Blade HQ and KnifeCenter, and keeps searching after a store has a few failed page loads.",
+      "Confirm stock changes in the price tests added before #604."
+    ]
+  },
+  {
     "version": "v2.5.5",
     "date": "2026-11-20",
     "changes": [
