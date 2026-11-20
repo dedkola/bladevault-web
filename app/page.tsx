@@ -16,9 +16,9 @@ import { absoluteUrl, siteConfig } from "@/lib/site"
 export const dynamic = "force-static"
 
 const pageTitle =
-  "Auto scrape, Google Drive backup, AI access, and a local-first knife vault | BladeVault"
+  "Price Drops, care reminders, Google Drive backup, and a local-first knife vault | BladeVault"
 const pageDescription =
-  "Paste a product URL and let BladeVault fill the record. Keep dated notes, care reminders, and history for every knife, back up to your own Google Drive, connect Claude or Codex through MCP, and run it on macOS, Windows, or Linux, or self-host it for iPad and iPhone."
+  "Paste a product URL and let BladeVault fill the record. Watch store prices and restocks with Price Drops and an optional AI supervisor, get alerts in one Inbox, keep dated notes, care reminders, and history for every knife, back up to your own Google Drive, connect Claude or Codex through MCP, and run it on macOS, Windows, or Linux, or self-host it for iPad and iPhone."
 
 export const metadata: Metadata = {
   title: pageTitle,

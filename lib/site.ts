@@ -134,6 +134,7 @@ export const siteConfig = {
     "Saved Smart Collections with live result counts",
     "Grouped model families with distinct variant records",
     "Care reminders for sharpening, cleaning, and lubrication with an Inbox and a Maintenance page",
+    "Price Drops monitoring for store prices, restocks, and price history, with alert rules and an optional AI supervisor",
     "History timeline with photos, milestones, and a Year in review",
     "Multiple named comparison lists and PDF exports",
     "Source-page screenshots saved with URL imports",

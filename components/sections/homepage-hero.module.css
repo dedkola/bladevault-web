@@ -1,0 +1,624 @@
+/* Hero v4: floating feature banners on the screenshot and the feature rail. */
+
+.toneDrop {
+  --tone: #2f7a4a;
+}
+
+.toneInbox {
+  --tone: #b4561c;
+}
+
+.toneAi {
+  --tone: #5b4fa8;
+}
+
+.toneCare {
+  --tone: var(--bladevault-title);
+}
+
+.toneDrive {
+  --tone: var(--bladevault-local);
+}
+
+:global(.dark) .toneDrop {
+  --tone: #7fcf98;
+}
+
+:global(.dark) .toneInbox {
+  --tone: #f0a26b;
+}
+
+:global(.dark) .toneAi {
+  --tone: #b3a8f0;
+}
+
+:global(.dark) .toneDrive {
+  --tone: var(--bladevault-gold);
+}
+
+/* ---------- release ticker ---------- */
+
+.ticker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tickerLink {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 4px 12px 4px 4px;
+  border: 1px solid color-mix(in srgb, var(--bladevault-gold) 40%, transparent);
+  border-radius: 999px;
+  color: var(--hp-ink);
+  background: color-mix(in srgb, var(--bladevault-gold) 8%, var(--hp-card));
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.tickerLink:hover {
+  border-color: var(--bladevault-gold);
+  transform: translateY(-1px);
+}
+
+/* ---------- window bar bell ---------- */
+
+.bell {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  color: var(--hp-ink);
+}
+
+.bell svg {
+  width: 11px;
+  height: 11px;
+}
+
+.bell b {
+  display: grid;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 4px;
+  place-items: center;
+  border-radius: 999px;
+  color: #fff;
+  background: #b4561c;
+  font-size: 8px;
+}
+
+/* ---------- floating banners ---------- */
+
+.chip {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 9px 14px 9px 9px;
+  border: 1px solid color-mix(in srgb, var(--bladevault-gold) 34%, transparent);
+  border-radius: 16px;
+  color: var(--hp-ink);
+  background: color-mix(in srgb, var(--hp-card) 90%, transparent);
+  box-shadow: 0 18px 44px
+    color-mix(in srgb, var(--bladevault-olive) 18%, transparent);
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+  animation:
+    chipRise 800ms cubic-bezier(0.16, 1, 0.3, 1) both,
+    chipFloat 7s ease-in-out infinite;
+  transition: border-color 160ms ease;
+}
+
+.chip:hover {
+  border-color: var(--bladevault-gold);
+}
+
+.chipIcon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 11px;
+  color: var(--tone);
+  background: color-mix(in srgb, var(--tone) 14%, var(--hp-card));
+}
+
+.chipIcon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.chipText {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.chip small,
+.inboxHead small {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--tone);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.chipText strong {
+  font-size: 13.5px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.chipText strong s {
+  margin-left: 2px;
+  color: var(--hp-muted);
+  font-weight: 500;
+}
+
+.chipText > span {
+  color: var(--hp-muted);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.pct {
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: var(--tone);
+  background: color-mix(in srgb, var(--tone) 12%, transparent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.live {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: livePulse 2s infinite;
+}
+
+.chipPrice {
+  top: -14px;
+  left: -46px;
+  animation-delay: 250ms, 1.2s;
+}
+
+.chipInbox {
+  top: 22%;
+  right: -18px;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+  width: 240px;
+  padding: 10px;
+  animation-delay: 400ms, 2.4s;
+}
+
+.chipAi {
+  bottom: 26%;
+  left: -58px;
+  animation-delay: 550ms, 3.1s;
+}
+
+.chipCare {
+  right: 8%;
+  bottom: -30px;
+  animation-delay: 700ms, 0.6s;
+}
+
+.chipDrive {
+  bottom: -34px;
+  left: 6%;
+  animation-delay: 850ms, 4s;
+}
+
+.inboxHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inboxHead small {
+  color: var(--hp-ink);
+}
+
+.inboxHead small svg {
+  width: 12px;
+  height: 12px;
+}
+
+.inboxHead b {
+  padding: 2px 6px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--tone);
+  font-family: var(--font-mono);
+  font-size: 8px;
+}
+
+:global(.dark) .inboxHead b {
+  color: var(--bladevault-olive);
+}
+
+.message {
+  display: grid;
+  grid-template-columns: 7px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--hp-secondary) 70%, transparent);
+  font-size: 11px;
+}
+
+.message i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--tone);
+}
+
+.message span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.message time {
+  color: var(--hp-muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+
+.schedule {
+  display: flex;
+  gap: 3px;
+  margin-top: 5px;
+}
+
+.schedule i {
+  width: 14px;
+  height: 4px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--tone) 22%, transparent);
+}
+
+.schedule i[data-state="done"],
+.schedule i[data-state="now"] {
+  background: var(--tone);
+}
+
+.schedule i[data-state="now"] {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--tone) 25%, transparent);
+}
+
+/* ---------- feature rail ---------- */
+
+.rail {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-bottom: clamp(3rem, 5vw, 5rem);
+}
+
+.railHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.railHead h2 {
+  margin: 8px 0 0;
+  color: var(--hp-ink);
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 640;
+  letter-spacing: -0.04em;
+}
+
+.railMore {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--hp-title);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.railMore:hover {
+  text-decoration: underline;
+}
+
+.railMore svg,
+.cardCta svg {
+  width: 13px;
+  height: 13px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards li {
+  display: flex;
+}
+
+.card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 210px;
+  padding: 16px;
+  border: 1px solid var(--hp-line-soft);
+  border-radius: 16px;
+  color: var(--hp-ink);
+  background:
+    radial-gradient(
+      14rem 9rem at 100% 0%,
+      color-mix(in srgb, var(--tone) 12%, transparent),
+      transparent 70%
+    ),
+    var(--hp-card);
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.card:hover {
+  border-color: color-mix(in srgb, var(--tone) 50%, transparent);
+  box-shadow: 0 18px 44px
+    color-mix(in srgb, var(--bladevault-olive) 14%, transparent);
+  transform: translateY(-3px);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardIcon {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 10px;
+  color: var(--tone);
+  background: color-mix(in srgb, var(--tone) 13%, var(--hp-card));
+}
+
+.cardIcon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tag {
+  padding: 3px 7px;
+  border: 1px solid var(--hp-line-soft);
+  border-radius: 999px;
+  color: var(--hp-muted);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.tagNew {
+  border-color: var(--bladevault-gold);
+  color: var(--bladevault-olive);
+  background: var(--bladevault-gold);
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.cardDetail {
+  color: var(--hp-muted);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.cardVisual {
+  display: block;
+  margin-top: auto;
+}
+
+.cardVisual:empty {
+  display: none;
+}
+
+.spark {
+  display: block;
+  width: 100%;
+  height: 38px;
+}
+
+.spark path {
+  fill: none;
+  stroke: var(--tone);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.spark circle {
+  fill: var(--tone);
+}
+
+.bars {
+  display: flex;
+  gap: 4px;
+  align-items: flex-end;
+  height: 34px;
+}
+
+.bars i {
+  flex: 1;
+  height: var(--h);
+  border-radius: 3px 3px 0 0;
+  background: color-mix(in srgb, var(--tone) 30%, transparent);
+}
+
+.bars i[data-hot] {
+  background: var(--tone);
+}
+
+.stats {
+  display: grid;
+  gap: 4px;
+  font-size: 11px;
+}
+
+.stats span {
+  display: flex;
+  justify-content: space-between;
+  color: var(--hp-muted);
+}
+
+.stats b {
+  color: var(--hp-ink);
+  font-weight: 600;
+}
+
+.cardCta {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  color: var(--tone);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ---------- motion ---------- */
+
+@keyframes chipRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes chipFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -6px;
+  }
+}
+
+@keyframes livePulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 50%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 7px transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip,
+  .live {
+    animation: none;
+  }
+
+  .card,
+  .tickerLink {
+    transition: none;
+  }
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 1320px) {
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .chipPrice {
+    left: -14px;
+  }
+
+  .chipAi {
+    left: -18px;
+  }
+
+  .chipInbox {
+    right: -8px;
+  }
+}
+
+/* On phones the banners become a row you swipe under the screenshot. */
+@media (max-width: 700px) {
+  .chips {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin: 12px -16px 0;
+    padding: 4px 16px 10px;
+    overflow-x: auto;
+    scroll-padding-inline: 16px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .chip {
+    position: static;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    animation: chipRise 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    min-height: 0;
+  }
+}
