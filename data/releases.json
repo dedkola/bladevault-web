@@ -1,5 +1,12 @@
 [
   {
+    "version": "v2.5.8",
+    "date": "2026-11-20",
+    "changes": [
+      "Other stores now searches Blade HQ regularly and shows its sale prices; KnifeCenter was removed because it blocks whole networks."
+    ]
+  },
+  {
     "version": "v2.5.7",
     "date": "2026-11-20",
     "changes": [
