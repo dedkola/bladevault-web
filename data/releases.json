@@ -1,5 +1,20 @@
 [
   {
+    "version": "v2.5.5",
+    "date": "2026-11-20",
+    "changes": [
+      "Set a target price or mute a knife, snooze price messages or mute a store for a while, dismiss all price messages at once, and get desktop notifications for drops and restocks.",
+      "Export a knife's store price history, or every knife's, to a CSV file from the Market tab or the Price Drops page.",
+      "Price monitoring can ignore sold-out official sites, look for your knives on Blade HQ and KnifeCenter as well as Amazon, and link each price drop to the store where it happened.",
+      "Collection cards, the table and Smart Collections can now show and filter by each knife's market price: dropped, back in stock, out of stock, or below what you paid.",
+      "Price monitoring checks long out-of-stock pages once a day, suggests pausing listings that seem gone, adds per-store actions in Settings and shows live progress for Check all.",
+      "Price Drops can now be searched, filtered by store, sorted and grouped by knife, shows restocks, out-of-stock age and below-what-you-paid listings, and works on phones.",
+      "Price Drops uses one set of colours for drops, increases, stock and problems in every style, and blocked stores get a clear Solve button.",
+      "The Market tab and Price Drops panel now show lowest and highest prices, change markers on the chart, each store's check history, and let you manage a knife's stores without edit mode.",
+      "Stock alerts now wait for a second check to confirm the change, so a store briefly showing the wrong stock no longer sends false \"Back in stock\" or \"Out of stock\" alerts."
+    ]
+  },
+  {
     "version": "v2.5.4",
     "date": "2026-11-20",
     "changes": [
