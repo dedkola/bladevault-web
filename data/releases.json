@@ -1,5 +1,13 @@
 [
   {
+    "version": "v2.5.10",
+    "date": "2026-11-20",
+    "changes": [
+      "Earn 100 achievements and collector ranks as your collection grows, with a trophy case on Insights and a shareable trophy card.",
+      "The Price Drops AI supervisor now understands prices: it can watch a knife closely, cross-check stores, leave deal and restock advice or ask quick yes/no questions in the Inbox, react to price and stock changes, and keep short notes between runs."
+    ]
+  },
+  {
     "version": "v2.5.9",
     "date": "2026-11-20",
     "changes": [
