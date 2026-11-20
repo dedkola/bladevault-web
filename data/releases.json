@@ -1,5 +1,16 @@
 [
   {
+    "version": "v2.5.4",
+    "date": "2026-11-20",
+    "changes": [
+      "AI clients connected through MCP can now read price drops, history and problems, and manage a knife's store URLs and Check now.",
+      "Price Drops now ignores price moves smaller than your Minimum change, marks prices that go back and forth as Fluctuating, and explains when a store shows a different currency than you paid in.",
+      "Old Cloudflare storage credentials left in early vaults are now deleted, so new backups no longer contain them.",
+      "Price Drops reads more accurately: small price moves keep a decimal, overdue checks say so, out-of-stock is counted separately, times follow your 12/24-hour setting, and Solve in browser is only offered where its window can open.",
+      "AI price monitoring through OpenCode Go asks models to answer without reasoning, so runs no longer fail with an empty answer."
+    ]
+  },
+  {
     "version": "v2.5.3",
     "date": "2026-11-19",
     "changes": [
