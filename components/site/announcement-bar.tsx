@@ -4,6 +4,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ArrowRight } from "lucide-react"
 
+import { releaseAnchor } from "@/lib/navigation"
+
 import styles from "./announcement-bar.module.css"
 
 export function AnnouncementBar() {
@@ -16,13 +18,16 @@ export function AnnouncementBar() {
       <div className={styles.inner}>
         <p>
           <span className={styles.badge}>New</span>{" "}
-          <strong>Care reminders in BladeVault 2.5.</strong>{" "}
+          <strong>Price Drops in BladeVault 2.5.</strong>{" "}
           <span>
-            See which knives are due for sharpening, cleaning, or lubrication,
-            and plan care from the new Maintenance page.
+            Watch store prices and restocks for your knives, with an optional AI
+            supervisor that schedules the checks and an Inbox for every alert.
           </span>
         </p>
-        <Link href="/#care" className={styles.link}>
+        <Link
+          href={`/whats-new#${releaseAnchor("v2.5.1")}`}
+          className={styles.link}
+        >
           See what&rsquo;s new
           <ArrowRight aria-hidden="true" />
         </Link>
