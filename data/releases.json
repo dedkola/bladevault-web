@@ -1,5 +1,12 @@
 [
   {
+    "version": "v2.5.7",
+    "date": "2026-11-20",
+    "changes": [
+      "Other stores now searches Amazon at a delivery ZIP you can set, finds your knives there, and only adds a listing when its page shows your knife's exact model number."
+    ]
+  },
+  {
     "version": "v2.5.6",
     "date": "2026-11-20",
     "changes": [
