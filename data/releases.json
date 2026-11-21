@@ -1,5 +1,14 @@
 [
   {
+    "version": "v2.5.13",
+    "date": "2026-11-21",
+    "changes": [
+      "Out-of-stock stores in a knife's price panel now show their last listed price, greyed out.",
+      "The Drops tab now shows every knife you can buy below its regular price, including at newly added stores, and replaces the Below regular price tab.",
+      "Adding a knife from an amazon.com link now imports its price and the lock, lengths, blade thickness and hardness listed in the description."
+    ]
+  },
+  {
     "version": "v2.5.12",
     "date": "2026-11-21",
     "changes": [
