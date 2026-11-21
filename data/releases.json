@@ -1,5 +1,15 @@
 [
   {
+    "version": "v2.5.11",
+    "date": "2026-11-21",
+    "changes": [
+      "Price Drops treats a knife's stores as one item: the list groups by knife, the chart compares every store, stock alerts fire only when no store has the knife, and a newly found cheaper store shows as a price drop.",
+      "Price Drops no longer checks Amazon, because Amazon doesn't allow automated AI access; existing Amazon sources are removed and Other stores now searches Blade HQ.",
+      "Other stores no longer marks a knife as not on Amazon when Amazon shows a bot check, an error, or a page BladeVault cannot read; such searches are tried again within hours.",
+      "Guard tests from opening a real vault and fix the price-worker leak."
+    ]
+  },
+  {
     "version": "v2.5.10",
     "date": "2026-11-20",
     "changes": [
