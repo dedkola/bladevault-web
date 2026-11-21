@@ -1,5 +1,15 @@
 [
   {
+    "version": "v2.5.12",
+    "date": "2026-11-21",
+    "changes": [
+      "AI can now find a product's new link when its page moves, keep checking the right variant, and retry once after a bot check, all within the AI usage limits.",
+      "After an update, the previous version of BladeVault no longer keeps running in the background and checking prices with outdated rules.",
+      "Price Drops no longer lets AI pacing advice leave a store's products overdue, and stops re-checking stores that have recovered or were removed.",
+      "Price Drops no longer counts Mac sleep or a lost network connection against your stores, and the daily digest skips deals based on a mistyped regular price."
+    ]
+  },
+  {
     "version": "v2.5.11",
     "date": "2026-11-21",
     "changes": [
