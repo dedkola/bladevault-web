@@ -1,5 +1,13 @@
 [
   {
+    "version": "v2.5.15",
+    "date": "2026-11-22",
+    "changes": [
+      "The Price Drops monitoring status no longer shows the hourly checks chart and Round panel.",
+      "Price Drops tabs and chart legends now use the same short names, such as ↓ Down, ↑ Up, Unchanged and Pending."
+    ]
+  },
+  {
     "version": "v2.5.14",
     "date": "2026-11-22",
     "changes": [
