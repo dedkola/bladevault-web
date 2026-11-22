@@ -1,5 +1,15 @@
 [
   {
+    "version": "v2.5.14",
+    "date": "2026-11-22",
+    "changes": [
+      "The AI supervisor no longer reports a timeout after your Mac sleeps, and retries a failed run on its own after a few minutes.",
+      "Knives added from a store link now import the US price in US dollars, even when the store detects another country.",
+      "Price Drops checks Amazon product links again like any other store, without AI, and brings back their earlier price history.",
+      "Trim CI to fast checks and drop UI layout browser tests."
+    ]
+  },
+  {
     "version": "v2.5.13",
     "date": "2026-11-21",
     "changes": [
