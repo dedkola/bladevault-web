@@ -1,5 +1,16 @@
 [
   {
+    "version": "v2.5.16",
+    "date": "2026-11-22",
+    "changes": [
+      "Choose what Price Drops monitors: the whole collection, selected knives, or compare lists, and stop monitoring everything in one click.",
+      "Plan your next purchases on the new Wishlist page: sort knives by priority, set target prices, and see which ones are worth buying now.",
+      "Add knives to your wishlist with a heart on collection cards and in the Knife inspector.",
+      "The Atrium style's bottom menu has a new index-tab look.",
+      "Price Drops now monitors your Wishlist by default, and What to monitor lets you choose between the Wishlist and hand-picked knives."
+    ]
+  },
+  {
     "version": "v2.5.15",
     "date": "2026-11-22",
     "changes": [
