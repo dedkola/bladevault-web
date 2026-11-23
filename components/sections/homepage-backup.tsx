@@ -32,6 +32,7 @@ const steps = [
 ]
 
 const recentlyShipped = [
+  "Wishlist deal board",
   "Care reminders + Inbox",
   "Maintenance page",
   "Knife of the day in Studio",

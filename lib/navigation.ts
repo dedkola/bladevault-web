@@ -5,6 +5,7 @@ type SiteNavigationLink = {
 }
 
 export const siteNavigation: readonly SiteNavigationLink[] = [
+  { href: "/#wishlist", label: "Wishlist", sectionId: "wishlist" },
   { href: "/#import", label: "Import", sectionId: "import" },
   { href: "/#devices", label: "Devices", sectionId: "devices" },
   { href: "/#ai", label: "AI", sectionId: "ai" },

@@ -12,7 +12,7 @@ export const dynamic = "force-static"
 
 const pageTitle = "What’s new in BladeVault"
 const pageDescription =
-  "BladeVault release notes, including care reminders and the Maintenance page, the Shelf, Ledger, and Atrium styles, Studio visual library with Knife of the day and showcase mode, the History timeline, customizable collection columns, a choice of start page, Collection pulse insights, automatic Google Drive backups, app lock, Smart Collections, maintenance, and MCP support."
+  "BladeVault release notes, including the Wishlist deal board with price vs regular, a 90-day range and a 30-day trend, Price Drops monitoring and the AI supervisor, care reminders and the Maintenance page, the Shelf, Ledger, and Atrium styles, Studio visual library with Knife of the day and showcase mode, the History timeline, customizable collection columns, a choice of start page, Collection pulse insights, achievements, automatic Google Drive backups, app lock, Smart Collections, maintenance, and MCP support."
 
 export const metadata: Metadata = {
   title: pageTitle,

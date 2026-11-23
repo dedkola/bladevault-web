@@ -9,6 +9,7 @@ import { HomepageHero } from "@/components/sections/homepage-hero"
 import { HomepageImport } from "@/components/sections/homepage-import"
 import { HomepageJournal } from "@/components/sections/homepage-journal"
 import { HomepageThemes } from "@/components/sections/homepage-themes"
+import { HomepageWishlist } from "@/components/sections/homepage-wishlist"
 import { InstallCta } from "@/components/sections/install-cta"
 import styles from "@/components/sections/homepage-v3.module.css"
 import { absoluteUrl, siteConfig } from "@/lib/site"
@@ -16,9 +17,9 @@ import { absoluteUrl, siteConfig } from "@/lib/site"
 export const dynamic = "force-static"
 
 const pageTitle =
-  "Price Drops, care reminders, Google Drive backup, and a local-first knife vault | BladeVault"
+  "Wishlist deal board, Price Drops, care reminders, Google Drive backup, and a local-first knife vault | BladeVault"
 const pageDescription =
-  "Paste a product URL and let BladeVault fill the record. Watch store prices and restocks with Price Drops and an optional AI supervisor, get alerts in one Inbox, keep dated notes, care reminders, and history for every knife, back up to your own Google Drive, connect Claude or Codex through MCP, and run it on macOS, Windows, or Linux, or self-host it for iPad and iPhone."
+  "Paste a product URL and let BladeVault fill the record. See which knives on your Wishlist are on sale with price vs regular, a 90-day range and a 30-day trend, watch store prices and restocks with Price Drops and an optional AI supervisor, get alerts in one Inbox, keep dated notes, care reminders, and history for every knife, back up to your own Google Drive, connect Claude or Codex through MCP, and run it on macOS, Windows, or Linux, or self-host it for iPad and iPhone."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -98,6 +99,7 @@ export default function Page() {
         <div className={styles.homepage}>
           <HomepageHero />
           <HomepageBackup />
+          <HomepageWishlist />
           <HomepageImport />
           <HomepageDevices />
           <HomepageAi />
