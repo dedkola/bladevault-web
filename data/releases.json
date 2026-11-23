@@ -1,5 +1,17 @@
 [
   {
+    "version": "v2.5.21",
+    "date": "2026-11-23",
+    "changes": [
+      "Other stores can now also search KnifeJoy and Northwest Knives for your monitored knives, at a slow pace per store.",
+      "The Wishlist page has a single \"Add to wishlist\" button in its header.",
+      "Collection toolbar shows a Model families tab and Select button directly, and selected knives can be added to the wishlist in one step.",
+      "The footer theme button now opens a quick picker showing every theme, so you can jump straight to the one you want.",
+      "The Inbox no longer shows a second AI note for a price change or restock, and Market opens the item in Price Drops.",
+      "Open Needs attention from the Inbox now shows every store page it reports, including ones that were last seen out of stock."
+    ]
+  },
+  {
     "version": "v2.5.20",
     "date": "2026-11-23",
     "changes": [
