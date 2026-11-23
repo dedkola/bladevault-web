@@ -5,9 +5,11 @@ import {
   ArrowRight,
   Bell,
   CloudCheck,
+  Heart,
   Inbox,
   Sparkles,
   TrendingDown,
+  Trophy,
   Wrench,
   type LucideIcon,
 } from "lucide-react"
@@ -21,14 +23,15 @@ import styles from "./homepage-v3.module.css"
 
 const releaseNotes = (version: string) => `/whats-new#${releaseAnchor(version)}`
 
-const priceDropsHref = releaseNotes("v2.5.1")
-const supervisorHref = releaseNotes("v2.5.3")
+const priceDropsHref = releaseNotes("v2.5.16")
+const wishlistHref = releaseNotes("v2.5.17")
+const supervisorHref = releaseNotes("v2.5.10")
 const inboxHref = releaseNotes("v2.5.1")
 
 const newsLinks = [
-  { href: priceDropsHref, label: "Price Drops & alerts" },
+  { href: wishlistHref, label: "Wishlist deal board" },
+  { href: priceDropsHref, label: "Price Drops monitoring" },
   { href: supervisorHref, label: "AI supervisor" },
-  { href: inboxHref, label: "Inbox" },
 ]
 
 // Example messages for the floating Inbox banner. They describe the example
@@ -42,7 +45,8 @@ const inboxMessages = [
 // Past runs, the current run, then upcoming ones on the supervisor banner.
 const supervisorRuns = ["done", "done", "done", "done", "now", "next", "next"]
 
-type Tone = "drop" | "inbox" | "ai" | "care" | "drive"
+type Tone =
+  "wishlist" | "drop" | "inbox" | "ai" | "care" | "drive" | "achievements"
 
 type FeatureCard = {
   tone: Tone
@@ -59,13 +63,29 @@ type FeatureCard = {
 
 const featureCards: FeatureCard[] = [
   {
+    tone: "wishlist",
+    icon: Heart,
+    tag: "New",
+    isNew: true,
+    title: "Wishlist",
+    detail:
+      "Grouped by deal, with price vs regular, a 90-day range and a 30-day trend.",
+    href: wishlistHref,
+    cta: "See the deals",
+    stats: [
+      ["On sale", "2"],
+      ["Regular", "2"],
+      ["Above / out", "1 + 1"],
+    ],
+  },
+  {
     tone: "drop",
     icon: TrendingDown,
     tag: "New",
     isNew: true,
     title: "Price Drops",
     detail:
-      "Gentle, paced checks across your stores for drops, increases and restocks, with full price history.",
+      "Choose what to watch: the Wishlist, selected knives, or the whole collection, with full price history.",
     href: priceDropsHref,
     cta: "Watch a knife",
     visual: "spark",
@@ -77,7 +97,7 @@ const featureCards: FeatureCard[] = [
     isNew: true,
     title: "AI supervisor",
     detail:
-      "Schedules the checks for you: what to check first, which pages to retry, and a daily summary.",
+      "A price-aware shopping assistant: schedules the checks, retries pages and writes the daily summary.",
     href: supervisorHref,
     cta: "Observe or act",
     visual: "bars",
@@ -114,27 +134,31 @@ const featureCards: FeatureCard[] = [
     ],
   },
   {
-    tone: "drive",
-    icon: CloudCheck,
-    tag: "Backup",
-    title: "Google Drive",
+    tone: "achievements",
+    icon: Trophy,
+    tag: "New",
+    isNew: true,
+    title: "Achievements",
     detail:
-      "The vault backs up to your own Drive. A failed backup stays in the Inbox until the next one works.",
-    href: "/#backup",
-    cta: "Set up backup",
+      "100 badges in four tiers, a trophy case on Insights, and a rank from Rookie to Jedi Collector.",
+    href: releaseNotes("v2.5.10"),
+    cta: "Open the trophy case",
     stats: [
-      ["Last backup", "2 min ago"],
-      ["Status", "OK"],
+      ["Gold", "12"],
+      ["Platinum", "3"],
+      ["Rank", "Collector"],
     ],
   },
 ]
 
 const toneClass: Record<Tone, string> = {
+  wishlist: hero.toneWishlist,
   drop: hero.toneDrop,
   inbox: hero.toneInbox,
   ai: hero.toneAi,
   care: hero.toneCare,
   drive: hero.toneDrive,
+  achievements: hero.toneAchievements,
 }
 
 const barHeights = [30, 55, 40, 90, 35, 60, 25]
@@ -163,10 +187,11 @@ export function HomepageHero() {
           </h1>
           <p className={styles.heroSub}>
             Paste a product link and BladeVault fills in the specs, price, and
-            photos. Then it keeps watching: store prices and restocks, care
-            that&apos;s coming due, and backups to your own Google Drive, with
-            an AI supervisor that schedules the checks and one Inbox for
-            everything that needs you.
+            photos. Then it keeps watching: a Wishlist that groups what you plan
+            to buy by deal, with each knife&apos;s price against its regular
+            price, store drops and restocks, care that&apos;s coming due, and
+            backups to your own Google Drive, with an AI supervisor that
+            schedules the checks and one Inbox for everything that needs you.
           </p>
           <HeroDownload />
           <div className={styles.heroTrust} aria-label="Product principles">
@@ -205,6 +230,23 @@ export function HomepageHero() {
           </figure>
 
           <div className={hero.chips} aria-label="What BladeVault is watching">
+            <Link
+              href={wishlistHref}
+              className={`${hero.chip} ${hero.chipWishlist} ${hero.toneWishlist}`}
+            >
+              <span className={hero.chipIcon} aria-hidden="true">
+                <Heart />
+              </span>
+              <span className={hero.chipText}>
+                <small>Wishlist &middot; On sale &minus;22%</small>
+                <strong>
+                  CIVIVI Elementum <s>$69</s> $54
+                  <span className={hero.pct}>&minus;22%</span>
+                </strong>
+                <span>22% below regular &middot; 90-day low</span>
+              </span>
+            </Link>
+
             <Link
               href={priceDropsHref}
               className={`${hero.chip} ${hero.chipPrice} ${hero.toneDrop}`}
@@ -306,11 +348,11 @@ export function HomepageHero() {
               What it keeps an eye on
             </p>
             <h2 id="hero-rail-title">
-              Five things running quietly in the background
+              Six things running quietly in the background
             </h2>
           </div>
           <Link href="/whats-new" className={hero.railMore}>
-            What&apos;s new in 2.5
+            What&apos;s new in 2.5.17
             <ArrowRight aria-hidden="true" />
           </Link>
         </div>

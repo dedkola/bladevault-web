@@ -1,5 +1,9 @@
 /* Hero v4: floating feature banners on the screenshot and the feature rail. */
 
+.toneWishlist {
+  --tone: var(--bladevault-title);
+}
+
 .toneDrop {
   --tone: #2f7a4a;
 }
@@ -20,6 +24,14 @@
   --tone: var(--bladevault-local);
 }
 
+.toneAchievements {
+  --tone: var(--bladevault-local);
+}
+
+:global(.dark) .toneWishlist {
+  --tone: var(--bladevault-gold);
+}
+
 :global(.dark) .toneDrop {
   --tone: #7fcf98;
 }
@@ -33,6 +45,10 @@
 }
 
 :global(.dark) .toneDrive {
+  --tone: var(--bladevault-gold);
+}
+
+:global(.dark) .toneAchievements {
   --tone: var(--bladevault-gold);
 }
 
@@ -197,14 +213,20 @@
   animation: livePulse 2s infinite;
 }
 
-.chipPrice {
-  top: -14px;
+.chipWishlist {
+  top: -16px;
   left: -46px;
   animation-delay: 250ms, 1.2s;
 }
 
+.chipPrice {
+  top: 46%;
+  right: -22px;
+  animation-delay: 350ms, 1.8s;
+}
+
 .chipInbox {
-  top: 22%;
+  top: 14%;
   right: -18px;
   flex-direction: column;
   gap: 6px;
@@ -215,7 +237,7 @@
 }
 
 .chipAi {
-  bottom: 26%;
+  bottom: 18%;
   left: -58px;
   animation-delay: 550ms, 3.1s;
 }
@@ -360,7 +382,7 @@
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 12px;
   margin: 0;
   padding: 0;
@@ -574,8 +596,12 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .chipPrice {
+  .chipWishlist {
     left: -14px;
+  }
+
+  .chipPrice {
+    right: -10px;
   }
 
   .chipAi {

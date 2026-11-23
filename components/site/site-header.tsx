@@ -74,7 +74,7 @@ export function SiteHeader() {
 
         <nav
           aria-label="Main navigation"
-          className="hidden items-center justify-center gap-4 whitespace-nowrap lg:flex xl:gap-8"
+          className="hidden items-center justify-center gap-2 text-[13px] whitespace-nowrap lg:flex xl:gap-8 xl:text-sm"
         >
           {siteNavigation.map((link) => (
             <Link

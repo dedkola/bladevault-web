@@ -18,14 +18,14 @@ export function AnnouncementBar() {
       <div className={styles.inner}>
         <p>
           <span className={styles.badge}>New</span>{" "}
-          <strong>Price Drops in BladeVault 2.5.</strong>{" "}
+          <strong>Wishlist in BladeVault 2.5.17.</strong>{" "}
           <span>
-            Watch store prices and restocks for your knives, with an optional AI
-            supervisor that schedules the checks and an Inbox for every alert.
+            Your buy list, grouped by deal: see each knife&rsquo;s price against
+            its regular price, its 90-day range and 30-day trend.
           </span>
         </p>
         <Link
-          href={`/whats-new#${releaseAnchor("v2.5.1")}`}
+          href={`/whats-new#${releaseAnchor("v2.5.17")}`}
           className={styles.link}
         >
           See what&rsquo;s new
