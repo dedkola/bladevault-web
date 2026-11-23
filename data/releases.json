@@ -1,5 +1,18 @@
 [
   {
+    "version": "v2.5.20",
+    "date": "2026-11-23",
+    "changes": [
+      "Price Drops, AI notes and the daily digest only show knives you monitor; notes and bot checks for knives outside What to monitor are hidden.",
+      "Clicking a knife on the Wishlist opens its item page on the Market tab.",
+      "Each wishlist item now has a button that opens its price details on Price Drops.",
+      "Choose Wishlist or Price Drops as the page BladeVault opens on.",
+      "The desktop app no longer flashes \"Page not found\" for a moment at launch.",
+      "Fixed the desktop app occasionally freezing and writing excessively to disk when no data folder was set explicitly.",
+      "The price chart's hover details on the Market tab no longer get cut off at the edge of the card."
+    ]
+  },
+  {
     "version": "v2.5.19",
     "date": "2026-11-23",
     "changes": [
