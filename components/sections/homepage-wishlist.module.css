@@ -594,6 +594,151 @@
   line-height: 1.5;
 }
 
+.rangeEmpty {
+  color: var(--muted-foreground);
+  font-size: 8px;
+}
+
+.storesRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(260px, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin-top: 16px;
+}
+
+.chartWindow {
+  margin: 0;
+}
+
+.chartImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.storesCard {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
+  border-radius: 16px;
+  background:
+    radial-gradient(
+      18rem 12rem at 100% 0%,
+      color-mix(in srgb, var(--bladevault-gold) 10%, transparent),
+      transparent 70%
+    ),
+    var(--card);
+}
+
+.storesCard h3 {
+  margin: 0;
+  color: var(--bladevault-title);
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.storesCard .eyebrow {
+  font-size: 10.5px;
+}
+
+.storesCard .bestLink {
+  justify-self: start;
+}
+
+.storesIntro {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.storeList {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.storeItem {
+  display: grid;
+  grid-template-columns: 8px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  border-radius: 10px;
+  background: var(--background);
+}
+
+.storeItem i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--muted-foreground);
+}
+
+.storeItem span {
+  display: grid;
+  min-width: 0;
+}
+
+.storeItem b {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.storeItem small {
+  color: var(--muted-foreground);
+  font-size: 11px;
+}
+
+.storeItem strong {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.storeLow i {
+  background: #2f7a4a;
+}
+
+.storeLow strong {
+  color: #2f7a4a;
+}
+
+.storeOut i {
+  background: #b4561c;
+}
+
+.storeOut strong {
+  color: var(--muted-foreground);
+  text-decoration: line-through;
+}
+
+.alsoSearched {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 11.5px;
+}
+
+.alsoSearched svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 1000px) {
+  .storesRow {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 @media (max-width: 1100px) {
   .row {
     grid-template-columns:

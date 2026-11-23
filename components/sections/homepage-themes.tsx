@@ -623,8 +623,8 @@ export function HomepageThemes() {
           catalogue with a masthead and a &#8984;K command palette; Ledger is a
           bound account book with index tabs, a grouped list, and a full
           document for the selected knife. Switch in Settings &rarr; Appearance
-          or from the footer at any time; your records, columns, and start page
-          stay put.
+          or from the footer&rsquo;s quick picker, which shows every style at
+          once; your records, columns, and start page stay put.
         </p>
       </div>
 

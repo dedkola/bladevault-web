@@ -18,14 +18,14 @@ export function AnnouncementBar() {
       <div className={styles.inner}>
         <p>
           <span className={styles.badge}>New</span>{" "}
-          <strong>Wishlist in BladeVault 2.5.17.</strong>{" "}
+          <strong>Four more stores in BladeVault 2.5.21.</strong>{" "}
           <span>
-            Your buy list, grouped by deal: see each knife&rsquo;s price against
-            its regular price, its 90-day range and 30-day trend.
+            Price Drops now checks SMKW, DLT Trading, KnifeJoy and Northwest
+            Knives too, with a line per store and the cheapest one named.
           </span>
         </p>
         <Link
-          href={`/whats-new#${releaseAnchor("v2.5.17")}`}
+          href={`/whats-new#${releaseAnchor("v2.5.21")}`}
           className={styles.link}
         >
           See what&rsquo;s new
