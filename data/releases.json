@@ -1,5 +1,22 @@
 [
   {
+    "version": "v2.5.19",
+    "date": "2026-11-23",
+    "changes": [
+      "Price details on Price Drops now open under the knife's row with a larger chart.",
+      "Other stores now finds listings whose store SKU adds a brand prefix, searches again every day for knives not found yet, and lets AI browse the store when its search misses."
+    ]
+  },
+  {
+    "version": "v2.5.18",
+    "date": "2026-11-23",
+    "changes": [
+      "Other stores can now also look for your knives at SMKW (Smoky Mountain Knife Works), and the price chart names the store that had the lowest price.",
+      "Other stores can now also look for your knives at DLT Trading, and its prices show as their own line on the price chart.",
+      "The Wishlist link shows how many knives you're watching and a green arrow count for those on sale right now; the Price Drops link no longer shows an unread count."
+    ]
+  },
+  {
     "version": "v2.5.17",
     "date": "2026-11-23",
     "changes": [
