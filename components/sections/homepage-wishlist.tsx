@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react"
+import Image from "next/image"
 import Link from "next/link"
 import {
   ArrowRight,
@@ -6,6 +7,7 @@ import {
   Bell,
   CircleDollarSign,
   Radar,
+  Store,
   X,
 } from "lucide-react"
 
@@ -24,9 +26,9 @@ type WishlistRow = {
   price: string
   note: string
   pills: { label: string; tone: PillTone }[]
-  low: string
-  high: string
-  position: string
+  low?: string
+  high?: string
+  position?: string
   change: string
   trend: "down" | "flat" | "up"
   path: string
@@ -40,133 +42,164 @@ type DealGroup = {
   rows: WishlistRow[]
 }
 
+// Real rows from the author's own vault on Nov 23, 2026 (BladeVault 2.5.21).
+// Tracking started Nov 19, so ranges and trends cover the days since then.
 const groups: DealGroup[] = [
   {
     id: "sale",
     title: "On sale now",
-    hint: "Below regular price · 2",
+    hint: "Below regular price · 12",
     rows: [
       {
-        name: "Raccoon",
+        name: "Raccoon TiSlim",
         brand: "Vosteed",
-        stores: "3 stores",
-        price: "$54",
-        note: "22% below regular",
+        stores: "4 stores",
+        price: "$94.50",
+        note: "30% below regular",
         pills: [
-          { label: "On sale −22%", tone: "sale" },
-          { label: "90-day low", tone: "low" },
-          { label: "↓ 12% 2d", tone: "low" },
+          { label: "On sale −30%", tone: "sale" },
+          { label: "Lowest seen", tone: "low" },
+          { label: "↓ 30% 3 days ago", tone: "low" },
         ],
-        low: "$52",
-        high: "$79",
-        position: "7%",
-        change: "−12%",
+        low: "$94.50",
+        high: "$135",
+        position: "0%",
+        change: "−30%",
         trend: "down",
-        path: "M2 5 L14 8 L26 6 L38 10 L50 8 L62 11 L74 6 L80 3",
-        thumb: styles.thumbWarm,
+        path: "M2 4 L40 4 L44 14 L80 14",
+        thumb: styles.thumbOlive,
       },
       {
-        name: "Drop Bear",
-        brand: "Kizer",
+        name: "Kroc 329",
+        brand: "Vosteed",
         stores: "2 stores",
-        price: "$72",
-        note: "16% below regular",
+        price: "$90.35",
+        note: "35% below regular",
         pills: [
-          { label: "On sale −16%", tone: "sale" },
-          { label: "90-day low", tone: "low" },
+          { label: "On sale −35%", tone: "sale" },
+          { label: "↓ 35% today", tone: "low" },
         ],
-        low: "$69",
-        high: "$89",
-        position: "15%",
-        change: "−8%",
+        low: "$90.35",
+        high: "$139",
+        position: "0%",
+        change: "−35%",
         trend: "down",
-        path: "M2 6 L14 7 L26 9 L38 8 L50 11 L62 9 L74 12 L80 8",
+        path: "M2 4 L72 4 L75 15 L80 15",
         thumb: styles.thumbGreen,
+      },
+      {
+        name: "Native Chief Lightweight",
+        brand: "Spyderco",
+        stores: "4 stores",
+        price: "$161.25",
+        note: "25% below regular",
+        pills: [
+          { label: "On sale −25%", tone: "sale" },
+          { label: "Best at SMKW", tone: "low" },
+        ],
+        low: "$161.25",
+        high: "$215",
+        position: "0%",
+        change: "−25%",
+        trend: "down",
+        path: "M2 4 L70 4 L73 13 L80 13",
+        thumb: styles.thumbSand,
+      },
+      {
+        name: "Military 2",
+        brand: "Spyderco",
+        stores: "2 stores",
+        price: "$220.50",
+        note: "25% below regular",
+        pills: [
+          { label: "On sale −25%", tone: "sale" },
+          { label: "Best at SMKW", tone: "low" },
+        ],
+        low: "$220.50",
+        high: "$294",
+        position: "0%",
+        change: "−25%",
+        trend: "down",
+        path: "M2 4 L72 4 L75 13 L80 13",
+        thumb: styles.thumbWarm,
       },
     ],
   },
   {
     id: "regular",
     title: "Regular price",
-    hint: "No discount right now · 2",
+    hint: "No discount right now · 19",
     rows: [
       {
-        name: "Elementum II",
-        brand: "CIVIVI",
-        stores: "2 stores",
-        price: "$69",
+        name: "Dingo",
+        brand: "Kizer",
+        stores: "3 stores",
+        price: "$64.96",
         note: "at regular price",
         pills: [{ label: "Regular price", tone: "regular" }],
-        low: "$69",
-        high: "$79",
-        position: "0%",
-        change: "−3%",
+        low: "$64.96",
+        high: "$64.96",
+        position: "50%",
+        change: "±0%",
         trend: "flat",
-        path: "M2 9 L14 8 L26 10 L38 9 L50 11 L62 9 L74 10 L80 10",
+        path: "M2 9 L80 9",
         thumb: styles.thumbGreen,
       },
       {
-        name: "Banter",
-        brand: "WE Knife",
+        name: "Porcupine",
+        brand: "Vosteed",
         stores: "3 stores",
-        price: "$118",
-        note: "at regular price",
-        pills: [{ label: "Regular price", tone: "regular" }],
-        low: "$112",
-        high: "$125",
-        position: "46%",
-        change: "+2%",
+        price: "$69",
+        note: "back in stock at Blade HQ",
+        pills: [
+          { label: "Regular price", tone: "regular" },
+          { label: "Restocked", tone: "low" },
+        ],
+        low: "$69",
+        high: "$69",
+        position: "50%",
+        change: "±0%",
         trend: "flat",
-        path: "M2 10 L14 9 L26 11 L38 8 L50 10 L62 9 L74 11 L80 8",
+        path: "M2 9 L80 9",
         thumb: styles.thumbOlive,
-      },
-    ],
-  },
-  {
-    id: "above",
-    title: "Above regular",
-    hint: "Better to wait · 1",
-    rows: [
-      {
-        name: "Bugout",
-        brand: "Benchmade",
-        stores: "2 stores",
-        price: "$162",
-        note: "8% above regular",
-        pills: [{ label: "+8% above regular", tone: "above" }],
-        low: "$140",
-        high: "$165",
-        position: "88%",
-        change: "+5%",
-        trend: "up",
-        path: "M2 12 L14 10 L26 11 L38 8 L50 9 L62 6 L74 7 L80 4",
-        thumb: styles.thumbSand,
       },
     ],
   },
   {
     id: "out",
     title: "Out of stock",
-    hint: "Watching for a restock · 1",
+    hint: "Watching for a restock · 7",
     rows: [
       {
-        name: "Para 3",
-        brand: "Spyderco",
-        stores: "1 store",
-        price: "$168",
-        note: "last listed",
+        name: "Nymble",
+        brand: "Vosteed",
+        stores: "3 stores",
+        price: "—",
+        note: "out at Blade HQ and SMKW",
         pills: [{ label: "Out of stock", tone: "out" }],
-        low: "$154",
-        high: "$178",
-        position: "58%",
-        change: "±0%",
+        change: "—",
         trend: "flat",
-        path: "M2 9 L14 9 L26 10 L38 9 L50 9 L62 10 L74 9 L80 9",
+        path: "M2 9 L80 9",
         thumb: styles.thumbViolet,
       },
     ],
   },
 ]
+
+const storeRows = [
+  { name: "Blade HQ", price: "$94.50", state: "low", note: "found by AI" },
+  { name: "SMKW", price: "$94.50", state: "low", note: "lowest seen" },
+  { name: "vosteed.com", price: "$135", state: "regular", note: "brand site" },
+  { name: "DLT Trading", price: "$135", state: "out", note: "out of stock" },
+] as const
+
+const alsoSearched = ["KnifeJoy", "Northwest Knives", "Amazon"]
+
+const storeStateClasses = {
+  low: styles.storeLow,
+  regular: styles.storeRegular,
+  out: styles.storeOut,
+} as const
 
 const notes = [
   {
@@ -186,8 +219,9 @@ const notes = [
   },
 ] as const
 
-const wishlistHref = `/whats-new#${releaseAnchor("v2.5.17")}`
-const priceDropsHref = `/whats-new#${releaseAnchor("v2.5.16")}`
+const wishlistHref = `/whats-new#${releaseAnchor("v2.5.20")}`
+const priceDropsHref = `/whats-new#${releaseAnchor("v2.5.19")}`
+const storesHref = `/whats-new#${releaseAnchor("v2.5.21")}`
 
 const groupClasses: Record<DealGroup["id"], string> = {
   sale: styles.groupSale,
@@ -221,8 +255,9 @@ export function HomepageWishlist() {
         <h2>Know what&apos;s actually a deal.</h2>
         <p className={base.sectionIntro}>
           The Wishlist groups what you plan to buy by deal and shows each
-          knife&apos;s price against its regular price, a 90-day range, and a
-          30-day trend. Price Drops watches the list by default.
+          knife&apos;s price against its regular price, its range, and a 30-day
+          trend. Price Drops watches the list by default. Below: the
+          author&apos;s own list on Nov 23.
         </p>
       </div>
 
@@ -236,7 +271,7 @@ export function HomepageWishlist() {
             </span>
             <span>BladeVault / Wishlist</span>
             <span className={styles.status}>
-              Price Drops &middot; watching Wishlist
+              Price Drops &middot; 109 store pages
             </span>
           </div>
 
@@ -244,53 +279,53 @@ export function HomepageWishlist() {
             <div className={styles.appHead}>
               <h3>Wishlist</h3>
               <span className={styles.watchTag}>
-                <Bell aria-hidden="true" /> 5 of 6 watched
+                <Bell aria-hidden="true" /> 38 of 38 watched
               </span>
             </div>
 
             <div className={styles.summary}>
               <div className={styles.stat}>
                 <span className={styles.statLabel}>All of it today</span>
-                <span className={styles.statValue}>$842</span>
+                <span className={styles.statValue}>$5,796</span>
                 <span className={styles.statHint}>
-                  6 knives &middot; 1 out of stock
+                  38 knives &middot; 7 out of stock
                 </span>
               </div>
               <div className={styles.stat}>
                 <span className={styles.statLabel}>On sale now</span>
                 <span className={`${styles.statValue} ${styles.statGood}`}>
-                  $61 <small>off</small>
+                  $639 <small>off</small>
                 </span>
                 <span className={styles.statHint}>
-                  2 of 6 below regular price
+                  12 of 38 below regular price
                 </span>
               </div>
               <div className={styles.stat}>
                 <span className={styles.statLabel}>Price Drops watches</span>
-                <span className={styles.statValue}>5 / 6</span>
+                <span className={styles.statValue}>38 / 38</span>
                 <span className={styles.statHint}>
-                  9 store pages &middot;{" "}
+                  109 store pages &middot;{" "}
                   <Link href={priceDropsHref}>See Price Drops</Link>
                 </span>
               </div>
             </div>
 
             <section className={styles.best} aria-label="Best deal right now">
-              <span className={`${styles.thumbLg} ${styles.thumbSand}`}>
+              <span className={`${styles.thumbLg} ${styles.thumbOlive}`}>
                 <KnifeGlyph />
               </span>
               <div>
                 <p className={styles.eyebrow}>Best deal right now</p>
-                <h4>Vosteed Raccoon</h4>
+                <h4>Vosteed Raccoon TiSlim</h4>
                 <div className={styles.bestPrice}>
-                  <b>$54</b>
-                  <s>$69</s>
-                  <span className={styles.pillSale}>On sale −22%</span>
-                  <span className={styles.pillLow}>90-day low</span>
+                  <b>$94.50</b>
+                  <s>$135</s>
+                  <span className={styles.pillSale}>On sale −30%</span>
+                  <span className={styles.pillLow}>Lowest seen</span>
                 </div>
                 <p className={styles.bestNote}>
-                  $15 below regular price &middot; −12% in 30 days &middot; 3
-                  stores
+                  $40.50 below regular price &middot; 30% drop at Blade HQ
+                  &middot; 3 stores
                 </p>
               </div>
               <Link href={wishlistHref} className={styles.bestLink}>
@@ -337,17 +372,27 @@ export function HomepageWishlist() {
                         <span>{row.note}</span>
                       </div>
                       <div className={styles.range}>
-                        <div className={styles.rangeTrack}>
-                          <i
-                            style={
-                              { "--position": row.position } as CSSProperties
-                            }
-                          />
-                        </div>
-                        <div className={styles.rangeEnds}>
-                          <span>{row.low}</span>
-                          <span>{row.high}</span>
-                        </div>
+                        {row.position ? (
+                          <>
+                            <div className={styles.rangeTrack}>
+                              <i
+                                style={
+                                  {
+                                    "--position": row.position,
+                                  } as CSSProperties
+                                }
+                              />
+                            </div>
+                            <div className={styles.rangeEnds}>
+                              <span>{row.low}</span>
+                              <span>{row.high}</span>
+                            </div>
+                          </>
+                        ) : (
+                          <span className={styles.rangeEmpty}>
+                            No in-stock price
+                          </span>
+                        )}
                       </div>
                       <div className={styles.rowTrend}>
                         <svg
@@ -375,6 +420,60 @@ export function HomepageWishlist() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className={styles.storesRow}>
+        <figure className={`${base.window} ${styles.chartWindow}`}>
+          <div className={base.windowBar}>
+            <span className={base.dots} aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span>BladeVault / Price Drops</span>
+          </div>
+          <Image
+            src="/screenshots/live/price-drops-chart.jpg"
+            alt="Price Drops details for a Vosteed Raccoon TiSlim: best price $94.50 at Blade HQ against a $135 regular price, a chart with one line per store, and Lowest seen $94.50 at SMKW"
+            width={2250}
+            height={1310}
+            sizes="(min-width: 1100px) 62vw, 94vw"
+            className={styles.chartImage}
+          />
+        </figure>
+
+        <aside className={styles.storesCard} aria-labelledby="wishlist-stores">
+          <p className={styles.eyebrow}>New in 2.5.18 &ndash; 2.5.21</p>
+          <h3 id="wishlist-stores">Every store, one chart.</h3>
+          <p className={styles.storesIntro}>
+            Price Drops looks for each knife at more stores, draws one line per
+            store, and names the one with the lowest price. Details open right
+            under the knife&apos;s row.
+          </p>
+          <ul className={styles.storeList}>
+            {storeRows.map((store) => (
+              <li
+                key={store.name}
+                className={`${styles.storeItem} ${storeStateClasses[store.state]}`}
+              >
+                <i aria-hidden="true" />
+                <span>
+                  <b>{store.name}</b>
+                  <small>{store.note}</small>
+                </span>
+                <strong>{store.price}</strong>
+              </li>
+            ))}
+          </ul>
+          <p className={styles.alsoSearched}>
+            <Store aria-hidden="true" />
+            Also searched: {alsoSearched.join(" · ")}
+          </p>
+          <Link href={storesHref} className={styles.bestLink}>
+            See the release
+            <ArrowRight aria-hidden="true" />
+          </Link>
+        </aside>
       </div>
 
       <div className={styles.notes}>

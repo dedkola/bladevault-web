@@ -23,21 +23,22 @@ import styles from "./homepage-v3.module.css"
 
 const releaseNotes = (version: string) => `/whats-new#${releaseAnchor(version)}`
 
-const priceDropsHref = releaseNotes("v2.5.16")
-const wishlistHref = releaseNotes("v2.5.17")
+const priceDropsHref = releaseNotes("v2.5.19")
+const wishlistHref = releaseNotes("v2.5.20")
+const storesHref = releaseNotes("v2.5.21")
 const supervisorHref = releaseNotes("v2.5.10")
 const inboxHref = releaseNotes("v2.5.1")
 
 const newsLinks = [
+  { href: storesHref, label: "SMKW, DLT, KnifeJoy & Northwest Knives" },
+  { href: priceDropsHref, label: "Per-store price chart" },
   { href: wishlistHref, label: "Wishlist deal board" },
-  { href: priceDropsHref, label: "Price Drops monitoring" },
-  { href: supervisorHref, label: "AI supervisor" },
 ]
 
 // Example messages for the floating Inbox banner. They describe the example
 // vault, not live data.
 const inboxMessages = [
-  { tone: "drop", text: "Back in stock · Vosteed Raccoon", time: "2m" },
+  { tone: "drop", text: "Back in stock · Para Military 2", time: "2m" },
   { tone: "care", text: "Sharpening due · Benchmade Bugout", time: "1h" },
   { tone: "ai", text: "Daily price summary is ready", time: "8h" },
 ] as const
@@ -69,13 +70,13 @@ const featureCards: FeatureCard[] = [
     isNew: true,
     title: "Wishlist",
     detail:
-      "Grouped by deal, with price vs regular, a 90-day range and a 30-day trend.",
+      "Grouped by deal, with price vs regular, a 90-day range and a 30-day trend. Open any knife straight in Market or Price Drops.",
     href: wishlistHref,
     cta: "See the deals",
     stats: [
-      ["On sale", "2"],
-      ["Regular", "2"],
-      ["Above / out", "1 + 1"],
+      ["Watching", "38"],
+      ["On sale", "12"],
+      ["Off today", "$639"],
     ],
   },
   {
@@ -85,7 +86,7 @@ const featureCards: FeatureCard[] = [
     isNew: true,
     title: "Price Drops",
     detail:
-      "Choose what to watch: the Wishlist, selected knives, or the whole collection, with full price history.",
+      "Brand sites plus Blade HQ, SMKW, DLT Trading, KnifeJoy and Northwest Knives, one chart line per store, cheapest store named.",
     href: priceDropsHref,
     cta: "Watch a knife",
     visual: "spark",
@@ -238,12 +239,12 @@ export function HomepageHero() {
                 <Heart />
               </span>
               <span className={hero.chipText}>
-                <small>Wishlist &middot; On sale &minus;22%</small>
+                <small>Wishlist &middot; Best deal right now</small>
                 <strong>
-                  CIVIVI Elementum <s>$69</s> $54
-                  <span className={hero.pct}>&minus;22%</span>
+                  Vosteed Raccoon TiSlim <s>$135</s> $94.50
+                  <span className={hero.pct}>&minus;30%</span>
                 </strong>
-                <span>22% below regular &middot; 90-day low</span>
+                <span>$40.50 below regular &middot; 3 stores</span>
               </span>
             </Link>
 
@@ -257,13 +258,13 @@ export function HomepageHero() {
               <span className={hero.chipText}>
                 <small>
                   <span className={hero.live} aria-hidden="true" />
-                  Price drop &middot; Blade HQ
+                  Price drop &middot; SMKW
                 </small>
                 <strong>
-                  CIVIVI Elementum <s>$69</s> $54
-                  <span className={hero.pct}>&minus;22%</span>
+                  Spyderco Military 2 <s>$294</s> $220.50
+                  <span className={hero.pct}>&minus;25%</span>
                 </strong>
-                <span>Below what you paid &middot; confirmed twice</span>
+                <span>25% below regular &middot; 2 stores</span>
               </span>
             </Link>
 
@@ -352,7 +353,7 @@ export function HomepageHero() {
             </h2>
           </div>
           <Link href="/whats-new" className={hero.railMore}>
-            What&apos;s new in 2.5.17
+            What&apos;s new in 2.5.21
             <ArrowRight aria-hidden="true" />
           </Link>
         </div>
