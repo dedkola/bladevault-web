@@ -821,279 +821,6 @@
   text-decoration: underline;
 }
 
-/* ---------- AI + privacy ---------- */
-
-.aiSection {
-  width: 100%;
-  max-width: 1464px;
-  margin: 2rem auto;
-  padding: clamp(2.4rem, 5vw, 5rem) clamp(1.2rem, 3vw, 3.4rem);
-  border-radius: 30px;
-  color: #f4edcf;
-  background:
-    radial-gradient(
-      circle at 84% 2%,
-      rgba(211, 164, 47, 0.18),
-      transparent 26rem
-    ),
-    radial-gradient(
-      circle at 6% 92%,
-      rgba(79, 88, 33, 0.34),
-      transparent 30rem
-    ),
-    var(--bladevault-olive);
-  scroll-margin-top: 88px;
-}
-
-.aiSection .sectionKicker {
-  color: var(--bladevault-gold);
-}
-
-.aiSection .sectionNum {
-  border-color: rgba(236, 218, 163, 0.24);
-  color: var(--bladevault-gold);
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.aiHead {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.72fr);
-  gap: 18px clamp(2rem, 5vw, 5rem);
-  align-items: end;
-  margin-bottom: clamp(2rem, 4vw, 3.2rem);
-}
-
-.aiHead .sectionKicker {
-  grid-column: 1 / -1;
-}
-
-.aiHead h2 {
-  grid-column: 1;
-  max-width: 14ch;
-  margin: 0;
-  color: #f4edcf;
-  font-size: clamp(2.5rem, 4.8vw, 4.8rem);
-  font-weight: 620;
-  letter-spacing: -0.065em;
-  line-height: 0.95;
-  text-wrap: balance;
-}
-
-.aiHead .sectionIntro {
-  grid-column: 2;
-  align-self: end;
-  max-width: 54ch;
-  margin: 0;
-  color: rgba(244, 237, 207, 0.7);
-  font-size: 15px;
-  line-height: 1.75;
-}
-
-.aiGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.18fr) minmax(20rem, 0.82fr);
-  gap: 14px;
-  align-items: stretch;
-}
-
-.aiCard,
-.lockCard {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 14px;
-  padding: clamp(20px, 3vw, 28px);
-  border: 1px solid rgba(236, 218, 163, 0.2);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.aiBadge {
-  display: inline-flex;
-  align-self: flex-start;
-  gap: 8px;
-  align-items: center;
-  padding: 5px 9px;
-  border: 1px solid rgba(236, 218, 163, 0.24);
-  border-radius: 999px;
-  color: var(--bladevault-gold);
-  background: rgba(255, 255, 255, 0.05);
-  font-family: var(--font-mono);
-  font-size: 8px;
-  font-weight: 650;
-  letter-spacing: 0.1em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.aiBadge svg {
-  width: 12px;
-  height: 12px;
-}
-
-.aiCard h3,
-.lockCard h3 {
-  margin: 0;
-  color: #f4edcf;
-  font-size: clamp(1.5rem, 2.3vw, 2.3rem);
-  font-weight: 620;
-  letter-spacing: -0.05em;
-  line-height: 1;
-}
-
-.aiCard > p,
-.lockCard > p {
-  max-width: 58ch;
-  margin: 0;
-  color: rgba(244, 237, 207, 0.68);
-  font-size: 13px;
-  line-height: 1.68;
-}
-
-.chat {
-  display: grid;
-  gap: 9px;
-  padding: 16px;
-  border: 1px solid rgba(236, 218, 163, 0.16);
-  border-radius: 12px;
-  background: #171a0c;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  line-height: 1.7;
-}
-
-.chat p {
-  margin: 0;
-}
-
-.chat b {
-  margin-right: 6px;
-  color: var(--bladevault-gold);
-  font-weight: 650;
-  letter-spacing: 0.04em;
-}
-
-.chat .you {
-  color: rgba(244, 237, 207, 0.7);
-}
-
-.chat .bot {
-  color: #fbfaf7;
-}
-
-.chat pre {
-  margin: 0;
-  color: rgba(244, 237, 207, 0.78);
-  font: inherit;
-  white-space: pre-wrap;
-}
-
-.chat .status {
-  margin-top: 3px;
-  padding-top: 9px;
-  border-top: 1px solid rgba(236, 218, 163, 0.14);
-  color: rgba(244, 237, 207, 0.46);
-  font-size: 8px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.clientPills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.clientPills span {
-  padding: 6px 9px;
-  border: 1px solid rgba(236, 218, 163, 0.2);
-  border-radius: 999px;
-  color: rgba(244, 237, 207, 0.78);
-  font-family: var(--font-mono);
-  font-size: 8px;
-  letter-spacing: 0.05em;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.aiPoints,
-.lockPoints {
-  display: grid;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.aiPoints li,
-.lockPoints li {
-  position: relative;
-  padding-left: 15px;
-  color: rgba(244, 237, 207, 0.68);
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.aiPoints li::before,
-.lockPoints li::before {
-  position: absolute;
-  top: 7px;
-  left: 0;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--bladevault-gold);
-  content: "";
-}
-
-.lockIcon {
-  display: grid;
-  width: 38px;
-  height: 38px;
-  place-items: center;
-  border: 1px solid rgba(236, 218, 163, 0.24);
-  border-radius: 11px;
-  color: var(--bladevault-gold);
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.lockIcon svg {
-  width: 19px;
-  height: 19px;
-}
-
-.aiShot,
-.lockShot {
-  overflow: hidden;
-  min-width: 0;
-  border: 1px solid rgba(236, 218, 163, 0.18);
-  border-radius: 10px;
-  background: #fff;
-}
-
-.aiShot {
-  margin-top: auto;
-}
-
-.aiShot img,
-.lockShot img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.lockNote {
-  margin: 0;
-  padding-top: 10px;
-  border-top: 1px solid rgba(236, 218, 163, 0.14);
-  color: rgba(244, 237, 207, 0.44);
-  font-family: var(--font-mono);
-  font-size: 8px;
-  letter-spacing: 0.05em;
-  line-height: 1.6;
-  text-transform: uppercase;
-}
-
 /* ---------- features ---------- */
 
 .journalGrid {
@@ -1617,18 +1344,15 @@
     max-width: 56rem;
   }
 
-  .sectionHead,
-  .aiHead {
+  .sectionHead {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .sectionHead h2,
-  .aiHead h2 {
+  .sectionHead h2 {
     max-width: 16ch;
   }
 
-  .sectionIntro,
-  .aiHead .sectionIntro {
+  .sectionIntro {
     grid-column: 1;
     max-width: 62ch;
   }
@@ -1639,10 +1363,6 @@
 
   .scrapeSteps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .aiGrid {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .featuresGrid {
@@ -1713,8 +1433,7 @@
     display: none;
   }
 
-  .sectionHead h2,
-  .aiHead h2 {
+  .sectionHead h2 {
     font-size: clamp(2.2rem, 11vw, 3.4rem);
   }
 
