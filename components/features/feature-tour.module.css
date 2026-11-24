@@ -1,0 +1,393 @@
+/* Feature tour: shared by the homepage popup and the /features pages. */
+
+.tour {
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+  min-width: 0;
+}
+
+/* ---------- head ---------- */
+
+.head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.headIcon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--tone) 28%, transparent);
+  border-radius: 18px;
+  color: var(--tone);
+  background:
+    radial-gradient(
+      circle at 30% 20%,
+      color-mix(in srgb, var(--tone) 26%, transparent),
+      transparent 70%
+    ),
+    color-mix(in srgb, var(--tone) 10%, var(--hp-card));
+  box-shadow: 0 14px 32px color-mix(in srgb, var(--tone) 20%, transparent);
+}
+
+.headIcon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.headCopy {
+  display: grid;
+  gap: 8px;
+  max-width: 62rem;
+}
+
+.kicker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  color: var(--tone);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.kicker a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--tone) 40%, transparent);
+  text-underline-offset: 3px;
+}
+
+.title {
+  margin: 0;
+  color: var(--hp-ink);
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.promise {
+  margin: 0;
+  color: var(--hp-ink-soft);
+  font-size: clamp(17px, 1.6vw, 21px);
+  font-weight: 560;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
+.intro {
+  max-width: 54rem;
+  margin: 2px 0 0;
+  color: var(--hp-muted);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+/* ---------- stage: mock + steps ---------- */
+
+.stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(260px, 1fr);
+  gap: clamp(16px, 2.4vw, 28px);
+  align-items: start;
+}
+
+.mockWindow {
+  position: relative;
+  margin: 0;
+  background:
+    radial-gradient(
+      30rem 18rem at 100% 0%,
+      color-mix(in srgb, var(--tone) 10%, transparent),
+      transparent 70%
+    ),
+    var(--hp-card);
+  animation: mockRise 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.example {
+  padding: 2px 7px;
+  border: 1px solid var(--hp-line-soft);
+  border-radius: 999px;
+}
+
+.mockBody {
+  padding: clamp(12px, 1.6vw, 18px);
+}
+
+/* Highlight the regions of the active step and soften the rest. */
+.mockWindow [data-region] {
+  border-radius: 10px;
+  transition:
+    opacity 320ms ease,
+    filter 320ms ease,
+    box-shadow 320ms ease,
+    transform 320ms ease;
+}
+
+.mockWindow[data-active="1"] [data-region]:not([data-region~="1"]),
+.mockWindow[data-active="2"] [data-region]:not([data-region~="2"]),
+.mockWindow[data-active="3"] [data-region]:not([data-region~="3"]),
+.mockWindow[data-active="4"] [data-region]:not([data-region~="4"]) {
+  opacity: 0.38;
+  filter: saturate(0.5);
+}
+
+.mockWindow[data-active="1"] [data-region~="1"],
+.mockWindow[data-active="2"] [data-region~="2"],
+.mockWindow[data-active="3"] [data-region~="3"],
+.mockWindow[data-active="4"] [data-region~="4"] {
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--tone) 60%, transparent),
+    0 10px 28px color-mix(in srgb, var(--tone) 18%, transparent);
+}
+
+.stepsCol {
+  display: grid;
+  gap: 10px;
+}
+
+.stepsHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--hp-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.playButton {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  padding: 4px 9px;
+  border: 1px solid var(--hp-line-soft);
+  border-radius: 999px;
+  color: var(--hp-ink);
+  background: var(--hp-card);
+  font: inherit;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+}
+
+.playButton:hover {
+  border-color: var(--tone);
+}
+
+.playButton svg {
+  width: 10px;
+  height: 10px;
+}
+
+.steps {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  width: 100%;
+  overflow: hidden;
+  padding: 12px 14px;
+  border: 1px solid var(--hp-line-soft);
+  border-radius: 14px;
+  color: var(--hp-ink);
+  background: color-mix(in srgb, var(--hp-card) 70%, transparent);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 200ms ease,
+    background 200ms ease,
+    transform 200ms ease;
+}
+
+.step:hover {
+  border-color: color-mix(in srgb, var(--tone) 40%, transparent);
+}
+
+.step:focus-visible,
+.playButton:focus-visible {
+  outline: 2px solid var(--bladevault-gold);
+  outline-offset: 2px;
+}
+
+.stepActive {
+  border-color: color-mix(in srgb, var(--tone) 55%, transparent);
+  background:
+    radial-gradient(
+      16rem 8rem at 0% 0%,
+      color-mix(in srgb, var(--tone) 12%, transparent),
+      transparent 70%
+    ),
+    var(--hp-card);
+  box-shadow: 0 12px 30px
+    color-mix(in srgb, var(--bladevault-olive) 10%, transparent);
+}
+
+.stepNum {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border: 1px solid var(--hp-line);
+  border-radius: 50%;
+  color: var(--hp-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  transition:
+    background 200ms ease,
+    color 200ms ease;
+}
+
+.stepActive .stepNum {
+  border-color: var(--tone);
+  color: var(--hp-card);
+  background: var(--tone);
+}
+
+.stepText {
+  display: grid;
+  gap: 3px;
+}
+
+.stepText strong {
+  font-size: 14.5px;
+  font-weight: 640;
+  letter-spacing: -0.02em;
+}
+
+.stepText span {
+  color: var(--hp-muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.step:not(.stepActive) .stepText span {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.stepProgress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--tone);
+  transform-origin: left;
+  animation: stepProgress linear both;
+  animation-play-state: paused;
+}
+
+.stepProgress[data-running] {
+  animation-play-state: running;
+}
+
+/* ---------- details ---------- */
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.details li {
+  display: grid;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1px solid var(--hp-line-soft);
+  border-radius: 14px;
+  background: var(--hp-card);
+}
+
+.details strong {
+  color: var(--tone);
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+}
+
+.details span {
+  color: var(--hp-muted);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+/* ---------- motion ---------- */
+
+@keyframes mockRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes stepProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mockWindow,
+  .mockWindow [data-region],
+  .step {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 980px) {
+  .stage {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .headIcon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+  }
+}

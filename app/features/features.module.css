@@ -1,0 +1,125 @@
+.shell {
+  display: grid;
+  gap: clamp(20px, 3vw, 32px);
+  padding: clamp(18px, 3.4vw, 44px);
+}
+
+.crumbs a {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  color: var(--muted-foreground);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.crumbs a:hover {
+  color: var(--foreground);
+}
+
+.crumbs svg,
+.primary svg,
+.secondary svg {
+  width: 14px;
+  height: 14px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  gap: 7px;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 11px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.primary {
+  color: #fbfaf7;
+  background: var(--bladevault-olive);
+}
+
+:global(.dark) .primary {
+  color: var(--bladevault-olive);
+  background: var(--bladevault-gold);
+}
+
+.secondary {
+  border: 1px solid var(--border);
+  color: var(--foreground);
+  background: var(--card);
+}
+
+.secondary:hover {
+  border-color: var(--bladevault-gold);
+}
+
+.more {
+  padding: clamp(28px, 4vw, 48px) 4px 24px;
+}
+
+.more h2 {
+  margin: 0 0 14px;
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 640;
+  letter-spacing: -0.04em;
+}
+
+.moreCards {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.indexHead {
+  display: grid;
+  gap: 10px;
+  max-width: 52rem;
+}
+
+.indexHead h1 {
+  margin: 0;
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 650;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.indexHead > p:last-child {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.indexCards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 1320px) {
+  .moreCards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .moreCards,
+  .indexCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .moreCards,
+  .indexCards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

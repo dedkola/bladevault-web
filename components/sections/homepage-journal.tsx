@@ -1,6 +1,6 @@
-import Image from "next/image"
 import { CalendarDays, History, NotebookPen, Wrench } from "lucide-react"
 
+import { InsightsActivityMock, KnifeNotesMock } from "./app-mocks"
 import styles from "./homepage-v3.module.css"
 
 const points = [
@@ -55,15 +55,7 @@ export function HomepageJournal() {
             <span>BladeVault / Insights</span>
             <span>Collection activity</span>
           </div>
-          <Image
-            src="/screenshots/live/insights-activity.jpg"
-            alt="BladeVault Insights with collection totals and a calendar activity map of additions, edits, and maintenance from August to November"
-            width={2880}
-            height={1800}
-            sizes="(min-width: 1180px) 60vw, 94vw"
-            quality={90}
-            className={styles.journalMainImage}
-          />
+          <InsightsActivityMock />
         </figure>
 
         <div className={styles.journalSide}>
@@ -77,15 +69,7 @@ export function HomepageJournal() {
               <span>Knife / My notes</span>
               <span>Markdown</span>
             </div>
-            <Image
-              src="/screenshots/live/knife-notes.jpg"
-              alt="Two dated notes on a Vosteed Porcupine, with bold text, a bulleted list, and italics rendered from Markdown"
-              width={1500}
-              height={600}
-              sizes="(min-width: 1180px) 34vw, 94vw"
-              quality={90}
-              className={styles.journalNotesImage}
-            />
+            <KnifeNotesMock />
           </figure>
 
           <ul className={styles.journalPoints}>

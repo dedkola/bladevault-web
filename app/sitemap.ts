@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next"
 
 import { getDocsNav } from "@/lib/docs"
+import { featureHref, featureSlugs } from "@/lib/features"
 import { absoluteUrl, absoluteVideoUrl, siteConfig } from "@/lib/site"
 
 export const dynamic = "force-static"
@@ -29,6 +30,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    ...["/features", ...featureSlugs.map(featureHref)].map((path) => ({
+      url: absoluteUrl(path),
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: path === "/features" ? 0.8 : 0.7,
+    })),
     {
       url: absoluteUrl("/tutorials"),
       lastModified: new Date(),

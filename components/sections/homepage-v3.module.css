@@ -834,19 +834,6 @@
   align-self: stretch;
 }
 
-.journalMainImage,
-.journalNotesImage {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.journalMainImage {
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  object-position: top left;
-}
-
 .journalSide {
   display: grid;
   min-width: 0;
