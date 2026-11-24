@@ -1,5 +1,13 @@
 [
   {
+    "version": "v2.5.23",
+    "date": "2026-11-24",
+    "changes": [
+      "The daily AI summary in the Inbox no longer repeats price drops and restocks that already have their own card.",
+      "Restoring from Google Drive on macOS no longer fails with \"Timed out waiting for active vault connections to finish.\"."
+    ]
+  },
+  {
     "version": "v2.5.22",
     "date": "2026-11-23",
     "changes": [
