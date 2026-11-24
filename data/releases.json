@@ -1,5 +1,18 @@
 [
   {
+    "version": "v2.5.24",
+    "date": "2026-11-24",
+    "changes": [
+      "Optionally get an Inbox message when a Google Drive backup finishes or a restore from Drive completes (Settings → Notifications).",
+      "Check for desktop updates from a new footer button, which lights up with a dot when an update is ready, replacing the sidebar update pill.",
+      "Notification settings for price drops, care reminders, achievements and desktop alerts now live together in a new Settings → Notifications tab.",
+      "The AI endpoint for Price Drops (URL, API key, headers, model) is now set in Settings → AI / MCP, next to the MCP connection settings.",
+      "The Inbox, Cloud backup and Settings buttons now live in the bottom-right footer in every style.",
+      "Other stores searches no longer slow down a store's price checks, so waiting searches and overdue checks catch up within hours.",
+      "MCP clients get a short \"try again\" response instead of an error while a restored vault is being applied."
+    ]
+  },
+  {
     "version": "v2.5.23",
     "date": "2026-11-24",
     "changes": [
