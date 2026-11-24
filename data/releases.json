@@ -1,5 +1,16 @@
 [
   {
+    "version": "v2.5.25",
+    "date": "2026-11-24",
+    "changes": [
+      "Amazon prices are read in US dollars from any country, and Other stores can search Amazon for your monitored knives again.",
+      "The light/dark switch now sits in the footer next to Settings in every style that has both modes.",
+      "Wishlist charts now show only the tracked price history, with how long a knife has been watched and its last price change written next to the sparkline. (`enhancement`).",
+      "A store with only one recorded price now shows a full line on the Market tab's price chart instead of a single dot.",
+      "Other stores: bring stalled check slots back to now in schema 14."
+    ]
+  },
+  {
     "version": "v2.5.24",
     "date": "2026-11-24",
     "changes": [
