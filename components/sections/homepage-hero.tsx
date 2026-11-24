@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -9,11 +8,10 @@ import {
   Inbox,
   Sparkles,
   TrendingDown,
-  Trophy,
   Wrench,
-  type LucideIcon,
 } from "lucide-react"
 
+import { FeatureRail } from "@/components/features/feature-rail"
 import { releaseAnchor } from "@/lib/navigation"
 import { siteConfig } from "@/lib/site"
 
@@ -26,8 +24,6 @@ const releaseNotes = (version: string) => `/whats-new#${releaseAnchor(version)}`
 const priceDropsHref = releaseNotes("v2.5.19")
 const wishlistHref = releaseNotes("v2.5.20")
 const storesHref = releaseNotes("v2.5.21")
-const supervisorHref = releaseNotes("v2.5.10")
-const inboxHref = releaseNotes("v2.5.1")
 
 const newsLinks = [
   { href: storesHref, label: "SMKW, DLT, KnifeJoy & Northwest Knives" },
@@ -46,123 +42,11 @@ const inboxMessages = [
 // Past runs, the current run, then upcoming ones on the supervisor banner.
 const supervisorRuns = ["done", "done", "done", "done", "now", "next", "next"]
 
-type Tone =
-  "wishlist" | "drop" | "inbox" | "ai" | "care" | "drive" | "achievements"
-
-type FeatureCard = {
-  tone: Tone
-  icon: LucideIcon
-  tag: string
-  isNew?: boolean
-  title: string
-  detail: string
-  href: string
-  cta: string
-  stats?: [label: string, value: string][]
-  visual?: "spark" | "bars"
-}
-
-const featureCards: FeatureCard[] = [
-  {
-    tone: "wishlist",
-    icon: Heart,
-    tag: "New",
-    isNew: true,
-    title: "Wishlist",
-    detail:
-      "Grouped by deal, with price vs regular, a 90-day range and a 30-day trend. Open any knife straight in Market or Price Drops.",
-    href: wishlistHref,
-    cta: "See the deals",
-    stats: [
-      ["Watching", "38"],
-      ["On sale", "12"],
-      ["Off today", "$639"],
-    ],
-  },
-  {
-    tone: "drop",
-    icon: TrendingDown,
-    tag: "New",
-    isNew: true,
-    title: "Price Drops",
-    detail:
-      "Brand sites plus Blade HQ, SMKW, DLT Trading, KnifeJoy and Northwest Knives, one chart line per store, cheapest store named.",
-    href: priceDropsHref,
-    cta: "Watch a knife",
-    visual: "spark",
-  },
-  {
-    tone: "ai",
-    icon: Sparkles,
-    tag: "New",
-    isNew: true,
-    title: "AI supervisor",
-    detail:
-      "A price-aware shopping assistant: schedules the checks, retries pages and writes the daily summary.",
-    href: supervisorHref,
-    cta: "Observe or act",
-    visual: "bars",
-  },
-  {
-    tone: "inbox",
-    icon: Inbox,
-    tag: "New",
-    isNew: true,
-    title: "Inbox & alerts",
-    detail:
-      "Price, care and system messages in one list, with a minimum change so small moves stay quiet.",
-    href: inboxHref,
-    cta: "Open the Inbox",
-    stats: [
-      ["Price", "2"],
-      ["Maintenance", "1"],
-      ["System", "1"],
-    ],
-  },
-  {
-    tone: "care",
-    icon: Wrench,
-    tag: "2.5",
-    title: "Maintenance",
-    detail:
-      "Care reminders per knife, a Coming up timeline you can reschedule, and a care history.",
-    href: "/#care",
-    cta: "Plan care",
-    stats: [
-      ["Overdue", "1"],
-      ["Due soon", "2"],
-      ["Up to date", "21"],
-    ],
-  },
-  {
-    tone: "achievements",
-    icon: Trophy,
-    tag: "New",
-    isNew: true,
-    title: "Achievements",
-    detail:
-      "100 badges in four tiers, a trophy case on Insights, and a rank from Rookie to Jedi Collector.",
-    href: releaseNotes("v2.5.10"),
-    cta: "Open the trophy case",
-    stats: [
-      ["Gold", "12"],
-      ["Platinum", "3"],
-      ["Rank", "Collector"],
-    ],
-  },
-]
-
-const toneClass: Record<Tone, string> = {
-  wishlist: hero.toneWishlist,
+const messageTone = {
   drop: hero.toneDrop,
-  inbox: hero.toneInbox,
-  ai: hero.toneAi,
   care: hero.toneCare,
-  drive: hero.toneDrive,
-  achievements: hero.toneAchievements,
+  ai: hero.toneAi,
 }
-
-const barHeights = [30, 55, 40, 90, 35, 60, 25]
 
 export function HomepageHero() {
   return (
@@ -231,8 +115,8 @@ export function HomepageHero() {
           </figure>
 
           <div className={hero.chips} aria-label="What BladeVault is watching">
-            <Link
-              href={wishlistHref}
+            <a
+              href="#feature-wishlist"
               className={`${hero.chip} ${hero.chipWishlist} ${hero.toneWishlist}`}
             >
               <span className={hero.chipIcon} aria-hidden="true">
@@ -246,10 +130,10 @@ export function HomepageHero() {
                 </strong>
                 <span>$40.50 below regular &middot; 3 stores</span>
               </span>
-            </Link>
+            </a>
 
-            <Link
-              href={priceDropsHref}
+            <a
+              href="#feature-price-drops"
               className={`${hero.chip} ${hero.chipPrice} ${hero.toneDrop}`}
             >
               <span className={hero.chipIcon} aria-hidden="true">
@@ -266,10 +150,10 @@ export function HomepageHero() {
                 </strong>
                 <span>25% below regular &middot; 2 stores</span>
               </span>
-            </Link>
+            </a>
 
-            <Link
-              href={inboxHref}
+            <a
+              href="#feature-inbox"
               className={`${hero.chip} ${hero.chipInbox} ${hero.toneInbox}`}
             >
               <span className={hero.inboxHead}>
@@ -282,17 +166,17 @@ export function HomepageHero() {
               {inboxMessages.map(({ tone, text, time }) => (
                 <span
                   key={text}
-                  className={`${hero.message} ${toneClass[tone]}`}
+                  className={`${hero.message} ${messageTone[tone]}`}
                 >
                   <i aria-hidden="true" />
                   <span>{text}</span>
                   <time>{time}</time>
                 </span>
               ))}
-            </Link>
+            </a>
 
-            <Link
-              href={supervisorHref}
+            <a
+              href="#feature-ai-supervisor"
               className={`${hero.chip} ${hero.chipAi} ${hero.toneAi}`}
             >
               <span className={hero.chipIcon} aria-hidden="true">
@@ -308,10 +192,10 @@ export function HomepageHero() {
                   ))}
                 </span>
               </span>
-            </Link>
+            </a>
 
-            <Link
-              href="/#care"
+            <a
+              href="#feature-maintenance"
               className={`${hero.chip} ${hero.chipCare} ${hero.toneCare}`}
             >
               <span className={hero.chipIcon} aria-hidden="true">
@@ -322,7 +206,7 @@ export function HomepageHero() {
                 <strong>2 knives due this week</strong>
                 <span>Sharpen &middot; Clean &middot; Lube</span>
               </span>
-            </Link>
+            </a>
 
             <Link
               href="/#backup"
@@ -358,78 +242,7 @@ export function HomepageHero() {
           </Link>
         </div>
 
-        <ul className={hero.cards}>
-          {featureCards.map(
-            ({
-              tone,
-              icon: Icon,
-              tag,
-              isNew,
-              title,
-              detail,
-              href,
-              cta,
-              stats,
-              visual,
-            }) => (
-              <li key={title}>
-                <Link href={href} className={`${hero.card} ${toneClass[tone]}`}>
-                  <span className={hero.cardTop}>
-                    <span className={hero.cardIcon} aria-hidden="true">
-                      <Icon />
-                    </span>
-                    <span
-                      className={
-                        isNew ? `${hero.tag} ${hero.tagNew}` : hero.tag
-                      }
-                    >
-                      {tag}
-                    </span>
-                  </span>
-                  <strong className={hero.cardTitle}>{title}</strong>
-                  <span className={hero.cardDetail}>{detail}</span>
-                  <span className={hero.cardVisual} aria-hidden="true">
-                    {visual === "spark" && (
-                      <svg
-                        viewBox="0 0 120 38"
-                        preserveAspectRatio="none"
-                        className={hero.spark}
-                      >
-                        <path d="M0 10 L18 12 L30 9 L44 14 L58 13 L70 18 L84 17 L96 30 L120 31" />
-                        <circle cx="96" cy="30" r="3" />
-                      </svg>
-                    )}
-                    {visual === "bars" && (
-                      <span className={hero.bars}>
-                        {barHeights.map((height, index) => (
-                          <i
-                            key={index}
-                            data-hot={index === 3 || undefined}
-                            style={{ "--h": `${height}%` } as CSSProperties}
-                          />
-                        ))}
-                      </span>
-                    )}
-                    {stats && (
-                      <span className={hero.stats}>
-                        {stats.map(([label, value]) => (
-                          <span key={label}>
-                            {label}
-                            <b>{value}</b>
-                          </span>
-                        ))}
-                      </span>
-                    )}
-                  </span>
-                  <span className={hero.cardCta}>
-                    {cta}
-                    <ArrowRight aria-hidden="true" />
-                  </span>
-                </Link>
-              </li>
-            )
-          )}
-        </ul>
+        <FeatureRail />
       </section>
     </>
   )
