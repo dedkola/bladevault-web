@@ -405,14 +405,8 @@
   margin: 0;
   border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
   border-radius: 12px;
-  background: #fff;
+  background: var(--card);
   box-shadow: var(--hp-shadow-lg);
-}
-
-.lockShot img {
-  display: block;
-  width: 100%;
-  height: auto;
 }
 
 @media (max-width: 1180px) {

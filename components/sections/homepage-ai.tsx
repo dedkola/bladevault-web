@@ -1,6 +1,6 @@
-import Image from "next/image"
 import { LockKeyhole, PenLine, ShieldCheck, Terminal } from "lucide-react"
 
+import { AppLockMock } from "./app-mocks"
 import styles from "./homepage-ai.module.css"
 import base from "./homepage-v3.module.css"
 
@@ -255,14 +255,7 @@ export function HomepageAi() {
         </div>
 
         <figure className={styles.lockShot}>
-          <Image
-            src="/screenshots/live/app-lock-2x.jpg"
-            alt="BladeVault App lock settings with password and confirm-password fields and an Enable App lock button"
-            width={1520}
-            height={730}
-            sizes="(min-width: 1180px) 46vw, 92vw"
-            quality={90}
-          />
+          <AppLockMock />
         </figure>
       </div>
     </section>
