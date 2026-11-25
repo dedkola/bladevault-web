@@ -1,41 +1,16 @@
-import { LockKeyhole, PenLine, ShieldCheck, Terminal } from "lucide-react"
+import Link from "next/link"
+import {
+  ArrowRight,
+  Camera,
+  LockKeyhole,
+  PenLine,
+  ShieldCheck,
+} from "lucide-react"
 
 import { AppLockMock } from "./app-mocks"
+import { HomepageAiDemo, type SceneId } from "./homepage-ai-demo"
 import styles from "./homepage-ai.module.css"
 import base from "./homepage-v3.module.css"
-
-// Real answer from the author's vault on 2026-11-23 (list_price_changes +
-// get_price_attention), matching the Wishlist section's numbers.
-const drops = [
-  {
-    knife: "Vosteed Kroc 329",
-    store: "Blade HQ",
-    now: "$90.35",
-    was: "$139",
-    delta: "−35%",
-  },
-  {
-    knife: "Vosteed Raccoon TiSlim",
-    store: "Blade HQ",
-    now: "$94.50",
-    was: "$135",
-    delta: "−30%",
-  },
-  {
-    knife: "Spyderco Native Chief Lightweight",
-    store: "SMKW",
-    now: "$161.25",
-    was: "$215",
-    delta: "−25%",
-  },
-  {
-    knife: "Spyderco Military 2",
-    store: "SMKW",
-    now: "$220.50",
-    was: "$294",
-    delta: "−25%",
-  },
-]
 
 const clients = [
   "Claude Desktop · one click",
@@ -46,18 +21,20 @@ const clients = [
   "LM Studio",
 ]
 
-type Tool = { label: string; write?: boolean }
+// `scenes` lights the tool up while that demo plays (see homepage-ai-demo.tsx).
+type Tool = { label: string; write?: boolean; scenes?: SceneId[] }
 
 const toolGroups: { title: string; tools: Tool[] }[] = [
   {
     title: "Collection",
     tools: [
-      { label: "Search" },
-      { label: "Full records" },
+      { label: "Search", scenes: ["add", "long"] },
+      { label: "Full records", scenes: ["long"] },
       { label: "Stats" },
-      { label: "Missing fields" },
+      { label: "Missing fields", scenes: ["missing"] },
       { label: "Likely duplicates" },
       { label: "Preview changes" },
+      { label: "Add a knife", write: true, scenes: ["add"] },
       { label: "Update a knife", write: true },
       { label: "Bulk update after preview", write: true },
     ],
@@ -68,8 +45,8 @@ const toolGroups: { title: string; tools: Tool[] }[] = [
       { label: "Watched knives" },
       { label: "One watch" },
       { label: "Price history" },
-      { label: "Drops and restocks" },
-      { label: "What needs attention" },
+      { label: "Drops and restocks", scenes: ["price"] },
+      { label: "What needs attention", scenes: ["price"] },
       { label: "Edit store links", write: true },
       { label: "Queue a check", write: true },
     ],
@@ -87,9 +64,10 @@ const toolGroups: { title: string; tools: Tool[] }[] = [
 const toolCount = toolGroups.reduce((sum, group) => sum + group.tools.length, 0)
 
 const guardRails = [
-  "Permanent token and copy-ready config, or one click for Claude Desktop.",
+  "Writes are off by default. Nothing is saved without a preview first.",
+  "Likely duplicates block an add: same name and brand, or the same model number.",
   "Updates need the record's latest timestamp, so AI never overwrites newer edits.",
-  "Changes show up in the open app at once, and every operation is logged.",
+  "Changes show up in the open app at once, and every write is logged.",
 ]
 
 const lockPoints = [
@@ -111,90 +89,27 @@ export function HomepageAi() {
         <h2>Ask your vault anything. You keep the keys.</h2>
         <p className={base.sectionIntro}>
           Connect Claude, Codex, Cursor, ChatGPT or a local model to your own
-          database over MCP. Ask about your collection, your Wishlist deals or
-          what needs oiling. Everything is read-only until you switch on write
-          access, and every write is checked and logged.
+          database over MCP. Find your longest blades, spot records with gaps,
+          check Wishlist deals, or add a knife in one line. Everything is
+          read-only until you switch on write access, and every write is
+          previewed and logged.
         </p>
       </div>
 
       <div className={styles.grid}>
         <div className={styles.chatCol}>
-          <div className={base.window}>
-            <div className={base.windowBar}>
-              <span className={base.dots} aria-hidden="true">
-                <i />
-                <i />
-                <i />
-              </span>
-              <span>Claude &middot; bladevault MCP</span>
-              <span className={styles.readOnly}>read-only</span>
+          <HomepageAiDemo />
+
+          <div className={styles.below}>
+            <div className={styles.clients} aria-label="Supported AI clients">
+              {clients.map((client) => (
+                <span key={client}>{client}</span>
+              ))}
             </div>
-
-            <div className={styles.chat} aria-label="Example MCP conversation">
-              <p className={styles.you}>
-                <b>You</b>
-                Which wishlist knives dropped in price this week?
-              </p>
-
-              <p className={styles.calls} aria-label="Tools called">
-                <Terminal aria-hidden="true" />
-                <code>list_price_changes</code>
-                <code>get_price_attention</code>
-              </p>
-
-              <div className={styles.bot}>
-                <p>
-                  <b>BladeVault</b>
-                  Four dropped. Best deal is the Kroc 329, 35% under its last
-                  price.
-                </p>
-
-                <table className={styles.drops}>
-                  <thead>
-                    <tr>
-                      <th scope="col">Knife</th>
-                      <th scope="col">Store</th>
-                      <th scope="col">Now</th>
-                      <th scope="col">Was</th>
-                      <th scope="col">
-                        <span className="sr-only">Change</span>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {drops.map((drop) => (
-                      <tr key={drop.knife}>
-                        <th scope="row">{drop.knife}</th>
-                        <td className={styles.store}>{drop.store}</td>
-                        <td className={styles.now}>{drop.now}</td>
-                        <td className={styles.was}>
-                          <s>{drop.was}</s>
-                        </td>
-                        <td>
-                          <span className={styles.delta}>{drop.delta}</span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-
-                <p className={styles.attention}>
-                  1 page to check: Vosteed Xeno at SMKW. AI doubts the price it
-                  read.
-                </p>
-              </div>
-
-              <p className={styles.status}>
-                read-only by default &middot; write access optional &middot;
-                writes audited
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.clients} aria-label="Supported AI clients">
-            {clients.map((client) => (
-              <span key={client}>{client}</span>
-            ))}
+            <Link href="/docs/reference/mcp" className={styles.docsLink}>
+              Connect a client and turn on writes
+              <ArrowRight aria-hidden="true" />
+            </Link>
           </div>
         </div>
 
@@ -212,7 +127,11 @@ export function HomepageAi() {
               </header>
               <ul>
                 {group.tools.map((tool) => (
-                  <li key={tool.label} data-write={tool.write || undefined}>
+                  <li
+                    key={tool.label}
+                    data-write={tool.write || undefined}
+                    data-scenes={tool.scenes?.join(" ")}
+                  >
                     {tool.write ? (
                       <PenLine aria-label="Write" role="img" />
                     ) : null}
@@ -230,6 +149,10 @@ export function HomepageAi() {
                 {point}
               </li>
             ))}
+            <li className={styles.railNote}>
+              <Camera aria-hidden="true" />
+              Photos are added in the app, not over MCP.
+            </li>
           </ul>
         </aside>
       </div>
