@@ -194,6 +194,15 @@
   white-space: nowrap;
 }
 
+/* Second line of a two-line chip title: prices sit under the knife name. */
+.priceLine {
+  display: block;
+}
+
+.priceLine s {
+  margin-left: 0;
+}
+
 .pct {
   margin-left: 6px;
   padding: 2px 6px;
@@ -221,7 +230,7 @@
 
 .chipPrice {
   top: 46%;
-  right: -22px;
+  right: 3%;
   animation-delay: 350ms, 1.8s;
 }
 
@@ -598,10 +607,6 @@
 
   .chipWishlist {
     left: -14px;
-  }
-
-  .chipPrice {
-    right: -10px;
   }
 
   .chipAi {

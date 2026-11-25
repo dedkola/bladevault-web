@@ -145,8 +145,11 @@ export function HomepageHero() {
                   Price drop &middot; SMKW
                 </small>
                 <strong>
-                  Spyderco Military 2 <s>$294</s> $220.50
-                  <span className={hero.pct}>&minus;25%</span>
+                  Spyderco Military 2
+                  <span className={hero.priceLine}>
+                    <s>$294</s> $220.50
+                    <span className={hero.pct}>&minus;25%</span>
+                  </span>
                 </strong>
                 <span>25% below regular &middot; 2 stores</span>
               </span>
