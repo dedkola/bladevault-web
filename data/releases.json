@@ -1,5 +1,16 @@
 [
   {
+    "version": "v2.5.27",
+    "date": "2026-11-25",
+    "changes": [
+      "Filter the Wishlist by brand with tabs above the list; stats and best deals follow the chosen brand.",
+      "New Inbox messages pop up at the top right of the window until you close them; turn them off per kind in Settings → Notifications.",
+      "The Wishlist shows the three best deals up top, and each knife lists its cheapest stores next to a wider price chart.",
+      "Price Drops rows now match the Wishlist: each knife shows its price against the regular price, sale and 90-day-low badges, and a 30-day price chart.",
+      "The light/dark button in the footer now shows one icon (moon or sun) instead of both."
+    ]
+  },
+  {
     "version": "v2.5.26",
     "date": "2026-11-24",
     "changes": [
