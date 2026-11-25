@@ -1,5 +1,15 @@
 [
   {
+    "version": "v2.5.26",
+    "date": "2026-11-24",
+    "changes": [
+      "Wishlist rows now show a stock-style price chart with a change badge, and hovering it shows the price on any day.",
+      "Other stores now trusts a store page that shows the knife's exact model number, keeps other variants as related listings, and the Wishlist and Market tab show what each store found.",
+      "Prices are now checked in rounds every 6, 12 or 24 hours, knife by knife with all of its stores at once, and anything that fails is retried before the next round.",
+      "Wishlist photos now show the whole knife instead of cutting off the bottom."
+    ]
+  },
+  {
     "version": "v2.5.25",
     "date": "2026-11-24",
     "changes": [
