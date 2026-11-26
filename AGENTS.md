@@ -24,7 +24,16 @@ TypeScript and React function components are the default. Follow Prettier format
 
 ## UI Design Language
 
-Preserve the current BladeVault visual system as the baseline. The palette is warm and archival: olive (`--bladevault-olive`), gold (`--bladevault-gold`), parchment backgrounds, and soft line colors from `app/globals.css`. Use Geist for body and heading text, Geist Mono only for code-like accents. Prefer layered gradients, radial highlights, blur, and the existing `vault-shell`, `vault-panel`, `vault-chip`, and `vault-grid` classes over flat boxes. Hero sections should feel spacious and editorial; sidebars should stay compact, sticky, and utility-first rather than decorative.
+The site follows the desktop app's Lumen look, so the website and the product read as one brand. Tokens live in `app/globals.css` (the old `--bladevault-*` names are kept and now hold Lumen values):
+
+- White ground, ink text (`--foreground`, `#18181b`), muted grey (`--muted-foreground`) and light grey lines (`--border`).
+- One orange for actions and highlights (`--bladevault-gold`, darker `--bladevault-title` for text, `--bladevault-accent-soft` for tints). Green is for deals and savings only (`--bladevault-local`, `--bladevault-deal-soft`). Don't add other accent colours.
+- One primary button per view, always orange. Everything else is a plain bordered button or a link.
+- The app's folding-knife "V" mark (`components/site/bladevault-logo-mark.tsx`) is the logo.
+- Geist for text, Geist Mono only for code and app-UI mocks. Labels and eyebrows are sentence case, not tracked uppercase. No section numbers, no coloured words inside headlines.
+- Headlines are short and calm (hero about 48px, sections about 40px). Keep section spacing tight and prefer flat cards with a 1px border over gradients, glows and blur.
+- "New" marks only what shipped in the featured release. The hero shows one release line; the details go to What's new.
+- Keep the header to five links. Secondary pages go in the footer.
 
 ## Testing Guidelines
 
