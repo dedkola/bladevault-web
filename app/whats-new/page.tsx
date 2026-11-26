@@ -5,7 +5,12 @@ import Link from "next/link"
 import { ScreenshotLightbox } from "@/components/screenshot-lightbox"
 import { ReleaseContents } from "@/components/site/release-contents"
 import { releaseAnchor } from "@/lib/navigation"
-import { latestRelease, releases } from "@/lib/releases"
+import {
+  latestRelease,
+  publicChanges,
+  publicReleases,
+  type ChangeKind,
+} from "@/lib/releases"
 import { cn } from "@/lib/utils"
 
 export const dynamic = "force-static"
@@ -32,7 +37,22 @@ export const metadata: Metadata = {
 }
 
 const releaseBaseUrl = "https://github.com/dedkola/bladevault/releases/tag/"
-const releaseLinks = releases.map(({ version, date }) => ({ version, date }))
+const releaseLinks = publicReleases.map(({ version, date }) => ({
+  version,
+  date,
+}))
+
+const kindLabel: Record<ChangeKind, string> = {
+  new: "New",
+  improved: "Improved",
+  fixed: "Fixed",
+}
+
+const kindClass: Record<ChangeKind, string> = {
+  new: "bg-[var(--bladevault-accent-soft)] text-[var(--bladevault-title)]",
+  improved: "bg-secondary text-muted-foreground",
+  fixed: "bg-[var(--bladevault-deal-soft)] text-[var(--bladevault-local)]",
+}
 
 const v2Highlights = [
   {
@@ -70,7 +90,7 @@ export default function WhatsNewPage() {
         <section className="vault-shell min-w-0 overflow-hidden">
           <header className="vault-grid border-b border-border/70 px-6 py-10 sm:px-8 sm:py-12 xl:px-10">
             <p className="vault-label">Release notes</p>
-            <h1 className="mt-3 max-w-3xl text-3xl font-semibold tracking-[-0.035em] text-[var(--bladevault-title)] sm:text-4xl">
+            <h1 className="mt-3 max-w-3xl text-3xl font-semibold tracking-[-0.035em] text-foreground sm:text-4xl">
               What’s new in BladeVault
             </h1>
             <ReleaseContents releases={releaseLinks} mobile />
@@ -78,7 +98,7 @@ export default function WhatsNewPage() {
 
           <div className="p-4 sm:p-6 xl:p-8">
             <div className="grid items-start gap-4">
-              {releases.map((release) => {
+              {publicReleases.map((release) => {
                 const isMajor = Boolean(release.major)
                 const isMilestone = Boolean(release.milestone)
                 const isLatest = release === latestRelease
@@ -126,13 +146,24 @@ export default function WhatsNewPage() {
                     </div>
                     <ul
                       className={cn(
-                        "mt-4 list-disc space-y-2 pl-5 text-sm leading-6 text-muted-foreground marker:text-[var(--bladevault-gold)]",
+                        "mt-4 space-y-2.5 text-sm leading-6 text-muted-foreground",
                         isMilestone && "mt-5 sm:text-[15px] sm:leading-7"
                       )}
                     >
-                      {release.changes.map((change) => (
-                        <li key={change} className="pl-1">
-                          {change}
+                      {publicChanges(release).map((change) => (
+                        <li
+                          key={change.text}
+                          className="grid grid-cols-[5.25rem_minmax(0,1fr)] items-baseline gap-3"
+                        >
+                          <span
+                            className={cn(
+                              "justify-self-start rounded-full px-2 py-0.5 text-[11px] leading-4 font-semibold",
+                              kindClass[change.kind]
+                            )}
+                          >
+                            {kindLabel[change.kind]}
+                          </span>
+                          <span>{change.text}</span>
                         </li>
                       ))}
                     </ul>
