@@ -19,6 +19,7 @@ import {
 import { cn } from "@/lib/utils"
 
 import base from "./homepage-v3.module.css"
+import { KnifePhoto, type KnifePhotoId } from "./knife-photo"
 import styles from "./homepage-chat.module.css"
 
 // A scripted copy of BladeVault's Chat page (v2.6). The four questions are the
@@ -26,6 +27,18 @@ import styles from "./homepage-chat.module.css"
 // page. Nothing is sent anywhere: the replies are written into this file.
 
 type Reasoning = "Off" | "Low" | "Medium" | "High"
+
+// Photos for the knives that appear in the answers' tables and cards.
+const photoFor: Record<string, KnifePhotoId> = {
+  "Vosteed Kroc 329": "kroc",
+  "Vosteed Raccoon TiSlim": "raccoon",
+  "Spyderco Native Chief LW": "nativeChief",
+  "Spyderco Military 2": "military",
+  "Vosteed Nymble": "nymble",
+  "Kizer Dingo": "dingo",
+  "CIVIVI Mini Elementum": "miniElementum",
+  "CIVIVI Baby Banter 2": "babyBanter",
+}
 
 const reasoningLevels: Reasoning[] = ["Off", "Low", "Medium", "High"]
 
@@ -114,8 +127,8 @@ const scripts: Script[] = [
         knives={[
           ["Kizer Dingo", "Kizer · Folder", "$64.96"],
           ["Vosteed Nymble", "Vosteed · Folder", "$59"],
-          ["CIVIVI Elementum", "CIVIVI · Folder", "$54"],
-          ["WE Banter", "WE Knife · Folder", "$79"],
+          ["CIVIVI Mini Elementum", "CIVIVI · Fixed blade", "$47"],
+          ["CIVIVI Baby Banter 2", "CIVIVI · Folder", "$59.78"],
         ]}
       />
     ),
@@ -273,7 +286,7 @@ export function HomepageChatDemo() {
               {current.script.title}
             </span>
           ) : null}
-          <span className={styles.listItem}>Para 3 care</span>
+          <span className={styles.listItem}>Para Military 2 care</span>
           <span className={styles.listItem}>Steels by maker</span>
           <span className={styles.listItem}>Best deal under $100</span>
         </aside>
@@ -484,9 +497,21 @@ function Table({ head, rows }: { head: string[]; rows: string[][] }) {
             <tr key={row[0]}>
               {row.map((cell, i) => {
                 const [now, was] = cell.split("|")
+                const photo = i === 0 ? photoFor[cell] : undefined
                 return (
                   <td key={i} data-down={cell.startsWith("−") || undefined}>
-                    {now}
+                    {photo ? (
+                      <span className={styles.knifeCell}>
+                        <KnifePhoto
+                          id={photo}
+                          className={styles.rowThumb}
+                          sizes="48px"
+                        />
+                        {now}
+                      </span>
+                    ) : (
+                      now
+                    )}
                     {was ? <s>{was}</s> : null}
                   </td>
                 )
@@ -504,7 +529,11 @@ function Cards({ knives }: { knives: [string, string, string][] }) {
     <ul className={styles.cards}>
       {knives.map(([name, meta, price]) => (
         <li key={name}>
-          <span className={styles.cardThumb} aria-hidden="true" />
+          <KnifePhoto
+            id={photoFor[name]}
+            className={styles.cardThumb}
+            sizes="48px"
+          />
           <span>
             <strong>{name}</strong>
             <small>{meta}</small>

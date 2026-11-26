@@ -7,7 +7,7 @@ import { ArrowRight, BellOff, BellRing, Target } from "lucide-react"
 
 import { releaseAnchor } from "@/lib/navigation"
 
-import { KnifeGlyph } from "./knife-glyph"
+import { KnifePhoto, type KnifePhotoId } from "./knife-photo"
 import styles from "./super-sale.module.css"
 import wishlist from "./homepage-wishlist.module.css"
 
@@ -27,7 +27,7 @@ type Knife = {
   regular: number
   now: number
   target?: number
-  thumb: string
+  photo: KnifePhotoId
 }
 
 const knives: Knife[] = [
@@ -36,36 +36,36 @@ const knives: Knife[] = [
     brand: "Benchmade",
     regular: 180,
     now: 81,
-    thumb: wishlist.thumbWarm,
+    photo: "bugout",
   },
   {
-    name: "Pilar III",
+    name: "Razel",
     brand: "CRKT",
     regular: 70,
     now: 28,
-    thumb: wishlist.thumbGreen,
+    photo: "razel",
   },
   {
-    name: "Para 3",
+    name: "Para Military 2 LW",
     brand: "Spyderco",
-    regular: 210,
-    now: 136.5,
-    thumb: wishlist.thumbSand,
+    regular: 202,
+    now: 131.3,
+    photo: "paraMilitary",
   },
   {
     name: "Drop Bear",
     brand: "Kizer",
     regular: 95,
     now: 66.5,
-    thumb: wishlist.thumbOlive,
+    photo: "dropBear",
   },
   {
-    name: "Sebenza 31",
-    brand: "Chris Reeve",
-    regular: 500,
-    now: 450,
-    target: 450,
-    thumb: wishlist.thumbViolet,
+    name: "The Seamount",
+    brand: "Quiet Carry",
+    regular: 375,
+    now: 337.5,
+    target: 337.5,
+    photo: "seamount",
   },
 ]
 
@@ -210,9 +210,11 @@ export function SuperSaleBlock() {
                 className={styles.row}
                 data-kind={reason.kind}
               >
-                <span className={`${wishlist.thumb} ${knife.thumb}`}>
-                  <KnifeGlyph />
-                </span>
+                <KnifePhoto
+                  id={knife.photo}
+                  className={wishlist.thumb}
+                  sizes="64px"
+                />
                 <span className={styles.name}>
                   <b>{knife.name}</b>
                   <small>

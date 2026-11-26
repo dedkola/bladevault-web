@@ -425,18 +425,11 @@
 }
 
 .pinThumb {
-  display: grid;
-  flex: none;
-  width: 22px;
-  height: 16px;
-  place-items: center;
+  width: 26px;
+  height: 18px;
+  padding: 1px 2px;
+  border: 0;
   border-radius: 4px;
-  color: var(--t-side-ink);
-  background: color-mix(in srgb, var(--t-side-ink) 10%, transparent);
-}
-
-.pinThumb svg {
-  width: 18px;
 }
 
 /* main column */
@@ -572,21 +565,21 @@
 }
 
 .plate {
-  display: grid;
   aspect-ratio: 16 / 10;
   margin-bottom: 6px;
-  place-items: center;
+  padding: 8px 10px;
+  border: 0;
   border-radius: calc(var(--t-radius) - 4px);
-  color: var(--t-ink);
+}
+
+/* In light styles the photo's white backdrop melts into the style's plate;
+   dark styles keep white photo plates, like product shots in the app. */
+.window[data-mode="light"] .plate {
   background: var(--t-plate);
 }
 
-.window[data-theme="alloy"] .plate {
-  color: #1b1a17;
-}
-
-.knife {
-  width: 74%;
+.window[data-mode="light"] .plate img {
+  mix-blend-mode: multiply;
 }
 
 .maker {
@@ -899,12 +892,6 @@
   color: #fbbf24;
 }
 
-/* Pinned thumbnails keep their light plates on the dark sidebar. */
-.window[data-theme="espresso"] .pinThumb {
-  color: #2a2018;
-  background: #f6eedf;
-}
-
 .window[data-theme="espresso"] .cardSelected {
   border-color: rgb(217 119 6 / 70%);
   box-shadow:
@@ -952,15 +939,6 @@
 .window[data-theme="phosphor"] .cardSelected {
   border-color: #ffb000;
   box-shadow: 0 0 12px -4px rgb(255 176 0 / 55%);
-}
-
-/* Photo plates stay light, so the knife reads dark on them. */
-.window[data-theme="phosphor"] :is(.plate, .pinThumb) {
-  color: #2a2018;
-}
-
-.window[data-theme="phosphor"] .pinThumb {
-  background: #ecdbb6;
 }
 
 /* Atrium: no sidebar or docked inspector, large photo tiles, and a
@@ -1159,10 +1137,6 @@
   text-underline-offset: 5px;
 }
 
-.window[data-theme="shelf"] .plate {
-  color: #1b1715;
-}
-
 .window[data-theme="shelf"] .cards {
   gap: 16px;
 }
@@ -1232,11 +1206,7 @@
 .window[data-theme="ledger"] .plate {
   aspect-ratio: 2 / 1;
   margin: 0;
-  background: transparent;
-}
-
-.window[data-theme="ledger"] .knife {
-  width: 100%;
+  padding: 1px 2px;
 }
 
 .window[data-theme="ledger"] .specs {

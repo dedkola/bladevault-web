@@ -23,6 +23,8 @@ import {
   Wrench,
 } from "lucide-react"
 
+import { KnifePhoto } from "@/components/sections/knife-photo"
+
 import styles from "./feature-mocks.module.css"
 
 // Coded mock screens for the feature tours. Regions carry data-region with
@@ -39,9 +41,15 @@ const pct = (value: number) => ({ "--p": `${value}%` }) as CSSProperties
 /* ---------- Chat ---------- */
 
 const chatDrops = [
-  ["Spyderco Military 2", "SMKW", "$294 → $220.50", "−25%"],
-  ["Vosteed Raccoon TiSlim", "KnifeJoy", "$135 → $94.50", "−30%"],
-  ["CIVIVI Elementum II", "Blade HQ", "$52 → $41.60", "−20%"],
+  ["military", "Spyderco Military 2", "SMKW", "$294 → $220.50", "−25%"],
+  ["raccoon", "Vosteed Raccoon TiSlim", "KnifeJoy", "$135 → $94.50", "−30%"],
+  [
+    "miniElementum",
+    "CIVIVI Mini Elementum",
+    "Blade HQ",
+    "$52 → $41.60",
+    "−20%",
+  ],
 ] as const
 
 const chatLookups = ["list_price_changes · 7 days", "get_price_watch · 3"]
@@ -86,10 +94,10 @@ function ChatMock() {
           TiSlim at KnifeJoy:
         </p>
         <div className={styles.chatTable}>
-          {chatDrops.map(([knife, store, change, pct]) => (
+          {chatDrops.map(([photo, knife, store, change, pct]) => (
             <div key={knife} className={styles.chatRow}>
               <span className={styles.knifeName}>
-                <i className={styles.thumb} aria-hidden="true" />
+                <KnifePhoto id={photo} className={styles.thumb} sizes="40px" />
                 {knife}
               </span>
               <small>{store}</small>
@@ -114,19 +122,29 @@ const wishGroups = [
     name: "Best deals",
     tone: "good",
     rows: [
-      ["Vosteed Raccoon TiSlim", "$94.50", "$135", -30, 8, "down"],
-      ["Spyderco Military 2", "$220.50", "$294", -25, 4, "down"],
+      ["raccoon", "Vosteed Raccoon TiSlim", "$94.50", "$135", -30, 8, "down"],
+      ["military", "Spyderco Military 2", "$220.50", "$294", -25, 4, "down"],
     ],
   },
   {
     name: "On sale",
     tone: "sale",
-    rows: [["CIVIVI Elementum II", "$41.60", "$52", -20, 22, "flat"]],
+    rows: [
+      [
+        "miniElementum",
+        "CIVIVI Mini Elementum",
+        "$41.60",
+        "$52",
+        -20,
+        22,
+        "flat",
+      ],
+    ],
   },
   {
     name: "Watching",
     tone: "watch",
-    rows: [["Benchmade Bugout", "$180", "$180", 0, 70, "up"]],
+    rows: [["bugout", "Benchmade Bugout", "$180", "$180", 0, 70, "up"]],
   },
 ] as const
 
@@ -159,10 +177,10 @@ function WishlistMock() {
             {group.name}
             <b>{group.rows.length}</b>
           </div>
-          {group.rows.map(([name, price, regular, off, pos, trend]) => (
+          {group.rows.map(([photo, name, price, regular, off, pos, trend]) => (
             <div key={name} className={styles.wishRow}>
               <span className={styles.knifeName}>
-                <i className={styles.thumb} aria-hidden="true" />
+                <KnifePhoto id={photo} className={styles.thumb} sizes="40px" />
                 {name}
               </span>
               <span className={styles.priceCell} {...region(3)}>
@@ -231,7 +249,7 @@ function PriceDropsMock() {
     <div className={styles.mock}>
       <div className={styles.toolbar} {...region(1)}>
         <span className={styles.knifeName}>
-          <i className={styles.thumb} aria-hidden="true" />
+          <KnifePhoto id="military" className={styles.thumb} sizes="40px" />
           Spyderco Military 2
         </span>
         <span className={styles.pill}>
@@ -487,7 +505,7 @@ const comingUp = [
 const careHistory = [
   [Wrench, "Sharpened · Benchmade Bugout", "17° per side · 800 grit · strop"],
   [Droplet, "Lubed · Spyderco Para 3", "Pivot and lock"],
-  [Droplet, "Cleaned · CIVIVI Elementum", "Quick entry"],
+  [Droplet, "Cleaned · CIVIVI Mini Elementum", "Quick entry"],
 ] as const
 
 function MaintenanceMock() {

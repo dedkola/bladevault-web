@@ -7,7 +7,6 @@ import {
   useState,
   type CSSProperties,
 } from "react"
-import Image from "next/image"
 import {
   ArrowUp,
   ChevronDown,
@@ -23,6 +22,7 @@ import {
 import { cn } from "@/lib/utils"
 
 import base from "./homepage-v3.module.css"
+import { KnifePhoto, type KnifePhotoId } from "./knife-photo"
 import styles from "./hero-window.module.css"
 
 // The hero's app window: three coded scenes from the example vault that play
@@ -39,42 +39,6 @@ const scenes: { id: SceneId; label: string; icon: LucideIcon; path: string }[] =
   ]
 
 const SCENE_MS = 8000
-
-// Product photos from the example vault, trimmed to the knife on white.
-const photos = {
-  kroc: ["kroc-329", 640, 155],
-  raccoon: ["raccoon-tislim", 640, 149],
-  nativeChief: ["native-chief-lw", 496, 640],
-  military: ["military-2", 451, 640],
-  porcupine: ["porcupine", 640, 159],
-  dingo: ["dingo", 640, 493],
-} as const
-
-type PhotoId = keyof typeof photos
-
-/** A knife photo on a white plate, the way the app shows knife images. */
-function KnifePhoto({
-  id,
-  className,
-  sizes,
-}: {
-  id: PhotoId
-  className?: string
-  sizes: string
-}) {
-  const [file, width, height] = photos[id]
-  return (
-    <span className={cn(styles.photo, className)}>
-      <Image
-        src={`/screenshots/live/knives/${file}.webp`}
-        alt=""
-        width={width}
-        height={height}
-        sizes={sizes}
-      />
-    </span>
-  )
-}
 
 /** Reveal delay for a part of a scene, read by `.reveal` in the CSS. */
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties
@@ -272,7 +236,7 @@ function ChatScene() {
         <span>Knives missing a steel</span>
         <b>Earlier</b>
         <span>Collection summary</span>
-        <span>Para 3 care</span>
+        <span>Para Military 2 care</span>
       </aside>
 
       <div className={styles.chatMain}>
@@ -358,7 +322,7 @@ const topDeals = [
 
 // 30-day best price as a share of the regular price, oldest first.
 const wishRows: {
-  photo: PhotoId
+  photo: KnifePhotoId
   name: string
   brand: string
   state: string

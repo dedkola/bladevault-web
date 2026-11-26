@@ -173,24 +173,6 @@
   font-size: 10.5px;
 }
 
-/* Knife photos sit on a white plate in both themes, as in the app. */
-.photo {
-  display: grid;
-  flex: 0 0 auto;
-  /* A definite track so the image's 100% height resolves against the plate. */
-  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
-  overflow: hidden;
-  border: 1px solid var(--hp-line-faint);
-  border-radius: 8px;
-  background: #fff;
-}
-
-.photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
 .thumbSm {
   width: 44px;
   height: 28px;

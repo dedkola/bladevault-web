@@ -1,0 +1,23 @@
+/* Knife photos sit on a white plate in both themes, as in the app. */
+
+.plate {
+  display: grid;
+  flex: 0 0 auto;
+  /* A definite track so the image's 100% height resolves against the plate. */
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  overflow: hidden;
+  background: #fff;
+}
+
+/* Defaults callers can override with a single class. */
+:where(.plate) {
+  border: 1px solid
+    var(--hp-line-faint, color-mix(in srgb, var(--border) 24%, transparent));
+  border-radius: 8px;
+}
+
+.plate img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}

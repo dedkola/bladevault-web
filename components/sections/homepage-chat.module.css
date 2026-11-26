@@ -494,13 +494,22 @@
 }
 
 .cardThumb {
-  height: 28px;
+  height: 30px;
+  padding: 2px 3px;
   border-radius: 7px;
-  background: repeating-linear-gradient(
-    135deg,
-    var(--hp-secondary) 0 5px,
-    color-mix(in srgb, var(--hp-secondary) 50%, var(--hp-card)) 5px 10px
-  );
+}
+
+.knifeCell {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.rowThumb {
+  width: 40px;
+  height: 26px;
+  padding: 2px 3px;
+  border-radius: 6px;
 }
 
 .stats {
