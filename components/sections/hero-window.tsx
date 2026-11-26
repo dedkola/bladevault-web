@@ -7,6 +7,7 @@ import {
   useState,
   type CSSProperties,
 } from "react"
+import Image from "next/image"
 import {
   ArrowUp,
   ChevronDown,
@@ -38,6 +39,42 @@ const scenes: { id: SceneId; label: string; icon: LucideIcon; path: string }[] =
   ]
 
 const SCENE_MS = 8000
+
+// Product photos from the example vault, trimmed to the knife on white.
+const photos = {
+  kroc: ["kroc-329", 640, 155],
+  raccoon: ["raccoon-tislim", 640, 149],
+  nativeChief: ["native-chief-lw", 496, 640],
+  military: ["military-2", 451, 640],
+  porcupine: ["porcupine", 640, 159],
+  dingo: ["dingo", 640, 493],
+} as const
+
+type PhotoId = keyof typeof photos
+
+/** A knife photo on a white plate, the way the app shows knife images. */
+function KnifePhoto({
+  id,
+  className,
+  sizes,
+}: {
+  id: PhotoId
+  className?: string
+  sizes: string
+}) {
+  const [file, width, height] = photos[id]
+  return (
+    <span className={cn(styles.photo, className)}>
+      <Image
+        src={`/screenshots/live/knives/${file}.webp`}
+        alt=""
+        width={width}
+        height={height}
+        sizes={sizes}
+      />
+    </span>
+  )
+}
 
 /** Reveal delay for a part of a scene, read by `.reveal` in the CSS. */
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties
@@ -203,10 +240,26 @@ export function HeroWindow() {
 /* ---------- Chat ---------- */
 
 const weekDrops = [
-  ["Vosteed Kroc 329", "−35%", "$90.35", "$139", "SMKW", "today"],
-  ["Vosteed Raccoon TiSlim", "−30%", "$94.50", "$135", "Blade HQ", "3d"],
-  ["Spyderco Native Chief LW", "−25%", "$161.25", "$215", "SMKW", "4d"],
-  ["Spyderco Military 2", "−25%", "$220.50", "$294", "SMKW", "5d"],
+  ["kroc", "Vosteed Kroc 329", "−35%", "$90.35", "$139", "SMKW", "today"],
+  [
+    "raccoon",
+    "Vosteed Raccoon TiSlim",
+    "−30%",
+    "$94.50",
+    "$135",
+    "Blade HQ",
+    "3d",
+  ],
+  [
+    "nativeChief",
+    "Spyderco Native Chief LW",
+    "−25%",
+    "$161.25",
+    "$215",
+    "SMKW",
+    "4d",
+  ],
+  ["military", "Spyderco Military 2", "−25%", "$220.50", "$294", "SMKW", "5d"],
 ] as const
 
 function ChatScene() {
@@ -255,9 +308,18 @@ function ChatScene() {
             </tr>
           </thead>
           <tbody>
-            {weekDrops.map(([name, change, price, was, store, when]) => (
+            {weekDrops.map(([photo, name, change, price, was, store, when]) => (
               <tr key={name}>
-                <td>{name}</td>
+                <td>
+                  <span className={styles.knifeCell}>
+                    <KnifePhoto
+                      id={photo}
+                      className={styles.thumbSm}
+                      sizes="48px"
+                    />
+                    <span>{name}</span>
+                  </span>
+                </td>
                 <td className={styles.down}>{change}</td>
                 <td>
                   {price} <s>{was}</s>
@@ -289,14 +351,22 @@ function ChatScene() {
 /* ---------- Wishlist ---------- */
 
 const topDeals = [
-  ["Best deal", "Raccoon TiSlim", "$94.50", "−30%"],
-  ["2", "Kroc 329", "$90.35", "−35%"],
-  ["3", "Native Chief LW", "$161.25", "−25%"],
+  ["Best deal", "raccoon", "Raccoon TiSlim", "$94.50", "−30%"],
+  ["2", "kroc", "Kroc 329", "$90.35", "−35%"],
+  ["3", "nativeChief", "Native Chief LW", "$161.25", "−25%"],
 ] as const
 
 // 30-day best price as a share of the regular price, oldest first.
-const wishRows = [
+const wishRows: {
+  photo: PhotoId
+  name: string
+  brand: string
+  state: string
+  price: string
+  trend: number[]
+}[] = [
   {
+    photo: "military",
     name: "Military 2",
     brand: "Spyderco · 2 stores",
     state: "On sale −25%",
@@ -304,6 +374,7 @@ const wishRows = [
     trend: [100, 100, 100, 92, 92, 75, 75],
   },
   {
+    photo: "porcupine",
     name: "Porcupine",
     brand: "Vosteed · 3 stores",
     state: "Restocked",
@@ -311,6 +382,7 @@ const wishRows = [
     trend: [100, 100, 100, 100, 100, 100, 100],
   },
   {
+    photo: "dingo",
     name: "Dingo",
     brand: "Kizer · 3 stores",
     state: "Regular price",
@@ -356,12 +428,17 @@ function WishlistScene() {
       </div>
 
       <div className={styles.deals}>
-        {topDeals.map(([rank, name, price, pct], i) => (
+        {topDeals.map(([rank, photo, name, price, pct], i) => (
           <div
             key={name}
             className={cn(styles.deal, styles.reveal)}
             style={delay(400 + i * 250)}
           >
+            <KnifePhoto
+              id={photo}
+              className={styles.dealPhoto}
+              sizes="(min-width: 1100px) 180px, 30vw"
+            />
             <small>{rank === "Best deal" ? rank : `#${rank}`}</small>
             <strong>{name}</strong>
             <span>
@@ -378,6 +455,7 @@ function WishlistScene() {
             className={styles.reveal}
             style={delay(1400 + i * 200)}
           >
+            <KnifePhoto id={row.photo} className={styles.thumb} sizes="64px" />
             <span>
               <strong>{row.name}</strong>
               <small>{row.brand}</small>
@@ -444,6 +522,11 @@ function DropsScene() {
       </div>
 
       <div className={cn(styles.dropRow, styles.reveal)} style={delay(300)}>
+        <KnifePhoto
+          id="raccoon"
+          className={styles.dropPhoto}
+          sizes="(min-width: 700px) 200px, 30vw"
+        />
         <span>
           <strong>Vosteed Raccoon TiSlim</strong>
           <small>Cheapest at Blade HQ &middot; 4 stores</small>

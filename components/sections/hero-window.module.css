@@ -173,6 +173,49 @@
   font-size: 10.5px;
 }
 
+/* Knife photos sit on a white plate in both themes, as in the app. */
+.photo {
+  display: grid;
+  flex: 0 0 auto;
+  /* A definite track so the image's 100% height resolves against the plate. */
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--hp-line-faint);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.thumbSm {
+  width: 44px;
+  height: 28px;
+  padding: 2px 3px;
+  border-radius: 6px;
+}
+
+.thumb {
+  width: 56px;
+  height: 40px;
+  padding: 3px 4px;
+}
+
+.dealPhoto {
+  height: 62px;
+  margin: -2px -3px 6px;
+  padding: 6px 10px;
+}
+
+.dropPhoto {
+  width: 132px;
+  height: 52px;
+  padding: 6px 10px;
+}
+
 /* ---------- chat ---------- */
 
 .chat {
@@ -324,14 +367,24 @@
 }
 
 .table td {
-  padding: 5px 6px;
+  padding: 4px 6px;
   border-top: 1px solid var(--hp-line-faint);
   white-space: nowrap;
 }
 
 .table td:first-child {
+  max-width: 13rem;
+}
+
+.knifeCell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-width: 0;
+}
+
+.knifeCell > span:last-child {
   overflow: hidden;
-  max-width: 11rem;
   text-overflow: ellipsis;
 }
 
@@ -473,15 +526,15 @@
 
 .rows li {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 7rem 60px 4rem;
+  grid-template-columns: 56px minmax(0, 1fr) 7rem 60px 4rem;
   gap: 12px;
   align-items: center;
-  padding: 8px 2px;
+  padding: 6px 2px;
   border-top: 1px solid var(--hp-line-faint);
   font-size: 12px;
 }
 
-.rows li > span:first-child {
+.rows li > span:nth-child(2) {
   display: grid;
   min-width: 0;
 }
@@ -524,9 +577,13 @@
 }
 
 .dropsHead > span:first-child,
-.dropRow > span:first-child {
+.dropRow > span:nth-child(2) {
   display: grid;
   min-width: 0;
+}
+
+.dropRow > span:nth-child(2) {
+  flex: 1 1 auto;
 }
 
 .dropsHead strong {
@@ -554,7 +611,7 @@
 }
 
 .dropRow {
-  padding: 10px 12px;
+  padding: 8px 12px 8px 8px;
   border: 1px solid var(--hp-line-faint);
   border-radius: 11px;
 }
@@ -698,7 +755,33 @@
   }
 
   .rows li {
-    grid-template-columns: minmax(0, 1fr) 60px 4rem;
+    grid-template-columns: 48px minmax(0, 1fr) 60px 4rem;
+  }
+
+  .thumb {
+    width: 48px;
+    height: 34px;
+  }
+
+  .dealPhoto {
+    height: 48px;
+    padding: 4px 6px;
+  }
+
+  .dropPhoto {
+    width: 96px;
+    height: 42px;
+  }
+
+  /* Photo and name on one line, the price on its own line below. */
+  .dropRow {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 6px 10px;
+  }
+
+  .dropPrice {
+    grid-column: 1 / -1;
   }
 
   .stores {
