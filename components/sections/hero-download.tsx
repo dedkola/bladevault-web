@@ -76,7 +76,7 @@ export function HeroDownload() {
           {option.label}
         </a>
         <a className={styles.button} href="#ai">
-          Try the AI demo
+          Try the chat demo
           <ArrowDown aria-hidden="true" />
         </a>
       </div>

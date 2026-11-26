@@ -653,20 +653,49 @@
   display: grid;
   aspect-ratio: 1;
   place-items: center;
-  border: 1px dashed var(--border);
+  align-content: center;
+  gap: 4px;
+  border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
   border-radius: 9px;
   color: var(--muted-foreground);
-  background: repeating-linear-gradient(
-    135deg,
-    var(--secondary) 0 6px,
-    color-mix(in srgb, var(--secondary) 50%, var(--card)) 6px 12px
-  );
+  background: var(--secondary);
   font-family: var(--font-mono);
   font-size: 8px;
   letter-spacing: 0.06em;
   line-height: 1.25;
   text-align: center;
   text-transform: uppercase;
+}
+
+.thumbGlyph {
+  width: 44px;
+  height: auto;
+  color: var(--foreground);
+}
+
+.thumbCount {
+  font-size: 7.5px;
+}
+
+.photoCheck {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin: 0;
+  padding: 6px 10px;
+  border-top: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  color: #2f7a4a;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+}
+
+.photoCheck svg {
+  width: 12px;
+  height: 12px;
+}
+
+:global(.dark) .photoCheck {
+  color: #7fc79a;
 }
 
 .addedMeta {

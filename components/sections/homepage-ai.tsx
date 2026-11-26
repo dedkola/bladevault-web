@@ -1,16 +1,24 @@
 import Link from "next/link"
 import {
+  Archive,
   ArrowRight,
   Camera,
+  Cpu,
   LockKeyhole,
+  MessageSquare,
   PenLine,
+  PlugZap,
   ShieldCheck,
+  Table2,
 } from "lucide-react"
 
 import { AppLockMock } from "./app-mocks"
 import { HomepageAiDemo, type SceneId } from "./homepage-ai-demo"
 import styles from "./homepage-ai.module.css"
+import chat from "./homepage-chat.module.css"
+import { HomepageChatDemo } from "./homepage-chat-demo"
 import base from "./homepage-v3.module.css"
+import { McpSetupGenerator } from "./mcp-setup-generator"
 
 const clients = [
   "Claude Desktop · one click",
@@ -72,6 +80,38 @@ const guardRails = [
   "Changes show up in the open app at once, and every write is logged.",
 ]
 
+const chatPoints = [
+  {
+    icon: Cpu,
+    title: "Any model, even a local one",
+    body: "OpenCode Go, OpenAI or a gateway, or Ollama and LM Studio on your own computer. Pick the model and how much it reasons for each chat.",
+  },
+  {
+    icon: Table2,
+    title: "Answers show their records",
+    body: "Every answer comes with the knife cards and price tables it was built from, so you can check it.",
+  },
+  {
+    icon: Archive,
+    title: "Chats stay in your vault",
+    body: "Search, rename and archive them. Saved chats go into your backups with everything else.",
+  },
+]
+
+// Where each way of asking fits. Copy follows docs/guides/chat.md and
+// docs/reference/mcp.md in the app repo.
+const compareRows: [label: string, chat: string, mcp: string][] = [
+  ["Setup", "One AI connection in Settings", "Paste one command or config"],
+  [
+    "Model",
+    "Any OpenAI-compatible or local model",
+    "Whatever your client runs",
+  ],
+  ["Changes", "Read-only", "Writes after a preview, logged"],
+  ["Runs in", "Desktop app, Docker, Helm", "Claude, Codex, Cursor, LM Studio"],
+  ["Best for", "Quick questions, deals, gaps", "Adding knives, bulk fixes"],
+]
+
 const lockPoints = [
   "Off by default. Works offline.",
   "No account and no cloud dependency.",
@@ -86,16 +126,47 @@ export function HomepageAi() {
           <span className={base.sectionNum} aria-hidden="true">
             03
           </span>
-          AI + privacy
+          AI chat + MCP
+          <span className={base.newBadge}>New in 2.6</span>
         </p>
         <h2>Ask your vault anything. You keep the keys.</h2>
         <p className={base.sectionIntro}>
-          Connect Claude, Codex, Cursor, ChatGPT or a local model to your own
-          database over MCP. Find your longest blades, spot records with gaps,
-          check Wishlist deals, or add a knife in one line. Everything is
-          read-only until you switch on write access, and every write is
-          previewed and logged.
+          Chat is built into BladeVault and uses the AI you already connected,
+          from a model on your own computer to any OpenAI-compatible endpoint.
+          Prefer Claude, Codex or Cursor? Connect them over MCP. Everything is
+          read-only until you switch on write access.
         </p>
+      </div>
+
+      <div className={chat.block}>
+        <div className={chat.chatGrid}>
+          <HomepageChatDemo />
+          <div>
+            <ul className={chat.points}>
+              {chatPoints.map(({ icon: Icon, title, body }) => (
+                <li key={title}>
+                  <Icon aria-hidden="true" />
+                  <div>
+                    <strong>{title}</strong>
+                    <p>{body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <p className={chat.runs}>
+              Chat runs in the desktop app, Docker and Helm, not in the static
+              web app. <Link href="/docs/guides/chat">Read the Chat guide</Link>
+            </p>
+          </div>
+        </div>
+
+        <div className={chat.subhead}>
+          <h3>Or bring your own client.</h3>
+          <p>
+            Claude, Codex, Cursor and other MCP clients get 21 tools. With
+            writes on, they can add a knife with its photos in one line.
+          </p>
+        </div>
       </div>
 
       <div className={styles.grid}>
@@ -158,6 +229,38 @@ export function HomepageAi() {
             </li>
           </ul>
         </aside>
+      </div>
+
+      <div className={`${chat.block} ${chat.setupGrid}`}>
+        <McpSetupGenerator />
+
+        <div className={chat.compare}>
+          <h3>Chat or MCP?</h3>
+          <div className={chat.compareCols}>
+            {(["Chat in the app", "An MCP client"] as const).map(
+              (name, col) => (
+                <div key={name} className={chat.compareCol}>
+                  <h4>
+                    {col === 0 ? (
+                      <MessageSquare aria-hidden="true" />
+                    ) : (
+                      <PlugZap aria-hidden="true" />
+                    )}
+                    {name}
+                  </h4>
+                  <dl>
+                    {compareRows.map(([label, a, b]) => (
+                      <div key={label}>
+                        <dt>{label}</dt>
+                        <dd>{col === 0 ? a : b}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              )
+            )}
+          </div>
+        </div>
       </div>
 
       <div className={styles.lock}>

@@ -5,6 +5,8 @@ import { Check, Pause, Play, Repeat, RotateCcw, Terminal } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+import { KnifeGlyph } from "./knife-glyph"
+
 import styles from "./homepage-ai.module.css"
 import base from "./homepage-v3.module.css"
 
@@ -15,7 +17,7 @@ import base from "./homepage-v3.module.css"
 // 2026-11-23 (list_price_changes + get_price_attention). Blades over 4 in and
 // missing blade lengths come from the same vault on 2026-11-25 (get_knife,
 // find_missing_fields). The Para 3 record is an example; add_knife previews
-// first and saves only on `apply` with the preview hash.
+// first (photos included, v2.6) and saves only on `apply` with the preview hash.
 
 export type SceneId = "add" | "price" | "long" | "missing"
 
@@ -34,7 +36,7 @@ const scenes: Scene[] = [
   {
     id: "add",
     label: "Add a knife",
-    prompt: "Add a Spyderco Para 3 to my collection",
+    prompt: "Add a Spyderco Para 3 with photos from its product page",
     write: true,
     steps: [350, 950, 1600, 4300, 4900, 5500],
     hold: 4000,
@@ -432,7 +434,7 @@ function AddScene({ step }: { step: number }) {
             →
           </Reveal>
           <Reveal as="code" at={2} step={step} className={styles.writeCall}>
-            add_knife · preview
+            add_knife · preview + 4 photos
           </Reveal>
         </Calls>
       </Reveal>
@@ -458,6 +460,10 @@ function AddScene({ step }: { step: number }) {
               </div>
             ))}
           </dl>
+          <p className={styles.photoCheck}>
+            <Check aria-hidden="true" />4 photos checked &middot; JPEG &middot;
+            from spyderco.com
+          </p>
           <footer>
             Say yes to save it. Preview <code>#a91f3c</code>
           </footer>
@@ -477,14 +483,13 @@ function AddScene({ step }: { step: number }) {
 
       <Reveal at={6} step={step} className={styles.added}>
         <span className={styles.thumb}>
-          No photo
-          <br />
-          add in app
+          <KnifeGlyph className={styles.thumbGlyph} />
+          <span className={styles.thumbCount}>4 photos</span>
         </span>
         <span className={styles.addedMeta}>
           <span className={styles.addedTag}>Added to vault</span>
           <strong>Spyderco Para 3</strong>
-          <span>Folder · CPM S45VN · G-10 · just now</span>
+          <span>Folder · CPM S45VN · G-10 · 4 photos · just now</span>
         </span>
       </Reveal>
 
