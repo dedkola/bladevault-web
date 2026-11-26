@@ -105,10 +105,10 @@ export function HomepageHero() {
           <div>
             <p className={styles.eyebrow}>
               <span className={styles.eyebrowDot} aria-hidden="true" />
-              What it keeps an eye on
+              What it does for you
             </p>
             <h2 id="hero-rail-title">
-              Six things running quietly in the background
+              Ask it anything. It keeps watching the rest.
             </h2>
           </div>
           <Link href={featuredHref} className={hero.railMore}>

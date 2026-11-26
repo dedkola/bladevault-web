@@ -1,5 +1,9 @@
 /* Hero v4: floating feature banners on the screenshot and the feature rail. */
 
+.toneChat {
+  --tone: #1f6f78;
+}
+
 .toneWishlist {
   --tone: var(--bladevault-title);
 }
@@ -26,6 +30,10 @@
 
 .toneAchievements {
   --tone: var(--bladevault-local);
+}
+
+:global(.dark) .toneChat {
+  --tone: #7cc7cf;
 }
 
 :global(.dark) .toneWishlist {
@@ -262,7 +270,7 @@
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 12px;
   margin: 0;
   padding: 0;
@@ -476,8 +484,13 @@
     left: -14px;
   }
 
+  /* Seven cards: Chat takes two columns so the rows come out even. */
   .cards {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .cards li:first-child {
+    grid-column: span 2;
   }
 }
 
@@ -510,6 +523,10 @@
 @media (max-width: 480px) {
   .cards {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cards li:first-child {
+    grid-column: auto;
   }
 
   .card {

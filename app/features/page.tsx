@@ -9,9 +9,9 @@ import styles from "./features.module.css"
 
 export const dynamic = "force-static"
 
-const pageTitle = "What BladeVault keeps an eye on"
+const pageTitle = "What BladeVault does for you"
 const pageDescription =
-  "Six features that run quietly in the background of BladeVault: a Wishlist grouped by deal, Price Drops across stores, an AI supervisor for price monitoring, one Inbox for alerts, care reminders on the Maintenance page, and achievements."
+  "Seven BladeVault features: Chat that answers questions about your collection, plus six that run in the background: a Wishlist grouped by deal, Price Drops across stores, an AI supervisor for price monitoring, one Inbox for alerts, care reminders on the Maintenance page, and achievements."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -32,13 +32,14 @@ export default function FeaturesPage() {
         <header className={styles.indexHead}>
           <p className={base.eyebrow}>
             <span className={base.eyebrowDot} aria-hidden="true" />
-            Background features
+            Features
           </p>
-          <h1>Six things running quietly in the background</h1>
+          <h1>Seven things BladeVault does for you</h1>
           <p>
-            BladeVault keeps watching after you add a knife: prices across
-            stores, deals on your Wishlist, care that is coming due, and the
-            badges your collection earns. Pick one for a tour.
+            Ask your vault anything in Chat. Then BladeVault keeps watching
+            after you add a knife: prices across stores, deals on your Wishlist,
+            care that is coming due, and the badges your collection earns. Pick
+            one for a tour.
           </p>
         </header>
         <ul className={`${hero.cards} ${styles.indexCards}`}>

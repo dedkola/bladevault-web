@@ -7,6 +7,7 @@ import { featureHref, type Feature, type FeatureTone } from "@/lib/features"
 import { cn } from "@/lib/utils"
 
 export const featureToneClass: Record<FeatureTone, string> = {
+  chat: hero.toneChat,
   wishlist: hero.toneWishlist,
   drop: hero.toneDrop,
   inbox: hero.toneInbox,

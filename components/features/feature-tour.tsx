@@ -68,7 +68,9 @@ export function FeatureTour({ slug, titleAs: Title = "h2" }: FeatureTourProps) {
         <div className={styles.headCopy}>
           <p className={styles.kicker}>
             {feature.isNew && <span className={base.newBadge}>New</span>}
-            Runs in the background
+            {feature.slug === "chat"
+              ? "Ask when you need it"
+              : "Runs in the background"}
             <span aria-hidden="true">&middot;</span>
             <Link href={featureReleaseHref(feature)}>
               Since {feature.since.replace(/^v/, "")}

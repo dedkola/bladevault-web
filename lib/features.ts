@@ -1,6 +1,7 @@
 import {
   Heart,
   Inbox,
+  MessageSquare,
   Sparkles,
   TrendingDown,
   Trophy,
@@ -10,12 +11,13 @@ import {
 
 import { releaseAnchor } from "@/lib/navigation"
 
-// The six background features on the homepage rail. Each one opens a tour
-// popup on the homepage and has its own page at /features/<slug>. Copy stays
-// within what the release notes and docs say the app does.
+// The features on the homepage rail: Chat, then the six that run in the
+// background. Each one opens a tour popup on the homepage and has its own page
+// at /features/<slug>. Copy stays within what the release notes and docs say
+// the app does.
 
 export type FeatureTone =
-  "wishlist" | "drop" | "inbox" | "ai" | "care" | "achievements"
+  "chat" | "wishlist" | "drop" | "inbox" | "ai" | "care" | "achievements"
 
 export type FeatureStep = {
   title: string
@@ -53,6 +55,51 @@ export type Feature = {
 }
 
 export const features: readonly Feature[] = [
+  {
+    slug: "chat",
+    tone: "chat",
+    icon: MessageSquare,
+    tag: "New in 2.6",
+    isNew: true,
+    title: "Chat",
+    detail:
+      "Ask about your knives, prices and care in plain words. Answers come with the knife cards and price tables behind them.",
+    cta: "Ask your vault",
+    stats: [
+      ["Read tools", "12"],
+      ["Reasoning", "4 levels"],
+    ],
+    promise: "Ask your collection a question, get an answer you can check.",
+    intro:
+      "Chat answers questions about your collection, prices, price watches and maintenance with the AI connection you already set up for Price Drops: OpenCode Go, OpenAI, a gateway, or Ollama and LM Studio on your own computer. Every answer shows the knife cards and price tables it was built from, and chats are saved in your vault. This first version only reads; it never changes a record.",
+    since: "v2.6.0",
+    windowPath: "Chat",
+    steps: [
+      {
+        title: "Ask in plain words",
+        body: "Type a question or pick a suggestion: price drops this week, knives missing a steel, a short summary of the collection.",
+      },
+      {
+        title: "It looks things up",
+        body: "The model runs up to six read-only lookups in your vault per message, each shown as a step you can open.",
+      },
+      {
+        title: "Answers show their records",
+        body: "Knife cards link to the knife and price tables show the change, store and date. Stop keeps the part already written.",
+      },
+      {
+        title: "Pick the model per chat",
+        body: "Choose the model and how much it reasons, Off, Low, Medium or High, for each chat. A new chat starts with your last pick.",
+      },
+    ],
+    details: [
+      { value: "12", label: "Read-only lookups it can use" },
+      { value: "6", label: "Lookups per message at most" },
+      { value: "4", label: "Reasoning levels per chat" },
+      { value: "100", label: "Chat requests a day by default" },
+    ],
+    docsHref: "/docs/guides/chat",
+  },
   {
     slug: "wishlist",
     tone: "wishlist",
@@ -106,13 +153,13 @@ export const features: readonly Feature[] = [
     isNew: true,
     title: "Price Drops",
     detail:
-      "Brand sites plus Blade HQ, SMKW, DLT Trading, KnifeJoy and Northwest Knives, one chart line per store, cheapest store named.",
+      "Brand sites plus Blade HQ, SMKW, DLT Trading, KnifeJoy and Northwest Knives, one line per store, and super-sale alerts for the rest of the collection.",
     cta: "Watch a knife",
     visual: "spark",
     promise: "Every store that sells your knife, on one chart.",
     intro:
-      "Price Drops checks the stores that sell the knives you monitor and records every price and stock change. It checks gently, one product at a time per store, and other stores are searched for listings you did not add yourself.",
-    since: "v2.5.21",
+      "Price Drops checks the stores that sell the knives you monitor and records every price and stock change. It checks gently, one product at a time per store, and other stores are searched for listings you did not add yourself. Between Wishlist rounds it can check the rest of your collection in free time and speak up only for a super sale.",
+    since: "v2.6.0",
     windowPath: "Price Drops",
     steps: [
       {
@@ -129,14 +176,14 @@ export const features: readonly Feature[] = [
       },
       {
         title: "Only real moves count",
-        body: "A change counts once it passes your Minimum change (5% by default), so currency wobble stays off the page.",
+        body: "A change counts once it passes your Minimum change (5% by default). Knives outside the Wishlist alert only on a super sale, 50% below regular by default.",
       },
     ],
     details: [
       { value: "5+", label: "Retail stores searched" },
       { value: "5%", label: "Default minimum change" },
       { value: "1 at a time", label: "Products checked per store" },
-      { value: "30 days", label: "A drop stays recent" },
+      { value: "50%", label: "Default super-sale line" },
     ],
     docsHref: "/docs/guides/price-drops",
   },
