@@ -250,11 +250,7 @@ export function HomepageWishlist() {
     <section id="wishlist" className={base.section}>
       <div className={base.sectionHead}>
         <p className={base.sectionKicker}>
-          <span className={base.sectionNum} aria-hidden="true">
-            02
-          </span>
           Wishlist
-          <span className={base.newBadge}>New</span>
         </p>
         <h2>Know what&apos;s actually a deal.</h2>
         <p className={base.sectionIntro}>
@@ -283,7 +279,7 @@ export function HomepageWishlist() {
             <div className={styles.appHead}>
               <h3>Wishlist</h3>
               <span className={styles.watchTag}>
-                <Bell aria-hidden="true" /> 38 of 38 watched
+                <Bell aria-hidden="true" /> 50 of 50 watched
               </span>
             </div>
 
@@ -292,7 +288,7 @@ export function HomepageWishlist() {
                 <span className={styles.statLabel}>All of it today</span>
                 <span className={styles.statValue}>$5,796</span>
                 <span className={styles.statHint}>
-                  38 knives &middot; 7 out of stock
+                  50 knives &middot; 7 out of stock
                 </span>
               </div>
               <div className={styles.stat}>
@@ -301,12 +297,12 @@ export function HomepageWishlist() {
                   $639 <small>off</small>
                 </span>
                 <span className={styles.statHint}>
-                  12 of 38 below regular price
+                  12 of 50 below regular price
                 </span>
               </div>
               <div className={styles.stat}>
                 <span className={styles.statLabel}>Price Drops watches</span>
-                <span className={styles.statValue}>38 / 38</span>
+                <span className={styles.statValue}>50 / 50</span>
                 <span className={styles.statHint}>
                   109 store pages &middot;{" "}
                   <Link href={priceDropsHref}>See Price Drops</Link>

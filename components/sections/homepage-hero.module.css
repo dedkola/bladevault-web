@@ -1,225 +1,54 @@
 /* Hero v4: floating feature banners on the screenshot and the feature rail. */
 
-.toneChat {
-  --tone: #1f6f78;
-}
-
-.toneWishlist {
+/* One accent for every card. Green is kept for deals, like the app. */
+.toneChat,
+.toneWishlist,
+.toneInbox,
+.toneAi,
+.toneCare,
+.toneDrive,
+.toneAchievements {
   --tone: var(--bladevault-title);
 }
 
 .toneDrop {
-  --tone: #2f7a4a;
-}
-
-.toneInbox {
-  --tone: #b4561c;
-}
-
-.toneAi {
-  --tone: #5b4fa8;
-}
-
-.toneCare {
-  --tone: var(--bladevault-title);
-}
-
-.toneDrive {
   --tone: var(--bladevault-local);
 }
 
-.toneAchievements {
-  --tone: var(--bladevault-local);
-}
+/* ---------- release line ---------- */
 
-:global(.dark) .toneChat {
-  --tone: #7cc7cf;
-}
-
-:global(.dark) .toneWishlist {
-  --tone: var(--bladevault-gold);
-}
-
-:global(.dark) .toneDrop {
-  --tone: #7fcf98;
-}
-
-:global(.dark) .toneInbox {
-  --tone: #f0a26b;
-}
-
-:global(.dark) .toneAi {
-  --tone: #b3a8f0;
-}
-
-:global(.dark) .toneDrive {
-  --tone: var(--bladevault-gold);
-}
-
-:global(.dark) .toneAchievements {
-  --tone: var(--bladevault-gold);
-}
-
-/* ---------- release ticker ---------- */
-
-.ticker {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 18px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.tickerLink {
+.release {
   display: inline-flex;
   gap: 8px;
   align-items: center;
   padding: 4px 12px 4px 4px;
-  border: 1px solid color-mix(in srgb, var(--bladevault-gold) 40%, transparent);
+  border: 1px solid var(--hp-line);
   border-radius: 999px;
   color: var(--hp-ink);
-  background: color-mix(in srgb, var(--bladevault-gold) 8%, var(--hp-card));
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  background: var(--hp-card);
+  font-size: 13px;
+  font-weight: 550;
   text-decoration: none;
-  transition:
-    border-color 160ms ease,
-    transform 160ms ease;
-}
-
-.tickerLink:hover {
-  border-color: var(--bladevault-gold);
-  transform: translateY(-1px);
-}
-
-/* ---------- window bar bell ---------- */
-
-/* Second line of the hero title. */
-.titleAsk {
-  display: block;
-  margin-top: 0.28em;
-  color: var(--hp-muted);
-  font-size: 0.42em;
-  font-weight: 560;
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-
-/* ---------- floating banners ---------- */
-
-.chip {
-  position: absolute;
-  z-index: 4;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 9px 14px 9px 9px;
-  border: 1px solid color-mix(in srgb, var(--bladevault-gold) 34%, transparent);
-  border-radius: 16px;
-  color: var(--hp-ink);
-  background: color-mix(in srgb, var(--hp-card) 90%, transparent);
-  box-shadow: 0 18px 44px
-    color-mix(in srgb, var(--bladevault-olive) 18%, transparent);
-  text-decoration: none;
-  backdrop-filter: blur(12px);
-  animation:
-    chipRise 800ms cubic-bezier(0.16, 1, 0.3, 1) both,
-    chipFloat 7s ease-in-out infinite;
   transition: border-color 160ms ease;
 }
 
-.chip:hover {
+.release:hover {
   border-color: var(--bladevault-gold);
 }
 
-.chipIcon {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 11px;
-  color: var(--tone);
-  background: color-mix(in srgb, var(--tone) 14%, var(--hp-card));
+.release svg {
+  width: 14px;
+  height: 14px;
+  color: var(--hp-muted);
 }
 
-.chipIcon svg {
-  width: 17px;
-  height: 17px;
-}
-
-.chipText {
-  display: grid;
-  gap: 1px;
-  min-width: 0;
-}
-
-.chip small {
-  display: inline-flex;
-  gap: 6px;
-  align-items: center;
-  color: var(--tone);
-  font-family: var(--font-mono);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.chipText strong {
-  font-size: 13.5px;
+.releaseVersion {
+  padding: 2px 8px;
+  border-radius: 999px;
+  color: var(--bladevault-title);
+  background: var(--bladevault-accent-soft);
+  font-size: 12px;
   font-weight: 650;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-  white-space: nowrap;
-}
-
-.chipText strong s {
-  margin-left: 2px;
-  color: var(--hp-muted);
-  font-weight: 500;
-}
-
-.chipText > span {
-  color: var(--hp-muted);
-  font-size: 11px;
-  white-space: nowrap;
-}
-
-/* Second line of a two-line chip title: prices sit under the knife name. */
-
-.pct {
-  margin-left: 6px;
-  padding: 2px 6px;
-  border-radius: 6px;
-  color: var(--tone);
-  background: color-mix(in srgb, var(--tone) 12%, transparent);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.live {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-  animation: livePulse 2s infinite;
-}
-
-/* Both banners hang below the window so they don't cover the scenes. */
-.chipSale {
-  bottom: -62px;
-  left: -46px;
-  animation-delay: 500ms, 1.6s;
-}
-
-.chipDrive {
-  right: 6%;
-  bottom: -66px;
-  animation-delay: 850ms, 4s;
 }
 
 /* ---------- feature rail ---------- */
@@ -291,13 +120,7 @@
   border: 1px solid var(--hp-line-soft);
   border-radius: 16px;
   color: var(--hp-ink);
-  background:
-    radial-gradient(
-      14rem 9rem at 100% 0%,
-      color-mix(in srgb, var(--tone) 12%, transparent),
-      transparent 70%
-    ),
-    var(--hp-card);
+  background: var(--hp-card);
   text-decoration: none;
   transition:
     transform 180ms ease,
@@ -338,17 +161,15 @@
   border: 1px solid var(--hp-line-soft);
   border-radius: 999px;
   color: var(--hp-muted);
-  font-family: var(--font-mono);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 550;
 }
 
 .tagNew {
-  border-color: var(--bladevault-gold);
-  color: var(--bladevault-olive);
-  background: var(--bladevault-gold);
+  border-color: transparent;
+  color: var(--bladevault-title);
+  background: var(--bladevault-accent-soft);
+  font-weight: 650;
 }
 
 .cardTitle {
@@ -435,44 +256,9 @@
 
 /* ---------- motion ---------- */
 
-@keyframes chipRise {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes chipFloat {
-  0%,
-  100% {
-    translate: 0 0;
-  }
-  50% {
-    translate: 0 -6px;
-  }
-}
-
-@keyframes livePulse {
-  0% {
-    box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 50%, transparent);
-  }
-  100% {
-    box-shadow: 0 0 0 7px transparent;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .chip,
-  .live {
-    animation: none;
-  }
-
   .card,
-  .tickerLink {
+  .release {
     transition: none;
   }
 }
@@ -480,10 +266,6 @@
 /* ---------- responsive ---------- */
 
 @media (max-width: 1320px) {
-  .chipSale {
-    left: -14px;
-  }
-
   /* Seven cards: Chat takes two columns so the rows come out even. */
   .cards {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -494,27 +276,7 @@
   }
 }
 
-/* On phones the banners become a row you swipe under the screenshot. */
 @media (max-width: 700px) {
-  .chips {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    margin: 12px -16px 0;
-    padding: 4px 16px 10px;
-    overflow-x: auto;
-    scroll-padding-inline: 16px;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-  }
-
-  .chip {
-    position: static;
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    animation: chipRise 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
   .cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

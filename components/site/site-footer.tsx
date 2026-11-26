@@ -1,4 +1,8 @@
-import { siteLegalLinks, siteUtilityLinks } from "@/lib/navigation"
+import {
+  siteFooterLinks,
+  siteLegalLinks,
+  siteUtilityLinks,
+} from "@/lib/navigation"
 
 export function SiteFooter() {
   const year = new Date().getFullYear()
@@ -12,11 +16,20 @@ export function SiteFooter() {
             <span className="text-muted-foreground/50">·</span>
             <span>Local-first knife collection manager.</span>
           </div>
-          <p className="text-[10px] font-semibold tracking-[0.1em] text-[var(--bladevault-title)] uppercase">
-            Auto scrape, organize, and review your collection.
+          <p className="text-xs text-muted-foreground">
+            Free, MIT licensed, no account. Your data stays on your machine.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-4">
+          {siteFooterLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-foreground transition-colors hover:text-[var(--bladevault-title)] focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none"
+            >
+              {link.label}
+            </a>
+          ))}
           <a
             href={siteUtilityLinks[0].href}
             className="text-[var(--bladevault-title)] transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none"

@@ -76,9 +76,6 @@ export function HomepageImport() {
     <section id="import" className={styles.section}>
       <div className={styles.sectionHead}>
         <p className={styles.sectionKicker}>
-          <span className={styles.sectionNum} aria-hidden="true">
-            03
-          </span>
           Auto scrape
         </p>
         <h2>Paste a link. Get a record.</h2>

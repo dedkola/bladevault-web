@@ -1,10 +1,9 @@
 import Link from "next/link"
-import { ArrowRight, BellRing, CloudCheck } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 
 import { FeatureRail } from "@/components/features/feature-rail"
 import { releaseAnchor } from "@/lib/navigation"
 import { featuredRelease, shortVersion } from "@/lib/releases"
-import { siteConfig } from "@/lib/site"
 
 import { HeroDownload } from "./hero-download"
 import { HeroWindow } from "./hero-window"
@@ -15,102 +14,49 @@ const featuredHref = featuredRelease
   ? `/whats-new#${releaseAnchor(featuredRelease.version)}`
   : "/whats-new"
 
-// Hero chips come from the featured release in data/releases.json.
-const newsLinks = (featuredRelease?.highlights ?? []).slice(0, 3)
+// The hero shows one release line, taken from the featured release in
+// data/releases.json. Everything else about that release lives in the cards
+// below and on the What's new page.
+const releaseLine = featuredRelease?.highlights?.[0]
 
 export function HomepageHero() {
   return (
     <>
       <section id="overview" className={styles.hero}>
         <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>
-            <span className={styles.eyebrowDot} aria-hidden="true" />
-            Local-first knife collection &middot; {siteConfig.releaseVersion}
-          </p>
-          <ul
-            className={hero.ticker}
-            aria-label={`New in BladeVault ${featuredRelease ? shortVersion(featuredRelease.version) : ""}`}
-          >
-            {newsLinks.map((label) => (
-              <li key={label}>
-                <Link href={featuredHref} className={hero.tickerLink}>
-                  <span className={styles.newBadge}>New</span>
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {featuredRelease && releaseLine ? (
+            <Link href={featuredHref} className={hero.release}>
+              <span className={hero.releaseVersion}>
+                {shortVersion(featuredRelease.version)}
+              </span>
+              {releaseLine}
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          ) : null}
           <h1 className={styles.heroTitle}>
-            Your knife collection, <em>watched over.</em>
-            <span className={hero.titleAsk}>Now just ask it.</span>
+            Your knife collection, organized and watched.
           </h1>
           <p className={styles.heroSub}>
-            Paste a link and BladeVault fills in the record. Then it keeps
-            watching prices, care, and backups, and in Chat you can ask anything
-            about your knives and get answers built from your own records.
+            Paste a product link and BladeVault fills in the record. Then it
+            watches prices, care and backups for you, and you can ask it
+            anything about your knives.
           </p>
           <HeroDownload />
-          <div className={styles.heroTrust} aria-label="Product principles">
-            <span>Free</span>
-            <span>MIT licensed</span>
-            <span>No account</span>
-            <span>Local SQLite</span>
-            <span>Your AI, your keys</span>
-          </div>
+          <ul className={styles.heroTrust} aria-label="Product principles">
+            <li>Free and MIT licensed</li>
+            <li>No account</li>
+            <li>Your data stays on your machine</li>
+          </ul>
         </div>
 
         <div className={styles.heroVisual}>
           <HeroWindow />
-
-          <div className={hero.chips} aria-label="What BladeVault is watching">
-            <a
-              href="#feature-price-drops"
-              className={`${hero.chip} ${hero.chipSale} ${hero.toneInbox}`}
-            >
-              <span className={hero.chipIcon} aria-hidden="true">
-                <BellRing />
-              </span>
-              <span className={hero.chipText}>
-                <small>
-                  <span className={hero.live} aria-hidden="true" />
-                  Inbox &middot; Super sale
-                </small>
-                <strong>
-                  Benchmade Bugout
-                  <span className={hero.pct}>55% below regular</span>
-                </strong>
-                <span>Found while checking the rest of the collection</span>
-              </span>
-            </a>
-
-            <Link
-              href="/#backup"
-              className={`${hero.chip} ${hero.chipDrive} ${hero.toneDrive}`}
-            >
-              <span className={hero.chipIcon} aria-hidden="true">
-                <CloudCheck />
-              </span>
-              <span className={hero.chipText}>
-                <small>Backed up</small>
-                <strong>Google Drive</strong>
-                <span>Chats and records included</span>
-              </span>
-            </Link>
-          </div>
         </div>
       </section>
 
       <section className={hero.rail} aria-labelledby="hero-rail-title">
         <div className={hero.railHead}>
-          <div>
-            <p className={styles.eyebrow}>
-              <span className={styles.eyebrowDot} aria-hidden="true" />
-              What it does for you
-            </p>
-            <h2 id="hero-rail-title">
-              Ask it anything. It keeps watching the rest.
-            </h2>
-          </div>
+          <h2 id="hero-rail-title">What it does for you</h2>
           <Link href={featuredHref} className={hero.railMore}>
             What&apos;s new
             {featuredRelease && ` in ${shortVersion(featuredRelease.version)}`}

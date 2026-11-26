@@ -11,8 +11,8 @@
   --hp-card: var(--card);
   --hp-secondary: var(--secondary);
   --hp-line: var(--border);
-  --hp-line-soft: color-mix(in srgb, var(--border) 45%, transparent);
-  --hp-line-faint: color-mix(in srgb, var(--border) 24%, transparent);
+  --hp-line-soft: var(--border);
+  --hp-line-faint: color-mix(in srgb, var(--border) 60%, transparent);
   --hp-title: var(--bladevault-title);
   --hp-gold: var(--bladevault-gold);
   --hp-olive: var(--bladevault-olive);
@@ -34,12 +34,9 @@
   align-items: center;
   margin: 0;
   color: var(--hp-title);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 650;
-  letter-spacing: 0.13em;
-  line-height: 1.2;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
 }
 
 .eyebrowDot {
@@ -49,19 +46,6 @@
   background: var(--bladevault-local);
   box-shadow: 0 0 0 3px
     color-mix(in srgb, var(--bladevault-local) 12%, transparent);
-}
-
-.sectionNum {
-  display: inline-grid;
-  width: 24px;
-  height: 24px;
-  place-items: center;
-  border: 1px solid var(--hp-line);
-  border-radius: 50%;
-  color: var(--hp-title);
-  background: var(--hp-secondary);
-  font-size: 9px;
-  letter-spacing: 0;
 }
 
 .button {
@@ -92,14 +76,14 @@
 }
 
 .buttonPrimary {
-  border-color: var(--hp-olive);
-  color: #fbfaf7;
-  background: var(--hp-olive);
+  border-color: var(--hp-gold);
+  color: var(--bladevault-olive);
+  background: var(--hp-gold);
 }
 
 .buttonPrimary:hover {
-  border-color: var(--hp-olive);
-  background: color-mix(in srgb, var(--hp-olive) 84%, #fff);
+  border-color: var(--hp-gold);
+  background: color-mix(in srgb, var(--hp-gold) 88%, #000);
 }
 
 .button svg {
@@ -122,13 +106,13 @@
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(28rem, 0.98fr);
-  gap: clamp(2.5rem, 5vw, 6rem);
-  align-items: start;
+  grid-template-columns: minmax(0, 0.9fr) minmax(28rem, 1.1fr);
+  gap: clamp(2rem, 4vw, 4.5rem);
+  align-items: center;
   width: 100%;
   max-width: 1440px;
   margin-inline: auto;
-  padding-block: clamp(3.6rem, 6vw, 7rem) clamp(3.4rem, 5vw, 5.5rem);
+  padding-block: clamp(2.5rem, 4.5vw, 4.5rem) clamp(2.5rem, 4vw, 3.5rem);
 }
 
 .heroCopy {
@@ -137,27 +121,22 @@
 }
 
 .heroTitle {
-  max-width: 9.8ch;
+  max-width: 14ch;
   margin: 20px 0 0;
   color: var(--hp-ink);
-  font-size: clamp(3.8rem, 7vw, 7.4rem);
-  font-weight: 620;
-  letter-spacing: -0.075em;
-  line-height: 0.9;
+  font-size: clamp(2.4rem, 4.2vw, 3.25rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
   text-wrap: balance;
-}
-
-.heroTitle em {
-  color: var(--hp-title);
-  font-style: normal;
 }
 
 .heroSub {
   max-width: 50ch;
-  margin: 26px 0 0;
+  margin: 18px 0 0;
   color: var(--hp-muted);
-  font-size: clamp(16px, 1.3vw, 19px);
-  line-height: 1.7;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.6;
   text-wrap: pretty;
 }
 
@@ -189,26 +168,23 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px 18px;
-  margin-top: 24px;
+  margin: 22px 0 0;
+  padding: 0;
   color: var(--hp-muted);
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-size: 13px;
+  list-style: none;
 }
 
-.heroTrust span {
+.heroTrust li {
   display: inline-flex;
   gap: 7px;
   align-items: center;
 }
 
-.heroTrust span::before {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--hp-gold);
-  content: "";
+.heroTrust li::before {
+  color: var(--bladevault-local);
+  font-weight: 700;
+  content: "\2713";
 }
 
 .heroVisual {
@@ -216,18 +192,6 @@
   min-width: 0;
   padding: 18px 0 0;
   animation: rise 880ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.heroVisual::before {
-  position: absolute;
-  top: 4%;
-  right: -1rem;
-  z-index: -1;
-  width: 26rem;
-  height: 26rem;
-  border: 1px solid color-mix(in srgb, var(--bladevault-gold) 18%, transparent);
-  border-radius: 50%;
-  content: "";
 }
 
 .window {
@@ -292,7 +256,7 @@
   width: 100%;
   max-width: 1440px;
   margin-inline: auto;
-  padding-block: clamp(4rem, 7vw, 7.5rem);
+  padding-block: clamp(3rem, 5vw, 5rem);
   border-bottom: 1px solid var(--hp-line-soft);
   scroll-margin-top: 88px;
 }
@@ -302,7 +266,7 @@
   grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.72fr);
   gap: 18px clamp(2rem, 5vw, 5rem);
   align-items: end;
-  margin-bottom: clamp(2rem, 4vw, 3.4rem);
+  margin-bottom: clamp(1.6rem, 3vw, 2.4rem);
 }
 
 .sectionHead .sectionKicker {
@@ -314,10 +278,10 @@
   max-width: 15ch;
   margin: 0;
   color: var(--hp-ink);
-  font-size: clamp(2.5rem, 4.8vw, 4.8rem);
-  font-weight: 620;
-  letter-spacing: -0.065em;
-  line-height: 0.95;
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  font-weight: 650;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
   text-wrap: balance;
 }
 
@@ -688,7 +652,7 @@
   width: 30%;
   height: 6px;
   border-radius: 999px;
-  background: #2e3417;
+  background: #18181b;
   content: "";
   opacity: 0.85;
   transform: translateX(-50%);
@@ -904,22 +868,6 @@
     box-shadow 220ms ease;
 }
 
-.featureCard::after {
-  position: absolute;
-  top: -70px;
-  right: -60px;
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--bladevault-gold) 9%, transparent),
-    transparent 68%
-  );
-  content: "";
-  pointer-events: none;
-}
-
 .featureCard:hover {
   border-color: color-mix(in srgb, var(--bladevault-gold) 55%, transparent);
   box-shadow: 0 16px 42px
@@ -1057,21 +1005,13 @@
 .newBadge {
   display: inline-flex;
   align-items: center;
-  min-height: 18px;
-  padding: 0 7px;
+  min-height: 20px;
+  padding: 0 8px;
   border-radius: 999px;
-  color: #fbfaf7;
-  background: var(--hp-olive);
-  font-family: var(--font-mono);
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-:global(.dark) .newBadge {
-  color: var(--bladevault-olive);
-  background: var(--bladevault-gold);
+  color: var(--bladevault-title);
+  background: var(--bladevault-accent-soft);
+  font-size: 11px;
+  font-weight: 650;
 }
 
 @keyframes cloudFloat {
@@ -1402,7 +1342,7 @@
   }
 
   .sectionHead h2 {
-    font-size: clamp(2.2rem, 11vw, 3.4rem);
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
   }
 
   .scrapeSteps {

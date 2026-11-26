@@ -375,7 +375,7 @@ function WishlistScene() {
       <div className={cn(styles.stats, styles.reveal)} style={delay(0)}>
         <span>
           <small>Watching</small>
-          <b>38</b>
+          <b>50</b>
         </span>
         <span>
           <small>On sale now</small>
@@ -387,7 +387,7 @@ function WishlistScene() {
         </span>
         <span>
           <small>Price Drops watches</small>
-          <b>38 / 38</b>
+          <b>50 / 50</b>
         </span>
       </div>
 
@@ -481,7 +481,7 @@ function DropsScene() {
         </span>
         <span className={styles.pass}>
           <i aria-hidden="true" />
-          Collection: 40 of 312
+          Collection: 40 of 232
         </span>
       </div>
 

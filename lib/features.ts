@@ -104,14 +104,13 @@ export const features: readonly Feature[] = [
     slug: "wishlist",
     tone: "wishlist",
     icon: Heart,
-    tag: "New",
-    isNew: true,
+    tag: "Deals",
     title: "Wishlist",
     detail:
       "Grouped by deal, with price vs regular, a 90-day range and a 30-day trend. Open any knife straight in Market or Price Drops.",
     cta: "See the deals",
     stats: [
-      ["Watching", "38"],
+      ["Watching", "50"],
       ["On sale", "12"],
       ["Off today", "$639"],
     ],
@@ -149,8 +148,7 @@ export const features: readonly Feature[] = [
     slug: "price-drops",
     tone: "drop",
     icon: TrendingDown,
-    tag: "New",
-    isNew: true,
+    tag: "Prices",
     title: "Price Drops",
     detail:
       "Brand sites plus Blade HQ, SMKW, DLT Trading, KnifeJoy and Northwest Knives, one line per store, and super-sale alerts for the rest of the collection.",
@@ -191,8 +189,7 @@ export const features: readonly Feature[] = [
     slug: "ai-supervisor",
     tone: "ai",
     icon: Sparkles,
-    tag: "New",
-    isNew: true,
+    tag: "Automation",
     title: "AI supervisor",
     detail:
       "A price-aware shopping assistant: schedules the checks, retries pages and writes the daily summary.",
@@ -233,8 +230,7 @@ export const features: readonly Feature[] = [
     slug: "inbox",
     tone: "inbox",
     icon: Inbox,
-    tag: "New",
-    isNew: true,
+    tag: "Alerts",
     title: "Inbox & alerts",
     detail:
       "Price, care and system messages in one list, with a minimum change so small moves stay quiet.",
@@ -279,7 +275,7 @@ export const features: readonly Feature[] = [
     slug: "maintenance",
     tone: "care",
     icon: Wrench,
-    tag: "2.5",
+    tag: "Care",
     title: "Maintenance",
     detail:
       "Care reminders per knife, a Coming up timeline you can reschedule, and a care history.",
@@ -324,8 +320,7 @@ export const features: readonly Feature[] = [
     slug: "achievements",
     tone: "achievements",
     icon: Trophy,
-    tag: "New",
-    isNew: true,
+    tag: "Milestones",
     title: "Achievements",
     detail:
       "100 badges in four tiers, a trophy case on Insights, and a rank from Rookie to Jedi Collector.",

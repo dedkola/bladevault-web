@@ -2,7 +2,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: 14px;
   align-items: start;
 }
@@ -206,13 +206,7 @@
   padding: clamp(18px, 2.4vw, 26px);
   border: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
   border-radius: 18px;
-  background:
-    radial-gradient(
-      22rem 16rem at 100% 0%,
-      color-mix(in srgb, var(--bladevault-gold) 10%, transparent),
-      transparent 70%
-    ),
-    color-mix(in srgb, var(--secondary) 55%, var(--background));
+  background: var(--muted);
 }
 
 .tools h3 {
@@ -226,64 +220,6 @@
 
 .tools h3 span {
   color: var(--muted-foreground);
-}
-
-.toolGroup header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 7px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
-}
-
-.toolGroup h4 {
-  margin: 0;
-  color: var(--bladevault-title);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 650;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.toolGroup header span {
-  color: var(--muted-foreground);
-  font-family: var(--font-mono);
-  font-size: 10px;
-}
-
-.toolGroup ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.toolGroup li {
-  display: inline-flex;
-  gap: 4px;
-  align-items: center;
-  padding: 4px 8px;
-  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
-  border-radius: 999px;
-  color: var(--foreground);
-  background: var(--card);
-  font-size: 11px;
-  line-height: 1.2;
-}
-
-.toolGroup li[data-write] {
-  border-color: color-mix(in srgb, var(--bladevault-gold) 45%, transparent);
-  background: color-mix(in srgb, var(--bladevault-gold) 10%, var(--card));
-}
-
-.toolGroup li svg {
-  width: 11px;
-  height: 11px;
-  color: var(--bladevault-title);
 }
 
 .rails {
@@ -646,7 +582,7 @@
   border: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
   border-radius: 12px;
   background: var(--card);
-  box-shadow: 0 10px 24px -18px rgb(46 52 23 / 0.5);
+  box-shadow: 0 10px 24px -18px rgb(24 24 27 / 0.5);
 }
 
 .thumb {
@@ -887,26 +823,6 @@
   height: 13px;
 }
 
-.rails li.railNote svg {
-  color: var(--muted-foreground);
-}
-
-/* Light up the tools the current demo uses. */
-.grid:has([data-scene="add"]) .toolGroup li[data-scenes~="add"],
-.grid:has([data-scene="price"]) .toolGroup li[data-scenes~="price"],
-.grid:has([data-scene="long"]) .toolGroup li[data-scenes~="long"],
-.grid:has([data-scene="missing"]) .toolGroup li[data-scenes~="missing"] {
-  border-color: var(--bladevault-gold);
-  box-shadow: 0 0 0 3px
-    color-mix(in srgb, var(--bladevault-gold) 18%, transparent);
-}
-
-.toolGroup li {
-  transition:
-    border-color 0.3s,
-    box-shadow 0.3s;
-}
-
 :global(.dark) .noDup,
 :global(.dark) .addedTag {
   color: #7fc79a;
@@ -953,12 +869,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .panel,
-  .chat > *,
-  .calls > *,
-  .toolGroup li {
-    transition: none;
-  }
 
   .caret {
     animation: none;

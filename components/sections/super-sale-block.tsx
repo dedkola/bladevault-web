@@ -136,7 +136,7 @@ export function SuperSaleBlock() {
           ))}
         </ol>
         <p className={styles.passNote}>
-          <b>Collection: 40 of 312</b> &middot; waits for the round, then picks
+          <b>Collection: 40 of 232</b> &middot; waits for the round, then picks
           up where it stopped
         </p>
 

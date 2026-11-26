@@ -160,7 +160,7 @@ function WishlistMock() {
       <div className={styles.toolbar}>
         <strong>Wishlist</strong>
         <span className={styles.muted}>
-          <Bell aria-hidden="true" /> 38 of 38 watched
+          <Bell aria-hidden="true" /> 50 of 50 watched
         </span>
         <span className={styles.primaryButton} {...region(1)}>
           <Plus aria-hidden="true" /> Add to wishlist

@@ -13,9 +13,6 @@ export function HomepageCollection() {
     <section id="collection" className={base.section}>
       <div className={base.sectionHead}>
         <p className={base.sectionKicker}>
-          <span className={base.sectionNum} aria-hidden="true">
-            04
-          </span>
           Notes, care + history
         </p>
         <h2>Every knife keeps its story.</h2>

@@ -138,11 +138,11 @@ const scripts: Script[] = [
   {
     question: "Give me a short summary of my collection",
     title: "Collection summary",
-    tool: "Read collection stats · 220 knives",
+    tool: "Read collection stats · 232 knives",
     ui: (
       <Stats
         items={[
-          ["Knives", "220"],
+          ["Knives", "232"],
           ["Makers", "35"],
           ["Median blade", "80.45 mm"],
           ["Fields filled", "95%"],
@@ -150,7 +150,7 @@ const scripts: Script[] = [
       />
     ),
     answer:
-      "220 knives from 35 makers in 127 model families, mostly folders. The median blade is 80.45 mm. Records are 95% complete; 55 have a gap, mostly steel and blade length. Eleven knives are pinned as favorites.",
+      "232 knives from 35 makers in 127 model families, mostly folders. The median blade is 80.45 mm. Records are 95% complete; 55 have a gap, mostly steel and blade length. Eleven knives are pinned as favorites.",
   },
 ]
 

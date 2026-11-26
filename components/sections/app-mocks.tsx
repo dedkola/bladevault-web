@@ -17,7 +17,7 @@ import styles from "./app-mocks.module.css"
 /* ---------- Insights: collection activity ---------- */
 
 const kpis = [
-  ["Catalogued knives", "220", "11 pinned in your collection"],
+  ["Catalogued knives", "232", "11 pinned in your collection"],
   ["Makers", "35", "127 model families"],
   ["Median blade", "80.45 mm", "214 readable measurements"],
   ["Field coverage", "95%", "55 records have missing fields"],
@@ -25,7 +25,7 @@ const kpis = [
 
 const activityTabs = [
   ["All activity", "554"],
-  ["Added", "220"],
+  ["Added", "232"],
   ["Edited", "288"],
   ["Maintained", "46"],
 ] as const

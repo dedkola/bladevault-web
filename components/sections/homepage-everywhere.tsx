@@ -14,9 +14,6 @@ export function HomepageEverywhere() {
     <section id="everywhere" className={base.section}>
       <div className={base.sectionHead}>
         <p className={base.sectionKicker}>
-          <span className={base.sectionNum} aria-hidden="true">
-            05
-          </span>
           Every screen, backed up
         </p>
         <h2>One vault on every screen, safe in your own cloud.</h2>

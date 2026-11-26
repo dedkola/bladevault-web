@@ -68,20 +68,20 @@ export function SiteHeader() {
             <BladevaultLogoMark className="size-8" />
           </span>
           <span className="text-lg font-semibold tracking-[-0.035em] text-foreground">
-            Blade<span className="text-[var(--bladevault-title)]">Vault</span>
+            BladeVault
           </span>
         </Link>
 
         <nav
           aria-label="Main navigation"
-          className="hidden items-center justify-center gap-2 text-[13px] whitespace-nowrap lg:flex xl:gap-8 xl:text-sm"
+          className="hidden items-center justify-center gap-2 text-[13px] whitespace-nowrap lg:flex lg:gap-7 xl:gap-8 xl:text-sm"
         >
           {siteNavigation.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               aria-current={currentLocation(link)}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-[var(--bladevault-title)] focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none aria-[current]:text-[var(--bladevault-title)] aria-[current]:underline aria-[current]:decoration-[var(--bladevault-gold)] aria-[current]:underline-offset-8"
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none aria-[current]:text-foreground aria-[current]:underline aria-[current]:decoration-[var(--bladevault-gold)] aria-[current]:underline-offset-8"
             >
               {link.label}
             </Link>

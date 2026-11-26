@@ -1,17 +1,7 @@
 import Link from "next/link"
-import {
-  Archive,
-  ArrowRight,
-  Camera,
-  Cpu,
-  MessageSquare,
-  PenLine,
-  PlugZap,
-  ShieldCheck,
-  Table2,
-} from "lucide-react"
+import { Archive, ArrowRight, Cpu, ShieldCheck, Table2 } from "lucide-react"
 
-import { HomepageAiDemo, type SceneId } from "./homepage-ai-demo"
+import { HomepageAiDemo } from "./homepage-ai-demo"
 import styles from "./homepage-ai.module.css"
 import chat from "./homepage-chat.module.css"
 import { HomepageChatDemo } from "./homepage-chat-demo"
@@ -26,50 +16,6 @@ const clients = [
   "OpenCode",
   "LM Studio",
 ]
-
-// `scenes` lights the tool up while that demo plays (see homepage-ai-demo.tsx).
-type Tool = { label: string; write?: boolean; scenes?: SceneId[] }
-
-const toolGroups: { title: string; tools: Tool[] }[] = [
-  {
-    title: "Collection",
-    tools: [
-      { label: "Search", scenes: ["add", "long"] },
-      { label: "Full records", scenes: ["long"] },
-      { label: "Stats" },
-      { label: "Missing fields", scenes: ["missing"] },
-      { label: "Likely duplicates" },
-      { label: "Preview changes" },
-      { label: "Add a knife", write: true, scenes: ["add"] },
-      { label: "Add photos by link", write: true },
-      { label: "Refill photos from the product page", write: true },
-      { label: "Update a knife", write: true },
-      { label: "Bulk update after preview", write: true },
-    ],
-  },
-  {
-    title: "Price Drops",
-    tools: [
-      { label: "Watched knives" },
-      { label: "One watch" },
-      { label: "Price history" },
-      { label: "Drops and restocks", scenes: ["price"] },
-      { label: "What needs attention", scenes: ["price"] },
-      { label: "Edit store links", write: true },
-      { label: "Queue a check", write: true },
-    ],
-  },
-  {
-    title: "Care & trophies",
-    tools: [
-      { label: "Maintenance history" },
-      { label: "Achievements and rank" },
-      { label: "Log a care event", write: true },
-    ],
-  },
-]
-
-const toolCount = toolGroups.reduce((sum, group) => sum + group.tools.length, 0)
 
 const guardRails = [
   "Writes are off by default. Nothing is saved without a preview first.",
@@ -96,28 +42,11 @@ const chatPoints = [
   },
 ]
 
-// Where each way of asking fits. Copy follows docs/guides/chat.md and
-// docs/reference/mcp.md in the app repo.
-const compareRows: [label: string, chat: string, mcp: string][] = [
-  ["Setup", "One AI connection in Settings", "Paste one command or config"],
-  [
-    "Model",
-    "Any OpenAI-compatible or local model",
-    "Whatever your client runs",
-  ],
-  ["Changes", "Read-only", "Writes after a preview, logged"],
-  ["Runs in", "Desktop app, Docker, Helm", "Claude, Codex, Cursor, LM Studio"],
-  ["Best for", "Quick questions, deals, gaps", "Adding knives, bulk fixes"],
-]
-
 export function HomepageAi() {
   return (
     <section id="ai" className={base.section}>
       <div className={base.sectionHead}>
         <p className={base.sectionKicker}>
-          <span className={base.sectionNum} aria-hidden="true">
-            01
-          </span>
           AI chat + MCP
           <span className={base.newBadge}>New in 2.6</span>
         </p>
@@ -155,8 +84,9 @@ export function HomepageAi() {
         <div className={chat.subhead}>
           <h3>Or bring your own client.</h3>
           <p>
-            Claude, Codex, Cursor and other MCP clients get 21 tools. With
-            writes on, they can add a knife with its photos in one line.
+            Claude, Codex, Cursor and other MCP clients can search your vault
+            and, with writes on, add a knife with its photos in one line.{" "}
+            <Link href="/docs/reference/mcp">See all MCP tools</Link>
           </p>
         </div>
       </div>
@@ -179,34 +109,7 @@ export function HomepageAi() {
         </div>
 
         <aside className={styles.tools} aria-labelledby="ai-tools-title">
-          <h3 id="ai-tools-title">
-            {toolCount} tools.
-            <span> Read-only until you allow writes.</span>
-          </h3>
-
-          {toolGroups.map((group) => (
-            <section key={group.title} className={styles.toolGroup}>
-              <header>
-                <h4>{group.title}</h4>
-                <span>{group.tools.length}</span>
-              </header>
-              <ul>
-                {group.tools.map((tool) => (
-                  <li
-                    key={tool.label}
-                    data-write={tool.write || undefined}
-                    data-scenes={tool.scenes?.join(" ")}
-                  >
-                    {tool.write ? (
-                      <PenLine aria-label="Write" role="img" />
-                    ) : null}
-                    {tool.label}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
-
+          <h3 id="ai-tools-title">Read-only until you allow writes.</h3>
           <ul className={styles.rails}>
             {guardRails.map((point) => (
               <li key={point}>
@@ -214,45 +117,9 @@ export function HomepageAi() {
                 {point}
               </li>
             ))}
-            <li className={styles.railNote}>
-              <Camera aria-hidden="true" />
-              Photos are checked before they are saved: https links only, real
-              images only, up to 25 MB each.
-            </li>
           </ul>
+          <McpSetupGenerator />
         </aside>
-      </div>
-
-      <div className={`${chat.block} ${chat.setupGrid}`}>
-        <McpSetupGenerator />
-
-        <div className={chat.compare}>
-          <h3>Chat or MCP?</h3>
-          <div className={chat.compareCols}>
-            {(["Chat in the app", "An MCP client"] as const).map(
-              (name, col) => (
-                <div key={name} className={chat.compareCol}>
-                  <h4>
-                    {col === 0 ? (
-                      <MessageSquare aria-hidden="true" />
-                    ) : (
-                      <PlugZap aria-hidden="true" />
-                    )}
-                    {name}
-                  </h4>
-                  <dl>
-                    {compareRows.map(([label, a, b]) => (
-                      <div key={label}>
-                        <dt>{label}</dt>
-                        <dd>{col === 0 ? a : b}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              )
-            )}
-          </div>
-        </div>
       </div>
     </section>
   )
