@@ -1,14 +1,11 @@
 import type { Metadata } from "next"
 
 import { HomepageAi } from "@/components/sections/homepage-ai"
-import { HomepageBackup } from "@/components/sections/homepage-backup"
-import { HomepageCare } from "@/components/sections/homepage-care"
-import { HomepageDevices } from "@/components/sections/homepage-devices"
+import { HomepageCollection } from "@/components/sections/homepage-collection"
+import { HomepageEverywhere } from "@/components/sections/homepage-everywhere"
 import { HomepageFeatures } from "@/components/sections/homepage-features"
 import { HomepageHero } from "@/components/sections/homepage-hero"
 import { HomepageImport } from "@/components/sections/homepage-import"
-import { HomepageJournal } from "@/components/sections/homepage-journal"
-import { HomepageThemes } from "@/components/sections/homepage-themes"
 import { HomepageWishlist } from "@/components/sections/homepage-wishlist"
 import { InstallCta } from "@/components/sections/install-cta"
 import styles from "@/components/sections/homepage-v3.module.css"
@@ -98,14 +95,11 @@ export default function Page() {
       >
         <div className={styles.homepage}>
           <HomepageHero />
-          <HomepageBackup />
+          <HomepageAi />
           <HomepageWishlist />
           <HomepageImport />
-          <HomepageDevices />
-          <HomepageAi />
-          <HomepageJournal />
-          <HomepageCare />
-          <HomepageThemes />
+          <HomepageCollection />
+          <HomepageEverywhere />
           <HomepageFeatures />
           <div className={styles.installWrap}>
             <InstallCta />

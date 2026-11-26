@@ -36,25 +36,10 @@ const accessSteps = [
   },
 ]
 
-export function HomepageDevices() {
+// Every screen: the first tab of the homepage "everywhere" section.
+export function DevicesPanel() {
   return (
-    <section id="devices" className={styles.section}>
-      <div className={styles.sectionHead}>
-        <p className={styles.sectionKicker}>
-          <span className={styles.sectionNum} aria-hidden="true">
-            02
-          </span>
-          Any screen
-        </p>
-        <h2>One vault. Every screen.</h2>
-        <p className={styles.sectionIntro}>
-          Use the desktop app on Mac, Windows, or Linux. Want it on the couch
-          too? Run BladeVault on a home server and open the same vault in the
-          browser on your iPad and iPhone &mdash; no second database, no sync
-          service.
-        </p>
-      </div>
-
+    <>
       <div className={styles.deviceStage}>
         <figure className={`${styles.device} ${styles.deviceMac}`}>
           <div className={styles.window}>
@@ -138,6 +123,6 @@ export function HomepageDevices() {
           </Link>
         </p>
       </div>
-    </section>
+    </>
   )
 }

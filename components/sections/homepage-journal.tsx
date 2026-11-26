@@ -26,67 +26,51 @@ const points = [
   },
 ]
 
-export function HomepageJournal() {
+// Notes + activity: the first tab of the homepage "collection" section.
+export function JournalPanel() {
   return (
-    <section id="journal" className={styles.section}>
-      <div className={styles.sectionHead}>
-        <p className={styles.sectionKicker}>
-          <span className={styles.sectionNum} aria-hidden="true">
-            04
+    <div className={styles.journalGrid}>
+      <figure className={`${styles.window} ${styles.journalMain}`}>
+        <div className={styles.windowBar}>
+          <span className={styles.dots} aria-hidden="true">
+            <i />
+            <i />
+            <i />
           </span>
-          Notes + activity
-        </p>
-        <h2>Every knife keeps its story.</h2>
-        <p className={styles.sectionIntro}>
-          Write down how a knife carries, when you sharpened it, and what you
-          changed. BladeVault dates every note and event and shows the whole
-          collection&rsquo;s activity at a glance.
-        </p>
-      </div>
+          <span>BladeVault / Insights</span>
+          <span>Collection activity</span>
+        </div>
+        <InsightsActivityMock />
+      </figure>
 
-      <div className={styles.journalGrid}>
-        <figure className={`${styles.window} ${styles.journalMain}`}>
+      <div className={styles.journalSide}>
+        <figure className={styles.window}>
           <div className={styles.windowBar}>
             <span className={styles.dots} aria-hidden="true">
               <i />
               <i />
               <i />
             </span>
-            <span>BladeVault / Insights</span>
-            <span>Collection activity</span>
+            <span>Knife / My notes</span>
+            <span>Markdown</span>
           </div>
-          <InsightsActivityMock />
+          <KnifeNotesMock />
         </figure>
 
-        <div className={styles.journalSide}>
-          <figure className={styles.window}>
-            <div className={styles.windowBar}>
-              <span className={styles.dots} aria-hidden="true">
-                <i />
-                <i />
-                <i />
+        <ul className={styles.journalPoints}>
+          {points.map(({ icon: Icon, title, body }) => (
+            <li key={title}>
+              <span className={styles.featureIcon} aria-hidden="true">
+                <Icon />
               </span>
-              <span>Knife / My notes</span>
-              <span>Markdown</span>
-            </div>
-            <KnifeNotesMock />
-          </figure>
-
-          <ul className={styles.journalPoints}>
-            {points.map(({ icon: Icon, title, body }) => (
-              <li key={title}>
-                <span className={styles.featureIcon} aria-hidden="true">
-                  <Icon />
-                </span>
-                <div>
-                  <strong>{title}</strong>
-                  <p>{body}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+              <div>
+                <strong>{title}</strong>
+                <p>{body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
-    </section>
+    </div>
   )
 }

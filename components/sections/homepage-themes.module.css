@@ -714,62 +714,9 @@
   text-align: center;
 }
 
-/* ---------- also new ---------- */
-
-.alsoNew {
-  display: grid;
-  grid-template-columns: minmax(10rem, 0.22fr) minmax(0, 1fr);
-  gap: 16px 32px;
-  margin-top: clamp(2.5rem, 5vw, 4rem);
-  padding-top: 24px;
-  border-top: 1px solid var(--hp-line-soft);
-}
-
-.alsoNewLabel {
-  margin: 0;
-  color: var(--hp-title);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 650;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.alsoNew ul {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.alsoNew li {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.alsoNew strong {
-  color: var(--hp-ink);
-  font-size: 15px;
-  font-weight: 640;
-  letter-spacing: -0.025em;
-}
-
-.alsoNew li span {
-  color: var(--hp-muted);
-  font-size: 13px;
-  line-height: 1.65;
-}
-
 /* ---------- responsive ---------- */
 
 @media (max-width: 1180px) {
-  .alsoNew ul {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .app {
     grid-template-columns: 140px minmax(0, 1fr);
   }
@@ -791,10 +738,6 @@
   .themeList {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .alsoNew {
-    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -859,11 +802,6 @@
 
   .addButton {
     margin-left: auto;
-  }
-
-  .alsoNew ul {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 18px;
   }
 }
 

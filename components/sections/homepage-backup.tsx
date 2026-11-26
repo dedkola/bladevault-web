@@ -1,6 +1,4 @@
-import Link from "next/link"
 import {
-  ArrowRight,
   FolderArchive,
   KeyRound,
   Laptop,
@@ -29,32 +27,10 @@ const steps = [
   },
 ]
 
-const recentlyShipped = [
-  "Wishlist deal board",
-  "Care reminders + Inbox",
-  "Maintenance page",
-  "Knife of the day in Studio",
-  "History timeline + Year in review",
-  "Shelf and Ledger styles",
-  "Photos in notes",
-  "Drive backup progress bar",
-  "Atrium style",
-  "Split-flap Studio showcase",
-]
-
-export function HomepageBackup() {
+// Google Drive backup: a tab of the homepage "everywhere" section.
+export function BackupPanel() {
   return (
-    <section id="backup" className={styles.section}>
-      <div className={styles.sectionHead}>
-        <p className={styles.sectionKicker}>Google Drive backup</p>
-        <h2>Your vault, safe in your own cloud.</h2>
-        <p className={styles.sectionIntro}>
-          BladeVault still lives on your computer. It can also back itself up to
-          the Google Drive you already have, automatically, and bring the whole
-          collection back on any device signed in to the same account.
-        </p>
-      </div>
-
+    <>
       <div className={styles.backupStage}>
         <div className={styles.backupNode}>
           <span className={styles.backupNodeIcon} aria-hidden="true">
@@ -106,17 +82,6 @@ export function HomepageBackup() {
           </li>
         ))}
       </ol>
-
-      <div className={styles.alsoIncluded} aria-label="Recently shipped">
-        <b>Also added in 2.5</b>
-        {recentlyShipped.map((item) => (
-          <span key={item}>{item}</span>
-        ))}
-        <Link href="/whats-new" className={styles.alsoIncludedLink}>
-          All release notes
-          <ArrowRight aria-hidden="true" />
-        </Link>
-      </div>
-    </section>
+    </>
   )
 }

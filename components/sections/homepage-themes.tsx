@@ -20,7 +20,6 @@ import { cn } from "@/lib/utils"
 
 import { KnifePhoto, type KnifePhotoId } from "./knife-photo"
 
-import base from "./homepage-v3.module.css"
 import styles from "./homepage-themes.module.css"
 
 type Mode = "light" | "dark"
@@ -567,25 +566,6 @@ const knives: {
 
 const inspectorTabs = ["Overview", "Specs", "Maintenance", "History"]
 
-const alsoNew = [
-  {
-    title: "Search that suggests",
-    body: "Modern, Forge, Titanium, Field, Espresso, Phosphor, and Ledger now get Lumen's Collection search bar, which suggests brands, steels, locks, and other fields as you type.",
-  },
-  {
-    title: "Switch from the footer",
-    body: "The palette button in the footer rotates through every style, Atrium, Shelf, and Ledger included. The active style name sits under the logo.",
-  },
-  {
-    title: "Classic's gilded Add knife",
-    body: "Classic's Add knife is now a gilded split button, with an add menu for the other ways to bring a knife in.",
-  },
-  {
-    title: "Arrow-key photo stepping",
-    body: "Step through a knife's photos with the arrow keys, and add photos to notes so they show up in the item gallery too.",
-  },
-]
-
 function themeVars(theme: ThemeStyle, mode: Mode) {
   const p = theme.palettes[theme.fixedMode ?? mode]
 
@@ -608,332 +588,295 @@ function themeVars(theme: ThemeStyle, mode: Mode) {
   } as CSSProperties
 }
 
-export function HomepageThemes() {
+// Twelve styles: a tab of the homepage "features" section.
+export function ThemesPanel() {
   const [activeId, setActiveId] = useState(themes[0].id)
   const [mode, setMode] = useState<Mode>("dark")
 
   const active = themes.find((theme) => theme.id === activeId) ?? themes[0]
   const shownMode: Mode = active.fixedMode ?? mode
-  const newCount = themes.filter((theme) => theme.isNew).length
 
   return (
-    <section id="themes" className={base.section}>
-      <div className={base.sectionHead}>
-        <p className={base.sectionKicker}>
-          <span className={base.sectionNum} aria-hidden="true">
-            06
-          </span>
-          Appearance
-          <span className={styles.newTag}>{newCount} new styles</span>
-        </p>
-        <h2>Twelve ways to see the vault.</h2>
-        <p className={base.sectionIntro}>
-          Shelf and Ledger join Atrium, Forge, Titanium, Field, Lumen, Espresso,
-          Phosphor, Classic, Modern, and Alloy. Shelf is a collector&rsquo;s
-          catalogue with a masthead and a &#8984;K command palette; Ledger is a
-          bound account book with index tabs, a grouped list, and a full
-          document for the selected knife. Switch in Settings &rarr; Appearance
-          or from the footer&rsquo;s quick picker, which shows every style at
-          once; your records, columns, and start page stay put.
-        </p>
-      </div>
+    <div className={styles.stage}>
+      <div className={styles.picker}>
+        <div
+          className={styles.themeList}
+          role="radiogroup"
+          aria-label="Preview a theme style"
+        >
+          {themes.map((theme) => {
+            const selected = theme.id === active.id
+            const swatch = theme.palettes[theme.fixedMode ?? mode]
 
-      <div className={styles.stage}>
-        <div className={styles.picker}>
-          <div
-            className={styles.themeList}
-            role="radiogroup"
-            aria-label="Preview a theme style"
-          >
-            {themes.map((theme) => {
-              const selected = theme.id === active.id
-              const swatch = theme.palettes[theme.fixedMode ?? mode]
-
-              return (
-                <button
-                  key={theme.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={selected}
-                  className={cn(
-                    styles.themeOption,
-                    selected && styles.isActive
-                  )}
-                  onClick={() => setActiveId(theme.id)}
+            return (
+              <button
+                key={theme.id}
+                type="button"
+                role="radio"
+                aria-checked={selected}
+                className={cn(styles.themeOption, selected && styles.isActive)}
+                onClick={() => setActiveId(theme.id)}
+              >
+                <span
+                  className={styles.swatch}
+                  style={{ background: swatch.bg }}
+                  aria-hidden="true"
                 >
                   <span
-                    className={styles.swatch}
-                    style={{ background: swatch.bg }}
-                    aria-hidden="true"
-                  >
+                    className={styles.swatchRail}
+                    style={{ background: swatch.side }}
+                  />
+                  <span className={styles.swatchBody}>
                     <span
-                      className={styles.swatchRail}
-                      style={{ background: swatch.side }}
+                      className={styles.swatchTitle}
+                      style={{ background: theme.mark ?? swatch.accentFill }}
                     />
-                    <span className={styles.swatchBody}>
-                      <span
-                        className={styles.swatchTitle}
-                        style={{ background: theme.mark ?? swatch.accentFill }}
-                      />
-                      <span
-                        className={styles.swatchCard}
-                        style={{
-                          background: swatch.card,
-                          borderColor: swatch.line,
-                        }}
-                      />
-                    </span>
+                    <span
+                      className={styles.swatchCard}
+                      style={{
+                        background: swatch.card,
+                        borderColor: swatch.line,
+                      }}
+                    />
                   </span>
-                  <span className={styles.themeMeta}>
-                    <span className={styles.themeName}>
-                      {theme.name}
-                      {theme.isNew ? (
-                        <span className={styles.newBadge}>New</span>
-                      ) : null}
-                    </span>
-                    <span className={styles.themeNote}>{theme.note}</span>
+                </span>
+                <span className={styles.themeMeta}>
+                  <span className={styles.themeName}>
+                    {theme.name}
+                    {theme.isNew ? (
+                      <span className={styles.newBadge}>New</span>
+                    ) : null}
                   </span>
-                  {selected ? (
-                    <Check className={styles.themeCheck} aria-hidden="true" />
-                  ) : null}
-                </button>
-              )
-            })}
-          </div>
-
-          <div className={styles.modeRow}>
-            <div
-              className={styles.modeToggle}
-              role="radiogroup"
-              aria-label="Preview color mode"
-            >
-              {(["light", "dark"] as const).map((value) => (
-                <button
-                  key={value}
-                  type="button"
-                  role="radio"
-                  aria-checked={shownMode === value}
-                  disabled={
-                    Boolean(active.fixedMode) && value !== active.fixedMode
-                  }
-                  className={cn(
-                    styles.modeButton,
-                    shownMode === value && styles.isActive
-                  )}
-                  onClick={() => setMode(value)}
-                >
-                  {value === "light" ? (
-                    <Sun aria-hidden="true" />
-                  ) : (
-                    <Moon aria-hidden="true" />
-                  )}
-                  {value === "light" ? "Light" : "Dark"}
-                </button>
-              ))}
-            </div>
-            <p className={styles.modeNote} aria-live="polite">
-              {active.fixedMode
-                ? `${active.name} is ${active.fixedMode} only.`
-                : "This style follows light and dark mode."}
-            </p>
-          </div>
+                  <span className={styles.themeNote}>{theme.note}</span>
+                </span>
+                {selected ? (
+                  <Check className={styles.themeCheck} aria-hidden="true" />
+                ) : null}
+              </button>
+            )
+          })}
         </div>
 
-        <figure className={styles.preview} style={themeVars(active, mode)}>
+        <div className={styles.modeRow}>
           <div
-            className={styles.window}
-            data-theme={active.id}
-            data-mode={shownMode}
-            aria-label={`BladeVault Collection in the ${active.name} style, ${shownMode} mode`}
-            role="img"
+            className={styles.modeToggle}
+            role="radiogroup"
+            aria-label="Preview color mode"
           >
-            <div className={styles.windowBar}>
-              <span className={styles.dots} aria-hidden="true">
-                <i />
-                <i />
-                <i />
+            {(["light", "dark"] as const).map((value) => (
+              <button
+                key={value}
+                type="button"
+                role="radio"
+                aria-checked={shownMode === value}
+                disabled={
+                  Boolean(active.fixedMode) && value !== active.fixedMode
+                }
+                className={cn(
+                  styles.modeButton,
+                  shownMode === value && styles.isActive
+                )}
+                onClick={() => setMode(value)}
+              >
+                {value === "light" ? (
+                  <Sun aria-hidden="true" />
+                ) : (
+                  <Moon aria-hidden="true" />
+                )}
+                {value === "light" ? "Light" : "Dark"}
+              </button>
+            ))}
+          </div>
+          <p className={styles.modeNote} aria-live="polite">
+            {active.fixedMode
+              ? `${active.name} is ${active.fixedMode} only.`
+              : "This style follows light and dark mode."}
+          </p>
+        </div>
+      </div>
+
+      <figure className={styles.preview} style={themeVars(active, mode)}>
+        <div
+          className={styles.window}
+          data-theme={active.id}
+          data-mode={shownMode}
+          aria-label={`BladeVault Collection in the ${active.name} style, ${shownMode} mode`}
+          role="img"
+        >
+          <div className={styles.windowBar}>
+            <span className={styles.dots} aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </span>
+            <span>BladeVault / Collection</span>
+            <span>{active.name}</span>
+          </div>
+
+          {active.id === "shelf" || active.id === "ledger" ? (
+            <div className={styles.masthead} aria-hidden="true">
+              <span className={styles.mastBrand}>
+                <span className={styles.brandMark} />
+                BladeVault
               </span>
-              <span>BladeVault / Collection</span>
-              <span>{active.name}</span>
-            </div>
-
-            {active.id === "shelf" || active.id === "ledger" ? (
-              <div className={styles.masthead} aria-hidden="true">
-                <span className={styles.mastBrand}>
-                  <span className={styles.brandMark} />
-                  BladeVault
-                </span>
-                <span className={styles.mastNav}>
-                  {navItems.map(({ label }, index) => (
-                    <span
-                      key={label}
-                      className={cn(index === 0 && styles.mastActive)}
-                    >
-                      {label}
-                    </span>
-                  ))}
-                </span>
-                {active.id === "shelf" ? (
-                  <span className={styles.mastKbd}>&#8984;K</span>
-                ) : null}
-              </div>
-            ) : null}
-
-            <div className={styles.app}>
-              <aside className={styles.sidebar}>
-                <span className={styles.brand}>
-                  <span className={styles.brandMark} />
-                  <span className={styles.brandText}>
-                    BladeVault
-                    <small>{active.name}</small>
-                  </span>
-                </span>
-                <ul className={styles.nav}>
-                  {navItems.map(({ icon: Icon, label, count }, index) => (
-                    <li
-                      key={label}
-                      className={cn(index === 0 && styles.navActive)}
-                    >
-                      <Icon />
-                      <span>{label}</span>
-                      {count ? <b>{count}</b> : null}
-                    </li>
-                  ))}
-                </ul>
-                <span className={styles.sideLabel}>Pinned</span>
-                <ul className={styles.pinned}>
-                  {knives.slice(0, 2).map((knife) => (
-                    <li key={knife.model}>
-                      <KnifePhoto
-                        id={knife.photo}
-                        className={styles.pinThumb}
-                        sizes="32px"
-                      />
-                      {knife.model}
-                    </li>
-                  ))}
-                </ul>
-              </aside>
-
-              <div className={styles.main}>
-                <div className={styles.toolbar}>
-                  <strong>Collection</strong>
-                  <span className={styles.search}>
-                    <Search />
-                    Search knives
-                  </span>
-                  <span className={styles.addButton}>
-                    <Plus />
-                    Add knife
-                  </span>
-                </div>
-
-                <dl className={styles.stats}>
-                  {stats.map((stat) => (
-                    <div key={stat.label}>
-                      <dt>{stat.label}</dt>
-                      <dd>{stat.value}</dd>
-                    </div>
-                  ))}
-                </dl>
-
-                <div className={styles.cards}>
-                  {knives.map((knife, index) => (
-                    <div
-                      key={knife.model}
-                      className={cn(
-                        styles.card,
-                        index === 0 && styles.cardSelected
-                      )}
-                    >
-                      <KnifePhoto
-                        id={knife.photo}
-                        className={styles.plate}
-                        sizes="(min-width: 1100px) 200px, 30vw"
-                      />
-                      <span className={styles.maker}>{knife.maker}</span>
-                      <span className={styles.model}>{knife.model}</span>
-                      <span className={styles.specs}>
-                        <span>{knife.steel}</span>
-                        <span>{knife.blade}</span>
-                        <span>{knife.lock}</span>
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <aside className={styles.inspector}>
-                <span className={styles.maker}>{knives[0].maker}</span>
-                <span className={styles.inspectorTitle}>{knives[0].model}</span>
-                <span className={styles.inspectorActions}>
-                  <span>
-                    <Pin />
-                    Pin
-                  </span>
-                  <span>
-                    <Columns2 />
-                    Compare
-                  </span>
-                </span>
-                <span className={styles.tabs}>
-                  {inspectorTabs.map((tab, index) => (
-                    <span
-                      key={tab}
-                      className={cn(index === 2 && styles.tabActive)}
-                    >
-                      {tab}
-                    </span>
-                  ))}
-                </span>
-                <span className={styles.logRow}>
-                  <b>Sharpened</b>
-                  <span>Nov 2 · 17° · 1000 grit</span>
-                </span>
-                <span className={styles.logRow}>
-                  <b>Cleaned + oiled</b>
-                  <span>Oct 18 · pivot, washers</span>
-                </span>
-                <span className={styles.logRow}>
-                  <b>Stropped</b>
-                  <span>Oct 4 · 12 passes</span>
-                </span>
-              </aside>
-            </div>
-
-            {active.id === "atrium" ? (
-              <span className={styles.dock} aria-hidden="true">
-                {navItems.map(({ icon: Icon, label, count }, index) => (
+              <span className={styles.mastNav}>
+                {navItems.map(({ label }, index) => (
                   <span
                     key={label}
-                    className={cn(index === 0 && styles.dockActive)}
+                    className={cn(index === 0 && styles.mastActive)}
                   >
-                    <Icon />
                     {label}
-                    {count ? <b>{count}</b> : null}
                   </span>
                 ))}
               </span>
-            ) : null}
-          </div>
-          <figcaption className={styles.caption}>
-            Preview of the {active.name} style. Colors come from the app&rsquo;s
-            own theme tokens.
-          </figcaption>
-        </figure>
-      </div>
+              {active.id === "shelf" ? (
+                <span className={styles.mastKbd}>&#8984;K</span>
+              ) : null}
+            </div>
+          ) : null}
 
-      <div className={styles.alsoNew}>
-        <p className={styles.alsoNewLabel}>Also new in the app</p>
-        <ul>
-          {alsoNew.map((item) => (
-            <li key={item.title}>
-              <strong>{item.title}</strong>
-              <span>{item.body}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
+          <div className={styles.app}>
+            <aside className={styles.sidebar}>
+              <span className={styles.brand}>
+                <span className={styles.brandMark} />
+                <span className={styles.brandText}>
+                  BladeVault
+                  <small>{active.name}</small>
+                </span>
+              </span>
+              <ul className={styles.nav}>
+                {navItems.map(({ icon: Icon, label, count }, index) => (
+                  <li
+                    key={label}
+                    className={cn(index === 0 && styles.navActive)}
+                  >
+                    <Icon />
+                    <span>{label}</span>
+                    {count ? <b>{count}</b> : null}
+                  </li>
+                ))}
+              </ul>
+              <span className={styles.sideLabel}>Pinned</span>
+              <ul className={styles.pinned}>
+                {knives.slice(0, 2).map((knife) => (
+                  <li key={knife.model}>
+                    <KnifePhoto
+                      id={knife.photo}
+                      className={styles.pinThumb}
+                      sizes="32px"
+                    />
+                    {knife.model}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+
+            <div className={styles.main}>
+              <div className={styles.toolbar}>
+                <strong>Collection</strong>
+                <span className={styles.search}>
+                  <Search />
+                  Search knives
+                </span>
+                <span className={styles.addButton}>
+                  <Plus />
+                  Add knife
+                </span>
+              </div>
+
+              <dl className={styles.stats}>
+                {stats.map((stat) => (
+                  <div key={stat.label}>
+                    <dt>{stat.label}</dt>
+                    <dd>{stat.value}</dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div className={styles.cards}>
+                {knives.map((knife, index) => (
+                  <div
+                    key={knife.model}
+                    className={cn(
+                      styles.card,
+                      index === 0 && styles.cardSelected
+                    )}
+                  >
+                    <KnifePhoto
+                      id={knife.photo}
+                      className={styles.plate}
+                      sizes="(min-width: 1100px) 200px, 30vw"
+                    />
+                    <span className={styles.maker}>{knife.maker}</span>
+                    <span className={styles.model}>{knife.model}</span>
+                    <span className={styles.specs}>
+                      <span>{knife.steel}</span>
+                      <span>{knife.blade}</span>
+                      <span>{knife.lock}</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <aside className={styles.inspector}>
+              <span className={styles.maker}>{knives[0].maker}</span>
+              <span className={styles.inspectorTitle}>{knives[0].model}</span>
+              <span className={styles.inspectorActions}>
+                <span>
+                  <Pin />
+                  Pin
+                </span>
+                <span>
+                  <Columns2 />
+                  Compare
+                </span>
+              </span>
+              <span className={styles.tabs}>
+                {inspectorTabs.map((tab, index) => (
+                  <span
+                    key={tab}
+                    className={cn(index === 2 && styles.tabActive)}
+                  >
+                    {tab}
+                  </span>
+                ))}
+              </span>
+              <span className={styles.logRow}>
+                <b>Sharpened</b>
+                <span>Nov 2 · 17° · 1000 grit</span>
+              </span>
+              <span className={styles.logRow}>
+                <b>Cleaned + oiled</b>
+                <span>Oct 18 · pivot, washers</span>
+              </span>
+              <span className={styles.logRow}>
+                <b>Stropped</b>
+                <span>Oct 4 · 12 passes</span>
+              </span>
+            </aside>
+          </div>
+
+          {active.id === "atrium" ? (
+            <span className={styles.dock} aria-hidden="true">
+              {navItems.map(({ icon: Icon, label, count }, index) => (
+                <span
+                  key={label}
+                  className={cn(index === 0 && styles.dockActive)}
+                >
+                  <Icon />
+                  {label}
+                  {count ? <b>{count}</b> : null}
+                </span>
+              ))}
+            </span>
+          ) : null}
+        </div>
+        <figcaption className={styles.caption}>
+          Preview of the {active.name} style. Colors come from the app&rsquo;s
+          own theme tokens.
+        </figcaption>
+      </figure>
+    </div>
   )
 }

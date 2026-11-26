@@ -1,6 +1,3 @@
-"use client"
-
-import { useState } from "react"
 import {
   BellRing,
   CalendarClock,
@@ -413,103 +410,50 @@ function HistoryPreview() {
   )
 }
 
-export function HomepageCare() {
-  const [activeId, setActiveId] = useState<PageId>("maintenance")
-  const active = pages[activeId]
+// Maintenance or History: tabs of the homepage "collection" section.
+export function CarePanel({ page }: { page: PageId }) {
+  const active = pages[page]
 
   return (
-    <section id="care" className={base.section}>
-      <div className={base.sectionHead}>
-        <p className={base.sectionKicker}>
-          <span className={base.sectionNum} aria-hidden="true">
-            05
+    <div className={base.journalGrid}>
+      <figure className={cn(base.window, styles.preview)}>
+        <div className={base.windowBar}>
+          <span className={base.dots} aria-hidden="true">
+            <i />
+            <i />
+            <i />
           </span>
-          Maintenance + History
-          <span className={base.newBadge}>New</span>
-        </p>
-        <h2>Two pages for the life of a collection.</h2>
-        <p className={base.sectionIntro}>
-          Maintenance tells you which knives need care and when. History shows
-          how the collection grew. Both sit in the sidebar, next to Collection
-          and Studio.
-        </p>
-      </div>
-
-      <div
-        className={styles.tabs}
-        role="tablist"
-        aria-label="Preview a BladeVault page"
-      >
-        {(Object.keys(pages) as PageId[]).map((id) => (
-          <button
-            key={id}
-            type="button"
-            role="tab"
-            id={`care-tab-${id}`}
-            aria-selected={id === activeId}
-            aria-controls="care-panel"
-            className={cn(styles.tab, id === activeId && styles.tabActive)}
-            onClick={() => setActiveId(id)}
-          >
-            {id === "maintenance" ? (
-              <Wrench aria-hidden="true" />
-            ) : (
-              <History aria-hidden="true" />
-            )}
-            {pages[id].label}
-          </button>
-        ))}
-      </div>
-
-      <div
-        id="care-panel"
-        role="tabpanel"
-        aria-labelledby={`care-tab-${activeId}`}
-        className={base.journalGrid}
-      >
-        <figure className={cn(base.window, styles.preview)}>
-          <div className={base.windowBar}>
-            <span className={base.dots} aria-hidden="true">
-              <i />
-              <i />
-              <i />
-            </span>
-            <span>BladeVault / {active.path}</span>
-            <span>Example vault</span>
-          </div>
-          <div
-            role="img"
-            aria-label={
-              activeId === "maintenance"
-                ? "BladeVault Maintenance page with overdue and due-soon counts, a Coming up timeline with a reschedule menu, and cards for sharpening, cleaning, and lubrication intervals"
-                : "BladeVault History page with a Year in review summary and a monthly timeline of added knives, a 50th-knife milestone, a new brand, and an edit"
-            }
-          >
-            {activeId === "maintenance" ? (
-              <MaintenancePreview />
-            ) : (
-              <HistoryPreview />
-            )}
-          </div>
-        </figure>
-
-        <div className={base.journalSide}>
-          <p className={styles.summary}>{active.summary}</p>
-          <ul className={base.journalPoints}>
-            {active.points.map(({ icon: Icon, title, body }) => (
-              <li key={title}>
-                <span className={base.featureIcon} aria-hidden="true">
-                  <Icon />
-                </span>
-                <div>
-                  <strong>{title}</strong>
-                  <p>{body}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <span>BladeVault / {active.path}</span>
+          <span>Example vault</span>
         </div>
+        <div
+          role="img"
+          aria-label={
+            page === "maintenance"
+              ? "BladeVault Maintenance page with overdue and due-soon counts, a Coming up timeline with a reschedule menu, and cards for sharpening, cleaning, and lubrication intervals"
+              : "BladeVault History page with a Year in review summary and a monthly timeline of added knives, a 50th-knife milestone, a new brand, and an edit"
+          }
+        >
+          {page === "maintenance" ? <MaintenancePreview /> : <HistoryPreview />}
+        </div>
+      </figure>
+
+      <div className={base.journalSide}>
+        <p className={styles.summary}>{active.summary}</p>
+        <ul className={base.journalPoints}>
+          {active.points.map(({ icon: Icon, title, body }) => (
+            <li key={title}>
+              <span className={base.featureIcon} aria-hidden="true">
+                <Icon />
+              </span>
+              <div>
+                <strong>{title}</strong>
+                <p>{body}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
-    </section>
+    </div>
   )
 }

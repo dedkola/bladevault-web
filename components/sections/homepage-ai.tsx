@@ -4,7 +4,6 @@ import {
   ArrowRight,
   Camera,
   Cpu,
-  LockKeyhole,
   MessageSquare,
   PenLine,
   PlugZap,
@@ -12,7 +11,6 @@ import {
   Table2,
 } from "lucide-react"
 
-import { AppLockMock } from "./app-mocks"
 import { HomepageAiDemo, type SceneId } from "./homepage-ai-demo"
 import styles from "./homepage-ai.module.css"
 import chat from "./homepage-chat.module.css"
@@ -112,19 +110,13 @@ const compareRows: [label: string, chat: string, mcp: string][] = [
   ["Best for", "Quick questions, deals, gaps", "Adding knives, bulk fixes"],
 ]
 
-const lockPoints = [
-  "Off by default. Works offline.",
-  "No account and no cloud dependency.",
-  "Included in full-vault backups.",
-]
-
 export function HomepageAi() {
   return (
     <section id="ai" className={base.section}>
       <div className={base.sectionHead}>
         <p className={base.sectionKicker}>
           <span className={base.sectionNum} aria-hidden="true">
-            03
+            01
           </span>
           AI chat + MCP
           <span className={base.newBadge}>New in 2.6</span>
@@ -261,31 +253,6 @@ export function HomepageAi() {
             )}
           </div>
         </div>
-      </div>
-
-      <div className={styles.lock}>
-        <div className={styles.lockCopy}>
-          <span className={styles.lockIcon} aria-hidden="true">
-            <LockKeyhole />
-          </span>
-          <h3>Lock it when you step away.</h3>
-          <p>
-            Set a password in Settings &rarr; App lock, lock the vault from
-            there, and change or turn it off later.
-          </p>
-          <ul>
-            {lockPoints.map((point) => (
-              <li key={point}>{point}</li>
-            ))}
-          </ul>
-          <p className={styles.lockNote}>
-            A simple local access lock. The vault is not encrypted.
-          </p>
-        </div>
-
-        <figure className={styles.lockShot}>
-          <AppLockMock />
-        </figure>
       </div>
     </section>
   )
