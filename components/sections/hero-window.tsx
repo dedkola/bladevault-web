@@ -22,6 +22,7 @@ import {
 import { cn } from "@/lib/utils"
 
 import base from "./homepage-v3.module.css"
+import { KnifePhoto, type KnifePhotoId } from "./knife-photo"
 import styles from "./hero-window.module.css"
 
 // The hero's app window: three coded scenes from the example vault that play
@@ -203,10 +204,26 @@ export function HeroWindow() {
 /* ---------- Chat ---------- */
 
 const weekDrops = [
-  ["Vosteed Kroc 329", "−35%", "$90.35", "$139", "SMKW", "today"],
-  ["Vosteed Raccoon TiSlim", "−30%", "$94.50", "$135", "Blade HQ", "3d"],
-  ["Spyderco Native Chief LW", "−25%", "$161.25", "$215", "SMKW", "4d"],
-  ["Spyderco Military 2", "−25%", "$220.50", "$294", "SMKW", "5d"],
+  ["kroc", "Vosteed Kroc 329", "−35%", "$90.35", "$139", "SMKW", "today"],
+  [
+    "raccoon",
+    "Vosteed Raccoon TiSlim",
+    "−30%",
+    "$94.50",
+    "$135",
+    "Blade HQ",
+    "3d",
+  ],
+  [
+    "nativeChief",
+    "Spyderco Native Chief LW",
+    "−25%",
+    "$161.25",
+    "$215",
+    "SMKW",
+    "4d",
+  ],
+  ["military", "Spyderco Military 2", "−25%", "$220.50", "$294", "SMKW", "5d"],
 ] as const
 
 function ChatScene() {
@@ -219,7 +236,7 @@ function ChatScene() {
         <span>Knives missing a steel</span>
         <b>Earlier</b>
         <span>Collection summary</span>
-        <span>Para 3 care</span>
+        <span>Para Military 2 care</span>
       </aside>
 
       <div className={styles.chatMain}>
@@ -255,9 +272,18 @@ function ChatScene() {
             </tr>
           </thead>
           <tbody>
-            {weekDrops.map(([name, change, price, was, store, when]) => (
+            {weekDrops.map(([photo, name, change, price, was, store, when]) => (
               <tr key={name}>
-                <td>{name}</td>
+                <td>
+                  <span className={styles.knifeCell}>
+                    <KnifePhoto
+                      id={photo}
+                      className={styles.thumbSm}
+                      sizes="48px"
+                    />
+                    <span>{name}</span>
+                  </span>
+                </td>
                 <td className={styles.down}>{change}</td>
                 <td>
                   {price} <s>{was}</s>
@@ -289,14 +315,22 @@ function ChatScene() {
 /* ---------- Wishlist ---------- */
 
 const topDeals = [
-  ["Best deal", "Raccoon TiSlim", "$94.50", "−30%"],
-  ["2", "Kroc 329", "$90.35", "−35%"],
-  ["3", "Native Chief LW", "$161.25", "−25%"],
+  ["Best deal", "raccoon", "Raccoon TiSlim", "$94.50", "−30%"],
+  ["2", "kroc", "Kroc 329", "$90.35", "−35%"],
+  ["3", "nativeChief", "Native Chief LW", "$161.25", "−25%"],
 ] as const
 
 // 30-day best price as a share of the regular price, oldest first.
-const wishRows = [
+const wishRows: {
+  photo: KnifePhotoId
+  name: string
+  brand: string
+  state: string
+  price: string
+  trend: number[]
+}[] = [
   {
+    photo: "military",
     name: "Military 2",
     brand: "Spyderco · 2 stores",
     state: "On sale −25%",
@@ -304,6 +338,7 @@ const wishRows = [
     trend: [100, 100, 100, 92, 92, 75, 75],
   },
   {
+    photo: "porcupine",
     name: "Porcupine",
     brand: "Vosteed · 3 stores",
     state: "Restocked",
@@ -311,6 +346,7 @@ const wishRows = [
     trend: [100, 100, 100, 100, 100, 100, 100],
   },
   {
+    photo: "dingo",
     name: "Dingo",
     brand: "Kizer · 3 stores",
     state: "Regular price",
@@ -356,12 +392,17 @@ function WishlistScene() {
       </div>
 
       <div className={styles.deals}>
-        {topDeals.map(([rank, name, price, pct], i) => (
+        {topDeals.map(([rank, photo, name, price, pct], i) => (
           <div
             key={name}
             className={cn(styles.deal, styles.reveal)}
             style={delay(400 + i * 250)}
           >
+            <KnifePhoto
+              id={photo}
+              className={styles.dealPhoto}
+              sizes="(min-width: 1100px) 180px, 30vw"
+            />
             <small>{rank === "Best deal" ? rank : `#${rank}`}</small>
             <strong>{name}</strong>
             <span>
@@ -378,6 +419,7 @@ function WishlistScene() {
             className={styles.reveal}
             style={delay(1400 + i * 200)}
           >
+            <KnifePhoto id={row.photo} className={styles.thumb} sizes="64px" />
             <span>
               <strong>{row.name}</strong>
               <small>{row.brand}</small>
@@ -444,6 +486,11 @@ function DropsScene() {
       </div>
 
       <div className={cn(styles.dropRow, styles.reveal)} style={delay(300)}>
+        <KnifePhoto
+          id="raccoon"
+          className={styles.dropPhoto}
+          sizes="(min-width: 700px) 200px, 30vw"
+        />
         <span>
           <strong>Vosteed Raccoon TiSlim</strong>
           <small>Cheapest at Blade HQ &middot; 4 stores</small>

@@ -16,7 +16,7 @@ import {
 
 import { cn } from "@/lib/utils"
 
-import { KnifeGlyph } from "./knife-glyph"
+import { KnifePhoto, type KnifePhotoId } from "./knife-photo"
 import base from "./homepage-v3.module.css"
 import styles from "./homepage-care.module.css"
 
@@ -106,7 +106,7 @@ const pins = [
   {
     at: 22,
     low: false,
-    knife: "Para 3",
+    knife: "Para Military 2",
     kind: "Cleaning",
     due: "6d overdue",
     tone: "overdue",
@@ -131,7 +131,7 @@ const pins = [
   {
     at: 94,
     low: false,
-    knife: "Sebenza 31",
+    knife: "Seamount",
     kind: "Lubrication",
     due: "in 21d",
     tone: "later",
@@ -149,7 +149,7 @@ const careKinds = [
     icon: Wrench,
     name: "Cleaning",
     every: "Every 60 days",
-    next: "Para 3 · 6d overdue",
+    next: "Para Military 2 · 6d overdue",
   },
   {
     icon: Droplet,
@@ -172,6 +172,7 @@ type TimelineEntry =
       kind: "added" | "brand" | "updated"
       maker: string
       model: string
+      photo: KnifePhotoId
       note: string
       date: string
     }
@@ -183,8 +184,9 @@ const timeline: { month: string; entries: TimelineEntry[] }[] = [
       { kind: "milestone", title: "50th knife", date: "Nov 12" },
       {
         kind: "added",
-        maker: "Chris Reeve",
-        model: "Sebenza 31",
+        maker: "Quiet Carry",
+        model: "The Seamount",
+        photo: "seamount",
         note: "Added to the collection",
         date: "Nov 12",
       },
@@ -192,6 +194,7 @@ const timeline: { month: string; entries: TimelineEntry[] }[] = [
         kind: "brand",
         maker: "Vosteed",
         model: "Porcupine",
+        photo: "porcupine",
         note: "New brand · first Vosteed",
         date: "Nov 3",
       },
@@ -203,14 +206,16 @@ const timeline: { month: string; entries: TimelineEntry[] }[] = [
       {
         kind: "updated",
         maker: "Spyderco",
-        model: "Para 3",
-        note: "Blade length 2.95″ · steel CPM S45VN",
+        model: "Para Military 2 Lightweight",
+        photo: "paraMilitary",
+        note: "Blade length 3.47″ · weight 2.8 oz",
         date: "Oct 21",
       },
       {
         kind: "added",
         maker: "Benchmade",
         model: "Bugout 535",
+        photo: "bugout",
         note: "Added to the collection",
         date: "Oct 4",
       },
@@ -294,7 +299,7 @@ function MaintenancePreview() {
           ))}
 
           <span className={styles.popover}>
-            <small>Para 3 · Cleaning</small>
+            <small>Para Military 2 · Cleaning</small>
             <span>Tomorrow</span>
             <span>Next week</span>
             <span>Next month</span>
@@ -374,9 +379,11 @@ function HistoryPreview() {
                   </li>
                 ) : (
                   <li key={entry.model} className={styles.entry}>
-                    <span className={styles.entryThumb}>
-                      <KnifeGlyph />
-                    </span>
+                    <KnifePhoto
+                      id={entry.photo}
+                      className={styles.entryThumb}
+                      sizes="64px"
+                    />
                     <span className={styles.entryBody}>
                       <small>
                         {entry.kind === "brand" ? (

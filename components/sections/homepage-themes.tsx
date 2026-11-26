@@ -18,7 +18,7 @@ import {
 
 import { cn } from "@/lib/utils"
 
-import { KnifeGlyph } from "./knife-glyph"
+import { KnifePhoto, type KnifePhotoId } from "./knife-photo"
 
 import styles from "./homepage-themes.module.css"
 
@@ -530,27 +530,37 @@ const stats = [
   { label: "Avg blade", value: "3.2″" },
 ]
 
-const knives = [
+const knives: {
+  maker: string
+  model: string
+  photo: KnifePhotoId
+  steel: string
+  blade: string
+  lock: string
+}[] = [
   {
     maker: "Benchmade",
     model: "Bugout 535",
+    photo: "bugout",
     steel: "S30V",
-    blade: "3.24″",
+    blade: "3.2″",
     lock: "AXIS",
   },
   {
     maker: "Spyderco",
-    model: "Para 3",
-    steel: "CPM S45VN",
-    blade: "2.95″",
+    model: "Para Military 2 LW",
+    photo: "paraMilitary",
+    steel: "2.8 oz",
+    blade: "3.47″",
     lock: "Compression",
   },
   {
-    maker: "Chris Reeve",
-    model: "Sebenza 31",
-    steel: "Magnacut",
-    blade: "3.61″",
-    lock: "Frame",
+    maker: "Quiet Carry",
+    model: "The Seamount",
+    photo: "seamount",
+    steel: "Vanax",
+    blade: "4.7″",
+    lock: "Fixed",
   },
 ]
 
@@ -689,6 +699,7 @@ export function ThemesPanel() {
         <div
           className={styles.window}
           data-theme={active.id}
+          data-mode={shownMode}
           aria-label={`BladeVault Collection in the ${active.name} style, ${shownMode} mode`}
           role="img"
         >
@@ -749,9 +760,11 @@ export function ThemesPanel() {
               <ul className={styles.pinned}>
                 {knives.slice(0, 2).map((knife) => (
                   <li key={knife.model}>
-                    <span className={styles.pinThumb}>
-                      <KnifeGlyph />
-                    </span>
+                    <KnifePhoto
+                      id={knife.photo}
+                      className={styles.pinThumb}
+                      sizes="32px"
+                    />
                     {knife.model}
                   </li>
                 ))}
@@ -789,9 +802,11 @@ export function ThemesPanel() {
                       index === 0 && styles.cardSelected
                     )}
                   >
-                    <span className={styles.plate}>
-                      <KnifeGlyph className={styles.knife} />
-                    </span>
+                    <KnifePhoto
+                      id={knife.photo}
+                      className={styles.plate}
+                      sizes="(min-width: 1100px) 200px, 30vw"
+                    />
                     <span className={styles.maker}>{knife.maker}</span>
                     <span className={styles.model}>{knife.model}</span>
                     <span className={styles.specs}>

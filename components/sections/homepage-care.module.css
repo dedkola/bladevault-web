@@ -475,21 +475,17 @@
   transform: translateY(-50%);
 }
 
-.entryThumb,
+.entryThumb {
+  height: 32px;
+  padding: 2px 3px;
+  border-radius: 6px;
+}
+
 .entryMark {
   display: grid;
   height: 32px;
   place-items: center;
   border-radius: 6px;
-  color: #1b1a17;
-  background: linear-gradient(180deg, #f7f6f3, #e9e6df);
-}
-
-.entryThumb svg {
-  width: 86%;
-}
-
-.entryMark {
   color: var(--hp-gold);
   background: color-mix(in srgb, var(--hp-gold) 14%, transparent);
 }

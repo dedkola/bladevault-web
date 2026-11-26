@@ -13,7 +13,7 @@ import {
 
 import { releaseAnchor } from "@/lib/navigation"
 
-import { KnifeGlyph } from "./knife-glyph"
+import { KnifePhoto, type KnifePhotoId } from "./knife-photo"
 import styles from "./homepage-wishlist.module.css"
 import { SuperSaleBlock } from "./super-sale-block"
 import base from "./homepage-v3.module.css"
@@ -33,7 +33,7 @@ type WishlistRow = {
   change: string
   trend: "down" | "flat" | "up"
   path: string
-  thumb: string
+  photo: KnifePhotoId
 }
 
 type DealGroup = {
@@ -68,7 +68,7 @@ const groups: DealGroup[] = [
         change: "−30%",
         trend: "down",
         path: "M2 4 L40 4 L44 14 L80 14",
-        thumb: styles.thumbOlive,
+        photo: "raccoon",
       },
       {
         name: "Kroc 329",
@@ -86,7 +86,7 @@ const groups: DealGroup[] = [
         change: "−35%",
         trend: "down",
         path: "M2 4 L72 4 L75 15 L80 15",
-        thumb: styles.thumbGreen,
+        photo: "kroc",
       },
       {
         name: "Native Chief Lightweight",
@@ -104,7 +104,7 @@ const groups: DealGroup[] = [
         change: "−25%",
         trend: "down",
         path: "M2 4 L70 4 L73 13 L80 13",
-        thumb: styles.thumbSand,
+        photo: "nativeChief",
       },
       {
         name: "Military 2",
@@ -122,7 +122,7 @@ const groups: DealGroup[] = [
         change: "−25%",
         trend: "down",
         path: "M2 4 L72 4 L75 13 L80 13",
-        thumb: styles.thumbWarm,
+        photo: "military",
       },
     ],
   },
@@ -144,7 +144,7 @@ const groups: DealGroup[] = [
         change: "±0%",
         trend: "flat",
         path: "M2 9 L80 9",
-        thumb: styles.thumbGreen,
+        photo: "dingo",
       },
       {
         name: "Porcupine",
@@ -162,7 +162,7 @@ const groups: DealGroup[] = [
         change: "±0%",
         trend: "flat",
         path: "M2 9 L80 9",
-        thumb: styles.thumbOlive,
+        photo: "porcupine",
       },
     ],
   },
@@ -181,7 +181,7 @@ const groups: DealGroup[] = [
         change: "—",
         trend: "flat",
         path: "M2 9 L80 9",
-        thumb: styles.thumbViolet,
+        photo: "nymble",
       },
     ],
   },
@@ -315,9 +315,11 @@ export function HomepageWishlist() {
             </div>
 
             <section className={styles.best} aria-label="Best deal right now">
-              <span className={`${styles.thumbLg} ${styles.thumbOlive}`}>
-                <KnifeGlyph />
-              </span>
+              <KnifePhoto
+                id="raccoon"
+                className={styles.thumbLg}
+                sizes="160px"
+              />
               <div>
                 <p className={styles.eyebrow}>Best deal right now</p>
                 <h4>Vosteed Raccoon TiSlim</h4>
@@ -352,9 +354,11 @@ export function HomepageWishlist() {
 
                   {group.rows.map((row) => (
                     <div key={row.name} className={styles.row}>
-                      <span className={`${styles.thumb} ${row.thumb}`}>
-                        <KnifeGlyph />
-                      </span>
+                      <KnifePhoto
+                        id={row.photo}
+                        className={styles.thumb}
+                        sizes="64px"
+                      />
                       <div className={styles.name}>
                         <b>{row.name}</b>
                         <span className={styles.sub}>
