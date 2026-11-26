@@ -75,8 +75,8 @@ export function HeroDownload() {
           <ArrowDownToLine aria-hidden="true" />
           {option.label}
         </a>
-        <a className={styles.button} href="#import">
-          See auto scrape
+        <a className={styles.button} href="#ai">
+          Try the AI demo
           <ArrowDown aria-hidden="true" />
         </a>
       </div>

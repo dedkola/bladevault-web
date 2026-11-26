@@ -88,28 +88,15 @@
 
 /* ---------- window bar bell ---------- */
 
-.bell {
-  display: inline-flex;
-  gap: 5px;
-  align-items: center;
-  color: var(--hp-ink);
-}
-
-.bell svg {
-  width: 11px;
-  height: 11px;
-}
-
-.bell b {
-  display: grid;
-  min-width: 15px;
-  height: 15px;
-  padding: 0 4px;
-  place-items: center;
-  border-radius: 999px;
-  color: #fff;
-  background: #b4561c;
-  font-size: 8px;
+/* Second line of the hero title. */
+.titleAsk {
+  display: block;
+  margin-top: 0.28em;
+  color: var(--hp-muted);
+  font-size: 0.42em;
+  font-weight: 560;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 /* ---------- floating banners ---------- */
@@ -161,8 +148,7 @@
   min-width: 0;
 }
 
-.chip small,
-.inboxHead small {
+.chip small {
   display: inline-flex;
   gap: 6px;
   align-items: center;
@@ -195,13 +181,6 @@
 }
 
 /* Second line of a two-line chip title: prices sit under the knife name. */
-.priceLine {
-  display: block;
-}
-
-.priceLine s {
-  margin-left: 0;
-}
 
 .pct {
   margin-left: 6px;
@@ -222,125 +201,17 @@
   animation: livePulse 2s infinite;
 }
 
-.chipWishlist {
-  top: -16px;
+/* Both banners hang below the window so they don't cover the scenes. */
+.chipSale {
+  bottom: -62px;
   left: -46px;
-  animation-delay: 250ms, 1.2s;
-}
-
-.chipPrice {
-  top: 46%;
-  right: 3%;
-  animation-delay: 350ms, 1.8s;
-}
-
-.chipInbox {
-  top: 14%;
-  right: -18px;
-  flex-direction: column;
-  gap: 6px;
-  align-items: stretch;
-  width: 240px;
-  padding: 10px;
-  animation-delay: 400ms, 2.4s;
-}
-
-.chipAi {
-  bottom: 18%;
-  left: -58px;
-  animation-delay: 550ms, 3.1s;
-}
-
-.chipCare {
-  right: 8%;
-  bottom: -30px;
-  animation-delay: 700ms, 0.6s;
+  animation-delay: 500ms, 1.6s;
 }
 
 .chipDrive {
-  bottom: -34px;
-  left: 6%;
+  right: 6%;
+  bottom: -66px;
   animation-delay: 850ms, 4s;
-}
-
-.inboxHead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.inboxHead small {
-  color: var(--hp-ink);
-}
-
-.inboxHead small svg {
-  width: 12px;
-  height: 12px;
-}
-
-.inboxHead b {
-  padding: 2px 6px;
-  border-radius: 999px;
-  color: #fff;
-  background: var(--tone);
-  font-family: var(--font-mono);
-  font-size: 8px;
-}
-
-:global(.dark) .inboxHead b {
-  color: var(--bladevault-olive);
-}
-
-.message {
-  display: grid;
-  grid-template-columns: 7px minmax(0, 1fr) auto;
-  gap: 8px;
-  align-items: center;
-  padding: 6px 8px;
-  border-radius: 9px;
-  background: color-mix(in srgb, var(--hp-secondary) 70%, transparent);
-  font-size: 11px;
-}
-
-.message i {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--tone);
-}
-
-.message span {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.message time {
-  color: var(--hp-muted);
-  font-family: var(--font-mono);
-  font-size: 9px;
-}
-
-.schedule {
-  display: flex;
-  gap: 3px;
-  margin-top: 5px;
-}
-
-.schedule i {
-  width: 14px;
-  height: 4px;
-  border-radius: 2px;
-  background: color-mix(in srgb, var(--tone) 22%, transparent);
-}
-
-.schedule i[data-state="done"],
-.schedule i[data-state="now"] {
-  background: var(--tone);
-}
-
-.schedule i[data-state="now"] {
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--tone) 25%, transparent);
 }
 
 /* ---------- feature rail ---------- */
@@ -601,20 +472,12 @@
 /* ---------- responsive ---------- */
 
 @media (max-width: 1320px) {
-  .cards {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .chipWishlist {
+  .chipSale {
     left: -14px;
   }
 
-  .chipAi {
-    left: -18px;
-  }
-
-  .chipInbox {
-    right: -8px;
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
