@@ -17,9 +17,9 @@ import { absoluteUrl, siteConfig } from "@/lib/site"
 export const dynamic = "force-static"
 
 const pageTitle =
-  "Wishlist deal board, Price Drops, care reminders, Google Drive backup, and a local-first knife vault | BladeVault"
+  "AI Chat, Wishlist deals, Price Drops, care reminders, and a local-first knife vault | BladeVault"
 const pageDescription =
-  "Paste a product URL and let BladeVault fill the record. See which knives on your Wishlist are on sale with price vs regular, a 90-day range and a 30-day trend, watch store prices and restocks with Price Drops and an optional AI supervisor, get alerts in one Inbox, keep dated notes, care reminders, and history for every knife, back up to your own Google Drive, connect Claude or Codex through MCP, and run it on macOS, Windows, or Linux, or self-host it for iPad and iPhone."
+  "Ask BladeVault about your knives, prices, and care in the new AI Chat, with answers built from your own records. Paste a product URL and let BladeVault fill the record. See which knives on your Wishlist are on sale with price vs regular, a 90-day range and a 30-day trend, watch store prices and restocks with Price Drops and an optional AI supervisor, get alerts in one Inbox, keep dated notes, care reminders, and history for every knife, back up to your own Google Drive, connect Claude or Codex through MCP to add knives with photos, and run it on macOS, Windows, or Linux, or self-host it for iPad and iPhone."
 
 export const metadata: Metadata = {
   title: pageTitle,
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/opengraph-image",
-        alt: "BladeVault preview card for automatic product-page scraping, AI access, and a local-first knife collection manager",
+        alt: "BladeVault preview card for AI Chat, automatic product-page scraping, and a local-first knife collection manager",
       },
     ],
   },
