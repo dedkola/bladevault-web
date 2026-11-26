@@ -35,6 +35,8 @@ const toolGroups: { title: string; tools: Tool[] }[] = [
       { label: "Likely duplicates" },
       { label: "Preview changes" },
       { label: "Add a knife", write: true, scenes: ["add"] },
+      { label: "Add photos by link", write: true },
+      { label: "Refill photos from the product page", write: true },
       { label: "Update a knife", write: true },
       { label: "Bulk update after preview", write: true },
     ],
@@ -151,7 +153,8 @@ export function HomepageAi() {
             ))}
             <li className={styles.railNote}>
               <Camera aria-hidden="true" />
-              Photos are added in the app, not over MCP.
+              Photos are checked before they are saved: https links only, real
+              images only, up to 25 MB each.
             </li>
           </ul>
         </aside>

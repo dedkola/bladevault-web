@@ -8,8 +8,6 @@ import {
   Tablet,
 } from "lucide-react"
 
-import { releases } from "@/lib/releases"
-
 import { CloudMark } from "./cloud-mark"
 import styles from "./homepage-v3.module.css"
 
@@ -43,8 +41,6 @@ const recentlyShipped = [
   "Atrium style",
   "Split-flap Studio showcase",
 ]
-
-const recentVersions = releases.slice(0, 3).map((release) => release.version)
 
 export function HomepageBackup() {
   return (
@@ -112,9 +108,7 @@ export function HomepageBackup() {
       </ol>
 
       <div className={styles.alsoIncluded} aria-label="Recently shipped">
-        <b>
-          Also new in {recentVersions.at(-1)}&ndash;{recentVersions[0]}
-        </b>
+        <b>Also added in 2.5</b>
         {recentlyShipped.map((item) => (
           <span key={item}>{item}</span>
         ))}

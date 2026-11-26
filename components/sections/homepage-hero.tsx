@@ -13,23 +13,19 @@ import {
 
 import { FeatureRail } from "@/components/features/feature-rail"
 import { releaseAnchor } from "@/lib/navigation"
+import { featuredRelease, shortVersion } from "@/lib/releases"
 import { siteConfig } from "@/lib/site"
 
 import { HeroDownload } from "./hero-download"
 import hero from "./homepage-hero.module.css"
 import styles from "./homepage-v3.module.css"
 
-const releaseNotes = (version: string) => `/whats-new#${releaseAnchor(version)}`
+const featuredHref = featuredRelease
+  ? `/whats-new#${releaseAnchor(featuredRelease.version)}`
+  : "/whats-new"
 
-const priceDropsHref = releaseNotes("v2.5.19")
-const wishlistHref = releaseNotes("v2.5.20")
-const storesHref = releaseNotes("v2.5.21")
-
-const newsLinks = [
-  { href: storesHref, label: "SMKW, DLT, KnifeJoy & Northwest Knives" },
-  { href: priceDropsHref, label: "Per-store price chart" },
-  { href: wishlistHref, label: "Wishlist deal board" },
-]
+// Hero chips come from the featured release in data/releases.json.
+const newsLinks = (featuredRelease?.highlights ?? []).slice(0, 3)
 
 // Example messages for the floating Inbox banner. They describe the example
 // vault, not live data.
@@ -57,10 +53,13 @@ export function HomepageHero() {
             <span className={styles.eyebrowDot} aria-hidden="true" />
             Local-first knife collection &middot; {siteConfig.releaseVersion}
           </p>
-          <ul className={hero.ticker} aria-label="New in BladeVault 2.5">
-            {newsLinks.map(({ href, label }) => (
+          <ul
+            className={hero.ticker}
+            aria-label={`New in BladeVault ${featuredRelease ? shortVersion(featuredRelease.version) : ""}`}
+          >
+            {newsLinks.map((label) => (
               <li key={label}>
-                <Link href={href} className={hero.tickerLink}>
+                <Link href={featuredHref} className={hero.tickerLink}>
                   <span className={styles.newBadge}>New</span>
                   {label}
                 </Link>
@@ -239,8 +238,9 @@ export function HomepageHero() {
               Six things running quietly in the background
             </h2>
           </div>
-          <Link href="/whats-new" className={hero.railMore}>
-            What&apos;s new in 2.5.21
+          <Link href={featuredHref} className={hero.railMore}>
+            What&apos;s new
+            {featuredRelease && ` in ${shortVersion(featuredRelease.version)}`}
             <ArrowRight aria-hidden="true" />
           </Link>
         </div>

@@ -2,14 +2,24 @@
   {
     "version": "v2.6.0",
     "date": "2026-11-26",
+    "major": true,
+    "announcement": {
+      "title": "Chat with your vault in BladeVault 2.6.",
+      "body": "Ask about your knives, prices and care on the new Chat page, with answers built from your own records."
+    },
+    "highlights": [
+      "Chat with your vault",
+      "Model and reasoning per chat",
+      "Add knives with photos over MCP"
+    ],
     "changes": [
-      "Price monitoring can check the rest of your collection in free time between Wishlist rounds and notify you only about super sales, such as 50% below the regular price.",
-      "MCP clients can add a new knife to your collection, with a preview first and a duplicate check; write access must be on to save.",
-      "Settings → AI / MCP now has a copy-ready Claude Desktop config, and the Claude Code command adds BladeVault for every project.",
-      "AI clients connected over MCP can add photos to a knife from image links or its product page.",
       "Ask the AI about your collection on the new Chat page: answers stream in with knife cards and price tables, and chats are saved with search and an archive.",
-      "In the web app, Settings → AI / MCP shows a ready Claude Code command with your server address and token, which you can copy and paste into Terminal.",
-      "Choose the AI model and reasoning level (Off, Low, Medium or High) for each chat on the Chat page."
+      "Choose the AI model and reasoning level (Off, Low, Medium or High) for each chat on the Chat page.",
+      "MCP clients can add a new knife to your collection, with a preview first and a duplicate check; write access must be on to save.",
+      "AI clients connected over MCP can add photos to a knife from image links or its product page.",
+      "Price monitoring can check the rest of your collection in free time between Wishlist rounds and notify you only about super sales, such as 50% below the regular price.",
+      "Settings → AI / MCP now has a copy-ready Claude Desktop config, and the Claude Code command adds BladeVault for every project.",
+      "In the web app, Settings → AI / MCP shows a ready Claude Code command with your server address and token, which you can copy and paste into Terminal."
     ]
   },
   {

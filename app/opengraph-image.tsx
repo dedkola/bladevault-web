@@ -3,7 +3,7 @@ import { createSocialImageResponse } from "@/lib/seo-art"
 export const dynamic = "force-static"
 
 export const alt =
-  "BladeVault auto scrape, AI access, and a local-first knife collection manager"
+  "BladeVault AI Chat, auto scrape, and a local-first knife collection manager"
 
 export const size = {
   width: 1200,
@@ -14,10 +14,10 @@ export const contentType = "image/png"
 
 export default function OpenGraphImage() {
   return createSocialImageResponse({
-    eyebrow: "Auto scrape · Notes · AI access",
-    title: "Paste a link. Get a record.",
+    eyebrow: "AI Chat · Auto scrape · Price Drops",
+    title: "Ask your vault anything.",
     description:
-      "Import a knife from a product page, ask the vault through MCP, and keep it local on macOS, Windows, or Linux, or self-host it for iPad and iPhone.",
+      "Chat with your own knife collection, paste a link to get a record, and watch store prices, all kept local on macOS, Windows, or Linux, or self-hosted for iPad and iPhone.",
     screenshotPath: "/screenshots/live/add-result-3x.jpg",
   })
 }
