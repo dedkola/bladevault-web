@@ -15,6 +15,7 @@ import { releaseAnchor } from "@/lib/navigation"
 
 import { KnifeGlyph } from "./knife-glyph"
 import styles from "./homepage-wishlist.module.css"
+import { SuperSaleBlock } from "./super-sale-block"
 import base from "./homepage-v3.module.css"
 
 type PillTone = "sale" | "regular" | "above" | "out" | "low"
@@ -475,6 +476,8 @@ export function HomepageWishlist() {
           </Link>
         </aside>
       </div>
+
+      <SuperSaleBlock />
 
       <div className={styles.notes}>
         {notes.map(({ icon: Icon, title, body }) => (
