@@ -4,8 +4,8 @@ import { join } from "node:path"
 import type { CSSProperties, ReactElement } from "react"
 
 const brand = {
-  olive: "#2e3417",
-  gold: "#c89c3d",
+  olive: "#18181b",
+  gold: "#f28c45",
   parchment: "#f8f4eb",
   parchmentSoft: "#efe7d4",
   line: "#d3c097",

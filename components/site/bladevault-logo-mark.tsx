@@ -1,26 +1,53 @@
+import { useId } from "react"
+
 type BladevaultLogoMarkProps = {
   className?: string
 }
 
+/**
+ * The app's folding-knife "V" mark: the handle (left stroke) follows
+ * currentColor and the blade (right stroke) reads its gradient from the
+ * --brand-blade-* tokens. Same artwork as the desktop app's brand mark.
+ */
 export function BladevaultLogoMark({
   className = "size-10",
 }: BladevaultLogoMarkProps) {
+  const gradientId = `bv-blade-${useId().replace(/:/g, "")}`
+
   return (
     <svg
-      viewBox="0 0 16 16"
+      viewBox="0 0 48 48"
       aria-hidden="true"
-      className={className}
-      fill="none"
+      focusable="false"
+      className={`text-foreground ${className}`}
       xmlns="http://www.w3.org/2000/svg"
     >
+      <defs>
+        <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" style={{ stopColor: "var(--brand-blade-from)" }} />
+          <stop offset="0.5" style={{ stopColor: "var(--brand-blade-mid)" }} />
+          <stop offset="1" style={{ stopColor: "var(--brand-blade-to)" }} />
+        </linearGradient>
+      </defs>
+      <g transform="translate(23 40) rotate(22)">
+        <path
+          d="M-4.6 0V-29Q-4.6 -34.6 -1.6 -37.6Q4.6 -32 4.6 -22V0Z"
+          fill={`url(#${gradientId})`}
+        />
+        <path
+          d="M2.6 -2V-22Q2.6 -30 -1.2 -35"
+          fill="none"
+          stroke="rgb(255 255 255 / 55%)"
+          strokeWidth="0.9"
+        />
+      </g>
       <path
-        d="M6.8 6.6 4.6 2.9c-.1-.2.1-.6.4-.6h6.6c.1 0 .3-.1.4-.2l.9-1.5c.1-.3-.1-.6-.5-.6H.7C.4 0 .2.3.4.6l4.4 7.6c.1.2.5.3.6.1l1.2-1.2c.2-.1.2-.3.2-.5ZM8.1 13.9l1.1 1.9c.2.3.6.3.7 0l1-1.7c.1-.1.1-.3 0-.4l-.8-1.4c-.1-.3-.4-.3-.6-.1l-1.2 1.2c-.2.2-.2.4-.1.5Z"
-        className="fill-[var(--bladevault-olive)] dark:fill-[var(--foreground)]"
+        transform="translate(23 40) rotate(-22)"
+        fillRule="evenodd"
+        fill="currentColor"
+        d="M-4.6 -32Q-4.6 -36.6 0 -36.6Q4.6 -36.6 4.6 -32V0A4.6 4.6 0 0 1 -4.6 0ZM-1.9 0a1.9 1.9 0 1 0 3.8 0a1.9 1.9 0 1 0 -3.8 0Z"
       />
-      <path
-        d="M14.4 5.5c-.9.9-1.8 1.8-2.7 2.7-.2.2-.4.2-.7 0-.2-.2-.4-.2-.6 0-.2.2-.5.2-.7 0C9.4 8 9.2 7.7 8.9 7.5 8.8 7.3 8.8 7.2 8.9 7c.6-.6 1.3-1.3 1.9-1.9C12.2 3.7 13.6 2.3 15 1c.2-.2.4-.2.5.1.1.4.2.9.2 1.4 0 1.1-.5 2.1-1.3 3ZM14.5 2.9c-.1 0-.2 0-.2.2-.2.8-.7 1.4-1.3 2-.2.2-.3.3-.5.5-.1.1-.1.3 0 .3.1.1.2.1.3 0 .3-.3.7-.7 1-1 .4-.4.7-1 .9-1.6v-.1c0-.2-.1-.3-.2-.3ZM5.4 13.6h-.1c-.6-.1-1-.4-1.1-.9-.2-.5 0-.9.4-1.3C5.8 10.2 7 9 8.2 7.8c.2-.2.3-.2.4 0 .3.3.7.7 1 1 .4.4.4.8-.2.9-.2.1-.4.3-.6.5-.7 1.1-1.5 2.1-2.4 3-.3.2-.6.4-1 .4Zm0-1.5c-.2 0-.3.2-.3.3 0 .2.1.3.3.3.2 0 .3-.1.3-.3 0-.2-.1-.3-.3-.3Z"
-        className="fill-[var(--bladevault-gold)]"
-      />
+      <circle cx="23" cy="40" r="0.9" fill="currentColor" />
     </svg>
   )
 }

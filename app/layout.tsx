@@ -4,7 +4,6 @@ import Script from "next/script"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { AnnouncementBar } from "@/components/site/announcement-bar"
 import { SiteHeader } from "@/components/site/site-header"
 import { SiteFooter } from "@/components/site/site-footer"
 import { cn } from "@/lib/utils"
@@ -99,11 +98,11 @@ export const viewport: Viewport = {
   themeColor: [
     {
       media: "(prefers-color-scheme: light)",
-      color: "#fbfaf7",
+      color: "#ffffff",
     },
     {
       media: "(prefers-color-scheme: dark)",
-      color: "#2e3417",
+      color: "#18181b",
     },
   ],
 }
@@ -146,7 +145,6 @@ export default function RootLayout({
           >
             Skip to content
           </a>
-          <AnnouncementBar />
           <SiteHeader />
           {children}
           <SiteFooter />

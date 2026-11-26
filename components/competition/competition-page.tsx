@@ -71,7 +71,7 @@ const approaches = [
       "Best when your collection is small or you want total freedom over the columns.",
     tradeoff:
       "You become the product designer: views, relationships, care history, and comparisons are all yours to build.",
-    tone: "bg-[#f6f1e5]",
+    tone: "bg-[#f4f4f5]",
   },
   {
     icon: Boxes,

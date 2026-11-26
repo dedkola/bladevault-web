@@ -81,7 +81,7 @@
 }
 
 .timeline li[data-kind="round"] {
-  color: #fbfaf7;
+  color: #ffffff;
   background: var(--bladevault-olive);
 }
 

@@ -40,14 +40,14 @@ export function ScreenshotLightbox({
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-[60] bg-[rgb(19_21_10/78%)] backdrop-blur-md" />
         <Dialog.Viewport className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-8">
-          <Dialog.Popup className="grid max-h-[92dvh] w-full max-w-[88rem] grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-xl border border-[var(--bladevault-line)] bg-[#f6f1e5] shadow-[0_30px_90px_rgb(20_23_10/38%)] outline-none">
+          <Dialog.Popup className="grid max-h-[92dvh] w-full max-w-[88rem] grid-rows-[auto_minmax(0,1fr)] overflow-hidden rounded-xl border border-[var(--bladevault-line)] bg-[#f4f4f5] shadow-[0_30px_90px_rgb(20_23_10/38%)] outline-none">
             <div className="flex items-center justify-between gap-4 border-b border-[var(--bladevault-line)]/55 px-4 py-3 text-[var(--bladevault-olive)]">
               <Dialog.Title className="text-sm font-semibold">
                 {title ?? alt}
               </Dialog.Title>
               <Dialog.Description className="sr-only">{alt}</Dialog.Description>
               <Dialog.Close
-                className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-[var(--bladevault-line)] bg-[#fffefa] transition-colors hover:bg-white focus-visible:ring-2 focus-visible:ring-[var(--bladevault-gold)] focus-visible:outline-none"
+                className="inline-flex size-10 shrink-0 items-center justify-center rounded-md border border-[var(--bladevault-line)] bg-[#ffffff] transition-colors hover:bg-white focus-visible:ring-2 focus-visible:ring-[var(--bladevault-gold)] focus-visible:outline-none"
                 aria-label="Close enlarged screenshot"
               >
                 <X className="size-4" aria-hidden="true" />
