@@ -60,7 +60,7 @@ export default async function FeaturePage({ params }: FeaturePageProps) {
         <nav className={styles.crumbs} aria-label="Breadcrumb">
           <Link href="/features">
             <ArrowLeft aria-hidden="true" />
-            Background features
+            All features
           </Link>
         </nav>
 
@@ -88,7 +88,7 @@ export default async function FeaturePage({ params }: FeaturePageProps) {
         className={`${base.homepage} ${styles.more}`}
         aria-labelledby="more-features"
       >
-        <h2 id="more-features">More running in the background</h2>
+        <h2 id="more-features">More in BladeVault</h2>
         <ul className={`${hero.cards} ${styles.moreCards}`}>
           {others.map((item) => (
             <li key={item.slug}>

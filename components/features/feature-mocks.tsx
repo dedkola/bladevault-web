@@ -4,15 +4,18 @@ import {
   ArrowUpRight,
   Bell,
   BellOff,
+  BellRing,
   CalendarClock,
   Check,
   Droplet,
   Eye,
   HelpCircle,
   Lock,
+  MessageSquare,
   Plus,
   RefreshCw,
   Search,
+  SendHorizontal,
   Share2,
   Sparkles,
   Store,
@@ -32,6 +35,77 @@ const region = (...steps: number[]): Region => ({
 })
 
 const pct = (value: number) => ({ "--p": `${value}%` }) as CSSProperties
+
+/* ---------- Chat ---------- */
+
+const chatDrops = [
+  ["Spyderco Military 2", "SMKW", "$294 → $220.50", "−25%"],
+  ["Vosteed Raccoon TiSlim", "KnifeJoy", "$135 → $94.50", "−30%"],
+  ["CIVIVI Elementum II", "Blade HQ", "$52 → $41.60", "−20%"],
+] as const
+
+const chatLookups = ["list_price_changes · 7 days", "get_price_watch · 3"]
+
+function ChatMock() {
+  return (
+    <div className={styles.mock}>
+      <div className={styles.toolbar} {...region(4)}>
+        <strong className={styles.chatTitle}>
+          <MessageSquare aria-hidden="true" /> Price drops this week
+        </strong>
+        <span className={styles.chatPicker}>
+          <span className={styles.pill}>qwen3:14b · Ollama</span>
+          <span className={styles.segmented} aria-hidden="true">
+            <span>Off</span>
+            <span data-on>Low</span>
+            <span>Medium</span>
+            <span>High</span>
+          </span>
+        </span>
+      </div>
+      <div className={styles.chatAsk} {...region(1)}>
+        <p className={styles.chatBubble}>
+          Show me all price drops from the last week
+        </p>
+        <span className={styles.chatSuggest}>
+          <span>Which knives are missing a steel?</span>
+          <span>Short summary of my collection</span>
+        </span>
+      </div>
+      <div className={styles.chatSteps} {...region(2)}>
+        {chatLookups.map((step) => (
+          <span key={step}>
+            <Search aria-hidden="true" /> {step}
+            <Check aria-hidden="true" />
+          </span>
+        ))}
+      </div>
+      <div className={styles.chatAnswer} {...region(3)}>
+        <p>
+          Three knives dropped in the last 7 days. The biggest is the Raccoon
+          TiSlim at KnifeJoy:
+        </p>
+        <div className={styles.chatTable}>
+          {chatDrops.map(([knife, store, change, pct]) => (
+            <div key={knife} className={styles.chatRow}>
+              <span className={styles.knifeName}>
+                <i className={styles.thumb} aria-hidden="true" />
+                {knife}
+              </span>
+              <small>{store}</small>
+              <span>{change}</span>
+              <em>{pct}</em>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className={styles.chatComposer} aria-hidden="true">
+        <span>Ask about your knives, prices or care…</span>
+        <SendHorizontal />
+      </div>
+    </div>
+  )
+}
 
 /* ---------- Wishlist ---------- */
 
@@ -222,6 +296,10 @@ function PriceDropsMock() {
         </span>
         <span className={styles.changeQuiet}>
           <BellOff aria-hidden="true" /> Blade HQ −1.8% · under 5% minimum
+        </span>
+        <span className={styles.changeSale}>
+          <BellRing aria-hidden="true" /> Collection · Bugout 55% below regular
+          · super sale
         </span>
       </div>
     </div>
@@ -533,6 +611,7 @@ function AchievementsMock() {
 }
 
 const mocks: Record<string, () => ReactNode> = {
+  chat: ChatMock,
   wishlist: WishlistMock,
   "price-drops": PriceDropsMock,
   "ai-supervisor": SupervisorMock,

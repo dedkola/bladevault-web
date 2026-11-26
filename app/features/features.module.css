@@ -104,6 +104,19 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+/* Chat leads the index across the full row; the six others fill two rows. */
+ul.indexCards li:first-child {
+  grid-column: 1 / -1;
+}
+
+.moreCards {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+ul.moreCards li:first-child {
+  grid-column: auto;
+}
+
 @media (max-width: 1320px) {
   .moreCards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -121,5 +134,9 @@
   .moreCards,
   .indexCards {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  ul.indexCards li:first-child {
+    grid-column: auto;
   }
 }
