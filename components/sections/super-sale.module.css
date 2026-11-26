@@ -1,0 +1,413 @@
+.block {
+  --sale: #2f7a4a;
+  --target: var(--bladevault-title);
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 22px;
+  align-items: start;
+  margin-top: 16px;
+  padding: 20px;
+  border: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
+  border-radius: 16px;
+  background:
+    radial-gradient(
+      22rem 14rem at 0% 0%,
+      color-mix(in srgb, var(--sale) 9%, transparent),
+      transparent 70%
+    ),
+    var(--card);
+}
+
+:global(.dark) .block {
+  --sale: #7fcf98;
+}
+
+.copy {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.copy > p:first-child {
+  font-size: 10.5px;
+}
+
+.copy h3 {
+  margin: 0;
+  color: var(--bladevault-title);
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.intro {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* ---------- round / pass timeline ---------- */
+
+.timeline {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr 1fr;
+  gap: 4px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline li {
+  display: grid;
+  min-width: 0;
+  height: 30px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 7px;
+  font-size: 10px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.timeline li span {
+  overflow: hidden;
+  max-width: 100%;
+  padding: 0 6px;
+  text-overflow: ellipsis;
+}
+
+.timeline li[data-kind="round"] {
+  color: #fbfaf7;
+  background: var(--bladevault-olive);
+}
+
+.timeline li[data-kind="pass"] {
+  color: var(--sale);
+  background: repeating-linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--sale) 16%, transparent) 0 10px,
+    color-mix(in srgb, var(--sale) 8%, transparent) 10px 12px
+  );
+}
+
+.passNote {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 11.5px;
+}
+
+.passNote b {
+  color: var(--foreground);
+  font-weight: 650;
+}
+
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.facts li {
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--muted-foreground);
+  background: var(--secondary);
+  font-size: 11px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.textLink {
+  color: var(--bladevault-title);
+  font-size: 12px;
+  font-weight: 650;
+  text-underline-offset: 3px;
+}
+
+/* ---------- threshold panel ---------- */
+
+.panel {
+  display: grid;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid color-mix(in srgb, var(--border) 45%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--background) 60%, transparent);
+}
+
+.control {
+  display: grid;
+  gap: 8px;
+}
+
+.control label {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.value {
+  color: var(--sale);
+  font-size: 20px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.value small {
+  color: var(--muted-foreground);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.slider {
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+}
+
+.slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--sale) var(--fill),
+    var(--secondary) var(--fill)
+  );
+}
+
+.slider::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--sale) var(--fill),
+    var(--secondary) var(--fill)
+  );
+}
+
+.slider::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  margin-top: -6px;
+  border: 3px solid var(--card);
+  border-radius: 50%;
+  background: var(--sale);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.25);
+  appearance: none;
+}
+
+.slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 3px solid var(--card);
+  border-radius: 50%;
+  background: var(--sale);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.25);
+}
+
+.slider:focus-visible {
+  outline: 2px solid var(--sale);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.scale {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted-foreground);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+}
+
+/* Thumb travel is the track minus its 18px width, so offset from 9px. */
+.defaultMark {
+  position: absolute;
+  left: calc(9px + (100% - 18px) * var(--at));
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* ---------- example knives ---------- */
+
+.rows {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) minmax(80px, 0.8fr) minmax(
+      0,
+      1.3fr
+    );
+  gap: 12px;
+  align-items: center;
+  padding: 7px 10px 7px 7px;
+  border: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+  border-radius: 11px;
+  background: var(--card);
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.row[data-kind="sale"] {
+  border-color: color-mix(in srgb, var(--sale) 35%, transparent);
+  background: color-mix(in srgb, var(--sale) 6%, var(--card));
+}
+
+.name {
+  display: grid;
+  min-width: 0;
+}
+
+.name b {
+  overflow: hidden;
+  font-size: 12.5px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.name small {
+  color: var(--muted-foreground);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.name s {
+  opacity: 0.7;
+}
+
+/* Bar = how far below regular; the tick is the super-sale line. */
+.meter {
+  position: relative;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--secondary);
+}
+
+.meter i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--below);
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--muted-foreground) 55%, transparent);
+  transition: background-color 0.2s ease;
+}
+
+.row[data-kind="sale"] .meter i {
+  background: var(--sale);
+}
+
+.meter::after {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: var(--line);
+  width: 2px;
+  border-radius: 1px;
+  background: var(--foreground);
+  content: "";
+  transition: left 0.15s ease;
+}
+
+.reason {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  justify-self: start;
+  padding: 4px 9px;
+  border-radius: 8px;
+  color: var(--muted-foreground);
+  background: var(--secondary);
+  font-size: 11px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.reason svg {
+  width: 13px;
+  height: 13px;
+}
+
+.row[data-kind="sale"] .reason {
+  color: var(--sale);
+  background: color-mix(in srgb, var(--sale) 13%, transparent);
+}
+
+.row[data-kind="target"] .reason {
+  color: var(--target);
+  background: color-mix(in srgb, var(--bladevault-gold) 18%, transparent);
+}
+
+.summary {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 11.5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .meter i,
+  .meter::after {
+    transition: none;
+  }
+}
+
+@media (max-width: 1000px) {
+  .block {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .block {
+    padding: 14px;
+  }
+
+  .panel {
+    padding: 10px;
+  }
+
+  .row {
+    grid-template-columns: 40px minmax(0, 1fr);
+    row-gap: 8px;
+  }
+
+  .row > :first-child {
+    grid-row: span 3;
+    align-self: start;
+  }
+
+  .reason {
+    white-space: normal;
+  }
+
+  .timeline li {
+    font-size: 9px;
+  }
+}
