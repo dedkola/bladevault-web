@@ -250,6 +250,9 @@ export function HomepageWishlist() {
     <section id="wishlist" className={base.section}>
       <div className={base.sectionHead}>
         <p className={base.sectionKicker}>
+          <span className={base.sectionNum} aria-hidden="true">
+            02
+          </span>
           Wishlist
           <span className={base.newBadge}>New</span>
         </p>

@@ -1,58 +1,6 @@
 /* Coded previews of the app's Maintenance and History pages. Colors come
    from the site's own tokens so the previews follow light and dark mode. */
 
-.tabs {
-  display: inline-flex;
-  gap: 4px;
-  margin-bottom: 16px;
-  padding: 4px;
-  border: 1px solid var(--hp-line-soft);
-  border-radius: 999px;
-  background: var(--hp-secondary);
-}
-
-.tab {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  min-height: 36px;
-  padding: 0 16px;
-  border: 0;
-  border-radius: 999px;
-  color: var(--hp-muted);
-  background: transparent;
-  font-size: 13px;
-  font-weight: 620;
-  cursor: pointer;
-  transition:
-    color 160ms ease,
-    background-color 160ms ease;
-}
-
-.tab svg {
-  width: 15px;
-  height: 15px;
-}
-
-.tab:hover {
-  color: var(--hp-ink);
-}
-
-.tab:focus-visible {
-  outline: 2px solid var(--hp-gold);
-  outline-offset: 2px;
-}
-
-.tabActive {
-  color: var(--hp-ink);
-  background: var(--hp-card);
-  box-shadow: var(--hp-shadow);
-}
-
-.tabActive svg {
-  color: var(--hp-gold);
-}
-
 .preview {
   margin: 0;
 }
@@ -603,15 +551,6 @@
 /* ---------- responsive ---------- */
 
 @media (max-width: 700px) {
-  .tabs {
-    display: flex;
-  }
-
-  .tab {
-    flex: 1;
-    justify-content: center;
-  }
-
   .page {
     min-height: 0;
     padding: 12px;
@@ -661,11 +600,5 @@
 
   .entry {
     grid-template-columns: 40px minmax(0, 1fr) auto;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .tab {
-    transition: none;
   }
 }

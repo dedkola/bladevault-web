@@ -54,8 +54,8 @@ const comparisonRows = [
     diy: "Wherever you host it",
   },
   {
-    label: "AI / MCP access",
-    bladevault: "Local read access through MCP",
+    label: "AI chat + MCP",
+    bladevault: "Built-in Chat, plus MCP that writes after a preview",
     spreadsheet: "Not built in",
     inventory: "Depends on the app",
     diy: "You connect it yourself",
