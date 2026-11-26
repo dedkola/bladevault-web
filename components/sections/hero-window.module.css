@@ -1,0 +1,740 @@
+/* Hero app window: tabs for Chat, Wishlist and Price Drops scenes. */
+
+.window {
+  --hw-gold: var(--bladevault-gold);
+  --hw-title: var(--bladevault-title);
+  --hw-olive: var(--bladevault-local);
+  --hw-down: #2f7a4a;
+  --hw-sale: #b4561c;
+  --hw-soft: color-mix(in srgb, var(--hp-secondary) 70%, var(--hp-card));
+
+  position: relative;
+}
+
+:global(.dark) .window {
+  --hw-down: #7fcf98;
+  --hw-sale: #f0a26b;
+  --hw-olive: #b9c46a;
+}
+
+/* ---------- window bar ---------- */
+
+.bar {
+  justify-content: flex-start;
+  min-height: 40px;
+  padding-right: 6px;
+}
+
+.path {
+  flex: 0 0 auto;
+  min-width: 7.5rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.tab {
+  position: relative;
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  padding: 6px 9px 8px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--hp-muted);
+  background: transparent;
+  font: inherit;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.tab svg {
+  width: 12px;
+  height: 12px;
+}
+
+.tab:hover {
+  color: var(--hp-ink);
+}
+
+.tab[aria-selected="true"] {
+  border-color: var(--hp-line);
+  color: var(--hp-ink);
+  background: var(--hp-card);
+}
+
+.tab:focus-visible,
+.play:focus-visible {
+  outline: 2px solid var(--hw-gold);
+  outline-offset: 1px;
+}
+
+.track {
+  position: absolute;
+  right: 9px;
+  bottom: 3px;
+  left: 9px;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--hp-line-faint);
+  opacity: 0;
+}
+
+.tab[aria-selected="true"] .track {
+  opacity: 1;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  background: var(--hw-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.play {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  margin-left: 4px;
+  place-items: center;
+  border: 0;
+  border-radius: 7px;
+  color: var(--hp-muted);
+  background: transparent;
+  cursor: pointer;
+}
+
+.play:hover {
+  color: var(--hp-ink);
+  background: var(--hp-card);
+}
+
+.play svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ---------- panels ---------- */
+
+/* All panels share one grid cell, so the window keeps the tallest height. */
+.panels {
+  display: grid;
+  aspect-ratio: 16 / 10.4;
+  min-height: 0;
+}
+
+.panel {
+  grid-area: 1 / 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 260ms ease,
+    visibility 0s 260ms;
+}
+
+.panel[data-active] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 260ms ease;
+}
+
+.reveal {
+  animation: reveal 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.panel small {
+  color: var(--hp-muted);
+  font-size: 10.5px;
+}
+
+/* ---------- chat ---------- */
+
+.chat {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr);
+  height: 100%;
+}
+
+.chatList {
+  display: grid;
+  align-content: start;
+  gap: 3px;
+  padding: 12px 10px;
+  border-right: 1px solid var(--hp-line-faint);
+  background: var(--hw-soft);
+  font-size: 11px;
+}
+
+.chatList b {
+  margin: 10px 6px 2px;
+  color: var(--hp-muted);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.chatList span {
+  overflow: hidden;
+  padding: 5px 7px;
+  border-radius: 7px;
+  color: var(--hp-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chatList span[data-on] {
+  color: var(--hp-ink);
+  background: color-mix(in srgb, var(--hw-gold) 16%, transparent);
+}
+
+.chatList .newChat {
+  border: 1px solid var(--hp-line);
+  color: var(--hp-ink);
+  background: var(--hp-card);
+  text-align: center;
+}
+
+.chatMain {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  min-width: 0;
+  padding: 12px 16px;
+}
+
+.chatHead {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--hp-line-faint);
+}
+
+.chatHead > span:first-child {
+  display: grid;
+  min-width: 0;
+}
+
+.chatHead strong {
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.picker {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 8px;
+  border: 1px solid var(--hp-line);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+}
+
+.picker i {
+  padding-left: 6px;
+  border-left: 1px solid var(--hp-line);
+  color: var(--hw-title);
+  font-style: normal;
+}
+
+.picker svg {
+  width: 11px;
+  height: 11px;
+  color: var(--hp-muted);
+}
+
+.you {
+  align-self: flex-end;
+  max-width: 80%;
+  margin: 0;
+  padding: 7px 11px;
+  border-radius: 12px 12px 4px 12px;
+  background: var(--hp-secondary);
+  font-size: 12px;
+}
+
+.tool {
+  display: inline-flex;
+  align-self: flex-start;
+  gap: 6px;
+  align-items: center;
+  margin: 0;
+  padding: 4px 9px;
+  border: 1px solid var(--hp-line);
+  border-radius: 999px;
+  color: var(--hp-muted);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+}
+
+.tool svg {
+  width: 11px;
+  height: 11px;
+  color: var(--hw-down);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.table th {
+  padding: 0 6px 4px;
+  color: var(--hp-muted);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.table td {
+  padding: 5px 6px;
+  border-top: 1px solid var(--hp-line-faint);
+  white-space: nowrap;
+}
+
+.table td:first-child {
+  overflow: hidden;
+  max-width: 11rem;
+  text-overflow: ellipsis;
+}
+
+.table s {
+  color: var(--hp-muted);
+}
+
+.down {
+  color: var(--hw-down);
+  font-weight: 650;
+}
+
+.answer {
+  margin: 0;
+  color: var(--hp-ink-soft, var(--hp-ink));
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+.answer b {
+  color: var(--hp-ink);
+  font-weight: 650;
+}
+
+.composer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 7px 7px 7px 12px;
+  border: 1px solid var(--hp-line);
+  border-radius: 12px;
+  color: var(--hp-muted);
+  font-size: 11px;
+}
+
+.composer span {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 7px;
+  color: var(--hp-card);
+  background: var(--hp-ink);
+}
+
+.composer svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ---------- wishlist ---------- */
+
+.wish,
+.drops {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  padding: 14px 18px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.stats span {
+  display: grid;
+  gap: 2px;
+  padding: 8px 10px;
+  border: 1px solid var(--hp-line-faint);
+  border-radius: 10px;
+}
+
+.stats b {
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.deals {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.deal {
+  display: grid;
+  gap: 2px;
+  padding: 10px 11px;
+  border: 1px solid color-mix(in srgb, var(--hw-gold) 30%, transparent);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--hw-gold) 7%, var(--hp-card));
+}
+
+.deal:first-child {
+  border-color: var(--hw-gold);
+}
+
+.deal small {
+  color: var(--hw-title);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.deal strong {
+  overflow: hidden;
+  font-size: 12.5px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deal span {
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.deal em,
+.dropPrice em {
+  margin-left: 4px;
+  color: var(--hw-down);
+  font-style: normal;
+  font-weight: 650;
+}
+
+.rows {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rows li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 7rem 60px 4rem;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 2px;
+  border-top: 1px solid var(--hp-line-faint);
+  font-size: 12px;
+}
+
+.rows li > span:first-child {
+  display: grid;
+  min-width: 0;
+}
+
+.rows strong {
+  font-weight: 600;
+}
+
+.rows b {
+  font-weight: 650;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.state {
+  color: var(--hp-muted);
+  font-size: 11px;
+}
+
+.trend {
+  width: 60px;
+  height: 24px;
+}
+
+.trend polyline {
+  fill: none;
+  stroke: var(--hw-down);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+}
+
+/* ---------- price drops ---------- */
+
+.dropsHead,
+.dropRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropsHead > span:first-child,
+.dropRow > span:first-child {
+  display: grid;
+  min-width: 0;
+}
+
+.dropsHead strong {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.pass {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 4px 9px;
+  border: 1px solid var(--hp-line);
+  border-radius: 999px;
+  color: var(--hp-muted);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+}
+
+.pass i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--hw-olive);
+}
+
+.dropRow {
+  padding: 10px 12px;
+  border: 1px solid var(--hp-line-faint);
+  border-radius: 11px;
+}
+
+.dropRow strong {
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.dropPrice {
+  font-size: 14px;
+  font-weight: 650;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.dropPrice s {
+  color: var(--hp-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.chart {
+  width: 100%;
+  height: auto;
+  max-height: 34%;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+.chart path {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.chart path[data-tone="gold"],
+.stores [data-tone="gold"] i {
+  stroke: var(--hw-gold);
+  background: var(--hw-gold);
+}
+
+.chart path[data-tone="olive"],
+.stores [data-tone="olive"] i {
+  stroke: var(--hw-olive);
+  background: var(--hw-olive);
+}
+
+.chart path[data-tone="muted"] {
+  stroke: var(--hp-muted);
+  stroke-dasharray: 4 3;
+}
+
+.stores [data-tone="muted"] i {
+  background: var(--hp-muted);
+}
+
+.stores [data-tone="out"] i {
+  border: 1px solid var(--hp-muted);
+  background: transparent;
+}
+
+.stores {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 11.5px;
+}
+
+.stores li {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+
+.stores i {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 2px;
+}
+
+.stores b {
+  margin-left: auto;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.superSale {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  margin: auto 0 0;
+  padding: 8px 11px;
+  border-radius: 10px;
+  color: var(--hw-sale);
+  background: color-mix(in srgb, var(--hw-sale) 10%, transparent);
+  font-size: 11.5px;
+}
+
+.superSale svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+}
+
+/* ---------- responsive and motion ---------- */
+
+@media (max-width: 700px) {
+  .path {
+    display: none;
+  }
+
+  .tabs {
+    margin-left: 0;
+  }
+
+  .panels {
+    aspect-ratio: auto;
+    min-height: 25rem;
+  }
+
+  .chat {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .chatList,
+  .picker i,
+  .table th:nth-child(5),
+  .table td:nth-child(5),
+  .rows .state {
+    display: none;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rows li {
+    grid-template-columns: minmax(0, 1fr) 60px 4rem;
+  }
+
+  .stores {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .tab {
+    padding-inline: 7px;
+  }
+
+  .tab svg {
+    display: none;
+  }
+
+  .table th:nth-child(4),
+  .table td:nth-child(4) {
+    display: none;
+  }
+
+  .chatMain,
+  .wish,
+  .drops {
+    padding-inline: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+
+  .panel,
+  .panel[data-active],
+  .tab {
+    transition: none;
+  }
+}
