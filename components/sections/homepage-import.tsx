@@ -77,7 +77,7 @@ export function HomepageImport() {
       <div className={styles.sectionHead}>
         <p className={styles.sectionKicker}>
           <span className={styles.sectionNum} aria-hidden="true">
-            01
+            03
           </span>
           Auto scrape
         </p>

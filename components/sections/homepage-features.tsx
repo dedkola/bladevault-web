@@ -2,12 +2,16 @@ import {
   Database,
   Gauge,
   Image as ImageIcon,
+  LayoutGrid,
+  Palette,
   Scale,
   Search,
   Wrench,
 } from "lucide-react"
 
+import { ThemesPanel } from "./homepage-themes"
 import styles from "./homepage-v3.module.css"
+import { SectionTabs } from "./section-tabs"
 
 const features = [
   {
@@ -97,23 +101,9 @@ const alsoIncluded = [
   "Studio showcase mode",
 ]
 
-export function HomepageFeatures() {
+function EverydayPanel() {
   return (
-    <section id="features" className={styles.section}>
-      <div className={styles.sectionHead}>
-        <p className={styles.sectionKicker}>
-          <span className={styles.sectionNum} aria-hidden="true">
-            07
-          </span>
-          The rest of the vault
-        </p>
-        <h2>Everything else you need.</h2>
-        <p className={styles.sectionIntro}>
-          The daily workflows around the record: finding, comparing, cleaning
-          up, and keeping it local.
-        </p>
-      </div>
-
+    <>
       <div className={styles.featuresGrid}>
         {features.map(({ icon: Icon, title, body, points }) => (
           <article key={title} className={styles.featureCard}>
@@ -137,6 +127,46 @@ export function HomepageFeatures() {
           <span key={item}>{item}</span>
         ))}
       </div>
+    </>
+  )
+}
+
+// Everyday tools and the twelve styles. The themes tab keeps #themes working.
+export function HomepageFeatures() {
+  return (
+    <section id="features" className={styles.section}>
+      <div className={styles.sectionHead}>
+        <p className={styles.sectionKicker}>
+          <span className={styles.sectionNum} aria-hidden="true">
+            06
+          </span>
+          The rest of the vault
+        </p>
+        <h2>Everything else you need.</h2>
+        <p className={styles.sectionIntro}>
+          The daily workflows around the record: finding, comparing, cleaning
+          up, and keeping it local. Plus twelve styles to see it all in, from
+          Shelf and Ledger to Atrium and Forge.
+        </p>
+      </div>
+
+      <SectionTabs
+        label="Everyday tools and styles"
+        tabs={[
+          {
+            id: "everyday",
+            label: "Everyday tools",
+            icon: <LayoutGrid aria-hidden="true" />,
+            content: <EverydayPanel />,
+          },
+          {
+            id: "themes",
+            label: "Twelve styles",
+            icon: <Palette aria-hidden="true" />,
+            content: <ThemesPanel />,
+          },
+        ]}
+      />
     </section>
   )
 }
