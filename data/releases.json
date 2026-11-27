@@ -1,5 +1,13 @@
 [
   {
+    "version": "v2.6.2",
+    "date": "2026-11-27",
+    "changes": [
+      "Monitoring status on Price Drops is now one compact strip of checks per hour, with price moves and restocks highlighted and the queue shown at Now.",
+      "Price charts start at zero, so a discount no longer looks like the price fell to nothing."
+    ]
+  },
+  {
     "version": "v2.6.1",
     "date": "2026-11-27",
     "changes": [
