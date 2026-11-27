@@ -1,5 +1,25 @@
 [
   {
+    "version": "v2.6.1",
+    "date": "2026-11-27",
+    "changes": [
+      "Out-of-stock knives keep being checked (the official-site setting now only silences those alerts), out-of-stock alerts can be stopped from the Inbox in one click, and up to 2 other variants of a model per store are tracked as separate price options.",
+      "The Needs attention message now arrives at most once a day with only the store pages that really need a look, and each one has Later, Price is right, Wrong page, Pause and Remove buttons in the Inbox and on Price Drops.",
+      "Price charts draw one continuous line through out-of-stock periods, and out-of-stock listings no longer show a \"save\" amount.",
+      "Price charts on Price Drops, Wishlist and the open item now show the best price as a shaded area, every store's readings as coloured dots, and your price as a line, with zoom in the open item.",
+      "Price history charts always show the full tracked range, without the zoom slider underneath.",
+      "Price charts now draw one smooth line through every price a store showed, coloured from green (cheapest) to red, including prices seen while out of stock.",
+      "Chat finds price drops for one brand or knife and reads whole results, so answers like \"best Vosteed drops\" no longer miss deals.",
+      "New chats now start with the chat model chosen in Settings, which you can pick from the endpoint's model list.",
+      "Price Drops charts now start at the item's regular price, so a sale that was already running when tracking began shows as a drop.",
+      "Price Drops rows now show one clear number on the chart — how far today's price is below the regular price, in dollars and percent — with the regular price drawn as a dashed line.",
+      "Price charts on Price Drops and Wishlist start at the item's regular price, so a sale shows as a green drop and a higher price as a red rise.",
+      "Row price charts on Price Drops and the Wishlist now show every price change, including small ones.",
+      "Opening a knife from the Inbox now centers it on Price Drops, and the price table no longer scrolls sideways or hides its right-hand columns.",
+      "None (label: documentation)."
+    ]
+  },
+  {
     "version": "v2.6.0",
     "date": "2026-11-26",
     "major": true,
